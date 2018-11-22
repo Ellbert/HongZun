@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:padding="12dp"
+        android:text="可用金额"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tv_text1"
+        android:layout_toRightOf="@+id/tv_text1"
+        android:background="@color/white"
+        android:padding="12dp"
+        android:text="可用金额"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text1"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="12dp"
+        android:text="可用金额"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <EditText
+        android:id="@+id/et_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text1"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/tv_text1"
+        android:layout_toRightOf="@+id/tv_text1"
+        android:background="@color/white"
+        android:hint="请输入充值金额"
+        android:padding="12dp"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text2"
+        android:padding="12dp"
+        android:text="提现方式"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text3"
+        android:background="@color/white"
+        android:drawableStart="@mipmap/icn_withdraw"
+        android:drawableLeft="@mipmap/icn_withdraw"
+        android:drawablePadding="10dp"
+        android:padding="12dp"
+        android:text="提现到银行卡"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@+id/tv_bank"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:text="确认支付"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+</RelativeLayout>

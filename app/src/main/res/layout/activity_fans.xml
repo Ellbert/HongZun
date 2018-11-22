@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_header" />
+
+    <TextView
+        android:id="@+id/tv_fans"
+        android:layout_width="301dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_btn_large_gray_edge_normal"
+        android:gravity="center"
+        android:text="搜索好友"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_third"
+        android:visibility="visible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_fans"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_nothing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:drawableTop="@mipmap/img_nothing"
+        android:drawablePadding="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="99dp"
+        android:text="您还没有好友哦~"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_first" />
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header" />
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="昵称"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <EditText
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_alignTop="@+id/tv_text1"
+        android:layout_alignBottom="@+id/tv_text1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_toEndOf="@+id/tv_text1"
+        android:layout_toRightOf="@+id/tv_text1"
+        android:background="@null"
+        android:gravity="center_vertical|end"
+        android:hint="输入修改的昵称"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_text1"
+        android:background="@color/bg_view" />
+
+</RelativeLayout>

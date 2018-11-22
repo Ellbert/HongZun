@@ -1,0 +1,88 @@
+<com.cecilia.framework.widget.SlidingButtonView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sliding_btn_view"
+    android:layout_width="match_parent"
+    android:layout_height="67dp"
+    android:layout_marginBottom="1dp"
+    android:layout_marginTop="1dp"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/rl_content"
+            android:background="#F72626"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="删 除"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/iv_bank"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="12dp"
+                android:contentDescription="@string/loading"
+                android:gravity="center"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                android:layout_toRightOf="@id/iv_bank"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_bankcard_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:lines="1"
+                    android:text="中国建设银行"
+                    android:textColor="@color/txt_first"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/tv_withdraw_bankCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="start|center_vertical"
+                    android:text="尾号1007储蓄卡"
+                    android:textColor="@color/txt_first"
+                    android:textSize="11sp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_withdraw"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/color_main"
+                android:gravity="center"
+                android:text="提 现"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</com.cecilia.framework.widget.SlidingButtonView>

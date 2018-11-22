@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cecilia.framework">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 声明程序使用camera和自动对焦功能 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!--定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".GcGuangApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".module.splash.activity.LogoActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".module.main.activity.MainActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.product.activity.ProductActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.product.activity.ProductListActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.login.activity.LoginActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.main.activity.SubmitCommentActivity"
+            android:launchMode="standard"/>
+        <activity android:name=".module.main.activity.RechargeActivity" />
+        <activity android:name=".module.main.activity.HongBaoActivity" />
+        <activity android:name=".module.me.activity.PriceActivity" />
+        <activity android:name=".module.me.activity.PriceDetailActivity" />
+        <activity android:name=".module.me.activity.FansActivity" />
+        <activity android:name=".module.me.activity.FollowActivity" />
+        <activity android:name=".module.me.activity.CollectActivity" />
+        <activity android:name=".module.me.activity.DataActivity" />
+        <activity android:name=".module.me.activity.HeaderActivity" />
+        <activity android:name=".module.me.activity.NameActivity" />
+        <activity android:name=".module.me.activity.PhoneActivity" />
+        <activity android:name=".module.me.activity.SafetyActivity" />
+        <activity android:name=".module.me.activity.ResetActivity" />
+    </application>
+
+</manifest>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_drop"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_margin="12dp"
+        android:src="@mipmap/icn_drop_up" />
+
+    <TextView
+        android:id="@+id/tv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:paddingStart="36dp"
+        android:paddingLeft="36dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="36dp"
+        android:paddingRight="36dp"
+        android:paddingBottom="7dp"
+        android:text="一级分类"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_list"
+        android:layout_alignBottom="@+id/tv_list"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_vertical"
+        android:text="88"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_third" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_list"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rv_list"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/bg_view" />
+
+</RelativeLayout>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/bg_view"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/cb_mall"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/color_main" />
+
+    <TextView
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingEnd="5dp"
+        android:drawablePadding="3dp"
+        android:drawableLeft="@mipmap/icn_search_gray"
+        android:drawableStart="@mipmap/icn_search_gray"
+        android:id="@+id/tv_search"
+        android:layout_width="300dp"
+        android:layout_height="21dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/txt_product_date"
+        android:background="@drawable/bg_tv_large_white_normal"
+        android:gravity="center_vertical"
+        android:text="请输入关键词"
+        android:textSize="@dimen/txt_third" />
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/gl_type_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cb_mall"
+        android:paddingTop="25dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="20dp"
+        android:background="@android:color/white"
+        android:paddingRight="10dp"
+        app:columnCount="5">
+
+        <TextView
+            android:id="@+id/tv_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/icn_mall"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="泓樽商城"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/icn_brand"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="知名品牌"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/icn_food"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="食品饮酒"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_makeup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/icn_makeup"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="美妆护肤"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_luxury"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/icn_luxury"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="奢侈品"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableTop="@mipmap/icn_woman"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="女装"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableTop="@mipmap/icn_man"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="男装"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_kid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableTop="@mipmap/icn_kid"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="童装"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_sport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableTop="@mipmap/icn_sport"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="运动健身"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_digital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:drawableTop="@mipmap/icn_degital"
+            android:drawablePadding="8dp"
+            android:gravity="center_horizontal"
+            android:text="手机数码"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"
+            app:layout_columnWeight="1" />
+
+    </android.support.v7.widget.GridLayout>
+    
+    <View
+        android:id="@+id/v1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_below="@+id/gl_type_all"
+        android:background="@color/txt_blue"
+        android:layout_width="2dp"
+        android:layout_height="17dp"/>
+
+    <TextView
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/gl_type_all"
+        android:layout_toEndOf="@+id/v1"
+        android:layout_toRightOf="@+id/v1"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first"
+        android:text="泓樽超市"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

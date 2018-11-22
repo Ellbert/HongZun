@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="253dp"
+        android:layout_height="53dp"
+        android:gravity="center"
+        android:textColor="@color/color_main"
+        android:textSize="17dp"
+        android:textStyle="bold"/>
+
+    <com.cecilia.framework.widget.AutoSplitTextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="@color/txt_first"
+        android:textSize="13sp"
+        android:visibility="visible"/>
+
+    <View style="@style/style_div_full_small"/>
+
+    <EditText
+        android:id="@+id/et_input"
+        style="@style/style_et_item_content"
+        android:ellipsize="end"
+        android:inputType="none"/>
+
+    <ListView
+        android:id="@+id/lv_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/bg_view"
+        android:dividerHeight="2dp"/>
+
+    <View style="@style/style_div_full_small"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_negative"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dialog_selector"
+            android:gravity="center"
+            android:textColor="@color/txt_first"
+            android:textSize="15sp"/>
+
+        <View
+            android:id="@+id/v_div"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/bg_view"/>
+
+        <TextView
+            android:id="@+id/tv_positive"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dialog_selector"
+            android:gravity="center"
+            android:textColor="@color/txt_first"
+            android:textSize="15sp"/>
+    </LinearLayout>
+</LinearLayout>

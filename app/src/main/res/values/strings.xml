@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">泓樽商城</string>
+    <string name="call">拨打</string>
+    <string name="cancel">取消</string>
+    <string name="completed">完成</string>
+    <string name="close">关闭</string>
+    <string name="loading">加载中</string>
+    <string name="login">登录</string>
+    <string name="logout">登出</string>
+    <string name="ok">确定</string>
+    <string name="update">更新</string>
+
+    <!--setTag用-->
+    <item name="tag_first" type="id" />
+    <item name="tag_second" type="id" />
+
+    <!--首页btn-->
+    <string name="home">首页</string>
+    <string name="more">分类</string>
+    <string name="sponsor">招商</string>
+    <string name="me">个人</string>
+
+    <!--首页btn-->
+    <string name="boutique">精选大牌</string>
+    <string name="hot">火爆单品</string>
+    <string name="recommend">推荐商品</string>
+
+</resources>

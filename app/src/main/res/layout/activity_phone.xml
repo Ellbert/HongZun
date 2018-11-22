@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_view"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header" />
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:text="更换手机号码后，下次登录使用新手机号登录。"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/btn_fillet_first"
+        android:layout_marginBottom="2dp" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text1"
+        android:background="@color/white"
+        android:hint="输入修改的昵称"
+        android:paddingStart="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="15dp"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <EditText
+        android:id="@+id/et_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_phone"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:hint="输入验证码"
+        android:paddingStart="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="15dp"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_code"
+        android:layout_width="85dp"
+        android:layout_height="29dp"
+        android:layout_below="@+id/et_phone"
+        android:layout_alignEnd="@+id/et_code"
+        android:layout_alignRight="@+id/et_code"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_tv_small_red_selector"
+        android:gravity="center"
+        android:text="发送验证码"
+        android:textColor="@color/txt_code_selector"
+        android:textSize="@dimen/txt_third"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_code"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="14dp"
+        android:text="确认"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+</RelativeLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/cb_ads"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/icn_line_right"
+        android:drawableLeft="@mipmap/icn_line_left"
+        android:drawablePadding="18dp"
+        android:drawableRight="@mipmap/icn_line_right"
+        android:drawableStart="@mipmap/icn_line_left"
+        android:gravity="center"
+        android:text="@string/boutique"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_view" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_boutique"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/bg_view" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:drawableEnd="@mipmap/icn_line_right"
+        android:drawableLeft="@mipmap/icn_line_left"
+        android:drawablePadding="18dp"
+        android:drawableRight="@mipmap/icn_line_right"
+        android:drawableStart="@mipmap/icn_line_left"
+        android:gravity="center"
+        android:text="@string/hot"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_view">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:drawableEnd="@mipmap/icn_line_right"
+        android:drawableLeft="@mipmap/icn_line_left"
+        android:drawablePadding="18dp"
+        android:drawableRight="@mipmap/icn_line_right"
+        android:drawableStart="@mipmap/icn_line_left"
+        android:gravity="center"
+        android:text="@string/recommend"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+</LinearLayout>

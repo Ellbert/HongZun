@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bg_view">
+
+        <ImageView
+            android:id="@+id/mImagBack"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/icn_back_black" />
+
+        <ImageView
+            android:id="@+id/iv_finish_web"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/mImagBack"
+            android:padding="10.5dp"
+            android:src="@mipmap/icn_finish_web"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_first" />
+
+        <ImageView
+            android:id="@+id/ShuaXing"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:padding="6dp"
+            android:src="@mipmap/img_share_black"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.cecilia.framework.widget.ProgressWebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hardwareAccelerated="true">
+
+        </com.cecilia.framework.widget.ProgressWebView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

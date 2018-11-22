@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_main">#E60012</color>
+    <color name="color_main_clicked">#88FA3C32</color>
+    <color name="color_main_item">#99FA3C32</color>
+    <color name="color_assist_first">#F79726</color>
+    <color name="color_assist_first_clicked">#88F79726</color>
+    <color name="color_assist_second">#E03B54</color>
+    <color name="color_assist_second_clicked">#88E03B54</color>
+
+    <color name="bg_view">#F2F2F2</color>
+    <color name="bg_btn">#F6F6F6</color>
+    <color name="bg_edit_line">#E5E5E5</color>
+
+    <color name="txt_first">#272727</color>
+    <color name="txt_second">#4D4D4D</color>
+    <color name="txt_third">#808080</color>
+    <color name="txt_blue">#1488FE</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white_translucent">#E1FFFFFF</color>
+    <color name="black_translucent">#88000000</color>
+
+    <color name="border_first">#AAAAAA</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="bg_home_btn">#FFD9D9D9</color>
+
+    <!--服饰-->
+    <color name="bg_all_goods">#D5D5D5</color>
+    <color name="bg_you_like">#F0F0F0</color>
+    <color name="item_divider">#F5F5F5</color>
+    <color name="item_border">#7A7A7A</color>
+    <color name="cloth_head_bg">#EFEEF3</color>
+    <color name="txt_product_date">#9D9D9D</color>
+    <color name="shop_img_border">#9D9D9D</color>
+    <color name="bg_product_color">#FDB1AD</color>
+    <color name="txt_buy_select">#FEFFFF</color>
+
+    <color name="bg_tab_text">#646464</color>
+    <color name="bg_rv_item_selector">#FFF5F5</color>
+
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#F3DD23</color>
+
+    <color name="colorAccent">#FF4081</color>
+</resources>

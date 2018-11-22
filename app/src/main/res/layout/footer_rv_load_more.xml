@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_load_more"
+              android:layout_width="match_parent"
+              android:layout_height="28dp"
+              android:background="@drawable/bg_dialog_selector"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/ll_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="正在加载"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third"/>
+
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:contentDescription="@string/loading"
+            android:src="@mipmap/img_loading_black_small"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icn_tip"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="加载失败"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="没有更多数据"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third"
+        android:visibility="gone"/>
+
+</LinearLayout>

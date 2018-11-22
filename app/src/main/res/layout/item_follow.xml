@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="23dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_btn_small_gray_edge_normal"
+        android:gravity="center"
+        android:text="取消收藏"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_third" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/iv_header"
+        android:layout_toRightOf="@+id/iv_header"
+        android:text="萝卜哥"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third" />
+
+    <RatingBar
+        android:id="@+id/rb_follow"
+        style="@style/style_rating_bar"
+        android:layout_below="@+id/tv_name"
+        android:layout_alignStart="@+id/tv_name"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/iv_header"
+        android:layout_toRightOf="@+id/iv_header" />
+
+    <TextView
+        android:id="@+id/tv_sale"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_header"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="888888"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sale"
+        android:layout_alignStart="@+id/tv_sale"
+        android:layout_alignLeft="@+id/tv_sale"
+        android:layout_alignEnd="@+id/tv_sale"
+        android:layout_alignRight="@+id/tv_sale"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="总销量"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_eight" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:layout_toStartOf="@+id/tv_text2"
+        android:layout_toLeftOf="@+id/tv_text2"
+        android:background="@color/bg_view" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="1dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="71dp"
+        android:layout_toEndOf="@+id/tv_text2"
+        android:layout_toRightOf="@+id/tv_text2"
+        android:background="@color/bg_view" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_text1"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/bg_view" />
+
+    <TextView
+        android:id="@+id/tv_fans"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="888888"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+
+    <TextView
+        android:id="@+id/tv_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_fans"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="粉丝"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_eight" />
+
+    <TextView
+        android:id="@+id/tv_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_header"
+        android:layout_alignTop="@+id/tv_fans"
+        android:layout_alignBottom="@+id/tv_fans"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:gravity="center"
+        android:text="888888"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_eight" />
+
+
+    <TextView
+        android:id="@+id/tv_satisfied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_describe"
+        android:layout_alignStart="@+id/tv_describe"
+        android:layout_alignLeft="@+id/tv_describe"
+        android:layout_alignEnd="@+id/tv_describe"
+        android:layout_alignRight="@+id/tv_describe"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="总销量"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_eight" />
+
+</RelativeLayout>

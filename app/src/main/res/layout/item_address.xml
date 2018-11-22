@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="13dp"
+        android:text="萝卜哥"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="11dp"
+        android:layout_toEndOf="@+id/tv_name"
+        android:layout_toRightOf="@+id/tv_name"
+        android:text="12345678910"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_seven" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_phone"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="98dp"
+        android:layout_marginRight="98dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/tv_name"
+        android:layout_toRightOf="@+id/tv_name"
+        android:text="阿斯顿撒所多哇所多无大多发所多撒所多无多所多噶所多撒所多所多无多哇"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third" />
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_width="45dp"
+        android:layout_height="17dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_btn_small_green_edge_normal"
+        android:gravity="center"
+        android:text="编辑"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third" />
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="45dp"
+        android:layout_height="17dp"
+        android:layout_below="@+id/tv_edit"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_btn_small_gray_edge_normal"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third" />
+
+</RelativeLayout>

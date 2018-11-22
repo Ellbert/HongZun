@@ -78,7 +78,6 @@ public class MoreFragment extends BaseFragment implements MoreView ,SwipeRefresh
 
     @Override
     public void getDataSuccess(List<MoreListBean> data) {
-        LogUtil.e(data.size()+ " == data.size()");
         mMoreAdapter.setData(data);
         mMoreAdapterEx.synchronizedNotify();
     }

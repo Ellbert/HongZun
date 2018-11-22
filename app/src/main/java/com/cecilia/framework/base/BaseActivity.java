@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.cecilia.framework.general.EventBean;

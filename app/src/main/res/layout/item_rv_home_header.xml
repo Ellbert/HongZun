@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -9,21 +9,20 @@
     <com.bigkoo.convenientbanner.ConvenientBanner
         android:id="@+id/cb_ads"
         android:layout_width="match_parent"
-        android:layout_height="180dp" />
+        android:layout_height="210dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cb_ads"
+        android:layout_marginEnd="42dp"
+        android:layout_marginRight="42dp"
         android:background="@color/white"
-        android:drawableEnd="@mipmap/icn_line_right"
-        android:drawableLeft="@mipmap/icn_line_left"
         android:drawablePadding="18dp"
-        android:drawableRight="@mipmap/icn_line_right"
-        android:drawableStart="@mipmap/icn_line_left"
-        android:gravity="center"
-        android:text="@string/boutique"
-        android:textColor="@color/txt_first"
-        android:textSize="@dimen/txt_second" />
+        android:padding="10dp"
+        android:text="捱三顶五多撒所多所多"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_eight" />
 
     <View
         android:layout_width="match_parent"
@@ -34,10 +33,10 @@
         android:id="@+id/rv_boutique"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginLeft="1dp"
         android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
         android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         android:background="@color/bg_view" />
 
     <View
@@ -48,11 +47,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:drawableEnd="@mipmap/icn_line_right"
-        android:drawableLeft="@mipmap/icn_line_left"
-        android:drawablePadding="18dp"
-        android:drawableRight="@mipmap/icn_line_right"
         android:drawableStart="@mipmap/icn_line_left"
+        android:drawableLeft="@mipmap/icn_line_left"
+        android:drawableEnd="@mipmap/icn_line_right"
+        android:drawableRight="@mipmap/icn_line_right"
+        android:drawablePadding="18dp"
         android:gravity="center"
         android:text="@string/hot"
         android:textColor="@color/txt_first"
@@ -73,14 +72,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:drawableEnd="@mipmap/icn_line_right"
-        android:drawableLeft="@mipmap/icn_line_left"
-        android:drawablePadding="18dp"
-        android:drawableRight="@mipmap/icn_line_right"
         android:drawableStart="@mipmap/icn_line_left"
+        android:drawableLeft="@mipmap/icn_line_left"
+        android:drawableEnd="@mipmap/icn_line_right"
+        android:drawableRight="@mipmap/icn_line_right"
+        android:drawablePadding="18dp"
         android:gravity="center"
         android:text="@string/recommend"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 
-</LinearLayout>
+</RelativeLayout>

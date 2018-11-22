@@ -9,6 +9,9 @@ import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.main.activity.HongBaoActivity;
 import com.cecilia.framework.module.main.activity.RechargeActivity;
+import com.cecilia.framework.module.me.activity.AboutActivity;
+import com.cecilia.framework.module.me.activity.AddressActivity;
+import com.cecilia.framework.module.me.activity.BankCardActivity;
 import com.cecilia.framework.module.me.activity.CollectActivity;
 import com.cecilia.framework.module.me.activity.DataActivity;
 import com.cecilia.framework.module.me.activity.FansActivity;
@@ -52,7 +55,7 @@ public class MeFragment extends BaseFragment {
     }
 
     @OnClick({R.id.tv_recharge, R.id.tv_detail, R.id.iv_price, R.id.iv_fans, R.id.iv_follow, R.id.iv_collect,
-            R.id.tv_data,R.id.tv_safety})
+            R.id.tv_data, R.id.tv_safety, R.id.tv_bank, R.id.tv_address, R.id.tv_us})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_recharge:
@@ -78,6 +81,15 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.tv_safety:
                 SafetyActivity.launch(MeFragment.this);
+                break;
+            case R.id.tv_bank:
+                BankCardActivity.launch(MeFragment.this);
+                break;
+            case R.id.tv_address:
+                AddressActivity.launch(MeFragment.this);
+                break;
+            case R.id.tv_us:
+                AboutActivity.launch(MeFragment.this);
                 break;
         }
     }

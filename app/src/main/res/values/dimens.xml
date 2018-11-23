@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="txt_home">23sp</dimen>
     <dimen name="txt_check_box">20sp</dimen>
     <dimen name="txt_first">16sp</dimen>
     <dimen name="txt_second">14sp</dimen>

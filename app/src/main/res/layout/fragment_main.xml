@@ -1,47 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/srl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.cecilia.framework.widget.LoadMoreRecyclerView
+        android:id="@+id/lmrv_recommend"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/txt_first">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="false"
+        android:background="@color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@string/home"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/txt_first" />
-
-        <ImageView
-            android:id="@+id/iv_im"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
-
-    </RelativeLayout>
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl_main"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <com.cecilia.framework.widget.LoadMoreRecyclerView
-            android:id="@+id/lmrv_recommend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="false"
-            android:background="@color/bg_view" />
-
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -197,6 +197,25 @@
             android:textColor="@color/txt_first" />
 
         <TextView
+            android:id="@+id/tv_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:drawableStart="@mipmap/icn_news"
+            android:drawableLeft="@mipmap/icn_news"
+            android:drawablePadding="25dp"
+            android:gravity="center_vertical"
+            android:paddingStart="37dp"
+            android:paddingLeft="37dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="37dp"
+            android:paddingRight="37dp"
+            android:paddingBottom="16dp"
+            android:text="消息中心"
+            android:textColor="@color/txt_first" />
+
+        <TextView
             android:id="@+id/tv_safety"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

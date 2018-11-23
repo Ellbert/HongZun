@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -14,9 +15,13 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapterEx;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.general.NetworkImageHolderView;
+import com.cecilia.framework.module.main.activity.MainActivity;
+import com.cecilia.framework.module.main.activity.NewDetailActivity;
+import com.cecilia.framework.module.main.activity.NewsActivity;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.presenter.HomePresenter;
+import com.cecilia.framework.utils.LogUtil;
 
 import java.util.List;
 
@@ -25,8 +30,6 @@ public class MainAdapterEx extends BaseRvAdapterEx {
     private List<AdvertisingBean> mAdsData;
     private Context mContext;
     private HomeBean mHomeData;
-    private BoutiqueAdapter mBoutiqueAdapter;
-    private HotAdapter mHotAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public MainAdapterEx(RecyclerView.Adapter adapter, SwipeRefreshLayout swipeRefreshLayout, Context context) {
@@ -49,15 +52,24 @@ public class MainAdapterEx extends BaseRvAdapterEx {
     @Override
     protected void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
         BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
-        RecyclerView mRvBoutique = baseViewHolder.getView(R.id.rv_boutique);
-        RecyclerView mRvHot = baseViewHolder.getView(R.id.rv_hot);
-        mRvBoutique.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-        mBoutiqueAdapter = new BoutiqueAdapter(mContext, R.layout.item_boutique);
-        mRvBoutique.setAdapter(mBoutiqueAdapter);
-        mRvHot.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        mHotAdapter = new HotAdapter(mContext, R.layout.item_hot);
-        mRvHot.setAdapter(mHotAdapter);
-        mRvHot.setNestedScrollingEnabled(false);
+        baseViewHolder.getView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewsActivity.launch(mContext);
+            }
+        });
+        baseViewHolder.getView(R.id.tv_message).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewDetailActivity.launch(mContext);
+            }
+        });
+        baseViewHolder.getView(R.id.tv_mall).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)mContext).setBottomButtonCheck(1);
+            }
+        });
         if (null != mAdsData) setBanner(baseViewHolder);
         if (null != mHomeData) setHomeData(baseViewHolder);
     }
@@ -113,10 +125,10 @@ public class MainAdapterEx extends BaseRvAdapterEx {
 
     private void setHomeData(BaseViewHolder baseViewHolder) {
        if (mHomeData.getBrand().size() > 0) {
-            mBoutiqueAdapter.setDataList(mHomeData.getBrand());
+//            mBoutiqueAdapter.setDataList(mHomeData.getBrand());
         }
         if (mHomeData.getHot().size() > 0) {
-            mHotAdapter.setDataList(mHomeData.getHot());
+//            mHotAdapter.setDataList(mHomeData.getHot());
         }
     }
 

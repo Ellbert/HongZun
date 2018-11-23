@@ -84,6 +84,8 @@
         <activity android:name=".module.me.activity.AddressActivity" />
         <activity android:name=".module.me.activity.AddressEditActivity" />
         <activity android:name=".module.me.activity.AboutActivity" />
+        <activity android:name=".module.main.activity.NewsActivity" />
+        <activity android:name=".module.main.activity.NewDetailActivity" />
     </application>
 
 </manifest>

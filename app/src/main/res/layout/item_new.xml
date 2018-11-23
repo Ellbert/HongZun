@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="13dp"
+        android:layout_toStartOf="@+id/tv_more"
+        android:layout_toLeftOf="@+id/tv_more"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="撒打算打打看手机付款就爱手机发丝的决赛结束点击四季度及就爱看手机开房间卡萨基础会计司擦肩开心就此开展大声道无多哇"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_second" />
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_text"
+        android:layout_alignBottom="@+id/tv_text"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:drawableRight="@mipmap/icn_next_blue_small"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:paddingEnd="13dp"
+        android:paddingRight="13dp"
+        android:text="更多"
+        android:textColor="@color/txt_blue"
+        android:textSize="@dimen/btn_fillet_first" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_view"
+        android:layout_below="@+id/tv_text"
+        android:layout_marginTop="13dp" />
+
+</RelativeLayout>

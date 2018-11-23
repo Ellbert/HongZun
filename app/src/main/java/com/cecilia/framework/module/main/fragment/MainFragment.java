@@ -12,6 +12,7 @@ import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.main.adapter.MainAdapterEx;
+import com.cecilia.framework.module.main.adapter.MoreAdapter;
 import com.cecilia.framework.module.main.adapter.RecommendAdapter;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
@@ -35,7 +36,7 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     SwipeRefreshLayout mSrlMain;
 
     private HomePresenter mHomePresenter;
-    private RecommendAdapter mRecommendAdapter;
+    private MoreAdapter mMoreAdapter;
     private MainAdapterEx mMainAdapterEx;
     private int mCuPage;
     private boolean isCanLoad;
@@ -60,10 +61,10 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     public void initData() {
         mHomePresenter = new HomePresenter(this);
         mRvRecommend.setState(true, new GridLayoutManager(getContext(), 2));
-        mRecommendAdapter = new RecommendAdapter(getContext());
-        mMainAdapterEx = new MainAdapterEx(mRecommendAdapter, mSrlMain, this.getContext());
+        mMoreAdapter = new MoreAdapter(getContext());
+        mMainAdapterEx = new MainAdapterEx(mMoreAdapter, mSrlMain, this.getContext());
         mMainAdapterEx.addHeaderView(View.inflate(this.getContext(), R.layout.item_rv_home_header, null));
-        mRecommendAdapter.setHeadersCount(mMainAdapterEx.getHeadersCount());
+        mMoreAdapter.setHeadersCount(mMainAdapterEx.getHeadersCount());
         mRvRecommend.setAdapter(mMainAdapterEx);
         mRvRecommend.setNestedScrollingEnabled(false);
     }
@@ -78,26 +79,30 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
         mRvRecommend.setOnLoadMoreListener(new LoadMoreRecyclerView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                if (isCanLoad) {
-                    mCuPage++;
-                    mRvRecommend.setLoadMoreFinish();
-                    mHomePresenter.getRecommendData(mCuPage);
-                } else {
-                    mRvRecommend.setLoadMoreNull();
-                }
+
             }
         });
         mSrlMain.setOnRefreshListener(this);
         mSrlMain.setRefreshing(true);
-//        onRefresh();
+        onRefresh();
     }
 
     @Override
     public void onRefresh() {
         mCuPage = 1;
-        mHomePresenter.getAdvertising();
-        mHomePresenter.getHomeData(mSrlMain);
-        mHomePresenter.getRecommendData(mCuPage);
+//        mHomePresenter.getAdvertising();
+//        mHomePresenter.getHomeData(mSrlMain);
+//        mHomePresenter.getRecommendData(mCuPage);
+        List<Object> list = new ArrayList<>();
+        list.add("dwdwasd");
+        list.add("dwdwasd");
+        list.add("dwdwasd");
+        list.add("dwdwasd");
+        list.add("dwdwasd");
+        list.add("dwdwasd");
+        list.add("dwdwasd");
+        mMoreAdapter.setData(list);
+        mMainAdapterEx.synchronizedNotify();
     }
 
     @Override
@@ -108,7 +113,6 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     @Override
     public void getFail() {
 //        ToastUtil.newSafelyShow("网络异常，请稍后再试！");
-        LogUtil.e("getFail");
         mRvRecommend.setLoadMoreNull();
 //        mLinearLayout.setVisibility(View.Vi);
     }
@@ -120,12 +124,12 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
 
     @Override
     public void getRecommendSuccess(@NonNull PageBean<RecommendBean> data) {
-        isCanLoad = data.getHas_more();
-        if (data.getData().size() > 0 && data.getCurrent_page() == 1) {
-            mRecommendAdapter.setData(data.getData());
-        } else {
-            mRecommendAdapter.addData(data.getData());
-        }
+//        isCanLoad = data.getHas_more();
+//        if (data.getData().size() > 0 && data.getCurrent_page() == 1) {
+//            mRecommendAdapter.setData(data.getData());
+//        } else {
+//            mRecommendAdapter.addData(data.getData());
+//        }
     }
 
 }

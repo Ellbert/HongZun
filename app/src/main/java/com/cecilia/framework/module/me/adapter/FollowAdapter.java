@@ -3,6 +3,7 @@ package com.cecilia.framework.module.me.adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseLmrvAdapter;
@@ -21,6 +22,8 @@ public class FollowAdapter extends BaseLmrvAdapter {
 
     @Override
     public void onBindRecyclerViewHolder(BaseViewHolder holder, Object data) {
-
+        RatingBar ratingBar =  holder.getView(R.id.rb_follow);
+        ratingBar.setRating(3);
+        ratingBar.setIsIndicator(true);
     }
 }

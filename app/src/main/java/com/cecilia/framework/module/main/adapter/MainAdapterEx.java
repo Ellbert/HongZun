@@ -52,7 +52,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
 
     @Override
     protected void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-        BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
+        final BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
         baseViewHolder.getView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +75,12 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             @Override
             public void onClick(View v) {
                 PaymentActivity.launch(mContext);
+            }
+        });
+        baseViewHolder.getView(R.id.iv_recommend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         if (null != mAdsData) setBanner(baseViewHolder);

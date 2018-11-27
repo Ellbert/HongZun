@@ -7,51 +7,39 @@
 
     <include layout="@layout/layout_header" />
 
+    <TextView
+        android:id="@+id/tv_nothing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableTop="@mipmap/img_follow"
+        android:drawablePadding="37dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="95dp"
+        android:text="您还没有关注哦~"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="共88个关注"
+        android:textSize="@dimen/btn_fillet_first" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_follow"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical">-->
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_nothing"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableTop="@mipmap/img_follow"
-                    android:drawablePadding="37dp"
-                    android:gravity="center_horizontal"
-                    android:paddingTop="95dp"
-                    android:text="您还没有关注哦~"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="共88个关注"
-                    android:textSize="@dimen/btn_fillet_first" />
-
-                <com.cecilia.framework.widget.LoadMoreRecyclerView
-                    android:id="@+id/lmrv_follow"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-
-        <!--</ScrollView>-->
+        <com.cecilia.framework.widget.LoadMoreRecyclerView
+            android:id="@+id/lmrv_follow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

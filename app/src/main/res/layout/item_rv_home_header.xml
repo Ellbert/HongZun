@@ -142,18 +142,18 @@
             android:src="@mipmap/icn_integral" />
 
         <ImageView
-            android:id="@+id/iv_recommend"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/icn_home_recommend" />
-
-        <ImageView
             android:id="@+id/iv_client"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@mipmap/icn_client" />
+
+        <ImageView
+            android:id="@+id/iv_recommend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/icn_home_recommend" />
 
     </LinearLayout>
 

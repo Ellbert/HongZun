@@ -19,6 +19,9 @@ import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.bean.RecommendBean;
 import com.cecilia.framework.module.main.presenter.HomePresenter;
 import com.cecilia.framework.module.main.view.HomeView;
+import com.cecilia.framework.module.me.activity.BankCardActivity;
+import com.cecilia.framework.module.me.activity.MyBankCardActivity;
+import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
@@ -26,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 
 public class MainFragment extends BaseFragment implements HomeView, SwipeRefreshLayout.OnRefreshListener {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_bank"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="25dp"
+        android:src="@mipmap/icn_bank_card" />
+
+    <TextView
+        android:id="@+id/tv_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_bank"
+        android:layout_alignBottom="@+id/iv_bank"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/iv_bank"
+        android:layout_toRightOf="@+id/iv_bank"
+        android:gravity="center"
+        android:text="中国农业银行"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_bank" />
+
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:src="@mipmap/icn_bank_delete" />
+
+    <TextView
+        android:id="@+id/tv_bank_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_bank"
+        android:layout_alignStart="@+id/tv_bank"
+        android:layout_alignLeft="@+id/tv_bank"
+        android:layout_marginTop="30dp"
+        android:text="****  ****  ****  8888"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_home" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_bank_num"
+        android:layout_marginTop="21dp"
+        android:background="@color/bg_view" />
+
+    <CheckBox
+        android:id="@+id/cb_default"
+        style="@style/style_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_below="@+id/view1"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:text="设为默认银行卡"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_first" />
+
+</RelativeLayout>

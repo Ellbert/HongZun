@@ -18,6 +18,7 @@ import com.cecilia.framework.module.me.activity.CollectActivity;
 import com.cecilia.framework.module.me.activity.DataActivity;
 import com.cecilia.framework.module.me.activity.FansActivity;
 import com.cecilia.framework.module.me.activity.FollowActivity;
+import com.cecilia.framework.module.me.activity.MyBankCardActivity;
 import com.cecilia.framework.module.me.activity.PriceActivity;
 import com.cecilia.framework.module.me.activity.SafetyActivity;
 import com.cecilia.framework.utils.LogUtil;
@@ -85,7 +86,7 @@ public class MeFragment extends BaseFragment {
                 SafetyActivity.launch(MeFragment.this);
                 break;
             case R.id.tv_bank:
-                BankCardActivity.launch(MeFragment.this);
+                MyBankCardActivity.launch(MeFragment.this);
                 break;
             case R.id.tv_address:
                 AddressActivity.launch(MeFragment.this);

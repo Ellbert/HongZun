@@ -86,6 +86,8 @@
         <activity android:name=".module.me.activity.AboutActivity" />
         <activity android:name=".module.main.activity.NewsActivity" />
         <activity android:name=".module.main.activity.NewDetailActivity" />
+        <activity android:name=".module.me.activity.MyBankCardActivity" />
+        <activity android:name=".module.payment.activity.PaymentActivity" />
     </application>
 
 </manifest>

@@ -47,8 +47,8 @@ public class HongBaoActivity extends BaseActivity {
         fragmentList.add(new HongBaoFragment(HongBaoFragment.CHANGE));
         fragmentList.add(new HongBaoFragment(HongBaoFragment.WITHDRAW));
         TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList,fragmentList,getSupportFragmentManager());
-        mTlHongBao.setupWithViewPager(mVpHongBao);
         mVpHongBao.setAdapter(tabFragmentAdapter);
+        mTlHongBao.setupWithViewPager(mVpHongBao);
         LinearLayout linearLayout = (LinearLayout) mTlHongBao.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerPadding(30); // 设置分割线的pandding

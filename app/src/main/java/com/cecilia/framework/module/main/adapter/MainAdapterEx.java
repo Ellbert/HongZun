@@ -21,6 +21,7 @@ import com.cecilia.framework.module.main.activity.NewsActivity;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.presenter.HomePresenter;
+import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.utils.LogUtil;
 
 import java.util.List;
@@ -68,6 +69,12 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             @Override
             public void onClick(View v) {
                 ((MainActivity)mContext).setBottomButtonCheck(1);
+            }
+        });
+        baseViewHolder.getView(R.id.iv_payment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentActivity.launch(mContext);
             }
         });
         if (null != mAdsData) setBanner(baseViewHolder);

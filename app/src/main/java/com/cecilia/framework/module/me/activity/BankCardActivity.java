@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.me.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -12,8 +13,8 @@ import butterknife.OnClick;
 
 public class BankCardActivity extends BaseActivity {
 
-    public static void launch(Fragment context) {
-        Intent intent = new Intent(context.getContext(), BankCardActivity.class);
+    public static void launch(Context context) {
+        Intent intent = new Intent(context, BankCardActivity.class);
         context.startActivity(intent);
     }
 

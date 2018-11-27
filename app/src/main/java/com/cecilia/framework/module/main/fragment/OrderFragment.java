@@ -57,8 +57,8 @@ public class OrderFragment extends BaseFragment {
         fragmentList.add(new OrderListFragment(OrderListFragment.GET));
         fragmentList.add(new OrderListFragment(OrderListFragment.FINISH));
         TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList,fragmentList,getFragmentManager());
-        mTlOrder.setupWithViewPager(mVpOrder);
         mVpOrder.setAdapter(tabFragmentAdapter);
+        mTlOrder.setupWithViewPager(mVpOrder);
         LinearLayout linearLayout = (LinearLayout) mTlOrder.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerPadding(30); // 设置分割线的pandding

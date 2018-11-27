@@ -10,7 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
+import com.cecilia.framework.module.payment.activity.PaymentActivity;
+import com.cecilia.framework.utils.DensityUtil;
+import com.cecilia.framework.utils.ViewUtil;
 
 
 /**
@@ -75,22 +79,22 @@ public class QTabView extends TabView {
         mBadge.setLayoutParams(params2);
         mBadge.setGravity(Gravity.CENTER);
         mBadge.setTextColor(0xFFFFFFFF);
-        mBadge.setTextSize(9);
+        mBadge.setTextSize(DensityUtil.dp2px(mContext,16));
         setBadge(0);
     }
 
     private void initTitleView() {
         if (mTitle != null) mContainer.removeView(mTitle);
         mTitle = new TextView(mContext);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         mTitle.setLayoutParams(params);
         mTitle.setTextColor(mTabTitle.mColorNormal);
         mTitle.setTextSize(mTabTitle.mTitleTextSize);
         mTitle.setText(mTabTitle.mContent);
-        mTitle.setGravity(Gravity.CENTER);
+//        mTitle.setGravity(Gravity.CENTER);
         mTitle.setSingleLine();
         mTitle.setEllipsize(TextUtils.TruncateAt.END);
-//        mTitle.setPadding(dp2px(5), dp2px(5), dp2px(5), dp2px(5));
+        mTitle.setPadding(dp2px(13), dp2px(0), dp2px(0), dp2px(0));
         requestContainerLayout(mTabIcon.mIconGravity);
     }
 
@@ -336,8 +340,8 @@ public class QTabView extends TabView {
 
             public Builder(Context context) {
                 this.mColorSelected = context.getResources().getColor(R.color.color_main);
-                this.mColorNormal = 0xFF757575;
-                this.mTitleTextSize = 12;
+                this.mColorNormal = ViewUtil.getColor(R.color.txt_first);
+                this.mTitleTextSize = 16;
                 this.mContent = "title";
             }
 

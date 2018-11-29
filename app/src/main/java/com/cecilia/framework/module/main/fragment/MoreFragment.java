@@ -14,12 +14,14 @@ import com.cecilia.framework.module.main.adapter.MoreAdapterEx;
 import com.cecilia.framework.module.main.bean.MoreListBean;
 import com.cecilia.framework.module.main.presenter.MorePresenter;
 import com.cecilia.framework.module.main.view.MoreView;
+import com.cecilia.framework.module.mall.activity.MallActivity;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MoreFragment extends BaseFragment implements MoreView ,SwipeRefreshLayout.OnRefreshListener{
 
@@ -87,6 +89,13 @@ public class MoreFragment extends BaseFragment implements MoreView ,SwipeRefresh
 
     }
 
-
+//    @OnClick(R.id.tv_mall)
+//    protected void onClick(View view){
+//        switch (view.getId()){
+//            case R.id.tv_mall:
+//                MallActivity.launch(MoreFragment.this.getContext(),0);
+//                break;
+//        }
+//    }
 
 }

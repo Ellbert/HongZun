@@ -136,5 +136,7 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
 //        }
     }
 
+
+
 }
 

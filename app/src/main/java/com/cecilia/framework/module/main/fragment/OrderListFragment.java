@@ -28,6 +28,11 @@ public class OrderListFragment extends BaseFragment {
     public static final int GET = 2;
     public static final int FINISH = 3;
     public static final int COLLECT = 4;
+    public static final int SHOP_ALL = 5;
+    public static final int UNSENT= 6;
+    public static final int RETURN = 7;
+    public static final int SHOP_FINISH = 8;
+
     private int type;
     @BindView(R.id.lmrv_order)
     LoadMoreRecyclerView mLmrvOrder;

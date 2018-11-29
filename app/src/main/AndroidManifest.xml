@@ -89,6 +89,13 @@
         <activity android:name=".module.me.activity.MyBankCardActivity" />
         <activity android:name=".module.payment.activity.PaymentActivity" />
         <activity android:name=".module.payment.activity.PaymentDetailActivity" />
+        <activity android:name=".module.customer.activity.CustomerActivity" />
+        <activity android:name=".module.shop.activity.ShopActivity" />
+        <activity android:name=".module.customer.activity.UserRegisterActivity" />
+        <activity android:name=".module.customer.activity.ShopRegisterActivity" />
+        <activity android:name=".module.customer.activity.ProductActivity" />
+        <activity android:name=".module.customer.activity.ShopOrderActivity" />
+        <activity android:name=".module.mall.activity.MallActivity" />
     </application>
 
 </manifest>

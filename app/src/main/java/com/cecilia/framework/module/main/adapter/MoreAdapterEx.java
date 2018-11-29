@@ -5,8 +5,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapterEx;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.module.mall.activity.MallActivity;
 
 public class MoreAdapterEx extends BaseRvAdapterEx {
 
@@ -31,7 +33,13 @@ public class MoreAdapterEx extends BaseRvAdapterEx {
 
     @Override
     protected void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        final BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
+        baseViewHolder.getView(R.id.tv_mall).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MallActivity.launch(mContext,0);
+            }
+        });
     }
 
     @Override

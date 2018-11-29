@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_view"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/txt_blue">
+
+        <EditText
+            android:id="@+id/tv_search"
+            android:layout_width="300dp"
+            android:layout_height="21dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_tv_large_white_normal"
+            android:drawableStart="@mipmap/icn_search_gray"
+            android:drawableLeft="@mipmap/icn_search_gray"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:hint="请输入关键词"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@color/txt_product_date"
+            android:textSize="@dimen/btn_fillet_first" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_mall"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="1dp"
+        app:tabGravity="center"
+        app:tabMode="scrollable"
+        android:background="@color/white"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/color_main"
+        app:tabTextColor="@color/txt_first" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_mall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp" />
+</LinearLayout>

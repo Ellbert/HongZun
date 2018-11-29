@@ -15,6 +15,7 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapterEx;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.general.NetworkImageHolderView;
+import com.cecilia.framework.module.customer.activity.CustomerActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.NewDetailActivity;
 import com.cecilia.framework.module.main.activity.NewsActivity;
@@ -68,7 +69,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.tv_mall).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)mContext).setBottomButtonCheck(1);
+                ((MainActivity) mContext).setBottomButtonCheck(1);
             }
         });
         baseViewHolder.getView(R.id.iv_payment).setOnClickListener(new View.OnClickListener() {
@@ -81,6 +82,12 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        baseViewHolder.getView(R.id.iv_client).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomerActivity.launch(mContext, 3);
             }
         });
         if (null != mAdsData) setBanner(baseViewHolder);
@@ -137,7 +144,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
     }
 
     private void setHomeData(BaseViewHolder baseViewHolder) {
-       if (mHomeData.getBrand().size() > 0) {
+        if (mHomeData.getBrand().size() > 0) {
 //            mBoutiqueAdapter.setDataList(mHomeData.getBrand());
         }
         if (mHomeData.getHot().size() > 0) {

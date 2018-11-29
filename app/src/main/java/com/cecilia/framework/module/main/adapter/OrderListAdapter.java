@@ -24,10 +24,10 @@ public class OrderListAdapter extends BaseLmrvAdapter<Object> {
     public OrderListAdapter(Context context, int type) {
         super(context);
         this.type = type;
-        initView();
+        initDialog();
     }
 
-    private void initView() {
+    private void initDialog() {
         switch (type) {
             case 0:
                 mExitDialog = DialogUtil.createPromptDialog(mContext,
@@ -38,6 +38,21 @@ public class OrderListAdapter extends BaseLmrvAdapter<Object> {
                                 return false;
                             }
                         }, ViewUtil.getString(R.string.cancel), null, null);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
+
+    private void initView(){
+        switch (type) {
+            case 0:
                 break;
             case 1:
                 break;

@@ -9,7 +9,6 @@ import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.main.activity.HongBaoActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
-import com.cecilia.framework.module.main.activity.NewsActivity;
 import com.cecilia.framework.module.main.activity.RechargeActivity;
 import com.cecilia.framework.module.me.activity.AboutActivity;
 import com.cecilia.framework.module.me.activity.AddressActivity;
@@ -19,6 +18,7 @@ import com.cecilia.framework.module.me.activity.DataActivity;
 import com.cecilia.framework.module.me.activity.FansActivity;
 import com.cecilia.framework.module.me.activity.FollowActivity;
 import com.cecilia.framework.module.me.activity.MyBankCardActivity;
+import com.cecilia.framework.module.me.activity.NewsActivity;
 import com.cecilia.framework.module.me.activity.PriceActivity;
 import com.cecilia.framework.module.me.activity.SafetyActivity;
 import com.cecilia.framework.utils.LogUtil;
@@ -95,7 +95,7 @@ public class MeFragment extends BaseFragment {
                 AboutActivity.launch(MeFragment.this);
                 break;
             case R.id.tv_news:
-                NewsActivity.launch(MeFragment.this.getContext());
+                NewsActivity.launch(MeFragment.this);
                 break;
         }
     }

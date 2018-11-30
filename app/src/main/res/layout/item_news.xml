@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="星期日 下午4:30"
+        android:textSize="@dimen/btn_fillet_first"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_btn_large_gray_normal" />
+
+    <ImageView
+        android:background="@mipmap/icn_new_header"
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/bg_btn_large_white_normal_circle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="商品购买成功"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_bank" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_view" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="商城购物"
+            android:textColor="@color/txt_second"
+            android:textSize="@dimen/txt_first" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_view" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="查看详情"
+            android:textColor="@color/txt_second"
+            android:textSize="@dimen/txt_second" />
+
+    </LinearLayout>
+
+</LinearLayout>

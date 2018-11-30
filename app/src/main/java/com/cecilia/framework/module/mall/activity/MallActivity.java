@@ -1,29 +1,37 @@
 package com.cecilia.framework.module.mall.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
-import com.cecilia.framework.module.me.activity.AddressEditActivity;
+import com.cecilia.framework.module.main.adapter.MainPagerAdapter;
+import com.cecilia.framework.module.mall.fragment.MallFragment;
+import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ViewUtil;
+import com.cecilia.framework.widget.NoScrollViewPager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MallActivity extends BaseActivity {
 
     @BindView(R.id.tl_mall)
     TabLayout mTlMall;
     @BindView(R.id.vp_mall)
-    ViewPager mVpMall;
+    NoScrollViewPager mVpMall;
+    private List<Fragment> mFragments = new ArrayList<>();
+    private int mIndex;
 
     public static void launch(Context context, int index) {
         Intent intent = new Intent(context, MallActivity.class);
@@ -38,20 +46,70 @@ public class MallActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        for (int i = 0; i < 10; i++) {
-            TabLayout.Tab tab = mTlMall.newTab();
-            View view = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
-            ImageView tv =  view.findViewById(R.id.tv_tab);
-            tv.setImageResource(R.drawable.bg_tb_home_selector);
-            tab.setCustomView(view);
-//            if (i == 0) tv.setFocusable(true);
-            mTlMall.addTab(tab);
+        View mTab1 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv1 = mTab1.findViewById(R.id.tv_tab);
+        tv1.setImageResource(R.drawable.bg_tb_all_selector);
+        View mTab2 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv2 = mTab2.findViewById(R.id.tv_tab);
+        tv2.setImageResource(R.drawable.bg_tb_mall_selector);
+        View mTab3 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv3 = mTab3.findViewById(R.id.tv_tab);
+        tv3.setImageResource(R.drawable.bg_tb_brand_selector);
+        View mTab4 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv4 = mTab4.findViewById(R.id.tv_tab);
+        tv4.setImageResource(R.drawable.bg_tb_food_selector);
+        View mTab5 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv5 = mTab5.findViewById(R.id.tv_tab);
+        tv5.setImageResource(R.drawable.bg_tb_makeup_selector);
+        View mTab6 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv6 = mTab6.findViewById(R.id.tv_tab);
+        tv6.setImageResource(R.drawable.bg_tb_luxury_selector);
+        View mTab7 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv7 = mTab7.findViewById(R.id.tv_tab);
+        tv7.setImageResource(R.drawable.bg_tb_woman_selector);
+        View mTab8 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv8 = mTab8.findViewById(R.id.tv_tab);
+        tv8.setImageResource(R.drawable.bg_tb_man_selector);
+        View mTab9 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv9 = mTab9.findViewById(R.id.tv_tab);
+        tv9.setImageResource(R.drawable.bg_tb_kid_selector);
+        View mTab10 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv10 = mTab10.findViewById(R.id.tv_tab);
+        tv10.setImageResource(R.drawable.bg_tb_sport_selector);
+        View mTab11 = LayoutInflater.from(this).inflate(R.layout.item_tab_view, null);
+        ImageView tv11 = mTab11.findViewById(R.id.tv_tab);
+        tv11.setImageResource(R.drawable.bg_tb_digital_selector);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab1), 0);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab2), 1);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab3), 2);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab4), 3);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab5), 4);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab6), 5);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab7), 6);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab8), 7);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab9), 8);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab10), 9);
+        mTlMall.addTab(mTlMall.newTab().setCustomView(mTab11), 10);
+        LinearLayout linearLayout = (LinearLayout) mTlMall.getChildAt(0);
+        linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+        linearLayout.setDividerPadding(30); // 设置分割线的pandding
+        linearLayout.setDividerDrawable(ViewUtil.getDrawable(R.drawable.bg_tab_dividing));
+        for (int i = 0; i < 11; i++) {
+            mFragments.add(new MallFragment(1));
         }
     }
 
     @Override
     protected void initData() {
-
+//        mVpMall.setOffscreenPageLimit(10);
+        mVpMall.setAdapter(new MainPagerAdapter(mFragments, getSupportFragmentManager()));
+        mIndex = getIntent().getIntExtra("index", 0);
+        mTlMall.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mTlMall.getTabAt(mIndex).select();
+            }
+        }, 100);
     }
 
     @Override
@@ -64,6 +122,7 @@ public class MallActivity extends BaseActivity {
         mTlMall.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                mVpMall.setCurrentItem(tab.getPosition());
 //                tab.getCustomView().setFocusable(true);
 
             }
@@ -88,5 +147,14 @@ public class MallActivity extends BaseActivity {
     @Override
     protected void doEvents(EventBean event) {
 
+    }
+
+    @OnClick({R.id.iv_back})
+    protected void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 }

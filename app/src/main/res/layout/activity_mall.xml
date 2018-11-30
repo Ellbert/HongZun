@@ -11,9 +11,19 @@
         android:layout_height="wrap_content"
         android:background="@color/txt_blue">
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_centerVertical="true"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:padding="8dp"
+            android:src="@mipmap/icn_back_black" />
+
         <EditText
             android:id="@+id/tv_search"
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="21dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
@@ -45,8 +55,12 @@
         app:tabSelectedTextColor="@color/color_main"
         app:tabTextColor="@color/txt_first" />
 
-    <android.support.v4.view.ViewPager
+    <com.cecilia.framework.widget.NoScrollViewPager
         android:id="@+id/vp_mall"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="1dp" />

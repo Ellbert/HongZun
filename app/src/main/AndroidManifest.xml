@@ -59,9 +59,6 @@
             android:name=".module.product.activity.ProductActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".module.product.activity.ProductListActivity"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".module.login.activity.LoginActivity"
             android:launchMode="singleTask" />
         <activity
@@ -96,6 +93,7 @@
         <activity android:name=".module.customer.activity.ProductActivity" />
         <activity android:name=".module.customer.activity.ShopOrderActivity" />
         <activity android:name=".module.mall.activity.MallActivity" />
+        <activity android:name=".module.me.activity.NewsActivity" />
     </application>
 
 </manifest>

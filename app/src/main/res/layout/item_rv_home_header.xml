@@ -8,6 +8,7 @@
 
     <com.bigkoo.convenientbanner.ConvenientBanner
         android:id="@+id/cb_ads"
+        android:background="@color/txt_blue"
         android:layout_width="match_parent"
         android:layout_height="210dp" />
 

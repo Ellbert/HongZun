@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/srl_more"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_view">
 
-
-    <com.cecilia.framework.widget.LoadMoreRecyclerView
-        android:id="@+id/lmrv_more"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_more"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-</android.support.v4.widget.SwipeRefreshLayout>
+        <com.cecilia.framework.widget.LoadMoreRecyclerView
+            android:id="@+id/lmrv_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/txt_blue" />
+
+    <EditText
+        android:id="@+id/tv_search"
+        android:layout_width="280dp"
+        android:layout_height="21dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_tv_large_white_normal"
+        android:drawableStart="@mipmap/icn_search_gray"
+        android:drawableLeft="@mipmap/icn_search_gray"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="点击进入搜索界面"
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/txt_product_date"
+        android:textSize="@dimen/btn_fillet_first" />
+
+    <ImageView
+        android:id="@+id/iv_back_white"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:padding="8dp"
+        android:src="@mipmap/icn_back_black" />
+
+    <ImageView
+        android:id="@+id/iv_back_black"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:padding="8dp"
+        android:src="@mipmap/icn_back_black" />
+
+
+</RelativeLayout>
 

@@ -17,8 +17,9 @@
             android:orientation="vertical">
 
             <com.bigkoo.convenientbanner.ConvenientBanner
+                android:background="@color/txt_blue"
                 android:layout_width="match_parent"
-                android:layout_height="360dp" />
+                android:layout_height="350dp" />
 
             <TextView
                 android:layout_width="match_parent"

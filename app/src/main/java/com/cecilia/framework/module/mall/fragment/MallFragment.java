@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.mall.fragment;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,17 @@ import java.util.List;
 
 import butterknife.BindView;
 
+@SuppressLint("ValidFragment")
 public class MallFragment extends BaseFragment {
 
     @BindView(R.id.lmrv_mall)
     LoadMoreRecyclerView mLmrvMall;
     private MoreAdapter mMoreAdapter;
+    private int mIndex;
+
+    public MallFragment(int mIndex) {
+        this.mIndex = mIndex;
+    }
 
     @Override
     protected void onVisible() {

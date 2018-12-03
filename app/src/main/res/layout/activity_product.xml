@@ -4,115 +4,136 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_page_header" />
-
-    <ScrollView
+    <com.cecilia.framework.widget.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <com.bigkoo.convenientbanner.ConvenientBanner
-                android:background="@color/txt_blue"
+                android:id="@+id/cb_product"
                 android:layout_width="match_parent"
-                android:layout_height="350dp" />
+                android:layout_height="350dp"
+                android:background="@color/txt_blue" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_below="@+id/cb_product"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_toStartOf="@+id/iv_collect"
+                android:layout_toLeftOf="@+id/iv_collect"
+                android:text="名媛港味套装裙初秋新款女复古网红女神范小香风毛衣裙子两件套"
+                android:textColor="@color/txt_first" />
+
+            <ImageView
+                android:id="@+id/iv_collect"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cb_product"
                 android:layout_marginTop="10dp"
-                android:text="定制商品"
-                android:textColor="@color/txt_first"
-                android:textSize="@dimen/txt_second" />
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toStartOf="@+id/iv_share"
+                android:layout_toLeftOf="@+id/iv_share"
+                android:background="@drawable/bg_btn_small_gray_edge_normal"
+                android:padding="6dp"
+                android:src="@drawable/icn_collect_selected" />
+
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/cb_product"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginRight="13dp"
+                android:background="@drawable/bg_btn_small_gray_edge_normal"
+                android:padding="6dp"
+                android:src="@mipmap/icn_share" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="￥100"
+                android:layout_below="@+id/tv_name"
+                android:layout_alignStart="@+id/tv_name"
+                android:layout_alignLeft="@+id/tv_name"
+                android:layout_marginTop="4dp"
+                android:text="¥ 888.88"
                 android:textColor="@color/color_main"
-                android:textSize="@dimen/txt_second" />
+                android:textSize="@dimen/txt_check_box" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tv_freight"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:text="已买0"
-                android:textColor="@color/txt_second"
-                android:textSize="@dimen/txt_second" />
-
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="30dp" />
-
-                <ImageView
-                    android:layout_marginRight="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@mipmap/icn_next_gray_small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                android:layout_below="@+id/tv_price"
+                android:layout_alignStart="@+id/tv_name"
+                android:layout_alignLeft="@+id/tv_name"
+                android:text="运费：¥ 88.88"
+                android:textColor="@color/txt_third"
+                android:textSize="@dimen/txt_third" />
 
             <TextView
-                android:paddingRight="10dp"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:text="查看商品规格"
-                android:textColor="@color/txt_first"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/txt_second"
-                android:drawableRight="@mipmap/icn_next_gray_small"
-                android:drawableEnd="@mipmap/icn_next_gray_small"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/white" />
+                android:id="@+id/tv_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_price"
+                android:layout_centerHorizontal="true"
+                android:text="月销量：8888件"
+                android:textColor="@color/txt_third"
+                android:textSize="@dimen/txt_third" />
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:textSize="@dimen/txt_second"
-                android:textColor="@color/txt_first"
-                android:gravity="center"
-                android:text="商品详情"
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_price"
+                android:layout_alignEnd="@+id/iv_share"
+                android:layout_alignRight="@+id/iv_share"
+                android:layout_marginBottom="15dp"
+                android:text="广东广州"
+                android:textColor="@color/txt_third"
+                android:textSize="@dimen/txt_third" />
+
+            <View
+                android:id="@+id/view1"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="10dp"
+                android:layout_below="@+id/tv_address"
+                android:background="@color/bg_view" />
 
             <RelativeLayout
-                android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
 
-    </ScrollView>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </com.cecilia.framework.widget.MyScrollView>
 
     <View
-        android:background="@color/bg_view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/bg_view" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:background="@color/color_main"
-        android:textColor="@color/white"
         android:gravity="center"
         android:text="立刻购买"
-        android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        android:textColor="@color/white" />
 
 </LinearLayout>

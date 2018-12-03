@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_view">
@@ -9,22 +10,487 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.cecilia.framework.widget.LoadMoreRecyclerView
-            android:id="@+id/lmrv_more"
+        <com.cecilia.framework.widget.MyScrollView
+            android:id="@+id/sv_mall"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/cb_mall"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/color_main" />
+
+                <android.support.v7.widget.GridLayout
+                    android:id="@+id/gl_type_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_mall"
+                    android:background="@android:color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="25dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"
+                    app:columnCount="5">
+
+                    <TextView
+                        android:id="@+id/tv_mall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@mipmap/icn_mall"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="泓樽商城"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@mipmap/icn_brand"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="知名品牌"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@mipmap/icn_food"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="食品饮酒"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_makeup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@mipmap/icn_makeup"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="美妆护肤"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+
+                    <TextView
+                        android:id="@+id/tv_luxury"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@mipmap/icn_luxury"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="奢侈品"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableTop="@mipmap/icn_woman"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="女装"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableTop="@mipmap/icn_man"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="男装"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_kid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableTop="@mipmap/icn_kid"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="童装"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_sport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableTop="@mipmap/icn_sport"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="运动健身"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_digital"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableTop="@mipmap/icn_degital"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="手机数码"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_third"
+                        app:layout_columnWeight="1" />
+
+                </android.support.v7.widget.GridLayout>
+
+                <View
+                    android:id="@+id/v1"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/gl_type_all"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gl_type_all"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="泓樽超市"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text1" />
+
+                <View
+                    android:id="@+id/v2"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_more"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_more"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="知名品牌"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text2" />
+
+                <View
+                    android:id="@+id/v3"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_brand"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_brand"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="视频饮料"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text3" />
+
+                <View
+                    android:id="@+id/v4"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_food"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_food"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="美妆护肤"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_makeup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text4" />
+
+                <View
+                    android:id="@+id/v5"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_makeup"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_makeup"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="奢侈品"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_luxury"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text5" />
+
+                <View
+                    android:id="@+id/v6"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_luxury"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_luxury"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="女装"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_woman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text6" />
+
+                <View
+                    android:id="@+id/v7"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_woman"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_woman"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="男装"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_man"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text7" />
+
+                <View
+                    android:id="@+id/v8"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_man"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_man"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="童装"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_kid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text8" />
+
+                <View
+                    android:id="@+id/v9"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_kid"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_kid"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="运动健身"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_sport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text9" />
+
+                <View
+                    android:id="@+id/v10"
+                    android:layout_width="2dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/rv_sport"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@color/txt_blue" />
+
+                <TextView
+                    android:id="@+id/tv_text10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rv_sport"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/v1"
+                    android:layout_toRightOf="@+id/v1"
+                    android:text="手机数码"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_first" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_digital"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text10" />
+            </RelativeLayout>
+
+        </com.cecilia.framework.widget.MyScrollView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ImageView
         android:id="@+id/iv_bg"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/txt_blue" />
+        android:layout_height="45dp"
+        android:background="@mipmap/img_mall" />
 
-    <EditText
+    <TextView
         android:id="@+id/tv_search"
         android:layout_width="280dp"
-        android:layout_height="21dp"
+        android:layout_height="25dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_tv_large_white_normal"
@@ -32,32 +498,24 @@
         android:drawableLeft="@mipmap/icn_search_gray"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:hint="点击进入搜索界面"
         android:paddingStart="5dp"
         android:paddingLeft="5dp"
         android:paddingEnd="5dp"
         android:paddingRight="5dp"
+        android:text="点击进入搜索界面"
         android:textColor="@color/txt_product_date"
         android:textSize="@dimen/btn_fillet_first" />
 
-    <ImageView
-        android:id="@+id/iv_back_white"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:padding="8dp"
-        android:src="@mipmap/icn_back_black" />
-
-    <ImageView
-        android:id="@+id/iv_back_black"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:padding="8dp"
-        android:src="@mipmap/icn_back_black" />
-
-
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_mall"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/iv_bg"
+        android:background="@color/white"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/color_main"
+        app:tabTextColor="@color/txt_first" />
 </RelativeLayout>
 

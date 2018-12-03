@@ -13,6 +13,7 @@ import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.main.adapter.MainAdapterEx;
 import com.cecilia.framework.module.main.adapter.MoreAdapter;
+import com.cecilia.framework.module.main.adapter.ProductAdapter;
 import com.cecilia.framework.module.main.adapter.RecommendAdapter;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
@@ -40,7 +41,7 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     SwipeRefreshLayout mSrlMain;
 
     private HomePresenter mHomePresenter;
-    private MoreAdapter mMoreAdapter;
+    private ProductAdapter mMoreAdapter;
     private MainAdapterEx mMainAdapterEx;
     private int mCuPage;
     private boolean isCanLoad;
@@ -65,7 +66,7 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     public void initData() {
         mHomePresenter = new HomePresenter(this);
         mRvRecommend.setState(true, new GridLayoutManager(getContext(), 2));
-        mMoreAdapter = new MoreAdapter(getContext());
+        mMoreAdapter = new ProductAdapter(getContext());
         mMainAdapterEx = new MainAdapterEx(mMoreAdapter, mSrlMain, this.getContext());
         mMainAdapterEx.addHeaderView(View.inflate(this.getContext(), R.layout.item_rv_home_header, null));
         mMoreAdapter.setHeadersCount(mMainAdapterEx.getHeadersCount());

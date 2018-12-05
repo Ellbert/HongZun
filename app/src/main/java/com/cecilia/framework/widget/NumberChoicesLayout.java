@@ -54,6 +54,9 @@ public class NumberChoicesLayout extends LinearLayout {
         }
         this.setGravity(Gravity.CENTER_VERTICAL);
         ButterKnife.bind(mView);
+        if (mNowNumber == mMinNumber) {
+            mIvMinus.setEnabled(false);
+        }
     }
 
     /**
@@ -90,16 +93,24 @@ public class NumberChoicesLayout extends LinearLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_minus:
-                if (mNowNumber == mMinNumber) {
-                    return;
-                }
+                mIvAdd.setEnabled(true);
+                if (mNowNumber == mMinNumber) return;
                 mTvSelectNumber.setText(String.valueOf(--mNowNumber));
+                if (mNowNumber == mMinNumber) {
+                    mIvMinus.setEnabled(false);
+                } else {
+                    mIvMinus.setEnabled(true);
+                }
                 break;
             case R.id.iv_add:
-                if (mNowNumber == mMaxNumber) {
-                    return;
-                }
+                mIvMinus.setEnabled(true);
+                if (mNowNumber == mMaxNumber) return;
                 mTvSelectNumber.setText(String.valueOf(++mNowNumber));
+                if (mNowNumber == mMaxNumber) {
+                    mIvAdd.setEnabled(false);
+                } else {
+                    mIvAdd.setEnabled(true);
+                }
                 break;
         }
         if (mOnNumberChangeListener != null) {

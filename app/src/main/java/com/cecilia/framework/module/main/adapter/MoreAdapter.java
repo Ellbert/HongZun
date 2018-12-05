@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -13,6 +14,7 @@ import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.module.main.bean.MoreListBean;
 import com.cecilia.framework.module.main.bean.RecommendBean;
+import com.cecilia.framework.module.product.activity.ProductActivity;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
 
@@ -24,7 +26,12 @@ public class MoreAdapter extends BaseRvAdapter {
 
     @Override
     public void bindData(BaseViewHolder holder, Object data) {
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductActivity.launch(mContext);
+            }
+        });
     }
 
     //    public MoreAdapter(Context context) {

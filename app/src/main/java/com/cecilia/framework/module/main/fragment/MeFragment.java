@@ -7,6 +7,7 @@ import android.view.View;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.cart.activity.CartActivity;
 import com.cecilia.framework.module.main.activity.HongBaoActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.RechargeActivity;
@@ -58,7 +59,7 @@ public class MeFragment extends BaseFragment {
     }
 
     @OnClick({R.id.tv_recharge, R.id.tv_detail, R.id.iv_price, R.id.iv_fans, R.id.iv_follow, R.id.iv_collect,
-            R.id.tv_data, R.id.tv_safety, R.id.tv_bank, R.id.tv_address, R.id.tv_us,R.id.tv_news})
+            R.id.tv_data, R.id.tv_safety, R.id.tv_bank, R.id.tv_address, R.id.tv_us, R.id.tv_news, R.id.tv_cart})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_recharge:
@@ -96,6 +97,9 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.tv_news:
                 NewsActivity.launch(MeFragment.this);
+                break;
+            case R.id.tv_cart:
+                CartActivity.launch(MeFragment.this.getContext());
                 break;
         }
     }

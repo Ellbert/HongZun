@@ -56,57 +56,60 @@
         android:layout_below="@+id/tv_more"
         android:background="@color/bg_view" />
 
-    <TextView
-        android:id="@+id/tv_mall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_item"
+        android:orientation="horizontal"
         android:layout_below="@+id/tv_more"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginTop="20dp"
-        android:drawableTop="@mipmap/icn_home_mall"
-        android:drawablePadding="10dp"
-        android:gravity="center_horizontal"
-        android:text="商城"
-        android:textColor="@color/txt_first"
-        android:textSize="@dimen/txt_third" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_hongbao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_more"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:drawableTop="@mipmap/icn_hongbao"
-        android:drawablePadding="10dp"
-        android:gravity="center_horizontal"
-        android:text="泓宝"
-        android:textColor="@color/txt_first"
-        android:textSize="@dimen/txt_third" />
+        <TextView
 
-    <TextView
-        android:id="@+id/tv_vip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_more"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
-        android:drawableTop="@mipmap/icn_vip"
-        android:drawablePadding="10dp"
-        android:gravity="center_horizontal"
-        android:text="会员"
-        android:textColor="@color/txt_first"
-        android:textSize="@dimen/txt_third" />
+            android:id="@+id/tv_mall"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTop="@mipmap/icn_home_mall"
+            android:drawablePadding="10dp"
+            android:gravity="center_horizontal"
+            android:text="商城"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third" />
+
+        <TextView
+            android:id="@+id/tv_hongbao"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTop="@mipmap/icn_hongbao"
+            android:drawablePadding="10dp"
+            android:gravity="center_horizontal"
+            android:text="泓宝"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third" />
+
+        <TextView
+            android:id="@+id/tv_vip"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableTop="@mipmap/icn_vip"
+            android:drawablePadding="10dp"
+            android:gravity="center_horizontal"
+            android:text="会员"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/tv_mall"
+        android:layout_below="@+id/ll_item"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="18dp"

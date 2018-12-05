@@ -251,6 +251,10 @@
         <item name="tabTextAppearance">@style/style_tl_text</item>
     </style>
 
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">@dimen/txt_second</item>
+    </style>
+
     <style name="style_tl_text">
         <item name="android:textSize">13sp</item>
     </style>

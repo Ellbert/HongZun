@@ -8,66 +8,50 @@ package com.cecilia.framework.general;
 
 public class BaseBean<T> {
 
-    private int status;
-    private String message;
-    private PageBean page;
+    private int code;
+    private String info;
+    private String other;
     private T data;
 
-    @Override
-    public String toString() {
-        return "BaseBean{" +
-                "result=" + status +
-                ", msg='" + message + '\'' +
-                ", page=" + page +
-                ", data=" + data +
-                '}';
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof BaseBean))
-            return false;
-
-        BaseBean<?> baseBean = (BaseBean<?>) o;
-
-        return status == baseBean.status
-                && message != null ? message.equals(baseBean.message) : baseBean.message == null
-                && page != null ? page.equals(baseBean.page) : baseBean.page == null
-                && data != null ? data.equals(baseBean.data) : baseBean.data == null;
+    public int getCode() {
+        return code;
     }
 
-    public int getResult() {
-        return status;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public void setResult(int result) {
-        this.status = result;
+    public String getInfo() {
+        return info;
     }
 
-    public String getMsg() {
-        return message;
+    public void setOther(String other) {
+        this.other = other;
     }
 
-    public void setMsg(String msg) {
-        this.message = msg;
-    }
-
-    public PageBean getPage() {
-        return page;
-    }
-
-    public void setPage(PageBean page) {
-        this.page = page;
-    }
-
-    public T getData() {
-        return data;
+    public String getOther() {
+        return other;
     }
 
     public void setData(T data) {
         this.data = data;
     }
 
+    public T getData() {
+        return data;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseBean{" +
+                "code=" + code +
+                ", info='" + info + '\'' +
+                ", other='" + other + '\'' +
+                ", data='" + data + '\'' +
+                '}';
+    }
 }

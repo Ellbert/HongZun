@@ -15,8 +15,8 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
+import static com.cecilia.framework.common.NetworkConstant.NO_SUCCESS;
 import static com.cecilia.framework.common.NetworkConstant.SUCCESS;
-import static com.cecilia.framework.common.NetworkConstant.SUCCESS_NO;
 
 /**
  * @author stone
@@ -56,10 +56,10 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
             onException(new Throwable("获取到的bean为空"));
             return;
         }
-        if (bean.getResult() != SUCCESS ) {
-            LogUtil.e("bean.getResult() == " + bean.getResult());
-            LogUtil.e("bean.getMsg() == " + bean.getMsg());
-            onFailure(bean.getResult(), bean.getMsg());
+        if (bean.getCode() != SUCCESS) {
+            LogUtil.e("bean.getResult() == " + bean.getCode());
+            LogUtil.e("bean.getMsg() == " + bean.getInfo());
+            onFailure(bean.getCode(), bean.getInfo());
             return;
         }
         onSuccess(bean.getData());
@@ -73,7 +73,6 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
             ToastUtil.newShow("网络连接超时");
             onTimeout();
         } else {
-            ToastUtil.newShow(BuildConfig.ERROR_MSG);
             onException(e);
         }
     }

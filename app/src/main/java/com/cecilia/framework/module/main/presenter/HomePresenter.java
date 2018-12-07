@@ -20,92 +20,92 @@ public class HomePresenter {
     public HomePresenter(HomeView mHomeView) {
         this.mHomeView = mHomeView;
     }
-
-    public void getAdvertising() {
-        HomeRealization.getAdvertiseData(new NetworkObserver<List<AdvertisingBean>>() {
-            @Override
-            protected SwipeRefreshLayout getSwipeRefreshLayout() {
-                return null;
-            }
-
-            @Override
-            protected void onSuccess(List<AdvertisingBean> data) {
-                mHomeView.gerAdvertisingSuccess(data);
-            }
-
-            @Override
-            protected void onFailure(int errorCode, String errorMsg) {
-                mHomeView.getFail();
-            }
-
-            @Override
-            protected void onException(Throwable e) {
-
-            }
-
-            @Override
-            protected void onTimeout() {
-
-            }
-        });
-    }
-
-    public void getHomeData(final SwipeRefreshLayout swipeRefreshLayout) {
-        HomeRealization.getHomeData(new NetworkObserver<HomeBean>() {
-            @Override
-            protected SwipeRefreshLayout getSwipeRefreshLayout() {
-                return swipeRefreshLayout;
-            }
-
-            @Override
-            protected void onSuccess(HomeBean data) {
-                mHomeView.getHomeSuccess(data);
-            }
-
-            @Override
-            protected void onFailure(int errorCode, String errorMsg) {
-
-            }
-
-            @Override
-            protected void onException(Throwable e) {
-
-            }
-
-            @Override
-            protected void onTimeout() {
-
-            }
-        });
-    }
-
-    public void getRecommendData(int cuPage) {
-        HomeRealization.getRecommendData(cuPage, new NetworkObserver<PageBean<RecommendBean>>() {
-            @Override
-            protected SwipeRefreshLayout getSwipeRefreshLayout() {
-                return null;
-            }
-
-            @Override
-            protected void onSuccess(PageBean<RecommendBean> data) {
-                LogUtil.e(data.toString());
-                mHomeView.getRecommendSuccess(data);
-            }
-
-            @Override
-            protected void onFailure(int errorCode, String errorMsg) {
-
-            }
-
-            @Override
-            protected void onException(Throwable e) {
-                LogUtil.e("onException");
-                mHomeView.getFail();
-            }
-            @Override
-            protected void onTimeout() {
-
-            }
-        });
-    }
+//
+//    public void getAdvertising() {
+//        HomeRealization.getAdvertiseData(new NetworkObserver<List<AdvertisingBean>>() {
+//            @Override
+//            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+//                return null;
+//            }
+//
+//            @Override
+//            protected void onSuccess(List<AdvertisingBean> data) {
+//                mHomeView.gerAdvertisingSuccess(data);
+//            }
+//
+//            @Override
+//            protected void onFailure(int errorCode, String errorMsg) {
+//                mHomeView.getFail();
+//            }
+//
+//            @Override
+//            protected void onException(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            protected void onTimeout() {
+//
+//            }
+//        });
+//    }
+//
+//    public void getHomeData(final SwipeRefreshLayout swipeRefreshLayout) {
+//        HomeRealization.getHomeData(new NetworkObserver<HomeBean>() {
+//            @Override
+//            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+//                return swipeRefreshLayout;
+//            }
+//
+//            @Override
+//            protected void onSuccess(HomeBean data) {
+//                mHomeView.getHomeSuccess(data);
+//            }
+//
+//            @Override
+//            protected void onFailure(int errorCode, String errorMsg) {
+//
+//            }
+//
+//            @Override
+//            protected void onException(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            protected void onTimeout() {
+//
+//            }
+//        });
+//    }
+//
+//    public void getRecommendData(int cuPage) {
+//        HomeRealization.getRecommendData(cuPage, new NetworkObserver<PageBean<RecommendBean>>() {
+//            @Override
+//            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+//                return null;
+//            }
+//
+//            @Override
+//            protected void onSuccess(PageBean<RecommendBean> data) {
+//                LogUtil.e(data.toString());
+//                mHomeView.getRecommendSuccess(data);
+//            }
+//
+//            @Override
+//            protected void onFailure(int errorCode, String errorMsg) {
+//
+//            }
+//
+//            @Override
+//            protected void onException(Throwable e) {
+//                LogUtil.e("onException");
+//                mHomeView.getFail();
+//            }
+//            @Override
+//            protected void onTimeout() {
+//
+//            }
+//        });
+//    }
 }

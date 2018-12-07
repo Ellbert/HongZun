@@ -1,8 +1,13 @@
-package com.cecilia.framework.module.main;
+package com.cecilia.framework.module.login;
 
+import android.annotation.SuppressLint;
+
+import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
+import com.cecilia.framework.general.UserBean;
+import com.cecilia.framework.module.main.HomeApi;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.bean.MoreListBean;
@@ -14,7 +19,7 @@ import java.util.List;
 
 import static com.cecilia.framework.common.NetworkConstant.PAGE_SIZE;
 
-public class HomeRealization {
+public class LoginRealization {
 
 //    public static void getAdvertiseData(NetworkObserver<List<AdvertisingBean>> observer) {
 //        NetworkUtil.getInstance().setApi(HomeApi.class)
@@ -43,4 +48,32 @@ public class HomeRealization {
 //                .compose(AsynchronousUtil.<BaseBean<List<MoreListBean>>>setThread())
 //                .subscribe(observer);
 //    }
+
+    public static void getSMS(String phone, NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(LoginApi.class)
+                .getSMS(phone)
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void register(String phone, String code, String invitationCode, String password, NetworkObserver<UserBean> observer) {
+        NetworkUtil.getInstance().setApi(LoginApi.class)
+                .register(phone, code, invitationCode, password)
+                .compose(AsynchronousUtil.<BaseBean<UserBean>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void retrieve(String phone, String code, String password, NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(LoginApi.class)
+                .retrieve(phone, code, password)
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void login(String phone, String password, NetworkObserver<UserBean> observer) {
+        NetworkUtil.getInstance().setApi(LoginApi.class)
+                .login(phone, password)
+                .compose(AsynchronousUtil.<BaseBean<UserBean>>setThread())
+                .subscribe(observer);
+    }
 }

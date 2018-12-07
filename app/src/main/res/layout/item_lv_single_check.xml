@@ -22,7 +22,7 @@
 
     <CheckBox
         android:id="@+id/cb_choice"
-        style="@style/style_cb"
+        style="@style/style_bank_cb"
         android:background="@null"
         android:clickable="false"
         android:focusableInTouchMode="false"/>

@@ -25,4 +25,7 @@
     <string name="hot">火爆单品</string>
     <string name="recommend">推荐商品</string>
 
+    <!--输入规则-->
+    <string name="type">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
 </resources>

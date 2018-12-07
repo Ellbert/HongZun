@@ -15,13 +15,12 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "ERROR_MSG", "\"网络连接不可用，请检查网络设置。\""
-//            buildConfigField "String", "BASE_URL", "\"http://www.baidu.com/\""
-            buildConfigField "String", "BASE_URL", "\"http://www.xuanwo123.com/\""
+            buildConfigField "String", "BASE_URL", "\"http://www.hongzuncctv.com/\""
             buildConfigField "String", "CUSTOMER_SERVICE_TELEPHONE", "\"020-12345678\""
         }
         release {
             buildConfigField "String", "ERROR_MSG", "\"网络连接不可用，请检查网络设置。\""
-            buildConfigField "String", "BASE_URL", "\"http://www.xuanwo123.com/\""
+            buildConfigField "String", "BASE_URL", "\"http://www.hongzuncctv.com/\""
             buildConfigField "String", "CUSTOMER_SERVICE_TELEPHONE", "\"020-12345678\""
 
             minifyEnabled false

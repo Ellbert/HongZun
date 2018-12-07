@@ -108,15 +108,15 @@ public class NetworkUtil {
     public static class NetworkInterceptor implements Interceptor {
 
         private String mSessionId = "";
-        private String mToken = "3c1120f99f9a411ab77e03a0fa0ed212";
-        private String mContentType = "application/x-www-form-urlencoded";
+//        private String mToken = "3c1120f99f9a411ab77e03a0fa0ed212";
+//        private String mContentType = "application/x-www-form-urlencoded";
 
         @Override
         public Response intercept(@NonNull Chain chain) throws IOException {
             return chain.proceed(chain.request().newBuilder()
 //                    .addHeader("Cookie", "PHPSESSID=" + mSessionId) // 设置请求头Cookie里的SessionId
-                    .addHeader("Token", mToken) // 设置请求头token
-                    .addHeader("Content-Type", mContentType) // 设置请求头token
+//                    .addHeader("Token", mToken) // 设置请求头token
+//                    .addHeader("Content-Type", mContentType) // 设置请求头token
                     .build());
         }
 

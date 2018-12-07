@@ -107,6 +107,7 @@
         android:layout_below="@+id/v3"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:background="@null"
         android:drawableStart="@mipmap/icn_invite"
         android:drawableLeft="@mipmap/icn_invite"

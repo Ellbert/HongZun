@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="7.5dp"
+    android:paddingBottom="7.5dp">
+
+    <CheckBox
+        android:id="@+id/cb_goods"
+        style="@style/style_cart_cb"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp" />
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/cb_goods"
+        android:layout_toRightOf="@+id/cb_goods" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_toEndOf="@+id/iv_header"
+        android:layout_toRightOf="@+id/iv_header"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="白芷魏晋风汉服学生古装超仙女广袖中国风齐腰襦裙古风套装秋冬款s阿斯顿发生发送卡看电视看我肯定是第四代"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_seven" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_header"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/iv_header"
+        android:layout_toRightOf="@+id/iv_header"
+        android:text="¥ 888.88"
+        android:textColor="@color/color_main"
+        android:textSize="@dimen/txt_second" />
+
+    <TextView
+        android:id="@+id/tv_spec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_header"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/tv_price"
+        android:layout_toRightOf="@+id/tv_price"
+        android:text="S码"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_third" />
+
+    <com.cecilia.framework.widget.NumberChoicesLayout
+        android:id="@+id/ncl_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tv_name"
+        android:layout_alignRight="@+id/tv_name"
+        android:layout_alignBottom="@+id/tv_price" />
+
+</RelativeLayout>

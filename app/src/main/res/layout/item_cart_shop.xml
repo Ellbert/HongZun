@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingStart="12dp"
+    android:focusable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="12dp"
+    android:paddingTop="15dp"
+    android:paddingEnd="12dp"
+    android:paddingRight="12dp">
+
+    <CheckBox
+        android:id="@+id/cb_shop"
+        style="@style/style_cart_cb" />
+
+    <TextView
+        android:id="@+id/tv_to_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/cb_shop"
+        android:layout_toRightOf="@+id/cb_shop"
+        android:drawableStart="@mipmap/icn_cart_shop"
+        android:drawableLeft="@mipmap/icn_cart_shop"
+        android:drawableEnd="@mipmap/icn_next_gray_small"
+        android:drawableRight="@mipmap/icn_next_gray_small"
+        android:drawablePadding="5dp"
+        android:paddingStart="15dp"
+        android:paddingLeft="15dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:text="十年九下" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_goods_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cb_shop"
+        android:layout_marginTop="6.5dp"
+        android:layout_marginBottom="12.5dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/rv_goods_cart"
+        android:background="@color/bg_view" />
+
+</RelativeLayout>

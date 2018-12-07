@@ -276,14 +276,24 @@
         <item name="android:stepSize">1</item>
     </style>
 
-    <!--CheckBox-->
-    <style name="style_cb">
+    <!--BankCheckBox-->
+    <style name="style_bank_cb">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@drawable/bg_cb_btn_selector</item>
+        <item name="android:layout_height">22dp</item>
+        <item name="android:button">@drawable/bg_cb_bank_btn_selector</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/txt_cb_selector</item>
+        <item name="android:textColor">@color/txt_third</item>
         <item name="android:textSize">@dimen/txt_first</item>
+    </style>
+
+    <!--CartItemCheckBox-->
+    <style name="style_cart_cb">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:button">@drawable/bg_cb_cart_btn_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/txt_first</item>
+        <item name="android:textSize">@dimen/txt_second</item>
     </style>
 
     <style name="style_image_item">

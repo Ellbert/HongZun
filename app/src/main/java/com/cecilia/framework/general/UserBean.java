@@ -8,120 +8,120 @@ import java.io.Serializable;
 
 public class UserBean implements Serializable {
 
-    private String headImg;
-    private String nickName;
-    private String userId;
-    private String signature;
-    private String grade;
-    private String sex;
-    private String phone;
-    private String email;
-    private String userSig;
-    private String Identifier;
-    private String isSetPayPassword;
+    private int tId;
+    private String tTel;
+    private String tPassword;
+    private String tUsername;
+    private String tHeadurl;
+    private int tType;
+    private String tCode;
+    private int tStatus;
+    private int tLevel;
+    private long tCreatetime;
+    private int tProperty;
 
-    public String getHeadImg() {
-        return headImg;
+    public void setTId(int tId) {
+        this.tId = tId;
     }
 
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg;
+    public int getTId() {
+        return tId;
     }
 
-    public String getNickName() {
-        return nickName;
+    public void setTTel(String tTel) {
+        this.tTel = tTel;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public String getTTel() {
+        return tTel;
     }
 
-    public String getUserId() {
-        return userId;
+    public void setTPassword(String tPassword) {
+        this.tPassword = tPassword;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public String getTPassword() {
+        return tPassword;
     }
 
-    public String getSignature() {
-        return signature;
+    public void setTUsername(String tUsername) {
+        this.tUsername = tUsername;
     }
 
-    public void setSignature(String signature) {
-        this.signature = signature;
+    public String getTUsername() {
+        return tUsername;
     }
 
-    public String getGrade() {
-        return grade;
+    public void setTHeadurl(String tHeadurl) {
+        this.tHeadurl = tHeadurl;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public String getTHeadurl() {
+        return tHeadurl;
     }
 
-    public String getSex() {
-        return sex;
+    public void setTType(int tType) {
+        this.tType = tType;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public int getTType() {
+        return tType;
     }
 
-    public String getPhone() {
-        return phone;
+    public void setTCode(String tCode) {
+        this.tCode = tCode;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getTCode() {
+        return tCode;
     }
 
-    public String getEmail() {
-        return email;
+    public void setTStatus(int tStatus) {
+        this.tStatus = tStatus;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public int getTStatus() {
+        return tStatus;
     }
 
-    public String getUserSig() {
-        return userSig;
+    public void setTLevel(int tLevel) {
+        this.tLevel = tLevel;
     }
 
-    public void setUserSig(String userSig) {
-        this.userSig = userSig;
+    public int getTLevel() {
+        return tLevel;
     }
 
-    public String getIdentifier() {
-        return Identifier;
+    public void setTCreatetime(long tCreatetime) {
+        this.tCreatetime = tCreatetime;
     }
 
-    public void setIdentifier(String identifier) {
-        Identifier = identifier;
+    public long getTCreatetime() {
+        return tCreatetime;
     }
 
-    public String getIsSetPayPassword() {
-        return isSetPayPassword;
+    public void setTProperty(int tProperty) {
+        this.tProperty = tProperty;
     }
 
-    public void setIsSetPayPassword(String isSetPayPassword) {
-        this.isSetPayPassword = isSetPayPassword;
+    public int getTProperty() {
+        return tProperty;
     }
 
     @Override
     public String toString() {
         return "UserBean{" +
-                "headImg='" + headImg + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", userId='" + userId + '\'' +
-                ", signature='" + signature + '\'' +
-                ", grade='" + grade + '\'' +
-                ", sex='" + sex + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", userSig='" + userSig + '\'' +
-                ", Identifier='" + Identifier + '\'' +
-                ", isSetPayPassword='" + isSetPayPassword + '\'' +
+                "tId=" + tId +
+                ", tTel='" + tTel + '\'' +
+                ", tPassword='" + tPassword + '\'' +
+                ", tUsername='" + tUsername + '\'' +
+                ", tHeadurl='" + tHeadurl + '\'' +
+                ", tType=" + tType +
+                ", tCode='" + tCode + '\'' +
+                ", tStatus=" + tStatus +
+                ", tLevel=" + tLevel +
+                ", tCreatetime=" + tCreatetime +
+                ", tProperty=" + tProperty +
                 '}';
     }
 }

@@ -65,21 +65,16 @@
 
     <CheckBox
         android:id="@+id/cb_default"
-        style="@style/style_cb"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
+        style="@style/style_bank_cb"
         android:layout_below="@+id/view1"
         android:layout_marginStart="26dp"
         android:layout_marginLeft="26dp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
-        android:gravity="center_vertical"
         android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:paddingEnd="10dp"
         android:paddingRight="10dp"
-        android:text="设为默认银行卡"
-        android:textColor="@color/txt_third"
-        android:textSize="@dimen/txt_first" />
+        android:text="设为默认银行卡" />
 
 </RelativeLayout>

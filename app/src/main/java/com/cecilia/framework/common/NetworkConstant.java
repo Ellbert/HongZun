@@ -12,48 +12,26 @@ import junit.runner.Version;
 
 public class NetworkConstant {
 
-    private static final String API = "api/";
+    private static final String API = "HZ/";
     /**
      * 对于请求列表数据时，一次最多加载的数据条数
      */
     public static final int PAGE_SIZE = 10;
 
-    public static final int SUCCESS = 200;
+    public static final int SUCCESS = 0;
 
-    public static final int SUCCESS_NO = 201;
+    public static final int NO_SUCCESS = -1;
 
     private static final String VERSION = "v1/";
 
-    public class Home {
-        private static final String USERS_ADDRESS = "UsersAddress/";
-
-
-    }
-
-    public class Advertising{
-        public static final String GET_ADVERTISING = API + VERSION + "ads/";
+    public class Login {
+        public static final String SEND_SMS = API + "/appUser/sendSms";
+        public static final String REGISTER = API + "/appUser/register";
+        public static final String RETRIEVE = API + "/appUser/retrieve";
+        public static final String LOGIN = API + "/appUser/login";
 
     }
 
-    public class Product{
-
-        private static final String PRODUCT = API + VERSION + "product/";
-
-        public static final String HOME = PRODUCT + "home/";
-
-        public static final String RECOMMEND = PRODUCT + "recommend_product/paginate/";
-
-        public static final String BY_CATEGORY = PRODUCT + "by_category/";
-
-    }
-
-    public class Category {
-
-        private static final String PRODUCT_CATEGORY = API + VERSION + "product_category/";
-
-        public static final String ALL_CATEGORY = PRODUCT_CATEGORY + "all/";
-
-    }
 
 //    public class UsersAddress {
 //        private static final String USERS_ADDRESS = "UsersAddress/";

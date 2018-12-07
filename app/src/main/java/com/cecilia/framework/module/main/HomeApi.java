@@ -17,19 +17,22 @@ import retrofit2.http.POST;
 
 public interface HomeApi {
 
+////    @FormUrlEncoded
+//    @POST(NetworkConstant.Advertising.GET_ADVERTISING)
+//    Observable<BaseBean<List<AdvertisingBean>>> getAdvertiseData();
+//
+//    @POST(NetworkConstant.Product.HOME)
+//    Observable<BaseBean<HomeBean>> getHomeData();
+//
 //    @FormUrlEncoded
-    @POST(NetworkConstant.Advertising.GET_ADVERTISING)
-    Observable<BaseBean<List<AdvertisingBean>>> getAdvertiseData();
-
-    @POST(NetworkConstant.Product.HOME)
-    Observable<BaseBean<HomeBean>> getHomeData();
-
-    @FormUrlEncoded
-    @POST(NetworkConstant.Product.RECOMMEND)
-    Observable<BaseBean<PageBean<RecommendBean>>> getRecommendData(@Field("page") String cuPage,@Field("size") String size);
-
-//    @FormUrlEncoded
-    @POST(NetworkConstant.Category.ALL_CATEGORY)
-    Observable<BaseBean<List<MoreListBean>>> getCategoryData();
+//    @POST(NetworkConstant.Product.RECOMMEND)
+//    Observable<BaseBean<PageBean<RecommendBean>>> getRecommendData(@Field("page") String cuPage,@Field("size") String size);
+//
+////    @FormUrlEncoded
+//    @POST(NetworkConstant.Category.ALL_CATEGORY)
+//    Observable<BaseBean<List<MoreListBean>>> getCategoryData();
+//
+//    @POST(NetworkConstant.Advertising.GET_ADVERTISING)
+//    Observable<BaseBean<List<AdvertisingBean>>> getAdvertiseData();
 
 }

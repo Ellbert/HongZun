@@ -148,7 +148,7 @@ public class MoreFragment extends BaseFragment implements MoreView, SwipeRefresh
 
     @Override
     public void onRefresh() {
-        mMorePresenter.getCategoryData(mSrlMore);
+//        mMorePresenter.getCategoryData(mSrlMore);
     }
 
     @SuppressLint("InflateParams")

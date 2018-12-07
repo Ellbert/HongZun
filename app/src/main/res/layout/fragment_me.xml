@@ -17,47 +17,55 @@
             android:background="@mipmap/img_me"
             android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tv_text1"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="49dp"
-                android:layout_marginLeft="49dp"
-                android:layout_marginTop="42dp"
-                android:text="充值余额"
-                android:textColor="@color/white"
-                android:textSize="@dimen/txt_sixth" />
-
-            <TextView
-                android:id="@+id/tv_balance"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/tv_text1"
-                android:layout_alignLeft="@+id/tv_text1"
-                android:layout_alignEnd="@+id/tv_text1"
-                android:layout_alignRight="@+id/tv_text2"
-                android:layout_marginTop="72dp"
-                android:gravity="center"
-                android:text="8.88"
-                android:textColor="@color/possible_result_points"
-                android:textSize="@dimen/txt_seven" />
+                android:layout_height="155dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/iv_header"
+                android:layout_toLeftOf="@+id/iv_header"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:gravity="center"
+                    android:text="充值余额"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_sixth" />
+
+                <TextView
+                    android:id="@+id/tv_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingStart="30dp"
+                    android:paddingLeft="30dp"
+                    android:paddingEnd="30dp"
+                    android:paddingRight="30dp"
+                    android:text="8.8899999999"
+                    android:textColor="@color/possible_result_points"
+                    android:textSize="@dimen/txt_seven" />
 
 
-            <TextView
-                android:id="@+id/tv_recharge"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_below="@+id/tv_balance"
-                android:layout_alignStart="@+id/tv_text1"
-                android:layout_alignLeft="@+id/tv_text1"
-                android:layout_alignEnd="@+id/tv_text1"
-                android:layout_alignRight="@+id/tv_text1"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_btn_large_white_edge_normal"
-                android:gravity="center"
-                android:text="充值"
-                android:textColor="@color/white"
-                android:textSize="@dimen/txt_third" />
+                <TextView
+                    android:id="@+id/tv_recharge"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/bg_btn_large_white_edge_normal"
+                    android:gravity="center"
+                    android:text="充值"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_third" />
+
+            </LinearLayout>
+
 
             <ImageView
                 android:id="@+id/iv_header"
@@ -89,49 +97,54 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_third" />
 
-            <TextView
-                android:id="@+id/tv_text2"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="155dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="42dp"
-                android:layout_marginEnd="49dp"
-                android:layout_marginRight="49dp"
-                android:gravity="center"
-                android:text="泓宝"
-                android:textColor="@color/white"
-                android:textSize="@dimen/txt_sixth" />
+                android:layout_toEndOf="@+id/iv_header"
+                android:layout_toRightOf="@+id/iv_header"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_hongbao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/tv_text2"
-                android:layout_alignLeft="@+id/tv_text2"
-                android:layout_alignEnd="@+id/tv_text2"
-                android:layout_alignRight="@+id/tv_text2"
-                android:layout_marginTop="72dp"
-                android:gravity="center"
-                android:text="8.88"
-                android:textColor="@color/possible_result_points"
-                android:textSize="@dimen/txt_seven" />
+                <TextView
+                    android:id="@+id/tv_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:gravity="center"
+                    android:text="泓宝"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_sixth" />
 
-            <TextView
-                android:id="@+id/tv_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_below="@+id/tv_balance"
-                android:layout_alignStart="@+id/tv_text2"
-                android:layout_alignLeft="@+id/tv_text2"
-                android:layout_alignEnd="@+id/tv_text2"
-                android:layout_alignRight="@+id/tv_text2"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_btn_large_white_edge_normal"
-                android:gravity="center"
-                android:text="详情"
-                android:textColor="@color/white"
-                android:textSize="@dimen/txt_third" />
+                <TextView
+                    android:id="@+id/tv_hongbao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingStart="30dp"
+                    android:paddingLeft="30dp"
+                    android:paddingEnd="30dp"
+                    android:paddingRight="30dp"
+                    android:text="8.8888888888888888"
+                    android:textColor="@color/possible_result_points"
+                    android:textSize="@dimen/txt_seven" />
+
+                <TextView
+                    android:id="@+id/tv_detail"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/tv_hongbao"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/bg_btn_large_white_edge_normal"
+                    android:gravity="center"
+                    android:text="详情"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_third" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="324dp"

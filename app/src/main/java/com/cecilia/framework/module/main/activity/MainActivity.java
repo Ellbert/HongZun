@@ -8,15 +8,18 @@ import android.support.v4.view.ViewPager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.adapter.MainPagerAdapter;
 import com.cecilia.framework.module.main.fragment.MainFragment;
 import com.cecilia.framework.module.main.fragment.MeFragment;
 import com.cecilia.framework.module.main.fragment.MoreFragment;
 import com.cecilia.framework.module.main.fragment.OrderFragment;
 import com.cecilia.framework.utils.DialogUtil;
+import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
@@ -59,7 +62,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected boolean isUseEventBus() {
-        return false;
+        return true;
     }
 
     @Override
@@ -81,7 +84,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void doEvents(EventBean event) {
-
+        if (event.getType() == -1) {
+            GuangUtil.saveUserInfo(null);
+            GcGuangApplication.setUserBean(null);
+            LoginActivity.launch(this);
+            finish();
+        }
     }
 
     @Override

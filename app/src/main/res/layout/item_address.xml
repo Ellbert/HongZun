@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="68dp"
     android:layout_marginBottom="1dp"
     android:background="@color/white"
     android:orientation="vertical">
@@ -13,7 +13,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="13dp"
-        android:text="萝卜哥"
+        android:text=""
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 
@@ -26,11 +26,12 @@
         android:layout_marginTop="11dp"
         android:layout_toEndOf="@+id/tv_name"
         android:layout_toRightOf="@+id/tv_name"
-        android:text="12345678910"
+        android:text=""
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_seven" />
 
     <TextView
+        android:id="@+id/tv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_phone"
@@ -42,7 +43,9 @@
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/tv_name"
         android:layout_toRightOf="@+id/tv_name"
-        android:text="阿斯顿撒所多哇所多无大多发所多撒所多无多所多噶所多撒所多所多无多哇"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text=""
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_third" />
 

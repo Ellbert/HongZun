@@ -526,4 +526,23 @@ public class StringUtil {
         return m.matches();
     }
 
+    public static String getLevel(int level) {
+        String levelString = "";
+        switch (level) {
+            case 0:
+                levelString = "泓樽士兵";
+                break;
+            case 1:
+                levelString = "泓樽勇士";
+                break;
+            case 2:
+                levelString = "泓樽将军";
+                break;
+            case 3:
+                levelString = "泓樽元帅";
+                break;
+        }
+        return levelString;
+    }
+
 }

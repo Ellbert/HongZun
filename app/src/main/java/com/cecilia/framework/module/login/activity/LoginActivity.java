@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
@@ -28,6 +29,8 @@ import com.cecilia.framework.module.login.presenter.LoginPresenter;
 import com.cecilia.framework.module.login.view.LoginView;
 import com.cecilia.framework.module.login.widget.ForgetPopupWindow;
 import com.cecilia.framework.module.main.activity.MainActivity;
+import com.cecilia.framework.utils.FileUtil;
+import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
@@ -302,6 +305,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void loginSuccess(UserBean userBean) {
-        LogUtil.e(userBean.toString());
+        GuangUtil.saveUserInfo(userBean);
+        GcGuangApplication.setUserBean(userBean);
+        ToastUtil.newSafelyShow("登录成功！");
+        MainActivity.launch(this);
+        finish();
     }
+
 }

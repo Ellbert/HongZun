@@ -12,7 +12,7 @@ import junit.runner.Version;
 
 public class NetworkConstant {
 
-    private static final String API = "HZ/";
+    private static final String API = "HZ";
     /**
      * 对于请求列表数据时，一次最多加载的数据条数
      */
@@ -24,6 +24,8 @@ public class NetworkConstant {
 
     private static final String VERSION = "v1/";
 
+    public static final String IMAGE_URL = "http://www.hongzuncctv.com/image/";
+
     public class Login {
         public static final String SEND_SMS = API + "/appUser/sendSms";
         public static final String REGISTER = API + "/appUser/register";
@@ -32,6 +34,28 @@ public class NetworkConstant {
 
     }
 
+    public class Home {
+        public static final String GET_USER_INFO = API + "/appUser/getUserInfo";
+    }
+
+    public class Me {
+        public static final String UPDATE_USER_INFO = API + "/appUser/updateUser";
+
+    }
+
+    public class Cart {
+        public static final String FIND_LIST = API + "/cart/findList";
+    }
+
+    public class Collect {
+        public static final String GET_LIST = API + "/collect/list";
+    }
+
+    public class Address {
+        public static final String GET_LIST = API + "/address/list";
+        public static final String DELETE = API + "/address/dele";
+        public static final String SAVE = API + "/address/save";
+    }
 
 //    public class UsersAddress {
 //        private static final String USERS_ADDRESS = "UsersAddress/";

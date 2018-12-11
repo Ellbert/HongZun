@@ -15,7 +15,8 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "ERROR_MSG", "\"网络连接不可用，请检查网络设置。\""
-            buildConfigField "String", "BASE_URL", "\"http://www.hongzuncctv.com/\""
+//            buildConfigField "String", "BASE_URL", "\"http://www.hongzuncctv.com/\""
+            buildConfigField "String", "BASE_URL", "\"http://10.10.1.187:8080/\""
             buildConfigField "String", "CUSTOMER_SERVICE_TELEPHONE", "\"020-12345678\""
         }
         release {

@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
+import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.main.HomeRealization;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
@@ -108,4 +109,5 @@ public class HomePresenter {
 //            }
 //        });
 //    }
+
 }

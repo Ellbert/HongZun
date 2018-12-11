@@ -2,6 +2,7 @@ package com.cecilia.framework.module.splash.activity;
 
 import android.os.CountDownTimer;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
@@ -115,13 +116,14 @@ public class LogoActivity extends BaseActivity {
 //        if (/*!mIsCheckSuccess ||*/ !mIsInitIMSuccess || !mIsTimingSuccess) {
 //            return;
 //        }
-        // if (mIsFirst) {
-        if (false) { // TODO: 2018/1/26 临时处理
+        if (GcGuangApplication.getUserBean() == null) {
+//             if (false) { // TODO: 2018/1/26 临时处理
             LoginActivity.launch(LogoActivity.this);
             finish();
         } else {
-            LoginActivity.launch(LogoActivity.this);
+            MainActivity.launch(LogoActivity.this);
             finish();
+//             }
         }
     }
 

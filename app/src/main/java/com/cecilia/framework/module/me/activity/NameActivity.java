@@ -4,14 +4,30 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.login.activity.LoginActivity;
+import com.cecilia.framework.module.me.presenter.NamePresenter;
+import com.cecilia.framework.module.me.view.NameView;
 import com.cecilia.framework.module.me.widget.NamePopupWindow;
+import com.cecilia.framework.utils.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
+
+import butterknife.BindView;
 import butterknife.OnClick;
 
-public class NameActivity extends BaseActivity {
+public class NameActivity extends BaseActivity implements NameView {
+
+    @BindView(R.id.tv_name)
+    TextView mEtName;
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
+    private NamePresenter mNamePresenter;
 
     public static void launch(Activity context) {
         Intent intent = new Intent(context, NameActivity.class);
@@ -25,12 +41,12 @@ public class NameActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        mTvTitleText.setText("修改昵称");
     }
 
     @Override
     protected void initData() {
-
+        mNamePresenter = new NamePresenter(this);
     }
 
     @Override
@@ -53,7 +69,7 @@ public class NameActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_submit})
+    @OnClick({R.id.iv_back, R.id.tv_submit, R.id.tv_confirm})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -64,6 +80,23 @@ public class NameActivity extends BaseActivity {
                 forgetPopupWindow.initView(NameActivity.this);
                 forgetPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
+            case R.id.tv_confirm:
+                mNamePresenter.updateName(String.valueOf(GcGuangApplication.getId()), "0", mEtName.getText().toString());
+                break;
         }
+    }
+
+    @Override
+    public void onUpdateSuccess() {
+        ToastUtil.newSafelyShow("修改成功");
+        EventBean eventBean = new EventBean(0);
+        eventBean.setMsg(mEtName.getText().toString());
+        EventBus.getDefault().post(eventBean);
+        finish();
+    }
+
+    @Override
+    public void onUpdateFail() {
+
     }
 }

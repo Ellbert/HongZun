@@ -32,10 +32,8 @@
         android:layout_toEndOf="@+id/tv_text1"
         android:layout_toRightOf="@+id/tv_text1"
         android:background="@color/white"
-        android:enabled="false"
         android:hint="请输入收货人名字"
         android:padding="14dp"
-        android:text="中国农业银行"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 
@@ -61,6 +59,7 @@
         android:layout_toRightOf="@+id/tv_text2"
         android:background="@color/white"
         android:hint="请输入收货人手机号码"
+        android:inputType="phone"
         android:padding="14dp"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />

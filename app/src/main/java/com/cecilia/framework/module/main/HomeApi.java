@@ -3,6 +3,7 @@ package com.cecilia.framework.module.main;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.PageBean;
+import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.bean.MoreListBean;
@@ -32,7 +33,8 @@ public interface HomeApi {
 //    @POST(NetworkConstant.Category.ALL_CATEGORY)
 //    Observable<BaseBean<List<MoreListBean>>> getCategoryData();
 //
-//    @POST(NetworkConstant.Advertising.GET_ADVERTISING)
-//    Observable<BaseBean<List<AdvertisingBean>>> getAdvertiseData();
+@FormUrlEncoded
+@POST(NetworkConstant.Home.GET_USER_INFO)
+Observable<BaseBean<UserBean>> getUserInfo(@Field("id") String id);
 
 }

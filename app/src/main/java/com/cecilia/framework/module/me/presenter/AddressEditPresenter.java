@@ -25,7 +25,7 @@ public class AddressEditPresenter {
             }
 
             @Override
-            protected void onSuccess(Object data) {
+            protected void onSuccess(Object data,String other) {
                 mNameView.onSaveSuccess();
             }
 

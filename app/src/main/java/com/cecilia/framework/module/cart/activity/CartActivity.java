@@ -18,6 +18,7 @@ import com.cecilia.framework.module.cart.adapter.CartShopAdapter;
 import com.cecilia.framework.module.cart.adapter.FailureAdapter;
 import com.cecilia.framework.module.cart.bean.CartGoodsBean;
 import com.cecilia.framework.module.cart.bean.CartShopBean;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.LogUtil;
 
 import java.math.BigDecimal;
@@ -114,14 +115,14 @@ public class CartActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 double price = 0;
+                boolean isCheck = mCbAll.isChecked();
                 for (CartShopBean shopCarBean : cartShopBeans) {
+                    shopCarBean.setSelected(isCheck);
                     for (CartGoodsBean childBean : shopCarBean.getCartGoodsBeans()) {
-                        if (mCbAll.isChecked()) {
-                            price += childBean.getPrice();
-                            childBean.setSelected(true);
-                        } else {
-                            childBean.setSelected(false);
+                        if (isCheck) {
+                            price = ArithmeticalUtil.add(price,childBean.getPrice());
                         }
+                        childBean.setSelected(isCheck);
                     }
                 }
                 mTvSum.setText(price + "");
@@ -135,7 +136,7 @@ public class CartActivity extends BaseActivity {
                 for (CartShopBean cartShopBean : cartShopBeans) {
                     for (CartGoodsBean cartGoodsBean : cartShopBean.getCartGoodsBeans()) {
                         if (cartGoodsBean.isSelected()) {
-                            price += cartGoodsBean.getPrice();
+                            price = ArithmeticalUtil.add(price,cartGoodsBean.getPrice());
                         }
                     }
                 }

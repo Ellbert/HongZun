@@ -4,17 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.adapter.MainPagerAdapter;
 import com.cecilia.framework.module.mall.fragment.MallFragment;
 import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.NoScrollViewPager;
 
@@ -30,6 +35,8 @@ public class MallActivity extends BaseActivity {
     TabLayout mTlMall;
     @BindView(R.id.vp_mall)
     NoScrollViewPager mVpMall;
+    @BindView(R.id.tv_search)
+    EditText mEtSearch;
     private List<Fragment> mFragments = new ArrayList<>();
     private int mIndex;
 
@@ -94,8 +101,8 @@ public class MallActivity extends BaseActivity {
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerPadding(30); // 设置分割线的pandding
         linearLayout.setDividerDrawable(ViewUtil.getDrawable(R.drawable.bg_tab_dividing));
-        for (int i = 0; i < 11; i++) {
-            mFragments.add(new MallFragment(1));
+        for (int i = -1; i < 10; i++) {
+            mFragments.add(new MallFragment(i));
         }
     }
 
@@ -119,6 +126,33 @@ public class MallActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+        mEtSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTlMall.getTabAt(0).select();
+            }
+        });
+        mEtSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP) {
+                    //先隐藏键盘
+                    InputMethodManager imm = ((InputMethodManager) MallActivity.this.getSystemService(INPUT_METHOD_SERVICE));
+                    if (imm != null) {
+                        View view = MallActivity.this.getCurrentFocus();
+                        if (view != null) {
+                            imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        }
+                    }
+
+                    //其次再做相应操作
+                    String inputContent = mEtSearch.getText().toString();
+                    MallFragment fragment = (MallFragment) mFragments.get(0);
+                    fragment.setData(inputContent);
+                }
+                return false;
+            }
+        });
         mTlMall.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

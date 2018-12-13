@@ -10,6 +10,60 @@ public class PageBean<T> {
 
     private String pageSize;
     private String cuPage;
+    private int totalItems;
+    private int currentPage;
+    private int itemsPerPage;
+    private int totalPage;
+    private int startNum;
+    private List<T> list;
+
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
+    }
+
+    public int getTotalItems() {
+        return totalItems;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setItemsPerPage(int itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
+    }
+
+    public int getItemsPerPage() {
+        return itemsPerPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setStartNum(int startNum) {
+        this.startNum = startNum;
+    }
+
+    public int getStartNum() {
+        return startNum;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
+    }
+
+    public List<T> getList() {
+        return list;
+    }
 
     @Override
     public boolean equals(Object o) {

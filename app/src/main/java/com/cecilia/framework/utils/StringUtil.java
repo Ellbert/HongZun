@@ -1,5 +1,6 @@
 package com.cecilia.framework.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -9,6 +10,9 @@ import android.text.format.Formatter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -543,6 +547,18 @@ public class StringUtil {
                 break;
         }
         return levelString;
+    }
+
+
+    /*
+     * 将时间戳转换为时间
+     */
+    @SuppressLint("SimpleDateFormat")
+    public static String stampToDate(String s) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = Long.valueOf(s);
+        Date date = new Date(lt);
+        return simpleDateFormat.format(date);
     }
 
 }

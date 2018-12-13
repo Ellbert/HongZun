@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
+import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.main.adapter.OrderListAdapter;
 import com.cecilia.framework.utils.LogUtil;
@@ -66,14 +67,14 @@ public class OrderListFragment extends BaseFragment {
         mLmrvOrder.setState(true, new LinearLayoutManager(getContext()));
         mOrderListAdapter = new OrderListAdapter(getContext(), type);
         mLmrvOrder.setAdapter(mOrderListAdapter);
-        List<Object> list = new ArrayList<>();
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
+        List<BaseGoodBean> list = new ArrayList<>();
+        list.add(new BaseGoodBean());
+        list.add(new BaseGoodBean());
+        list.add(new BaseGoodBean());
+        list.add(new BaseGoodBean());
+        list.add(new BaseGoodBean());
+        list.add(new BaseGoodBean());
+        list.add(new BaseGoodBean());
         mOrderListAdapter.setData(list);
     }
 

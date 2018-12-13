@@ -71,6 +71,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     TextView mBtnLogin;
     private SendCodeAgainCount mCount;
     private LoginPresenter mLoginPresenter;
+    private String mType;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -95,7 +96,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                Toast.makeText(LoginActivity.this, "触发点击事件!", Toast.LENGTH_SHORT).show();
+                ToastUtil.newSafelyShow("点击事件");
             }
 
             @Override
@@ -150,6 +151,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 mTvRegister.setVisibility(View.VISIBLE);
                 mTvForget.setText("密码登录");
                 mBtnLogin.setText("确认修改");
+                mType = "1";
                 break;
             case 2:
                 mEtPassword.setHint("请输入密码");
@@ -162,6 +164,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 mTvRegister.setVisibility(View.GONE);
                 mTvForget.setText("密码登录");
                 mBtnLogin.setText("注册");
+                mType = "0";
                 break;
         }
     }
@@ -206,7 +209,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     ToastUtil.newShow("请输入正确的手机号码！");
                     return;
                 }
-                mLoginPresenter.getSms(mEtPhone.getText().toString());
+                mLoginPresenter.getSms(mEtPhone.getText().toString(),mType);
                 mTvCode.setEnabled(false);
                 mCount.start();
                 break;

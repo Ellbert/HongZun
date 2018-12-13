@@ -62,7 +62,7 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
             onFailure(bean.getCode(), bean.getInfo());
             return;
         }
-        onSuccess(bean.getData());
+        onSuccess(bean.getData(),bean.getOther());
     }
 
     @Override
@@ -95,7 +95,7 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
     /**
      * 网络请求成功，并得到数据
      */
-    protected abstract void onSuccess(@NonNull T data);
+    protected abstract void onSuccess(@NonNull T data, @NonNull String other);
 
     /**
      * 网络请求成功，但没得到需要的数据

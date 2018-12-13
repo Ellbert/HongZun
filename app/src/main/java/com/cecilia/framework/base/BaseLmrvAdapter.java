@@ -131,7 +131,6 @@ public abstract class BaseLmrvAdapter<T> extends RecyclerView.Adapter<BaseViewHo
 
     public void setState(int state) {
         mState = state;
-        this.notifyItemChanged(getItemCount() - 1);
     }
 
     public void setLoadMoreGone() {

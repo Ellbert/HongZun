@@ -1,6 +1,7 @@
 package com.cecilia.framework.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -96,7 +98,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected abstract void initListener();
 
 
-    protected abstract  boolean isUseEventBus();
+    protected abstract boolean isUseEventBus();
 
 
     /**
@@ -141,6 +143,7 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         //解绑控件
+        hintKeyBoard();
         mUnBinder.unbind();
         mEventBus.unregister(this);
         super.onDestroy();
@@ -200,6 +203,15 @@ public abstract class BaseActivity extends FragmentActivity {
      * @param requestCode 请求权限时使用的请求码
      */
     protected void onRequestPermissionsSucceed(int requestCode) {
+    }
+
+    private void hintKeyBoard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (imm != null && imm.isActive() && getCurrentFocus() != null) {
+            if (getCurrentFocus().getWindowToken() != null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 
 }

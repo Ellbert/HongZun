@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.me.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class AddressAdapter extends BaseRvAdapter<AddressBean> {
         holder.getView(R.id.tv_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddressEditActivity.launch(mContext, data);
+                AddressEditActivity.launch(((Activity) mContext), data);
             }
         });
         holder.getView(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {

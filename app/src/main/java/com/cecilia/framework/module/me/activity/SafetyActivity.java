@@ -4,14 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SafetyActivity extends BaseActivity {
+
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), SafetyActivity.class);
@@ -25,7 +30,7 @@ public class SafetyActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        mTvTitleText.setText("安全中心");
     }
 
     @Override

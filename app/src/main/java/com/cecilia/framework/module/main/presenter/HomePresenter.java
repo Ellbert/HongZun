@@ -7,10 +7,12 @@ import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.main.HomeRealization;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
+import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.bean.RecommendBean;
 import com.cecilia.framework.module.main.view.HomeView;
 import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.ToastUtil;
 
 import java.util.List;
 
@@ -109,5 +111,35 @@ public class HomePresenter {
 //            }
 //        });
 //    }
+
+    public void getRecommendList(final SwipeRefreshLayout swipeRefreshLayout) {
+        HomeRealization.getRecommendList(new NetworkObserver<List<GoodsBean>>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return swipeRefreshLayout;
+            }
+
+            @Override
+            protected void onSuccess(List<GoodsBean> data,String other) {
+                mHomeView.getRecommendSuccess(data);
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+
+    }
 
 }

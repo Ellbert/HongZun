@@ -20,6 +20,8 @@ import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -40,10 +42,10 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
     private AddressEditPresenter mAddressEditPresenter;
     private String mAddressId;
 
-    public static void launch(Context context, AddressBean addressBean) {
+    public static void launch(Activity context, AddressBean addressBean) {
         Intent intent = new Intent(context, AddressEditActivity.class);
         intent.putExtra("address_bean", addressBean);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -118,6 +120,7 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
     @Override
     public void onSaveSuccess() {
         ToastUtil.newSafelyShow(mToastString);
+        setResult(0);
         finish();
     }
 

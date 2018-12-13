@@ -96,6 +96,7 @@
         <activity android:name=".module.me.activity.NewsActivity" />
         <activity android:name=".module.product.activity.CommentActivity" />
         <activity android:name=".module.cart.activity.CartActivity" />
+        <activity android:name=".module.product.activity.ResultActivity" />
     </application>
 
 </manifest>

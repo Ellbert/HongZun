@@ -24,14 +24,14 @@ public class NetworkConstant {
 
     private static final String VERSION = "v1/";
 
-    public static final String IMAGE_URL = "http://www.hongzuncctv.com/image/";
+    public static final String IMAGE_URL = "http://www.hongzuncctv.com";
 
     public class Login {
         public static final String SEND_SMS = API + "/appUser/sendSms";
         public static final String REGISTER = API + "/appUser/register";
         public static final String RETRIEVE = API + "/appUser/retrieve";
         public static final String LOGIN = API + "/appUser/login";
-
+        public static final String UPDATE_PASSWORD = API + "/appUser/updatePwd";
     }
 
     public class Home {
@@ -44,17 +44,50 @@ public class NetworkConstant {
     }
 
     public class Cart {
+        public static final String ADD_CART = API + "/cart/save";
         public static final String FIND_LIST = API + "/cart/findList";
     }
 
     public class Collect {
         public static final String GET_LIST = API + "/collect/list";
+        public static final String REMOVE_COLLECT = API + "/collect/removeCollect";
+        public static final String REMOVE_PRODUCT_COLLECT = API + "/collect/removeByUser";
+        public static final String ADD_COLLECT = API + "/collect/collect";
     }
 
     public class Address {
         public static final String GET_LIST = API + "/address/list";
         public static final String DELETE = API + "/address/dele";
         public static final String SAVE = API + "/address/save";
+    }
+
+    public class Message {
+        public static final String FIND_MESSAGE = API + "/userMessage/findMessage";
+        public static final String FIND_BY_USER = API + "/userMessage/findByUser";
+    }
+
+    public class BankCard {
+        public static final String BANK_CARD_LIST = API + "/bankcard/list";
+        public static final String SAVE_BANK_CARD = API + "/bankcard/save";
+        public static final String DELETE_BANK_CARD = API + "/bankcard/del";
+    }
+
+    public class Follow {
+        public static final String COLLECT_LIST = API + "/merchantCollect/list";
+    }
+
+    public class Goods {
+        public static final String RECOMMEND_LIST = API + "/goods/recommendList";
+        public static final String GOODS_DETAIL = API + "/goods/findById";
+        public static final String CREATE_ORDER = API + "/goodsOrder/createOrder";
+    }
+
+    public class Mall {
+        public static final String SEARCH = API + "/goods/search";
+    }
+
+    public class Order {
+        public static final String BUY = API + "/goodsOrder/buy";
     }
 
 //    public class UsersAddress {

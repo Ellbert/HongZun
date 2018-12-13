@@ -4,7 +4,6 @@
     android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    dddddddddddddddd
 
     <include layout="@layout/layout_header" />
 

@@ -21,7 +21,6 @@ import com.cecilia.framework.module.main.presenter.MePresenter;
 import com.cecilia.framework.module.main.view.MeView;
 import com.cecilia.framework.module.me.activity.AboutActivity;
 import com.cecilia.framework.module.me.activity.AddressActivity;
-import com.cecilia.framework.module.me.activity.BankCardActivity;
 import com.cecilia.framework.module.me.activity.CollectActivity;
 import com.cecilia.framework.module.me.activity.DataActivity;
 import com.cecilia.framework.module.me.activity.FansActivity;
@@ -75,6 +74,8 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
         UserBean userBean = GcGuangApplication.getUserBean();
         ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + userBean.getTHeadurl(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
         mTvName.setText(userBean.getTUsername());
+        mTvHongBao.setText(String.valueOf(userBean.getTHongBalance()/100));
+        mTvBalance.setText(String.valueOf(userBean.getTBalance()/100));
     }
 
     @Override

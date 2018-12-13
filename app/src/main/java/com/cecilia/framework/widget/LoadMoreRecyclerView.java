@@ -60,6 +60,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
         }
         if (adapter != null) {
             adapter.setState(BaseLmrvAdapter.ALL_GONE);
+            notifyItem();
         }
     }
 
@@ -78,6 +79,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
         }
         if (adapter != null) {
             adapter.setState(BaseLmrvAdapter.IS_ERROR);
+            notifyItem();
             adapter.getTvError().setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,6 +104,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
         }
         if (adapter != null) {
             adapter.setState(BaseLmrvAdapter.IS_NULL);
+            notifyItem();
         }
     }
 
@@ -116,7 +119,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
         this.addOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                BaseLmrvAdapter adapter;
+                final BaseLmrvAdapter adapter;
                 if (getAdapter() instanceof BaseLmrvAdapter) {
                     adapter = (BaseLmrvAdapter) getAdapter();
                 } else if (getAdapter() instanceof BaseRvAdapterEx &&
@@ -147,10 +150,11 @@ public class LoadMoreRecyclerView extends RecyclerView {
                     if (mIsCanLoading) {
                         mIsCanLoading = false;
                         adapter.setState(BaseLmrvAdapter.IS_LOADING);
+                        notifyItem();
                         mOnLoadMoreListener.onLoadMore();
                     } else {
                         if (totalItemCount > 1 ) {
-                            getAdapter().notifyItemChanged(getAdapter().getItemCount() - 1);
+                            notifyItem();
 //                        getAdapter().notifyDataSetChanged();
                         }
                     }
@@ -174,6 +178,15 @@ public class LoadMoreRecyclerView extends RecyclerView {
 
     public interface OnScrolledListener {
         void onScrolled(int distance);
+    }
+
+    private void notifyItem(){
+        this.post(new Runnable() {
+            @Override
+            public void run() {
+                getAdapter().notifyItemChanged(getAdapter().getItemCount() - 1);
+            }
+        });
     }
 
 }

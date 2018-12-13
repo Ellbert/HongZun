@@ -36,7 +36,6 @@ public class MainActivity extends BaseActivity {
     ViewPager mVpPager;
     @BindView(R.id.rg_main_tap)
     RadioGroup mRgMainTap;
-
     private List<Fragment> mFragments = new ArrayList<>();
     //    private UpdateBroadCast mUpdateBroadCast;
     private Dialog mExitDialog;
@@ -144,7 +143,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtil.e(requestCode + "    " + resultCode);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             setBottomButtonCheck(1);
         } else if (requestCode == 827 && resultCode == 0) {

@@ -8,11 +8,13 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/iv_header"
         android:layout_width="170dp"
         android:layout_height="190dp"
         android:background="@color/white" />
 
     <TextView
+        android:id="@+id/tv_name"
         android:layout_width="170dp"
         android:layout_weight="1"
         android:layout_height="0dp"
@@ -20,7 +22,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:padding="8dp"
-        android:text="sdsdsasdsadaaaaaasdwadsdswdsdsasdsdasdsdsasdddddddddddddddddddddddddaaaaaaaaaaaaasdsasdaaaaaaa"
+        android:text="sdsdsaa"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/tv_price"
             android:textColor="@color/color_main"
             android:textSize="@dimen/txt_first"
             android:layout_marginBottom="10dp"
@@ -38,7 +41,7 @@
             android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="￥888"/>
+            android:text="¥ 888.00"/>
 
         <TextView
             android:layout_marginEnd="8dp"

@@ -19,6 +19,9 @@ public class UserBean implements Serializable {
     private int tLevel;
     private long tCreatetime;
     private int tProperty;
+    private int tMerchantId;
+    private double tBalance;
+    private double tHongBalance;
 
     public void setTId(int tId) {
         this.tId = tId;
@@ -108,20 +111,28 @@ public class UserBean implements Serializable {
         return tProperty;
     }
 
-    @Override
-    public String toString() {
-        return "UserBean{" +
-                "tId=" + tId +
-                ", tTel='" + tTel + '\'' +
-                ", tPassword='" + tPassword + '\'' +
-                ", tUsername='" + tUsername + '\'' +
-                ", tHeadurl='" + tHeadurl + '\'' +
-                ", tType=" + tType +
-                ", tCode='" + tCode + '\'' +
-                ", tStatus=" + tStatus +
-                ", tLevel=" + tLevel +
-                ", tCreatetime=" + tCreatetime +
-                ", tProperty=" + tProperty +
-                '}';
+
+    public int getTMerchantId() {
+        return tMerchantId;
+    }
+
+    public void setTMerchantId(int tMerchantId) {
+        this.tMerchantId = tMerchantId;
+    }
+
+    public double getTBalance() {
+        return tBalance;
+    }
+
+    public void setTBalance(double tBalance) {
+        this.tBalance = tBalance;
+    }
+
+    public double getTHongBalance() {
+        return tHongBalance;
+    }
+
+    public void setTHongBalance(double tHongBalance) {
+        this.tHongBalance = tHongBalance;
     }
 }

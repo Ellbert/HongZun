@@ -26,6 +26,25 @@
                     android:layout_height="150dp"
                     android:background="@color/color_main" />
 
+                <TextView
+                    android:id="@+id/tv_search"
+                    android:layout_width="280dp"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_tv_large_white_normal"
+                    android:drawableStart="@mipmap/icn_search_gray"
+                    android:drawableLeft="@mipmap/icn_search_gray"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingRight="5dp"
+                    android:text="点击进入搜索界面"
+                    android:textColor="@color/txt_product_date"
+                    android:textSize="@dimen/btn_fillet_first" />
+
                 <android.support.v7.widget.GridLayout
                     android:id="@+id/gl_type_all"
                     android:layout_width="match_parent"
@@ -197,325 +216,325 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_text1" />
 
-                <View
-                    android:id="@+id/v2"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_more"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v2"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_more"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_more"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="知名品牌"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_more"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="知名品牌"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_brand"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text2" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_brand"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text2" />-->
 
-                <View
-                    android:id="@+id/v3"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_brand"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v3"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_brand"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_brand"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="视频饮料"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text3"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_brand"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="视频饮料"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_food"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text3" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_food"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text3" />-->
 
-                <View
-                    android:id="@+id/v4"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_food"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v4"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_food"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_food"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="美妆护肤"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text4"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_food"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="美妆护肤"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_makeup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text4" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_makeup"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text4" />-->
 
-                <View
-                    android:id="@+id/v5"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_makeup"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v5"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_makeup"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_makeup"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="奢侈品"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text5"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_makeup"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="奢侈品"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_luxury"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text5" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_luxury"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text5" />-->
 
-                <View
-                    android:id="@+id/v6"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_luxury"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v6"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_luxury"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_luxury"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="女装"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text6"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_luxury"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="女装"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_woman"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text6" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_woman"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text6" />-->
 
-                <View
-                    android:id="@+id/v7"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_woman"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v7"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_woman"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_woman"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="男装"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text7"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_woman"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="男装"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_man"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text7" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_man"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text7" />-->
 
-                <View
-                    android:id="@+id/v8"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_man"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v8"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_man"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_man"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="童装"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text8"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_man"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="童装"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_kid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text8" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_kid"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text8" />-->
 
-                <View
-                    android:id="@+id/v9"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_kid"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v9"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_kid"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_kid"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="运动健身"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text9"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_kid"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="运动健身"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_sport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text9" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_sport"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text9" />-->
 
-                <View
-                    android:id="@+id/v10"
-                    android:layout_width="2dp"
-                    android:layout_height="17dp"
-                    android:layout_below="@+id/rv_sport"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/txt_blue" />
+                <!--<View-->
+                    <!--android:id="@+id/v10"-->
+                    <!--android:layout_width="2dp"-->
+                    <!--android:layout_height="17dp"-->
+                    <!--android:layout_below="@+id/rv_sport"-->
+                    <!--android:layout_marginStart="27dp"-->
+                    <!--android:layout_marginLeft="27dp"-->
+                    <!--android:layout_marginTop="13dp"-->
+                    <!--android:background="@color/txt_blue" />-->
 
-                <TextView
-                    android:id="@+id/tv_text10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rv_sport"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/v1"
-                    android:layout_toRightOf="@+id/v1"
-                    android:text="手机数码"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_first" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_text10"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/rv_sport"-->
+                    <!--android:layout_marginStart="12dp"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_toEndOf="@+id/v1"-->
+                    <!--android:layout_toRightOf="@+id/v1"-->
+                    <!--android:text="手机数码"-->
+                    <!--android:textColor="@color/txt_first"-->
+                    <!--android:textSize="@dimen/txt_first" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_digital"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text10" />
+                <!--<android.support.v7.widget.RecyclerView-->
+                    <!--android:id="@+id/rv_digital"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/tv_text10" />-->
             </RelativeLayout>
 
         </com.cecilia.framework.widget.MyScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <ImageView
-        android:id="@+id/iv_bg"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@mipmap/img_mall" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_bg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:background="@mipmap/img_mall" />-->
 
-    <TextView
-        android:id="@+id/tv_search"
-        android:layout_width="280dp"
-        android:layout_height="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/bg_tv_large_white_normal"
-        android:drawableStart="@mipmap/icn_search_gray"
-        android:drawableLeft="@mipmap/icn_search_gray"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:paddingStart="5dp"
-        android:paddingLeft="5dp"
-        android:paddingEnd="5dp"
-        android:paddingRight="5dp"
-        android:text="点击进入搜索界面"
-        android:textColor="@color/txt_product_date"
-        android:textSize="@dimen/btn_fillet_first" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_search"-->
+        <!--android:layout_width="280dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@drawable/bg_tv_large_white_normal"-->
+        <!--android:drawableStart="@mipmap/icn_search_gray"-->
+        <!--android:drawableLeft="@mipmap/icn_search_gray"-->
+        <!--android:drawablePadding="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:paddingStart="5dp"-->
+        <!--android:paddingLeft="5dp"-->
+        <!--android:paddingEnd="5dp"-->
+        <!--android:paddingRight="5dp"-->
+        <!--android:text="点击进入搜索界面"-->
+        <!--android:textColor="@color/txt_product_date"-->
+        <!--android:textSize="@dimen/btn_fillet_first" />-->
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tl_mall"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_below="@+id/iv_bg"
-        android:background="@color/white"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@android:color/transparent"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/color_main"
-        app:tabTextColor="@color/txt_first" />
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tl_mall"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="35dp"-->
+        <!--android:layout_below="@+id/iv_bg"-->
+        <!--android:background="@color/white"-->
+        <!--app:tabGravity="center"-->
+        <!--app:tabIndicatorColor="@android:color/transparent"-->
+        <!--app:tabMode="scrollable"-->
+        <!--app:tabSelectedTextColor="@color/color_main"-->
+        <!--app:tabTextColor="@color/txt_first" />-->
 </RelativeLayout>
 

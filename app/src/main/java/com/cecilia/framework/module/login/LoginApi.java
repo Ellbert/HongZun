@@ -28,7 +28,7 @@ public interface LoginApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Login.SEND_SMS)
-    Observable<BaseBean<Object>> getSMS(@Field("phone") String phone);
+    Observable<BaseBean<Object>> getSMS(@Field("phone") String phone,@Field("type") String type);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Login.REGISTER)

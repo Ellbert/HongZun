@@ -6,6 +6,7 @@ import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.module.me.MeRealization;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.me.view.AddressView;
+import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class AddressPresenter {
             }
 
             @Override
-            protected void onSuccess(List<AddressBean> data) {
+            protected void onSuccess(List<AddressBean> data,String other) {
                 mNameView.onGetSuccess(data);
             }
 
@@ -56,7 +57,7 @@ public class AddressPresenter {
             }
 
             @Override
-            protected void onSuccess(Object data) {
+            protected void onSuccess(Object data,String other) {
                 mNameView.onDeleteSuccess();
             }
 

@@ -82,12 +82,12 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
 
     @Override
     protected boolean isUseEventBus() {
-        return true;
+        return false;
     }
 
     @Override
     protected void doEvents(EventBean event) {
-        onRefresh();
+
     }
 
     @OnClick({R.id.iv_back, R.id.tv_confirm})
@@ -120,7 +120,14 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
 
     @Override
     public void onDeleteSuccess() {
+        mSwipeRefreshLayout.setRefreshing(false);
         ToastUtil.newSafelyShow("删除成功");
         onRefresh();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mAddressPresenter.getAddressList(mSwipeRefreshLayout, String.valueOf(GcGuangApplication.getId()));
     }
 }

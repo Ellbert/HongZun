@@ -49,9 +49,9 @@ public class LoginRealization {
 //                .subscribe(observer);
 //    }
 
-    public static void getSMS(String phone, NetworkObserver<Object> observer) {
+    public static void getSMS(String phone,String type, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(LoginApi.class)
-                .getSMS(phone)
+                .getSMS(phone,type)
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }

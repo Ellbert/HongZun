@@ -5,6 +5,7 @@ import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
+import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.bean.MoreListBean;
 import com.cecilia.framework.module.main.bean.RecommendBean;
@@ -49,6 +50,13 @@ public class HomeRealization {
         NetworkUtil.getInstance().setApi(HomeApi.class)
                 .getUserInfo(id)
                 .compose(AsynchronousUtil.<BaseBean<UserBean>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void getRecommendList(NetworkObserver<List<GoodsBean>> observer){
+        NetworkUtil.getInstance().setApi(HomeApi.class)
+                .getRecommendList()
+                .compose(AsynchronousUtil.<BaseBean<List<GoodsBean>>>setThread())
                 .subscribe(observer);
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header" />
+
+    <TextView
+        android:id="@+id/tv_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:drawableTop="@mipmap/icn_success"
+        android:drawablePadding="35dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="66dp"
+        android:text="充值成功"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_check_box" />
+
+    <TextView
+        android:id="@+id/tv_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="261dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:background="@color/color_main"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="完成"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_failed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:drawableTop="@mipmap/icn_recharge_failed"
+        android:drawablePadding="54dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="66dp"
+        android:text="充值失败，请联系客服"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first"
+        android:visibility="gone" />
+
+</RelativeLayout>

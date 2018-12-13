@@ -5,6 +5,7 @@ import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
+import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.HomeBean;
 import com.cecilia.framework.module.main.bean.MoreListBean;
 import com.cecilia.framework.module.main.bean.RecommendBean;
@@ -14,11 +15,12 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface HomeApi {
 
-////    @FormUrlEncoded
+    ////    @FormUrlEncoded
 //    @POST(NetworkConstant.Advertising.GET_ADVERTISING)
 //    Observable<BaseBean<List<AdvertisingBean>>> getAdvertiseData();
 //
@@ -33,8 +35,12 @@ public interface HomeApi {
 //    @POST(NetworkConstant.Category.ALL_CATEGORY)
 //    Observable<BaseBean<List<MoreListBean>>> getCategoryData();
 //
-@FormUrlEncoded
-@POST(NetworkConstant.Home.GET_USER_INFO)
-Observable<BaseBean<UserBean>> getUserInfo(@Field("id") String id);
+    @FormUrlEncoded
+    @POST(NetworkConstant.Home.GET_USER_INFO)
+    Observable<BaseBean<UserBean>> getUserInfo(@Field("id") String id);
+
+//    @FormUrlEncoded
+    @POST(NetworkConstant.Goods.RECOMMEND_LIST)
+    Observable<BaseBean<List<GoodsBean>>> getRecommendList();
 
 }

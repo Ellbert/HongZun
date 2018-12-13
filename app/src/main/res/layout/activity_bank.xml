@@ -8,12 +8,20 @@
 
     <include layout="@layout/layout_header" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_bank"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_bank"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/bg_view" />
+        android:background="@color/bg_view">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_bank"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/tv_add"

@@ -19,15 +19,15 @@ public class LoginPresenter {
         this.mLoginView = mHomeView;
     }
 
-    public void getSms(String phone) {
-        LoginRealization.getSMS(phone, new NetworkObserver<Object>() {
+    public void getSms(String phone,String type) {
+        LoginRealization.getSMS(phone,type, new NetworkObserver<Object>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
                 return null;
             }
 
             @Override
-            protected void onSuccess(Object data) {
+            protected void onSuccess(Object data,String other) {
                 mLoginView.getSmsSuccess();
             }
 
@@ -56,7 +56,7 @@ public class LoginPresenter {
             }
 
             @Override
-            protected void onSuccess(UserBean data) {
+            protected void onSuccess(UserBean data,String other) {
                 mLoginView.registerSuccess();
             }
 
@@ -85,7 +85,7 @@ public class LoginPresenter {
             }
 
             @Override
-            protected void onSuccess(Object data) {
+            protected void onSuccess(Object data,String other) {
                 mLoginView.retrieveSuccess();
             }
 
@@ -114,7 +114,7 @@ public class LoginPresenter {
             }
 
             @Override
-            protected void onSuccess(UserBean data) {
+            protected void onSuccess(UserBean data,String other) {
                 mLoginView.loginSuccess(data);
             }
 

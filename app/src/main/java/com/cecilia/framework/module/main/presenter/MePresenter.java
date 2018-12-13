@@ -24,7 +24,7 @@ public class MePresenter {
             }
 
             @Override
-            protected void onSuccess(UserBean data) {
+            protected void onSuccess(UserBean data,String other) {
                 mMeView.onGetUserInfoSuccess(data);
             }
 

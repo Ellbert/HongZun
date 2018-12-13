@@ -5,15 +5,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
+import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.adapter.OrderListAdapter;
-import com.cecilia.framework.module.me.adapter.FollowAdapter;
 import com.cecilia.framework.module.me.presenter.CollectPresenter;
 import com.cecilia.framework.module.me.view.CollectView;
+import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
@@ -30,6 +33,8 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     SwipeRefreshLayout mSrlFollow;
     @BindView(R.id.lmrv_follow)
     LoadMoreRecyclerView mLmrvFollow;
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
     private OrderListAdapter mOrderListAdapter;
     private CollectPresenter mCollectPresenter;
 
@@ -45,6 +50,7 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
 
     @Override
     protected void initViews() {
+        mTvTitleText.setText("我的收藏");
         mLmrvFollow.setState(true, new LinearLayoutManager(this));
     }
 
@@ -54,15 +60,6 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
         mOrderListAdapter = new OrderListAdapter(this, COLLECT);
         mLmrvFollow.setAdapter(mOrderListAdapter);
         onRefresh();
-//        mLmrvFollow.setNestedScrollingEnabled(false);
-//        List<Object> list = new ArrayList<>();
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
 
     }
 
@@ -74,6 +71,17 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     @Override
     protected void initListener() {
         mSrlFollow.setOnRefreshListener(this);
+        mOrderListAdapter.setOnItemBuyClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                mCollectPresenter.removeCollect(String.valueOf(id));
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
+            }
+        });
     }
 
     @Override
@@ -96,17 +104,24 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     }
 
     @Override
-    public void onGetSuccess(List<Object> list) {
+    public void onGetSuccess(List<BaseGoodBean> list) {
         mOrderListAdapter.setData(list);
+        mLmrvFollow.setLoadMoreNull();
     }
 
     @Override
     public void onGetFailed() {
+        mLmrvFollow.setLoadMoreNull();
+    }
 
+    @Override
+    public void onDeleteSuccess() {
+        ToastUtil.newSafelyShow("删除成功！");
+        onRefresh();
     }
 
     @Override
     public void onRefresh() {
-        mCollectPresenter.getList(String.valueOf(GcGuangApplication.getId()));
+        mCollectPresenter.getList(mSrlFollow,String.valueOf(GcGuangApplication.getId()));
     }
 }

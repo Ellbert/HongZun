@@ -172,9 +172,9 @@ public class ImageUtil {
             public void onLoadStarted(Drawable placeholder) {
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 imageView.setImageDrawable(placeholder);
-//                super.onLoadStarted(placeholder);
-                Animation rotationAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_loading);
-                imageView.startAnimation(rotationAnimation);
+                super.onLoadStarted(placeholder);
+//                Animation rotationAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_loading);
+//                imageView.startAnimation(rotationAnimation);
                 sImageViews.add(imageView); // 将其添加到 正在加载中的控件集合 中
             }
 
@@ -182,18 +182,18 @@ public class ImageUtil {
             public void onLoadCleared(Drawable placeholder) {
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 imageView.setImageDrawable(placeholder);
-//                super.onLoadCleared(placeholder);
-                Animation rotationAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_loading);
-                imageView.startAnimation(rotationAnimation);
+                super.onLoadCleared(placeholder);
+//                Animation rotationAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_loading);
+//                imageView.startAnimation(rotationAnimation);
                 sImageViews.add(imageView); // 将其添加到 正在加载中的控件集合 中
             }
 
             @Override
             public void onLoadFailed(Exception e, Drawable errorDrawable) {
                 imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//                super.onLoadFailed(e, errorDrawable);
-                //ToastUtil.newShow("图片加载失败，请检查网络状态");
-                imageView.clearAnimation();
+                super.onLoadFailed(e, errorDrawable);
+//                ToastUtil.newShow("图片加载失败，请检查网络状态");
+//                imageView.clearAnimation();
                 imageView.setImageDrawable(errorDrawable);
                 sImageViews.remove(imageView);
             }
@@ -202,7 +202,7 @@ public class ImageUtil {
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                 imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 //                super.onResourceReady(resource, animation);
-                imageView.clearAnimation();
+//                imageView.clearAnimation();
                 imageView.setImageDrawable(resource);
                 sImageViews.remove(imageView);
             }

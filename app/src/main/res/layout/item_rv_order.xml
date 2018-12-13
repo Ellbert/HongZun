@@ -54,7 +54,7 @@
         android:textSize="@dimen/txt_second" />
 
     <TextView
-        android:id="@+id/tv_bye"
+        android:id="@+id/tv_buy"
         android:layout_width="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
@@ -73,8 +73,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_height="23dp"
-        android:layout_toLeftOf="@+id/tv_bye"
-        android:layout_toStartOf="@+id/tv_bye"
+        android:layout_toLeftOf="@+id/tv_buy"
+        android:layout_toStartOf="@+id/tv_buy"
         android:layout_alignBottom="@+id/iv_photo"
         android:background="@drawable/bg_btn_small_gray_edge_normal"
         android:gravity="center"

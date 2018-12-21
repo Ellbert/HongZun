@@ -75,7 +75,7 @@ public class AddressPopupWindow extends PopupWindow {
         void onConfirm(AddressBean addressBean);
     }
 
-    public void initView(final Activity context, final List<AddressBean> list) {
+    public void initView(final Activity context, final List<AddressBean> list,int height) {
         final LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = mInflater.inflate(R.layout.layout_address_pup, null);
         ButterKnife.bind(this, mView);
@@ -84,7 +84,7 @@ public class AddressPopupWindow extends PopupWindow {
         //设置SelectPicPopupWindow弹出窗体的宽
         this.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
         //设置SelectPicPopupWindow弹出窗体的高
-        this.setHeight(DensityUtil.dp2px(context, 350));
+        this.setHeight(height);
         //设置SelectPicPopupWindow弹出窗体可点击
         this.setFocusable(true);
         //设置PopupWindow可触摸

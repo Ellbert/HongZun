@@ -10,10 +10,12 @@ import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.me.bean.BankCardBean;
+import com.cecilia.framework.utils.ToastUtil;
 
 public class BankCardAdapter extends BaseRvAdapter<BankCardBean> {
 
     private OnItemClickListener mOnItemClickListener;
+    private OnItemClickListener mOnSetDefaultListener;
 
     public BankCardAdapter(Context context, int layoutId) {
         super(context, layoutId);
@@ -23,7 +25,7 @@ public class BankCardAdapter extends BaseRvAdapter<BankCardBean> {
     public void bindData(BaseViewHolder holder, final BankCardBean data) {
         ((TextView)holder.getView(R.id.tv_bank_num)).setText(data.getTCardNum());
         ((TextView)holder.getView(R.id.tv_bank)).setText(data.getTBankType());
-        CheckBox checkBox = holder.getView(R.id.cb_default);
+        final CheckBox checkBox = holder.getView(R.id.cb_default);
         if (data.getTDefault() == 0) {
             checkBox.setChecked(false);
         } else {
@@ -37,9 +39,26 @@ public class BankCardAdapter extends BaseRvAdapter<BankCardBean> {
                 }
             }
         });
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkBox.isChecked()) {
+                    ToastUtil.newSafelyShow("此卡已设置为默认卡！");
+                    notifyDataSetChanged();
+                    return;
+                }
+                if (mOnSetDefaultListener != null){
+                    mOnSetDefaultListener.onItemClick(v,data.getTId());
+                }
+            }
+        });
     }
 
     public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
+    }
+
+    public void setOnSetDefaultListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnSetDefaultListener = mOnItemClickListener;
     }
 }

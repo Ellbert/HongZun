@@ -16,7 +16,6 @@
         android:layout_toLeftOf="@+id/tv_more"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="撒打算打打看手机付款就爱手机发丝的决赛结束点击四季度及就爱看手机开房间卡萨基础会计司擦肩开心就此开展大声道无多哇"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 
@@ -29,9 +28,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:gravity="center"
-        android:drawablePadding="5dp"
         android:drawableRight="@mipmap/icn_next_blue_small"
+        android:drawablePadding="5dp"
+        android:gravity="center"
         android:paddingStart="8dp"
         android:paddingLeft="8dp"
         android:paddingEnd="13dp"
@@ -43,8 +42,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/bg_view"
         android:layout_below="@+id/tv_text"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="13dp"
+        android:background="@color/bg_view" />
 
 </RelativeLayout>

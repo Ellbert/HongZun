@@ -28,7 +28,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:text="共88个关注"
+        android:text="共88个收藏"
         android:textSize="@dimen/btn_fillet_first" />
 
     <android.support.v4.widget.SwipeRefreshLayout

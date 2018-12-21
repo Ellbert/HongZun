@@ -29,8 +29,9 @@ public class NumberChoicesLayout extends LinearLayout {
 
     private OnNumberChangeListener mOnNumberChangeListener;
     private View mView;
+    private String mType;
     private int mMinNumber = 0;
-    private int mNowNumber = 0;
+    private int mNowNumber = 1;
     private int mMaxNumber = 1;
 
     public NumberChoicesLayout(Context context) {
@@ -54,9 +55,9 @@ public class NumberChoicesLayout extends LinearLayout {
         }
         this.setGravity(Gravity.CENTER_VERTICAL);
         ButterKnife.bind(mView);
-        if (mNowNumber == mMinNumber) {
-            mIvMinus.setEnabled(false);
-        }
+//        if (mNowNumber == mMinNumber) {
+//        mIvMinus.setEnabled(false);
+//        }
     }
 
     /**
@@ -78,8 +79,12 @@ public class NumberChoicesLayout extends LinearLayout {
         mMinNumber = Integer.valueOf(minNumber) < 0 ? 0 : Integer.valueOf(minNumber) >= Integer.valueOf(maxNumber) ? Integer.valueOf(maxNumber) - 1 : Integer.valueOf(minNumber);
         if (nowNum <= mMinNumber) {
             number = minNumber;
+            mIvMinus.setEnabled(false);
+            mIvAdd.setEnabled(true);
         } else if (nowNum >= mMaxNumber) {
             number = maxNumber;
+            mIvMinus.setEnabled(true);
+            mIvAdd.setEnabled(false);
         }
         mTvSelectNumber.setText(number);
         mNowNumber = Integer.valueOf(getSelectNumber());
@@ -101,6 +106,7 @@ public class NumberChoicesLayout extends LinearLayout {
                 } else {
                     mIvMinus.setEnabled(true);
                 }
+                mType = "1";
                 break;
             case R.id.iv_add:
                 mIvMinus.setEnabled(true);
@@ -111,10 +117,11 @@ public class NumberChoicesLayout extends LinearLayout {
                 } else {
                     mIvAdd.setEnabled(true);
                 }
+                mType = "0";
                 break;
         }
         if (mOnNumberChangeListener != null) {
-            mOnNumberChangeListener.onNumberChange(getSelectNumber());
+            mOnNumberChangeListener.onNumberChange(getSelectNumber(), mType);
         }
     }
 
@@ -126,6 +133,12 @@ public class NumberChoicesLayout extends LinearLayout {
         /**
          * @param num 变更后的数量
          */
-        void onNumberChange(String num);
+        void onNumberChange(String num, String type);
+    }
+
+    public void setClickEnable(String number) {
+        mTvSelectNumber.setText(number);
+        mIvAdd.setEnabled(false);
+        mIvMinus.setEnabled(false);
     }
 }

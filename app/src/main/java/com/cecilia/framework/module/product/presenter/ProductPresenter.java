@@ -5,10 +5,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cecilia.framework.general.AsynchronousObserver;
 import com.cecilia.framework.general.NetworkObserver;
+import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.me.MeRealization;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.product.ProductRealization;
+import com.cecilia.framework.module.product.bean.CommentBean;
 import com.cecilia.framework.module.product.bean.PayResult;
 import com.cecilia.framework.module.product.model.ProductModel;
 import com.cecilia.framework.module.product.view.ProductView;
@@ -17,6 +19,7 @@ import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +46,7 @@ public class ProductPresenter {
 
             @Override
             protected void onSuccess(GoodsBean data, String other) {
-                mProductView.getDetailSuccess(data, other);
+                mProductView.getDetailSuccess(data);
             }
 
             @Override
@@ -73,91 +76,6 @@ public class ProductPresenter {
             @Override
             protected void onSuccess(List<AddressBean> data, String other) {
                 mProductView.getAddressListSuccess(data);
-            }
-
-            @Override
-            protected void onFailure(int errorCode, String errorMsg) {
-                ToastUtil.newSafelyShow(errorMsg);
-            }
-
-            @Override
-            protected void onException(Throwable e) {
-
-            }
-
-            @Override
-            protected void onTimeout() {
-
-            }
-        });
-    }
-
-    public void createOrder(int userId, int goodsId, String spec, String num, String addressId, String remake) {
-        ProductRealization.createOrder(userId, goodsId, spec, num, addressId, remake, new NetworkObserver<String>() {
-            @Override
-            protected SwipeRefreshLayout getSwipeRefreshLayout() {
-                return null;
-            }
-
-            @Override
-            protected void onSuccess(String data, String other) {
-                mProductView.onCreateOrderSuccess(data);
-            }
-
-            @Override
-            protected void onFailure(int errorCode, String errorMsg) {
-                ToastUtil.newSafelyShow(errorMsg);
-            }
-
-            @Override
-            protected void onException(Throwable e) {
-
-            }
-
-            @Override
-            protected void onTimeout() {
-
-            }
-        });
-    }
-
-    public void doAlipayPay(final Activity activity, final String orderInfo) {
-        Observable
-                .create(new ObservableOnSubscribe<Map<String, String>>() {
-                    @Override
-                    public void subscribe(ObservableEmitter<Map<String, String>> e) throws Exception {
-                        e.onNext(mPayOrderModel.doAlipayPay(activity, orderInfo));
-                    }
-                })
-                .compose(AsynchronousUtil.<Map<String, String>>setThread())
-                .subscribe(new AsynchronousObserver<Map<String, String>>() {
-                    @Override
-                    protected void onFinish(Map<String, String> data) {
-                        LogUtil.e("alipay data = " + data);
-                        PayResult payResult = new PayResult(data);
-                        LogUtil.e("alipay payResult = " + payResult);
-                        mProductView.showAlipayResult(payResult.getResultStatus());
-                    }
-
-                    @Override
-                    protected void onException(Throwable e) {
-                        ToastUtil.newSafelyShow(e.getMessage());
-                        mProductView.onFailed();
-                    }
-                });
-    }
-
-    public void buy(String orderIds, int userID, String subject) {
-        ProductRealization.buy(orderIds, userID, subject, new NetworkObserver<String>() {
-            @Override
-            protected SwipeRefreshLayout getSwipeRefreshLayout() {
-                return null;
-            }
-
-            @Override
-            protected void onSuccess(String data, String other) {
-                LogUtil.e(data);
-                mProductView.onBuySuccess(data);
             }
 
             @Override
@@ -247,6 +165,93 @@ public class ProductPresenter {
             @Override
             protected void onSuccess(Object data, String other) {
                 mProductView.onRemoveCollectSuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
+
+    public void getRecentlyList(int goodsId) {
+        ProductRealization.getCommentList(goodsId, new NetworkObserver<List<CommentBean>>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(List<CommentBean> data, String other) {
+                mProductView.onGetRecentlyListSuccess(data);
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
+
+    public void removeConcern(int id, int shopId) {
+        ProductRealization.removeFollow(id, shopId, new NetworkObserver<Object>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mProductView.onRemoveFollowSuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
+
+    public void addFollow(int userId, int shopId, String name, String url) {
+        ProductRealization.addFollow(userId, shopId, name, url, new NetworkObserver<Object>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mProductView.onAddFollowSuccess();
             }
 
             @Override

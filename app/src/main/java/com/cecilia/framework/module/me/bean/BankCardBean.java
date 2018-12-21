@@ -4,6 +4,7 @@ public class BankCardBean {
 
     private int tId;
     private int tUserId;
+    private String tUsername;
     private String tBankType;
     private String tCardNum;
     private int tDefault;
@@ -36,6 +37,14 @@ public class BankCardBean {
 
     public void setTCardNum(String tCardNum) {
         this.tCardNum = tCardNum;
+    }
+
+    public String gettUsername() {
+        return tUsername;
+    }
+
+    public void settUsername(String tUsername) {
+        this.tUsername = tUsername;
     }
 
     public String getTCardNum() {

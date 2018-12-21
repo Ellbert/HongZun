@@ -20,9 +20,9 @@
 
         <TextView
             android:id="@+id/tv_nothing"
-            android:layout_width="115dp"
-            android:layout_height="167dp"
-            android:drawableTop="@mipmap/img_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/icn_no_order"
             android:drawablePadding="40dp"
             android:gravity="center_horizontal"
             android:text="您还没有订单哦~" />

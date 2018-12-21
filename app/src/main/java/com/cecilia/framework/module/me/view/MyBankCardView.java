@@ -10,5 +10,6 @@ public interface MyBankCardView {
 
     void onGetListSuccess(@NonNull List<BankCardBean> list);
     void onDeleteSuccess();
+    void onSetDefaultSuccess();
     void onFailed();
 }

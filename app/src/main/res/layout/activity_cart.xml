@@ -8,6 +8,7 @@
     <include layout="@layout/layout_header" />
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -28,7 +29,6 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:text="购物车共88件商品"
                     android:textColor="@color/txt_third"
                     android:textSize="@dimen/btn_fillet_first" />
 

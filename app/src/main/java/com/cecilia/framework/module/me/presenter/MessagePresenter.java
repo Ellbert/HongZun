@@ -3,6 +3,7 @@ package com.cecilia.framework.module.me.presenter;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cecilia.framework.general.NetworkObserver;
+import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.me.MeRealization;
 import com.cecilia.framework.module.me.bean.MessageBean;
 import com.cecilia.framework.module.me.view.MessageView;
@@ -18,16 +19,16 @@ public class MessagePresenter {
         this.mMessageView = mMessageView;
     }
 
-    public void getMessageList(final SwipeRefreshLayout swipeRefreshLayout , String userId){
-        MeRealization.getMessageList(userId, new NetworkObserver<List<MessageBean>>() {
+    public void getMessageList(final SwipeRefreshLayout swipeRefreshLayout , int userId ,int page){
+        MeRealization.getMessageList(userId,page, new NetworkObserver<PageBean<MessageBean>>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
                 return swipeRefreshLayout;
             }
 
             @Override
-            protected void onSuccess(List<MessageBean> data,String other) {
-                mMessageView.onGetListSuccess(data);
+            protected void onSuccess(PageBean<MessageBean> data,String other) {
+                mMessageView.onGetListSuccess(data.getList());
             }
 
             @Override

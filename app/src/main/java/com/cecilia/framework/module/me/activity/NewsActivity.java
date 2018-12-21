@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
+import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
-import com.cecilia.framework.module.me.adapter.FollowAdapter;
 import com.cecilia.framework.module.me.adapter.NewsAdapter;
 import com.cecilia.framework.module.me.bean.MessageBean;
 import com.cecilia.framework.module.me.presenter.MessagePresenter;
@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class NewsActivity extends BaseActivity implements MessageView,SwipeRefreshLayout.OnRefreshListener {
+public class NewsActivity extends BaseActivity implements MessageView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.tv_no_news)
     TextView mTvNothing;
@@ -36,6 +36,8 @@ public class NewsActivity extends BaseActivity implements MessageView,SwipeRefre
     TextView mTvTitleText;
     private NewsAdapter mNewsAdapter;
     private MessagePresenter mMessagePresenter;
+    private int mPage = 1;
+    private List<MessageBean> mData;
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), NewsActivity.class);
@@ -69,6 +71,13 @@ public class NewsActivity extends BaseActivity implements MessageView,SwipeRefre
 
     @Override
     protected void initListener() {
+        mLmrvNews.setOnLoadMoreListener(new LoadMoreRecyclerView.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                mPage++;
+                mMessagePresenter.getMessageList(null, GcGuangApplication.getId(), mPage);
+            }
+        });
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -93,13 +102,23 @@ public class NewsActivity extends BaseActivity implements MessageView,SwipeRefre
 
     @Override
     public void onGetListSuccess(List<MessageBean> object) {
-        if(object.size() == 0) {
+        if (object.size() == 0 && mPage == 1) {
             mTvNothing.setVisibility(View.VISIBLE);
             return;
         }
-        mTvNothing.setVisibility(View.GONE);
-        mNewsAdapter.setData(object);
-        mLmrvNews.setLoadMoreNull();
+        // 分页数据处理
+        if (mData == null || mData.size() == 0) {
+            mData = object;
+            mTvNothing.setVisibility(View.GONE);
+            mNewsAdapter.setData(object);
+        } else {
+            mNewsAdapter.addData(object);
+        }
+        if (object.size() < NetworkConstant.PAGE_SIZE) {
+            mLmrvNews.setLoadMoreNull();
+        } else {
+            mLmrvNews.setLoadMoreFinish();
+        }
     }
 
     @Override
@@ -109,6 +128,8 @@ public class NewsActivity extends BaseActivity implements MessageView,SwipeRefre
 
     @Override
     public void onRefresh() {
-        mMessagePresenter.getMessageList(mSwipeRefreshLayout,String.valueOf(GcGuangApplication.getId()));
+        mPage = 1;
+        mData = null;
+        mMessagePresenter.getMessageList(mSwipeRefreshLayout, GcGuangApplication.getId(), mPage);
     }
 }

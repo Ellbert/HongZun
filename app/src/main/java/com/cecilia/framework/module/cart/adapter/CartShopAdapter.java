@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.cart.bean.CartGoodsBean;
 import com.cecilia.framework.module.cart.bean.CartShopBean;
 import com.cecilia.framework.utils.LogUtil;
@@ -20,6 +22,7 @@ import java.util.List;
 public class CartShopAdapter extends BaseRvAdapter<CartShopBean> {
 
     private int mPosition;
+    private CartGoodsAdapter.OnNumberChangeListener mOnItemClickListener;
 
     public CartShopAdapter(Context context, int layoutId) {
         super(context, layoutId);
@@ -32,13 +35,15 @@ public class CartShopAdapter extends BaseRvAdapter<CartShopBean> {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         final CartGoodsAdapter goodsAdapter = new CartGoodsAdapter(mContext, R.layout.item_cart_goods);
         recyclerView.setAdapter(goodsAdapter);
-        goodsAdapter.setDataList(data.getCartGoodsBeans());
+        goodsAdapter.setDataList(data.getGoods());
         final CheckBox checkBox = holder.getView(R.id.cb_shop);
+        TextView tvName = holder.getView(R.id.tv_to_shop);
         checkBox.setChecked(data.isSelected());
+        tvName.setText(data.getMerchantName());
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (CartGoodsBean childBean : data.getCartGoodsBeans()) {
+                for (CartGoodsBean childBean : data.getGoods()) {
                     if (checkBox.isChecked()) {
                         childBean.setSelected(true);
                     } else {
@@ -54,7 +59,7 @@ public class CartShopAdapter extends BaseRvAdapter<CartShopBean> {
             @Override
             public void onCheck() {
                 boolean b = true;
-                for (CartGoodsBean childBean : data.getCartGoodsBeans()) {
+                for (CartGoodsBean childBean : data.getGoods()) {
                     if (!childBean.isSelected()) {
                         b = false;
                     }
@@ -66,14 +71,22 @@ public class CartShopAdapter extends BaseRvAdapter<CartShopBean> {
         });
         goodsAdapter.setSetPrice(new CartGoodsAdapter.setPrice() {
             @Override
-            public void setPrice() {
+            public void setSumPrice() {
                 onSumPrice.onSumPrice();
+            }
+        });
+        goodsAdapter.setOnNumberChangeListener(new CartGoodsAdapter.OnNumberChangeListener() {
+            @Override
+            public void onChange(int id, String type) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onChange(id,type);
+                }
             }
         });
     }
 
     private void setAllSelected(boolean flag, CartShopBean cartShopBean) {
-        for (CartGoodsBean cartGoodsBean : cartShopBean.getCartGoodsBeans()) {
+        for (CartGoodsBean cartGoodsBean : cartShopBean.getGoods()) {
             cartGoodsBean.setSelected(flag);
         }
     }
@@ -96,5 +109,9 @@ public class CartShopAdapter extends BaseRvAdapter<CartShopBean> {
 
     public interface SumCheck {
         void sunCheck();
+    }
+
+    public void setOnNumberChangeListener(CartGoodsAdapter.OnNumberChangeListener onNumberChangeListener) {
+        this.mOnItemClickListener = onNumberChangeListener;
     }
 }

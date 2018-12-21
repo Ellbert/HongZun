@@ -29,9 +29,12 @@ import com.cecilia.framework.module.me.activity.MyBankCardActivity;
 import com.cecilia.framework.module.me.activity.NewsActivity;
 import com.cecilia.framework.module.me.activity.PriceActivity;
 import com.cecilia.framework.module.me.activity.SafetyActivity;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
+import com.cecilia.framework.utils.StringUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -71,11 +74,16 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     @Override
     public void initData() {
         mMePresenter = new MePresenter(this);
-        UserBean userBean = GcGuangApplication.getUserBean();
-        ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + userBean.getTHeadurl(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
-        mTvName.setText(userBean.getTUsername());
-        mTvHongBao.setText(String.valueOf(userBean.getTHongBalance()/100));
-        mTvBalance.setText(String.valueOf(userBean.getTBalance()/100));
+        String header = SharedPreferenceUtil.getString(mActivity, "header");
+        String name = SharedPreferenceUtil.getString(mActivity, "userName");
+        String tel = SharedPreferenceUtil.getString(mActivity, "tel");
+        int level = SharedPreferenceUtil.getInt(mActivity, "level");
+        long balance = SharedPreferenceUtil.getLong(mActivity, "balance");
+        long hongBalance = SharedPreferenceUtil.getLong(mActivity, "honeBalance");
+        ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + header, mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
+        mTvName.setText(name);
+        mTvHongBao.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(balance)));
+        mTvBalance.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(hongBalance)));
     }
 
     @Override
@@ -137,15 +145,20 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        LogUtil.e("LogUtil");
         onRefresh();
     }
 
     @Override
-    public void onGetUserInfoSuccess(UserBean userBean) {
+    public void onGetUserInfoSuccess(UserBean userBean, String other) {
 //        mTvBalance.setText();
 //        mTvHongBao.setText();
-        GcGuangApplication.setUserBean(userBean);
-        GuangUtil.saveUserInfo(userBean);
+//        LogUtil.e(StringUtil.isNullOrEmpty(other) + "  == isNullOrEmpty");
+        SharedPreferenceUtil.putInt(mActivity, "level", 0);
+        SharedPreferenceUtil.putLong(mActivity, "balance", userBean.getTBalance());
+        SharedPreferenceUtil.putLong(mActivity, "honeBalance", userBean.getTHongBalance());
+        SharedPreferenceUtil.putString(mActivity,"userName",userBean.getTUsername());
+        SharedPreferenceUtil.putString(mActivity,"header",userBean.getTHeadurl());
         ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + userBean.getTHeadurl(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
         mTvName.setText(userBean.getTUsername());
         mSwipeRefreshLayout.setRefreshing(false);

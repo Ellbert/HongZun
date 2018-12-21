@@ -3,7 +3,6 @@ package com.cecilia.framework.module.main.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,24 +14,23 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapterEx;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.general.NetworkImageHolderView;
-import com.cecilia.framework.module.customer.activity.CustomerActivity;
+import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.NewDetailActivity;
 import com.cecilia.framework.module.main.activity.NewsActivity;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
-import com.cecilia.framework.module.main.bean.HomeBean;
-import com.cecilia.framework.module.main.presenter.HomePresenter;
+import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.payment.activity.PaymentActivity;
-import com.cecilia.framework.utils.LogUtil;
 
 import java.util.List;
 
 public class MainAdapterEx extends BaseRvAdapterEx {
 
     private List<AdvertisingBean> mAdsData;
+    private NoticeBean mNoticeBean;
     private Context mContext;
-    private HomeBean mHomeData;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private OnItemClickListener mOnItemClickListener;
 
     public MainAdapterEx(RecyclerView.Adapter adapter, SwipeRefreshLayout swipeRefreshLayout, Context context) {
         super(adapter);
@@ -54,6 +52,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
     @Override
     protected void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
         final BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
+        TextView tvMessage = baseViewHolder.getView(R.id.tv_message);
         baseViewHolder.getView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +62,8 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.tv_message).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewDetailActivity.launch(mContext);
+                if (null == mNoticeBean) return;
+                NewDetailActivity.launch(mContext,mNoticeBean);
             }
         });
         baseViewHolder.getView(R.id.tv_mall).setOnClickListener(new View.OnClickListener() {
@@ -87,11 +87,13 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.iv_client).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomerActivity.launch(mContext, 3);
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(v, 3);
+                }
             }
         });
         if (null != mAdsData) setBanner(baseViewHolder);
-        if (null != mHomeData) setHomeData(baseViewHolder);
+        if (null != mNoticeBean) tvMessage.setText(mNoticeBean.getTTitle());
     }
 
     @Override
@@ -104,8 +106,8 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         synchronizedNotify();
     }
 
-    public void setHomeData(HomeBean homeData) {
-        this.mHomeData = homeData;
+    public void setNoticeData(NoticeBean noticeBean) {
+        this.mNoticeBean = noticeBean;
         synchronizedNotify();
     }
 
@@ -143,13 +145,8 @@ public class MainAdapterEx extends BaseRvAdapterEx {
 //        .setOnPageChangeListener(this)//监听翻页事件
     }
 
-    private void setHomeData(BaseViewHolder baseViewHolder) {
-        if (mHomeData.getBrand().size() > 0) {
-//            mBoutiqueAdapter.setDataList(mHomeData.getBrand());
-        }
-        if (mHomeData.getHot().size() > 0) {
-//            mHotAdapter.setDataList(mHomeData.getHot());
-        }
+    public void setOnCustomerClickListener(OnItemClickListener onCustomerClickListener) {
+        this.mOnItemClickListener = onCustomerClickListener;
     }
 
 }

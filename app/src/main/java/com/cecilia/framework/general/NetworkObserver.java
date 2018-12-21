@@ -54,6 +54,7 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
         onNetworkEnd();
         if (bean == null) {
             onException(new Throwable("获取到的bean为空"));
+            ToastUtil.newShow(BuildConfig.ERROR_MSG);
             return;
         }
         if (bean.getCode() != SUCCESS) {
@@ -62,7 +63,7 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
             onFailure(bean.getCode(), bean.getInfo());
             return;
         }
-        onSuccess(bean.getData(),bean.getOther());
+        onSuccess(bean.getData(), bean.getOther());
     }
 
     @Override
@@ -73,6 +74,7 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
             ToastUtil.newShow("网络连接超时");
             onTimeout();
         } else {
+            ToastUtil.newShow(BuildConfig.ERROR_MSG);
             onException(e);
         }
     }

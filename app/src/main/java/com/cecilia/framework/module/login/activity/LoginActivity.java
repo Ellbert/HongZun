@@ -29,9 +29,11 @@ import com.cecilia.framework.module.login.presenter.LoginPresenter;
 import com.cecilia.framework.module.login.view.LoginView;
 import com.cecilia.framework.module.login.widget.ForgetPopupWindow;
 import com.cecilia.framework.module.main.activity.MainActivity;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.FileUtil;
 import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
@@ -96,7 +98,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                ToastUtil.newSafelyShow("点击事件");
+//                ToastUtil.newSafelyShow("点击事件");
             }
 
             @Override
@@ -209,6 +211,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     ToastUtil.newShow("请输入正确的手机号码！");
                     return;
                 }
+                DialogUtil.createLoadingDialog(this,"发送中...",false,null);
                 mLoginPresenter.getSms(mEtPhone.getText().toString(),mType);
                 mTvCode.setEnabled(false);
                 mCount.start();
@@ -228,6 +231,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     return;
                 }
                 if (text.equals("登录")) {
+                    DialogUtil.createLoadingDialog(this,"登录中...",false,null);
                     mLoginPresenter.login(phone, password);
                     return;
                 }
@@ -236,11 +240,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     return;
                 }
                 if (text.equals("确认修改")) {
+                    DialogUtil.createLoadingDialog(this,"修改中...",false,null);
                     mLoginPresenter.retrieve(phone, code, password);
                     return;
                 }
                 if (text.equals("注册")) {
                     if (str.length() == 6 || StringUtil.isMobile(str)) {
+                        DialogUtil.createLoadingDialog(this,"注册中...",false,null);
                         mLoginPresenter.register(phone, code, str, password);
                     } else {
                         ToastUtil.newSafelyShow("输入的邀请码或邀请人手机号码不正确！");
@@ -307,12 +313,25 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void loginSuccess(UserBean userBean) {
-        GuangUtil.saveUserInfo(userBean);
-        GcGuangApplication.setUserBean(userBean);
-        ToastUtil.newSafelyShow("登录成功！");
-        MainActivity.launch(this);
-        finish();
+    public void loginSuccess(UserBean userBean,String other) {
+        DialogUtil.createLoadingDialog(this,"登录中...",false,null);
+        if (SharedPreferenceUtil.putInt(this,"userId",userBean.getTId()) &&
+                SharedPreferenceUtil.putString(this,"tel",userBean.getTTel()) &&
+                SharedPreferenceUtil.putString(this,"userName",userBean.getTUsername())  &&
+                SharedPreferenceUtil.putInt(this,"level",userBean.getTLevel()) &&
+                SharedPreferenceUtil.putInt(this,"merchantId",userBean.getTMerchantId()) &&
+                SharedPreferenceUtil.putString(this,"header",userBean.getTHeadurl()) &&
+                SharedPreferenceUtil.putLong(this,"balance",userBean.getTBalance()) &&
+                SharedPreferenceUtil.putLong(this,"honeBalance",userBean.getTHongBalance())){
+            DialogUtil.dismissLoadingDialog();
+            ToastUtil.newSafelyShow("登录成功！");
+            GcGuangApplication.setId(userBean.getTId());
+            MainActivity.launch(this);
+            finish();
+        } else {
+            DialogUtil.dismissLoadingDialog();
+            ToastUtil.newSafelyShow("登录失败！");
+        }
     }
 
 }

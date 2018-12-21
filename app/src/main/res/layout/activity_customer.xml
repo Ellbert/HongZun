@@ -79,8 +79,86 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_no_pass"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_no_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:drawableTop="@mipmap/icn_no_pass"
+            android:drawablePadding="19dp"
+            android:gravity="center"
+            android:text="您的店铺申请未通过，详细请咨询泓宝平台客服，谢谢！"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_second" />
+
+        <TextView
+            android:id="@+id/tv_no_pass_done"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_no_pass"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="73dp"
+            android:background="@drawable/bg_btn_large_green_normal"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_first" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_freeze"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_freeze"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:drawableTop="@mipmap/icn_freeze"
+            android:drawablePadding="19dp"
+            android:gravity="center"
+            android:text="您的店铺已被冻结，具体请与泓宝平台客服联系，谢谢！"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_second" />
+
+        <TextView
+            android:id="@+id/tv_freeze_done"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_freeze"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="73dp"
+            android:background="@drawable/bg_btn_large_green_normal"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_first" />
+
+    </RelativeLayout>
+
     <android.support.v4.widget.SwipeRefreshLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/srl_customer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -117,7 +195,6 @@
                     android:layout_marginRight="27dp"
                     android:layout_toEndOf="@+id/iv_header"
                     android:layout_toRightOf="@+id/iv_header"
-                    android:text="浪鲸卫浴"
                     android:textColor="@color/txt_first"
                     android:textSize="@dimen/txt_first" />
 
@@ -133,7 +210,6 @@
                     android:layout_marginRight="27dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="店铺简介店铺简介店铺简介店铺简介店铺简介店铺简介店铺简介店铺简介店铺简介店铺简介"
                     android:textColor="@color/txt_first"
                     android:textSize="@dimen/txt_first" />
 
@@ -172,7 +248,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_toStartOf="@+id/tv_income_detail"
                     android:layout_toLeftOf="@+id/tv_income_detail"
-                    android:text="12342321232130.00"
+                    android:text="0.00"
                     android:textColor="@color/color_main"
                     android:textSize="35sp" />
 
@@ -226,4 +302,6 @@
         </RelativeLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
 </LinearLayout>

@@ -4,7 +4,11 @@ import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
+import com.cecilia.framework.module.product.bean.CommentBean;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -15,12 +19,12 @@ public interface ProductApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Goods.GOODS_DETAIL)
-    Observable<BaseBean<GoodsBean>> getGoodsDetail(@Field("goodsId") int goodsId,@Field("userId") int userId);
+    Observable<BaseBean<GoodsBean>> getGoodsDetail(@Field("goodsId") int goodsId, @Field("userId") int userId);
 //    Observable<BaseBean<PageBean<ProductListBean>>> getProductListData(@Field("id") String id, @Field("brand_id") String brand_id, @Field("ishot") String ishot, @Field("page") String page, @Field("size") String size);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Order.BUY)
-    Observable<BaseBean<String>> buy(@Field("orderIds") String orderIds,@Field("userId") int userId,@Field("subject") String subject);
+    Observable<BaseBean<String>> buy(@Field("orderIds") String orderIds, @Field("userId") int userId, @Field("subject") String subject);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Cart.ADD_CART)
@@ -28,13 +32,29 @@ public interface ProductApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Collect.ADD_COLLECT)
-    Observable<BaseBean<Object>> addCollect(@Field("userId") int userId,@Field("goodsId") int goodsId,@Field("goodsTitle") String goodsTitle,@Field("pic") String pic,@Field("price") String price);
+    Observable<BaseBean<Object>> addCollect(@Field("userId") int userId, @Field("goodsId") int goodsId, @Field("goodsTitle") String goodsTitle, @Field("pic") String pic, @Field("price") String price);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Collect.REMOVE_PRODUCT_COLLECT)
-    Observable<BaseBean<Object>> removeCollect(@Field("userId") int userId,@Field("goodsId") int goodsId);
+    Observable<BaseBean<Object>> removeCollect(@Field("userId") int userId, @Field("goodsId") int goodsId);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Goods.COMMENT_LIST)
+    Observable<BaseBean<PageBean<CommentBean>>> commentList(@Field("goodsId") int goodsId, @Field("type") int type, @Field("page") int page);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Goods.RECENTLY_LIST)
+    Observable<BaseBean<List<CommentBean>>> recentlyList(@Field("goodsId") int goodsId);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Follow.REMOVE_FOLLOW_IN_GOODS)
+    Observable<BaseBean<Object>> removeFollow(@Field("userId") int userId,@Field("merchantId") int merchantId);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Goods.CREATE_ORDER)
-    Observable<BaseBean<String>> createOrder(@Field("userId") int userId, @Field("goodsId") int goodsId, @Field("spec") String spec, @Field("num") String num, @Field("addressId") String addressId, @Field("remark") String remark);
+    Observable<BaseBean<ArrayList<Integer>>> createOrder(@Field("userId") int userId, @Field("goodsId") int goodsId, @Field("spec") String spec, @Field("num") String num, @Field("addressId") String addressId, @Field("remark") String remark);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Follow.ADD_FOLLOW)
+    Observable<BaseBean<Object>> addFollow(@Field("userId") int userId, @Field("merchantId") int merchantId, @Field("name") String name, @Field("pic") String pic);
 }

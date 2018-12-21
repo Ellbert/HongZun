@@ -84,7 +84,7 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
             @Override
             public void onLoadMore() {
                 mPage++;
-                mMallPresenter.search(mSrlMall, mKeyword, mPage);
+                mMallPresenter.search(null, mKeyword, mPage);
             }
         });
     }

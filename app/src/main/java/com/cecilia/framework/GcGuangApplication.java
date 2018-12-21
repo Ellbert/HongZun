@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.utils.DensityUtil;
 import com.cecilia.framework.utils.GuangUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.ViewUtil;
 
 public class GcGuangApplication extends MultiDexApplication {
@@ -16,7 +17,6 @@ public class GcGuangApplication extends MultiDexApplication {
     private static Context sContext;
     private static Handler sHandler;
     private static long sMainThreadId;
-    private static UserBean sUserBean;
     private static int sHeight;
     private static int sWidth;
     private static int sId;
@@ -45,7 +45,6 @@ public class GcGuangApplication extends MultiDexApplication {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         sHeight = dm.heightPixels;
         sWidth = dm.widthPixels;
-        sUserBean = GuangUtil.loadUserInfo();
 
         initDisplayOpinion();
         super.onCreate();
@@ -54,9 +53,6 @@ public class GcGuangApplication extends MultiDexApplication {
 //        Config.DEBUG = true;
 //        UMShareAPI.get(this);
 
-        if (sUserBean != null) {
-            sId = sUserBean.getTId();
-        }
     }
 
     private void initDisplayOpinion() {
@@ -90,15 +86,11 @@ public class GcGuangApplication extends MultiDexApplication {
         return sWidth;
     }
 
-    public static UserBean getUserBean() {
-        return sUserBean;
-    }
-
     public static int getId() {
         return sId;
     }
 
-    public static void setUserBean(UserBean sUserBean) {
-        GcGuangApplication.sUserBean = sUserBean;
+    public static void setId(int sId) {
+        GcGuangApplication.sId = sId;
     }
 }

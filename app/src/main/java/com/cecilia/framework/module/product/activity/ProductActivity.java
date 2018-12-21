@@ -22,17 +22,23 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.cart.activity.CartActivity;
+import com.cecilia.framework.module.cart.activity.SummitOrderActivity;
+import com.cecilia.framework.module.cart.bean.CartGoodsBean;
+import com.cecilia.framework.module.cart.bean.CartShopBean;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.SkuBean;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.product.adapter.CommentPhotoAdapter;
 import com.cecilia.framework.module.product.adapter.ProductCommentAdapter;
+import com.cecilia.framework.module.product.bean.CommentBean;
 import com.cecilia.framework.module.product.bean.MerchantBean;
 import com.cecilia.framework.module.product.presenter.ProductPresenter;
 import com.cecilia.framework.module.product.view.ProductView;
 import com.cecilia.framework.module.product.widget.AddressPopupWindow;
 import com.cecilia.framework.module.product.widget.SkuPopupWindow;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.DensityUtil;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
@@ -116,8 +122,6 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     TextView mTvSku;
     @BindView(R.id.tv_text10)
     TextView mTvSendAddress;
-    @BindView(R.id.tv_text14)
-    EditText mEtRemake;
     /**
      * 是否是ScrollView主动动作
      * false:是ScrollView主动动作
@@ -138,9 +142,12 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     private CommentPhotoAdapter mCommentPhotoAdapter;
     private ProductPresenter mProductPresenter;
     private int mGoodsId;
+    private int mShopId;
     private List<SkuBean> mSkuBeans;
     private SkuPopupWindow mForgetPopupWindow;
     private String mImageString;
+    private String mShopImageString;
+    private String mShopName;
     private List<AddressBean> mAddressBeans;
     private AddressPopupWindow mAddressPopupWindow;
     private String mSpec;
@@ -150,8 +157,11 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     private String mTitle;
     private Dialog mAddCartDialog;
     private MerchantBean mMerchantBean;
+    private GoodsBean mGoodsBean;
     private long mPrice;
-    private String mIsCollect;
+    private int mIsCollect;
+    private int mIsFollow;
+    private AddressBean mAddressBean;
 
     public static void launch(Context context, int goodsId) {
         Intent intent = new Intent(context, ProductActivity.class);
@@ -167,6 +177,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     @Override
     protected void initViews() {
         mIvCollect.setTag(false);
+        mTvFollow.setTag(false);
         mRvComment.setLayoutManager(new LinearLayoutManager(this));
         mProductCommentAdapter = new ProductCommentAdapter(this, R.layout.item_commend);
         mRvComment.setAdapter(mProductCommentAdapter);
@@ -185,21 +196,11 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         mForgetPopupWindow = new SkuPopupWindow();
         mAddressPopupWindow = new AddressPopupWindow();
         mGoodsId = getIntent().getIntExtra("goods_id", 0);
-        List<Object> list0 = new ArrayList<>();
-        list0.add("dwdwasd");
-        list0.add("dwdwasd");
-        mProductCommentAdapter.setDataList(list0);
-        List<String> list1 = new ArrayList<>();
-        list1.add("https://img.zcool.cn/community/015da9554971170000019ae9f43459.jpg@2o.jpg");
-        list1.add("https://img.zcool.cn/community/015da9554971170000019ae9f43459.jpg@2o.jpg");
-        list1.add("https://img.zcool.cn/community/015da9554971170000019ae9f43459.jpg@2o.jpg");
-        list1.add("https://img.zcool.cn/community/015da9554971170000019ae9f43459.jpg@2o.jpg");
-        list1.add("https://img.zcool.cn/community/015da9554971170000019ae9f43459.jpg@2o.jpg");
-        list1.add("https://img.zcool.cn/community/015da9554971170000019ae9f43459.jpg@2o.jpg");
-        mCommentPhotoAdapter.setDataList(list1);
+        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
         mProductPresenter = new ProductPresenter(this);
         mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
         mProductPresenter.getAddressList(String.valueOf(GcGuangApplication.getId()));
+        mProductPresenter.getRecentlyList(mGoodsId);
     }
 
     @Override
@@ -208,9 +209,22 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                 ViewUtil.getString(R.string.app_name), "确定要下单吗？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
                     @Override
                     public boolean onClick() {
-                        String remake = mEtRemake.getText().toString();
-                        mProductPresenter.createOrder(GcGuangApplication.getId(), mGoodsId, mSpec, mNumber, mAddressId, remake);
-                        DialogUtil.createLoadingDialog(ProductActivity.this, "下单中...", false, null);
+                        CartShopBean cartShopBean = new CartShopBean();
+                        List<CartGoodsBean> list = new ArrayList<>();
+                        CartGoodsBean cartGoodsBean = new CartGoodsBean();
+                        cartShopBean.setMerchantId(mMerchantBean.getTId());
+                        cartShopBean.setMerchantLogo(mMerchantBean.getTLogo());
+                        cartShopBean.setMerchantName(mMerchantBean.getTName());
+                        double simPrice = ArithmeticalUtil.add(mGoodsBean.getTLogisticsMoney(),ArithmeticalUtil.mul(mGoodsBean.getTPrice(),Double.parseDouble(mNumber)));
+                        cartShopBean.setSumPrice(ArithmeticalUtil.getMoneyString(simPrice));
+                        cartGoodsBean.setTGoodsTitle(mGoodsBean.getTTitle());
+                        cartGoodsBean.setTSpec(mSpec);
+                        cartGoodsBean.setTNum(Integer.parseInt(mNumber));
+                        cartGoodsBean.setTPic(mGoodsBean.getTImg());
+                        cartGoodsBean.setTId(mGoodsBean.getTId());
+                        list.add(cartGoodsBean);
+                        cartShopBean.setList(list);
+                        SummitOrderActivity.launch(ProductActivity.this,"",cartShopBean,mAddressBean);
                         return false;
                     }
                 }, ViewUtil.getString(R.string.cancel), null, null);
@@ -282,6 +296,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         mAddressPopupWindow.setOnAddressConfirmListener(new AddressPopupWindow.OnAddressConfirmListener() {
             @Override
             public void onConfirm(AddressBean addressBean) {
+                mAddressBean = addressBean;
                 mAddressId = String.valueOf(addressBean.getTId());
                 mTvSendAddress.setText(addressBean.getTAddress());
             }
@@ -354,7 +369,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         lastTagIndex = currentTagIndex;
     }
 
-    @OnClick({R.id.iv_back_white, R.id.iv_back_black, R.id.tv_all_comment, R.id.tv_text3, R.id.tv_text10, R.id.tv_buy, R.id.tv_add_cart, R.id.iv_collect})
+    @OnClick({R.id.iv_back_white, R.id.iv_back_black, R.id.tv_all_comment, R.id.tv_text3, R.id.tv_text10, R.id.tv_buy, R.id.tv_add_cart, R.id.iv_collect,R.id.tv_follow})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back_white:
@@ -364,14 +379,14 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                 finish();
                 break;
             case R.id.tv_all_comment:
-                CommentActivity.launch(ProductActivity.this);
+                CommentActivity.launch(ProductActivity.this, mGoodsId);
                 break;
             case R.id.tv_text3:
                 mForgetPopupWindow.initView(this, mSkuBeans, mImageString);
                 mForgetPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
             case R.id.tv_text10:
-                mAddressPopupWindow.initView(ProductActivity.this, mAddressBeans);
+                mAddressPopupWindow.initView(ProductActivity.this, mAddressBeans, DensityUtil.dp2px(this, 350));
                 mAddressPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
             case R.id.tv_buy:
@@ -398,44 +413,65 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                     ToastUtil.newSafelyShow("未选取数量！");
                     return;
                 }
-                if (StringUtil.isNullOrEmpty(mAddressId)) {
-                    ToastUtil.newSafelyShow("未选取地址！");
-                    return;
-                }
+//                if (StringUtil.isNullOrEmpty(mAddressId)) {
+//                    ToastUtil.newSafelyShow("未选取地址！");
+//                    return;
+//                }
                 mAddCartDialog.show();
                 break;
             case R.id.iv_collect:
                 boolean flag = (boolean) mIvCollect.getTag();
                 if (!flag) {
+                    DialogUtil.createLoadingDialog(ProductActivity.this, "收藏中...", false, null);
                     mProductPresenter.addCollect(GcGuangApplication.getId(), mGoodsId, mTitle, mImageString, String.valueOf(mPrice));
                 } else {
+                    DialogUtil.createLoadingDialog(ProductActivity.this, "取消中...", false, null);
                     mProductPresenter.removeCollect(GcGuangApplication.getId(), mGoodsId);
+                }
+                break;
+            case R.id.tv_follow:
+                boolean follow = (boolean) mTvFollow.getTag();
+                if (!follow) {
+                    DialogUtil.createLoadingDialog(ProductActivity.this, "关注中...", false, null);
+                    mProductPresenter.addFollow(GcGuangApplication.getId(), mShopId,mShopName, mShopImageString);
+                } else {
+                    DialogUtil.createLoadingDialog(ProductActivity.this, "取消中...", false, null);
+                    mProductPresenter.removeConcern(GcGuangApplication.getId(), mShopId);
                 }
                 break;
         }
     }
 
     @Override
-    public void getDetailSuccess(GoodsBean goodsBean, String other) {
+    public void getDetailSuccess(GoodsBean goodsBean) {
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + goodsBean.getTImg(), mCbProduct, null);
         mTitle = goodsBean.getTTitle();
         mPrice = goodsBean.getTPrice();
         mTvName.setText(mTitle);
-        mTvPrice.setText("¥ " + goodsBean.getTPrice());
-        mTvFreight.setText("运费：¥ " + goodsBean.getTLogisticsMoney());
+        mTvPrice.setText(ArithmeticalUtil.getMoneyString(mPrice));
+        mTvFreight.setText("运费：" + ArithmeticalUtil.getMoneyString(goodsBean.getTLogisticsMoney()));
         mTvSales.setText("月销量：" + goodsBean.getTSales());
         mTvAddress.setText(goodsBean.getTSendCity());
         mSkuBeans = goodsBean.getSkuList();
-        mImageString = NetworkConstant.IMAGE_URL + goodsBean.getTImg();
+        mImageString = goodsBean.getTImg();
         mMerchantBean = goodsBean.getMerchant();
-        ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mMerchantBean.getTLogo(), mIvHeader, null);
-        mTvShopName.setText(mMerchantBean.getTName());
-        mIsCollect = other;
-        initCollect();
+        mShopImageString = goodsBean.getMerchant().getTLogo();
+        mGoodsBean = goodsBean;
+        mShopName = mMerchantBean.getTName();
+        mShopId = mMerchantBean.getTId();
+        mIsCollect = goodsBean.getGoodsCollect();
+        mIsFollow = goodsBean.getMerchantCollect();
+        ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mMerchantBean.getTLogo(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this));
+        mTvShopName.setText(mShopName);
+        List<String> list = new ArrayList<>();
+        list.add(goodsBean.getTDetails());
+        mCommentPhotoAdapter.setDataList(list);
+        initGoodsCollect();
+        initShopCollect();
     }
 
-    private void initCollect() {
-        if (StringUtil.isNullOrEmpty(mIsCollect)) {
+    private void initGoodsCollect() {
+        if (mIsCollect == 0) {
             mIvCollect.setTag(false);
             mIvCollect.setImageResource(R.drawable.icn_collect_normal);
         } else {
@@ -443,6 +479,17 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
             mIvCollect.setImageResource(R.drawable.icn_collect_selected);
         }
     }
+
+    private void initShopCollect() {
+        if (mIsFollow == 0) {
+            mTvFollow.setTag(false);
+            mTvFollow.setText("关注");
+        } else {
+            mTvFollow.setTag(true);
+            mTvFollow.setText("取消关注");
+        }
+    }
+
 
     @Override
     public void onFailed() {
@@ -452,22 +499,6 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     @Override
     public void getAddressListSuccess(List<AddressBean> list) {
         mAddressBeans = list;
-    }
-
-    @Override
-    public void onCreateOrderSuccess(String orderId) {
-        DialogUtil.dismissLoadingDialog();
-        mProductPresenter.buy(orderId, GcGuangApplication.getId(), mTitle);
-    }
-
-    @Override
-    public void showAlipayResult(String data) {
-        ResultActivity.launch(this, data);
-    }
-
-    @Override
-    public void onBuySuccess(String orderInfo) {
-        mProductPresenter.doAlipayPay(this, orderInfo);
     }
 
     @Override
@@ -486,5 +517,22 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     public void onRemoveCollectSuccess() {
         mIvCollect.setTag(false);
         mIvCollect.setImageResource(R.drawable.icn_collect_normal);
+    }
+
+    @Override
+    public void onGetRecentlyListSuccess(List<CommentBean> list) {
+        mProductCommentAdapter.setDataList(list);
+    }
+
+    @Override
+    public void onRemoveFollowSuccess() {
+        mTvFollow.setTag(false);
+        mTvFollow.setText("关注");
+    }
+
+    @Override
+    public void onAddFollowSuccess() {
+        mTvFollow.setTag(true);
+        mTvFollow.setText("取消关注");
     }
 }

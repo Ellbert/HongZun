@@ -2,6 +2,8 @@ package com.cecilia.framework.module.login.view;
 
 import com.cecilia.framework.general.UserBean;
 
+import io.reactivex.annotations.NonNull;
+
 public interface LoginView {
 
     void getSmsSuccess();
@@ -12,5 +14,5 @@ public interface LoginView {
 
     void retrieveSuccess();
 
-    void loginSuccess(UserBean userBean);
+    void loginSuccess(@NonNull UserBean userBean,@NonNull String other);
 }

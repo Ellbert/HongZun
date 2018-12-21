@@ -1,17 +1,8 @@
 package com.cecilia.framework.module.login;
 
-import android.annotation.SuppressLint;
-
-import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.NetworkObserver;
-import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.general.UserBean;
-import com.cecilia.framework.module.main.HomeApi;
-import com.cecilia.framework.module.main.bean.AdvertisingBean;
-import com.cecilia.framework.module.main.bean.HomeBean;
-import com.cecilia.framework.module.main.bean.MoreListBean;
-import com.cecilia.framework.module.main.bean.RecommendBean;
 import com.cecilia.framework.utils.AsynchronousUtil;
 import com.cecilia.framework.utils.NetworkUtil;
 

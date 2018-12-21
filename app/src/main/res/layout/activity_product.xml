@@ -18,10 +18,10 @@
             android:layout_height="wrap_content">
 
             <!--<com.bigkoo.convenientbanner.ConvenientBanner-->
-                <!--android:id="@+id/cb_product"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="350dp"-->
-                <!--android:background="@color/txt_blue" />-->
+            <!--android:id="@+id/cb_product"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="350dp"-->
+            <!--android:background="@color/txt_blue" />-->
 
             <ImageView
                 android:id="@+id/cb_product"
@@ -33,10 +33,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cb_product"
-                android:layout_marginLeft="13dp"
                 android:layout_marginStart="13dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="13dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_toStartOf="@+id/iv_collect"
                 android:layout_toLeftOf="@+id/iv_collect"
@@ -125,7 +125,6 @@
                 android:layout_below="@+id/view1">
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tv_text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,10 +136,10 @@
                     android:layout_marginBottom="8dp"
                     android:text="领券"
                     android:textColor="@color/txt_third"
-                    android:textSize="@dimen/txt_third" />
+                    android:textSize="@dimen/txt_third"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tv_coupon1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,10 +150,10 @@
                     android:gravity="center"
                     android:text="满888减88"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/txt_third" />
+                    android:textSize="@dimen/txt_third"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/tv_lead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -171,10 +170,10 @@
                     android:paddingEnd="7dp"
                     android:paddingRight="7dp"
                     android:text="领券"
-                    android:textSize="@dimen/btn_fillet_first" />
+                    android:textSize="@dimen/btn_fillet_first"
+                    android:visibility="gone" />
 
                 <View
-                    android:visibility="gone"
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -183,18 +182,19 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="@color/bg_view" />
+                    android:background="@color/bg_view"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view2"
+                    android:layout_alignTop="@+id/tv_text3"
+                    android:layout_alignBottom="@+id/tv_text3"
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginEnd="2dp"
-                    android:layout_alignTop="@+id/tv_text3"
-                    android:layout_alignBottom="@+id/tv_text3"
                     android:layout_marginRight="2dp"
                     android:text="规格"
                     android:textColor="@color/txt_third"
@@ -208,14 +208,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:drawablePadding="15dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_toEndOf="@+id/tv_text2"
                     android:layout_toRightOf="@+id/tv_text2"
-                    android:drawableRight="@mipmap/icn_next_gray_big"
                     android:drawableEnd="@mipmap/icn_next_gray_big"
+                    android:drawableRight="@mipmap/icn_next_gray_big"
+                    android:drawablePadding="15dp"
                     android:text="请选择规格"
                     android:textColor="@color/txt_first"
                     android:textSize="@dimen/txt_seven" />
@@ -235,9 +235,9 @@
                     android:id="@+id/tv_text9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/view3"
                     android:layout_alignTop="@+id/tv_text10"
                     android:layout_alignBottom="@+id/tv_text10"
-                    android:layout_below="@+id/view3"
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginEnd="2dp"
@@ -254,68 +254,23 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_toEndOf="@+id/tv_text9"
                     android:layout_toRightOf="@+id/tv_text9"
-                    android:drawablePadding="15dp"
-                    android:drawableRight="@mipmap/icn_next_gray_big"
                     android:drawableEnd="@mipmap/icn_next_gray_big"
+                    android:drawableRight="@mipmap/icn_next_gray_big"
+                    android:drawablePadding="15dp"
                     android:text="请选择地址"
                     android:textColor="@color/txt_first"
                     android:textSize="@dimen/txt_seven" />
 
                 <View
-                    android:id="@+id/view12"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/tv_text10"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@color/bg_view" />
-
-                <TextView
-                    android:id="@+id/tv_text13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/tv_text14"
-                    android:layout_alignBottom="@+id/tv_text14"
-                    android:layout_below="@+id/view4"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginEnd="2dp"
-                    android:layout_marginRight="2dp"
-                    android:text="备注"
-                    android:textColor="@color/txt_third"
-                    android:textSize="@dimen/txt_third" />
-
-                <EditText
-                    android:id="@+id/tv_text14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/view12"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_toEndOf="@+id/tv_text9"
-                    android:layout_toRightOf="@+id/tv_text9"
-                    android:background="@color/white"
-                    android:hint="您可输入备注"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_seven" />
-
-
-                <View
                     android:id="@+id/view5"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_below="@+id/tv_text14"
+                    android:layout_below="@+id/tv_text10"
                     android:background="@color/bg_view" />
 
             </RelativeLayout>
@@ -329,7 +284,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="13dp"
-                android:text="商品评价(0)"
+                android:text="商品评价"
                 android:textColor="@color/txt_first"
                 android:textSize="@dimen/txt_second" />
 
@@ -391,16 +346,15 @@
                 android:textSize="@dimen/txt_third" />
 
             <RatingBar
-                android:visibility="gone"
                 android:id="@+id/rb_product"
                 style="@style/style_rating_bar"
                 android:layout_below="@+id/tv_shop_name"
                 android:layout_alignStart="@+id/tv_shop_name"
                 android:layout_alignLeft="@+id/tv_shop_name"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="4dp"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_to_shop"
                 android:layout_width="65dp"
                 android:layout_height="25dp"
@@ -414,10 +368,10 @@
                 android:gravity="center"
                 android:text="进店瞧瞧"
                 android:textColor="@color/color_main"
-                android:textSize="@dimen/txt_third" />
+                android:textSize="@dimen/txt_third"
+                android:visibility="visible" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_follow"
                 android:layout_width="65dp"
                 android:layout_height="25dp"
@@ -430,10 +384,10 @@
                 android:gravity="center"
                 android:text="关注"
                 android:textColor="@color/txt_third"
-                android:textSize="@dimen/txt_third" />
+                android:textSize="@dimen/txt_third"
+                android:visibility="visible" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_sale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -450,10 +404,10 @@
                 android:gravity="center"
                 android:text="888888888"
                 android:textColor="@color/txt_first"
-                android:textSize="@dimen/txt_second" />
+                android:textSize="@dimen/txt_second"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_text11"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
@@ -466,10 +420,10 @@
                 android:gravity="center"
                 android:text="总销量"
                 android:textColor="@color/txt_third"
-                android:textSize="@dimen/txt_eight" />
+                android:textSize="@dimen/txt_eight"
+                android:visibility="gone" />
 
             <View
-                android:visibility="gone"
                 android:id="@+id/view7"
                 android:layout_width="1dp"
                 android:layout_height="40dp"
@@ -479,10 +433,10 @@
                 android:layout_marginRight="51dp"
                 android:layout_toStartOf="@+id/tv_text12"
                 android:layout_toLeftOf="@+id/tv_text12"
-                android:background="@color/bg_view" />
+                android:background="@color/bg_view"
+                android:visibility="gone" />
 
             <View
-                android:visibility="gone"
                 android:id="@+id/view8"
                 android:layout_width="1dp"
                 android:layout_height="40dp"
@@ -492,7 +446,8 @@
                 android:layout_marginTop="70dp"
                 android:layout_toEndOf="@+id/tv_text12"
                 android:layout_toRightOf="@+id/tv_text12"
-                android:background="@color/bg_view" />
+                android:background="@color/bg_view"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_fans"
@@ -501,12 +456,12 @@
                 android:layout_below="@+id/iv_header"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:visibility="gone"
                 android:gravity="center"
                 android:maxEms="5"
                 android:text="8888888888"
                 android:textColor="@color/txt_first"
-                android:textSize="@dimen/txt_second" />
+                android:textSize="@dimen/txt_second"
+                android:visibility="gone" />
 
 
             <TextView
@@ -516,11 +471,11 @@
                 android:layout_below="@+id/tv_fans"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="6dp"
-                android:visibility="gone"
                 android:gravity="center"
                 android:text="粉丝"
                 android:textColor="@color/txt_third"
-                android:textSize="@dimen/txt_eight" />
+                android:textSize="@dimen/txt_eight"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_describe"
@@ -530,17 +485,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="19dp"
-                android:visibility="gone"
                 android:layout_toEndOf="@id/view8"
                 android:layout_toRightOf="@+id/view8"
                 android:gravity="center"
                 android:text="质量满意   4.85"
                 android:textColor="@color/txt_third"
-                android:textSize="@dimen/txt_eight" />
+                android:textSize="@dimen/txt_eight"
+                android:visibility="gone" />
 
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_satisfied"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -553,7 +507,8 @@
                 android:gravity="center"
                 android:text="描述相符   4.86"
                 android:textColor="@color/txt_third"
-                android:textSize="@dimen/txt_eight" />
+                android:textSize="@dimen/txt_eight"
+                android:visibility="gone" />
 
             <View
                 android:id="@+id/view9"
@@ -609,7 +564,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:background="@color/bg_all_goods"
+            android:background="@color/txt_blue"
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="@color/white" />
@@ -685,10 +640,10 @@
                 android:src="@mipmap/icn_point_right" />
 
             <View
-                android:layout_alignParentBottom="true"
-                android:background="@color/bg_view"
                 android:layout_width="match_parent"
-                android:layout_height="1dp" />
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/bg_view" />
             <!--<ImageView-->
             <!--android:id="@+id/iv_cart"-->
             <!--android:layout_width="wrap_content"-->

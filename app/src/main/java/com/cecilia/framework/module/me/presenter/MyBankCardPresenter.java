@@ -76,4 +76,34 @@ public class MyBankCardPresenter {
             }
         });
     }
+
+    public void setDefaultCard(int cardId){
+        MeRealization.setDefaultBankCart(cardId, new NetworkObserver<Object>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mMyBankCardView.onSetDefaultSuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
 }
+

@@ -115,7 +115,7 @@ public class LoginPresenter {
 
             @Override
             protected void onSuccess(UserBean data,String other) {
-                mLoginView.loginSuccess(data);
+                mLoginView.loginSuccess(data,other);
             }
 
             @Override

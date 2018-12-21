@@ -94,60 +94,60 @@ public class PageBean<T> {
         this.cuPage = cuPage;
     }
 
-    private int per_page;
-    private int current_page;
-    private boolean has_more;
-    private List next_item;
-    private List<T> data;
-
-    public void setPer_page(int per_page) {
-        this.per_page = per_page;
-    }
-
-    public int getPer_page() {
-        return per_page;
-    }
-
-    public void setCurrent_page(int current_page) {
-        this.current_page = current_page;
-    }
-
-    public int getCurrent_page() {
-        return current_page;
-    }
-
-    public void setHas_more(boolean has_more) {
-        this.has_more = has_more;
-    }
-
-    public boolean getHas_more() {
-        return has_more;
-    }
-
-    public void setNext_item(List next_item) {
-        this.next_item = next_item;
-    }
-
-    public List getNext_item() {
-        return next_item;
-    }
-
-    public void setData(List<T> data) {
-        this.data = data;
-    }
-
-    public List<T> getData() {
-        return data;
-    }
-
-    @Override
-    public String toString() {
-        return "PageBean{" + "per_page=" + per_page +
-                ", current_page=" + current_page +
-                ", has_more=" + has_more +
-                ", next_item='" + next_item + '\'' +
-                ", data=" + data +
-                '}';
-    }
+//    private int per_page;
+//    private int current_page;
+//    private boolean has_more;
+//    private List next_item;
+//    private List<T> data;
+//
+//    public void setPer_page(int per_page) {
+//        this.per_page = per_page;
+//    }
+//
+//    public int getPer_page() {
+//        return per_page;
+//    }
+//
+//    public void setCurrent_page(int current_page) {
+//        this.current_page = current_page;
+//    }
+//
+//    public int getCurrent_page() {
+//        return current_page;
+//    }
+//
+//    public void setHas_more(boolean has_more) {
+//        this.has_more = has_more;
+//    }
+//
+//    public boolean getHas_more() {
+//        return has_more;
+//    }
+//
+//    public void setNext_item(List next_item) {
+//        this.next_item = next_item;
+//    }
+//
+//    public List getNext_item() {
+//        return next_item;
+//    }
+//
+//    public void setData(List<T> data) {
+//        this.data = data;
+//    }
+//
+//    public List<T> getData() {
+//        return data;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "PageBean{" + "per_page=" + per_page +
+//                ", current_page=" + current_page +
+//                ", has_more=" + has_more +
+//                ", next_item='" + next_item + '\'' +
+//                ", data=" + data +
+//                '}';
+//    }
 }
 

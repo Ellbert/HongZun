@@ -1,15 +1,11 @@
 package com.cecilia.framework.module.main.fragment;
 
 import android.annotation.SuppressLint;
-import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -17,12 +13,9 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.module.main.adapter.MoreAdapter;
 import com.cecilia.framework.module.main.bean.GoodsBean;
-import com.cecilia.framework.module.main.bean.MoreListBean;
 import com.cecilia.framework.module.main.presenter.MorePresenter;
 import com.cecilia.framework.module.main.view.MoreView;
 import com.cecilia.framework.module.mall.activity.MallActivity;
-import com.cecilia.framework.utils.DensityUtil;
-import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.MyScrollView;
 
 import java.util.List;

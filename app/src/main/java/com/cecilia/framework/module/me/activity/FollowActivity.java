@@ -12,10 +12,12 @@ import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.me.adapter.FollowAdapter;
 import com.cecilia.framework.module.me.bean.FollowBean;
 import com.cecilia.framework.module.me.presenter.FollowPresenter;
 import com.cecilia.framework.module.me.view.FollowView;
+import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class FollowActivity extends BaseActivity implements FollowView,SwipeRefreshLayout.OnRefreshListener {
+public class FollowActivity extends BaseActivity implements FollowView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.srl_follow)
     SwipeRefreshLayout mSrlFollow;
@@ -32,6 +34,8 @@ public class FollowActivity extends BaseActivity implements FollowView,SwipeRefr
     LoadMoreRecyclerView mLmrvFollow;
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
+    @BindView(R.id.tv_text1)
+    TextView mTvText1;
     private FollowAdapter mFollowAdapter;
     private FollowPresenter mFollowPresenter;
 
@@ -58,16 +62,6 @@ public class FollowActivity extends BaseActivity implements FollowView,SwipeRefr
         mFollowAdapter = new FollowAdapter(this);
         mLmrvFollow.setAdapter(mFollowAdapter);
         onRefresh();
-//        mLmrvFollow.setNestedScrollingEnabled(false);
-//        List<Object> list = new ArrayList<>();
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        mFollowAdapter.setData(list);
     }
 
     @Override
@@ -78,6 +72,17 @@ public class FollowActivity extends BaseActivity implements FollowView,SwipeRefr
     @Override
     protected void initListener() {
         mSrlFollow.setOnRefreshListener(this);
+        mFollowAdapter.setOnCancelListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                mFollowPresenter.removeConcern(id);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
+            }
+        });
     }
 
     @Override
@@ -101,6 +106,7 @@ public class FollowActivity extends BaseActivity implements FollowView,SwipeRefr
 
     @Override
     public void onGetListSuccess(List<FollowBean> list) {
+        mTvText1.setText("共" + list.size() + "个关注");
         mFollowAdapter.setData(list);
         mLmrvFollow.setLoadMoreNull();
     }
@@ -112,6 +118,12 @@ public class FollowActivity extends BaseActivity implements FollowView,SwipeRefr
 
     @Override
     public void onRefresh() {
-        mFollowPresenter.getFollowList(mSrlFollow,String.valueOf(GcGuangApplication.getId()));
+        mFollowPresenter.getFollowList(mSrlFollow, String.valueOf(GcGuangApplication.getId()));
+    }
+
+    @Override
+    public void onRemoveSuccess() {
+        ToastUtil.newSafelyShow("取消成功");
+        onRefresh();
     }
 }

@@ -1,15 +1,19 @@
 package com.cecilia.framework.module.me.bean;
 
-public class MessageBean {
+import java.io.Serializable;
+import java.util.List;
+
+public class MessageBean implements Serializable {
 
     private int tId;
     private int tUserId;
     private String tMessageTitle;
+    private String tMessageDescribe;
     private String tMessageInfo;
-    private int tMessageType;
     private int tStatus;
-    private String tCreatTime;
+    private long tCreatTime;
     private int tProperty;
+    private List<MessageDetailBean> infoList;
 
     public void setTId(int tId) {
         this.tId = tId;
@@ -35,20 +39,20 @@ public class MessageBean {
         return tMessageTitle;
     }
 
+    public void setTMessageDescribe(String tMessageDescribe) {
+        this.tMessageDescribe = tMessageDescribe;
+    }
+
+    public String getTMessageDescribe() {
+        return tMessageDescribe;
+    }
+
     public void setTMessageInfo(String tMessageInfo) {
         this.tMessageInfo = tMessageInfo;
     }
 
     public String getTMessageInfo() {
         return tMessageInfo;
-    }
-
-    public void setTMessageType(int tMessageType) {
-        this.tMessageType = tMessageType;
-    }
-
-    public int getTMessageType() {
-        return tMessageType;
     }
 
     public void setTStatus(int tStatus) {
@@ -59,11 +63,11 @@ public class MessageBean {
         return tStatus;
     }
 
-    public void setTCreatTime(String tCreatTime) {
+    public void setTCreatTime(long tCreatTime) {
         this.tCreatTime = tCreatTime;
     }
 
-    public String getTCreatTime() {
+    public long getTCreatTime() {
         return tCreatTime;
     }
 
@@ -75,4 +79,11 @@ public class MessageBean {
         return tProperty;
     }
 
+    public List<MessageDetailBean> getInfoList() {
+        return infoList;
+    }
+
+    public void setInfoList(List<MessageDetailBean> infoList) {
+        this.infoList = infoList;
+    }
 }

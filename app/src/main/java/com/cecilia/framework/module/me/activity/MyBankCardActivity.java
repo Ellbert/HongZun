@@ -17,6 +17,7 @@ import com.cecilia.framework.module.me.adapter.BankCardAdapter;
 import com.cecilia.framework.module.me.bean.BankCardBean;
 import com.cecilia.framework.module.me.presenter.MyBankCardPresenter;
 import com.cecilia.framework.module.me.view.MyBankCardView;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
 import org.json.JSONObject;
@@ -72,7 +73,20 @@ public class MyBankCardActivity extends BaseActivity implements SwipeRefreshLayo
         mBankCardAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int id) {
+                DialogUtil.createLoadingDialog(MyBankCardActivity.this,"删除中...",false,null);
                 mMyBankCardPresenter.deleteBankCard(String.valueOf(id));
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
+            }
+        });
+        mBankCardAdapter.setOnSetDefaultListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                DialogUtil.createLoadingDialog(MyBankCardActivity.this,"设置中...",false,null);
+                mMyBankCardPresenter.setDefaultCard(id);
             }
 
             @Override
@@ -128,6 +142,12 @@ public class MyBankCardActivity extends BaseActivity implements SwipeRefreshLayo
     @Override
     public void onDeleteSuccess() {
         ToastUtil.newSafelyShow("删除成功！");
+        onRefresh();
+    }
+
+    @Override
+    public void onSetDefaultSuccess() {
+        ToastUtil.newSafelyShow("默认银行卡设置成功！");
         onRefresh();
     }
 }

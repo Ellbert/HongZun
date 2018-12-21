@@ -161,7 +161,7 @@ public class ImageUtil {
         });*/
         DrawableRequestBuilder<String> builder = Glide.with(context)
                 .load(url)
-                .placeholder(sImgLoadingBlack)
+//                .placeholder(sImgLoadingBlack)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .skipMemoryCache(false);
         if (imageShape != null) builder.bitmapTransform(imageShape);
@@ -200,8 +200,8 @@ public class ImageUtil {
 
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//                super.onResourceReady(resource, animation);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                super.onResourceReady(resource, animation);
 //                imageView.clearAnimation();
                 imageView.setImageDrawable(resource);
                 sImageViews.remove(imageView);

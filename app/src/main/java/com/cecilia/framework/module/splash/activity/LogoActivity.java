@@ -9,6 +9,7 @@ import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.utils.GuangUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.ViewUtil;
 
 /**
@@ -116,7 +117,8 @@ public class LogoActivity extends BaseActivity {
 //        if (/*!mIsCheckSuccess ||*/ !mIsInitIMSuccess || !mIsTimingSuccess) {
 //            return;
 //        }
-        if (GcGuangApplication.getUserBean() == null) {
+        GcGuangApplication.setId(SharedPreferenceUtil.getInt(this, "userId"));
+        if (GcGuangApplication.getId() == 0) {
 //             if (false) { // TODO: 2018/1/26 临时处理
             LoginActivity.launch(LogoActivity.this);
             finish();

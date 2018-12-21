@@ -2,9 +2,10 @@ package com.cecilia.framework.module.main.bean;
 
 import com.cecilia.framework.module.product.bean.MerchantBean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GoodsBean {
+public class GoodsBean implements Serializable {
 
     private int tId;
     private int tMerchantId;
@@ -18,7 +19,7 @@ public class GoodsBean {
     private long tPrice;
     private String tUnit;
     private String tSendCity;
-    private int tLogisticsMoney;
+    private long tLogisticsMoney;
     private int tSales;
     private int tSoldOut;
     private int tReward;
@@ -26,7 +27,19 @@ public class GoodsBean {
     private int tOnline;
     private long tCreatetime;
     private int tProperty;
+    private String tDetails;
     private MerchantBean merchant;
+    private int goodsCollect;
+    private int merchantCollect;
+
+    public String getTDetails() {
+        return tDetails;
+    }
+
+    public void setTDetails(String tDetails) {
+        this.tDetails = tDetails;
+    }
+
     private List<SkuBean> skuList;
 
     public List<SkuBean> getSkuList() {
@@ -133,11 +146,11 @@ public class GoodsBean {
         return tSendCity;
     }
 
-    public void setTLogisticsMoney(int tLogisticsMoney) {
+    public void setTLogisticsMoney(long tLogisticsMoney) {
         this.tLogisticsMoney = tLogisticsMoney;
     }
 
-    public int getTLogisticsMoney() {
+    public long getTLogisticsMoney() {
         return tLogisticsMoney;
     }
 
@@ -203,5 +216,94 @@ public class GoodsBean {
 
     public void setMerchant(MerchantBean merchant) {
         this.merchant = merchant;
+    }
+
+    private int tOrderId;
+    private int tGoodsId;
+    private String tGoodsImg;
+    private String tGoodsTitle;
+    private String tGoodsSpec;
+    private int tNum;
+    private long tGoodsPrice;
+    private long tGoodsMoney;
+
+    public void setTOrderId(int tOrderId) {
+        this.tOrderId = tOrderId;
+    }
+
+    public int getTOrderId() {
+        return tOrderId;
+    }
+
+    public void setTGoodsId(int tGoodsId) {
+        this.tGoodsId = tGoodsId;
+    }
+
+    public int getTGoodsId() {
+        return tGoodsId;
+    }
+
+    public void setTGoodsImg(String tGoodsImg) {
+        this.tGoodsImg = tGoodsImg;
+    }
+
+    public String getTGoodsImg() {
+        return tGoodsImg;
+    }
+
+    public void setTGoodsTitle(String tGoodsTitle) {
+        this.tGoodsTitle = tGoodsTitle;
+    }
+
+    public String getTGoodsTitle() {
+        return tGoodsTitle;
+    }
+
+    public void setTGoodsSpec(String tGoodsSpec) {
+        this.tGoodsSpec = tGoodsSpec;
+    }
+
+    public String getTGoodsSpec() {
+        return tGoodsSpec;
+    }
+
+    public void setTNum(int tNum) {
+        this.tNum = tNum;
+    }
+
+    public int getTNum() {
+        return tNum;
+    }
+
+    public void setTGoodsPrice(long tGoodsPrice) {
+        this.tGoodsPrice = tGoodsPrice;
+    }
+
+    public long getTGoodsPrice() {
+        return tGoodsPrice;
+    }
+
+    public void setTGoodsMoney(long tGoodsMoney) {
+        this.tGoodsMoney = tGoodsMoney;
+    }
+
+    public long getTGoodsMoney() {
+        return tGoodsMoney;
+    }
+
+    public int getGoodsCollect() {
+        return goodsCollect;
+    }
+
+    public void setGoodsCollect(int goodsCollect) {
+        this.goodsCollect = goodsCollect;
+    }
+
+    public int getMerchantCollect() {
+        return merchantCollect;
+    }
+
+    public void setMerchantCollect(int merchantCollect) {
+        this.merchantCollect = merchantCollect;
     }
 }

@@ -5,9 +5,13 @@ import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
+import com.cecilia.framework.module.product.bean.CommentBean;
 import com.cecilia.framework.utils.AsynchronousUtil;
 import com.cecilia.framework.utils.NetworkUtil;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.http.Field;
 
@@ -15,18 +19,17 @@ import static com.cecilia.framework.common.NetworkConstant.PAGE_SIZE;
 
 public class ProductRealization {
 
-
-    public static void getGoodsDetail(int id,int userId, NetworkObserver<GoodsBean> observer) {
+    public static void getGoodsDetail(int id, int userId, NetworkObserver<GoodsBean> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .getGoodsDetail(id,userId)
+                .getGoodsDetail(id, userId)
                 .compose(AsynchronousUtil.<BaseBean<GoodsBean>>setThread())
                 .subscribe(observer);
     }
 
-    public static void createOrder(int userId, int goodsId, String spec, String num, String addressId, String remark, NetworkObserver<String> observer) {
+    public static void createOrder(int userId, int goodsId, String spec, String num, String addressId, String remark, NetworkObserver<ArrayList<Integer>> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
                 .createOrder(userId, goodsId, spec, num, addressId, remark)
-                .compose(AsynchronousUtil.<BaseBean<String>>setThread())
+                .compose(AsynchronousUtil.<BaseBean<ArrayList<Integer>>>setThread())
                 .subscribe(observer);
     }
 
@@ -44,17 +47,45 @@ public class ProductRealization {
                 .subscribe(observer);
     }
 
-    public static void addCollect(int userId,int goodsId,String goodsTitle,String pic,String price,NetworkObserver<Object> observer){
+    public static void addCollect(int userId, int goodsId, String goodsTitle, String pic, String price, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .addCollect(userId,goodsId,goodsTitle,pic,price)
+                .addCollect(userId, goodsId, goodsTitle, pic, price)
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }
 
-    public static void removeCollect(int userId ,int goodsId,NetworkObserver<Object> observer){
+    public static void removeCollect(int userId, int goodsId, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .removeCollect(userId,goodsId)
+                .removeCollect(userId, goodsId)
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .safeSubscribe(observer);
+    }
+
+    public static void getCommentList(int goodsId, int type, int page, NetworkObserver<PageBean<CommentBean>> observer) {
+        NetworkUtil.getInstance().setApi(ProductApi.class)
+                .commentList(goodsId, type, page)
+                .compose(AsynchronousUtil.<BaseBean<PageBean<CommentBean>>>setThread())
+                .safeSubscribe(observer);
+    }
+
+    public static void getCommentList(int goodsId, NetworkObserver<List<CommentBean>> observer) {
+        NetworkUtil.getInstance().setApi(ProductApi.class)
+                .recentlyList(goodsId)
+                .compose(AsynchronousUtil.<BaseBean<List<CommentBean>>>setThread())
+                .safeSubscribe(observer);
+    }
+
+    public static void addFollow(int userId, int shopId, String name, String url, NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(ProductApi.class)
+                .addFollow(userId, shopId, name, url)
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void removeFollow(int userId, int shopId, NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(ProductApi.class)
+                .removeFollow(userId, shopId)
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
     }
 }

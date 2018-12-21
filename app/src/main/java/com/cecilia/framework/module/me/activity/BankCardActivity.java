@@ -4,17 +4,28 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.me.adapter.SimpleArrayAdapter;
+import com.cecilia.framework.module.me.bean.BankBean;
 import com.cecilia.framework.module.me.presenter.BankCardPresenter;
 import com.cecilia.framework.module.me.view.BankCardView;
+import com.cecilia.framework.module.product.activity.ProductActivity;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,19 +34,22 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
 
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
-    @BindView(R.id.et_old)
-    EditText mEtBankName;
-    @BindView(R.id.et_new)
-    EditText mEtLocation;
+    @BindView(R.id.spinner)
+    Spinner mSpinner;
     @BindView(R.id.et_new_confirm)
     EditText mEtName;
     @BindView(R.id.et_bank_card_num)
     EditText mEtBankNum;
+    @BindView(R.id.cb_default)
+    CheckBox mCheckBox;
     private BankCardPresenter mBankCardPresenter;
+    private List<BankBean> mBankBeanList;
+    private BankBean mBankBean;
+    private String isDefault = "0";
 
     public static void launch(Activity context) {
         Intent intent = new Intent(context, BankCardActivity.class);
-        context.startActivityForResult(intent,0);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -50,7 +64,9 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
 
     @Override
     protected void initData() {
+        DialogUtil.createLoadingDialog(BankCardActivity.this, "加载中...", true, null);
         mBankCardPresenter = new BankCardPresenter(this);
+        mBankCardPresenter.getBankList();
     }
 
     @Override
@@ -60,7 +76,21 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
 
     @Override
     protected void initListener() {
+        mSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {//选择item的选择点击监听事件
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                // 将所选mySpinner 的值带入myTextView 中
+                if (arg2 < mBankBeanList.size()) {
+                    mBankBean = mBankBeanList.get(arg2);
+                }
+            }
 
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
     }
 
     @Override
@@ -73,34 +103,33 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
 
     }
 
-    @OnClick({R.id.iv_back,R.id.tv_confirm})
+    @OnClick({R.id.iv_back, R.id.tv_confirm})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_confirm:
-                String bankName = mEtBankName.getText().toString();
-                String location = mEtLocation.getText().toString();
-                String name = mEtName.getText().toString();
                 String number = mEtBankNum.getText().toString();
-                if (StringUtil.isNullOrEmpty(bankName)) {
-                    ToastUtil.newSafelyShow("银行名称不可为空");
-                    return;
-                }
-                if (StringUtil.isNullOrEmpty(location)) {
-                    ToastUtil.newSafelyShow("银行开户行不可为空");
-                    return;
-                }
-                if (StringUtil.isNullOrEmpty(name)) {
-                    ToastUtil.newSafelyShow("银行开户名不可为空！");
+                if (mBankBean == null) {
+                    ToastUtil.newSafelyShow("请选择银行名称！");
                     return;
                 }
                 if (StringUtil.isNullOrEmpty(number)) {
                     ToastUtil.newSafelyShow("银行卡号不可为空！");
                     return;
                 }
-                mBankCardPresenter.saveBankCard(String.valueOf(GcGuangApplication.getId()),null,number,bankName,"0");
+                if (!StringUtil.checkBankCard(number)) {
+                    ToastUtil.newSafelyShow("输入银行卡号不正确！");
+                    return;
+                }
+                if (mCheckBox.isChecked()) {
+                    isDefault = "1";
+                } else {
+                    isDefault = "0";
+                }
+                DialogUtil.createLoadingDialog(BankCardActivity.this, "添加中...", true, null);
+                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), mBankBean.getTBank(), mBankBean.getTId(), number, "0");
                 break;
         }
     }
@@ -115,5 +144,22 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
     @Override
     public void onSaveFailed() {
 
+    }
+
+    @Override
+    public void onGetBankListSuccess(List<BankBean> list) {
+        mBankBeanList = list;
+        List<String> stringList = new ArrayList<>();
+        for (BankBean bankBean : list) {
+            stringList.add(bankBean.getTBank());
+        }
+        stringList.add("请选择银行");
+        //适配器
+        SimpleArrayAdapter<String> mArrayAdapter = new SimpleArrayAdapter<String>(this, android.R.layout.simple_spinner_item, stringList);
+        //设置样式
+        mArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //加载适配器
+        mSpinner.setAdapter(mArrayAdapter);
+        mSpinner.setSelection(stringList.size() - 1, true);
     }
 }

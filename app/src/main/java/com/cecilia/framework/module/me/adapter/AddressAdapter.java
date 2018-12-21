@@ -9,8 +9,10 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.module.me.activity.AddressEditActivity;
+import com.cecilia.framework.module.me.activity.BankCardActivity;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.me.presenter.AddressPresenter;
+import com.cecilia.framework.utils.DialogUtil;
 
 public class AddressAdapter extends BaseRvAdapter<AddressBean> {
 
@@ -35,6 +37,7 @@ public class AddressAdapter extends BaseRvAdapter<AddressBean> {
         holder.getView(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogUtil.createLoadingDialog(mContext, "删除中...", true, null);
                 mAddressPresenter.deleteAddress(String.valueOf(data.getTId()));
             }
         });

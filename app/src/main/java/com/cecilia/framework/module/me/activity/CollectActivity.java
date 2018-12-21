@@ -16,6 +16,7 @@ import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.adapter.OrderListAdapter;
 import com.cecilia.framework.module.me.presenter.CollectPresenter;
 import com.cecilia.framework.module.me.view.CollectView;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
@@ -35,6 +36,8 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     LoadMoreRecyclerView mLmrvFollow;
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
+    @BindView(R.id.tv_text1)
+    TextView mTvText1;
     private OrderListAdapter mOrderListAdapter;
     private CollectPresenter mCollectPresenter;
 
@@ -71,15 +74,11 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     @Override
     protected void initListener() {
         mSrlFollow.setOnRefreshListener(this);
-        mOrderListAdapter.setOnItemBuyClickListener(new OnItemClickListener() {
+        mOrderListAdapter.setOnItemBuyClickListener(new OrderListAdapter.OnOrderItemClickListener() {
             @Override
-            public void onItemClick(View view, int id) {
+            public void onItemClick(String info, int id) {
+                DialogUtil.createLoadingDialog(CollectActivity.this, "取消中...", true, null);
                 mCollectPresenter.removeCollect(String.valueOf(id));
-            }
-
-            @Override
-            public void onItemLongClick(View view, int id) {
-
             }
         });
     }
@@ -105,6 +104,7 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
 
     @Override
     public void onGetSuccess(List<BaseGoodBean> list) {
+        mTvText1.setText("共" + list.size() + "个收藏");
         mOrderListAdapter.setData(list);
         mLmrvFollow.setLoadMoreNull();
     }

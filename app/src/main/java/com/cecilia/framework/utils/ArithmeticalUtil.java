@@ -1,6 +1,7 @@
 package com.cecilia.framework.utils;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class ArithmeticalUtil {
 
@@ -42,6 +43,20 @@ public class ArithmeticalUtil {
         BigDecimal b1=new BigDecimal(Double.toString(d1));
         BigDecimal b2=new BigDecimal(Double.toString(d2));
         return b1.divide(b2,scale,BigDecimal.ROUND_HALF_UP).doubleValue();
-
     }
+
+    public static String getMoneyString(double d1){
+        BigDecimal b1=new BigDecimal(Double.toString(d1));
+        BigDecimal b2=new BigDecimal(Double.toString(100));
+        DecimalFormat df1 = new DecimalFormat("0.00");
+        return "¥ " + df1.format(b1.divide(b2,2,BigDecimal.ROUND_HALF_UP).doubleValue());
+    }
+
+    public static String getMoneyStringWithoutSymbol(double d1){
+        BigDecimal b1=new BigDecimal(Double.toString(d1));
+        BigDecimal b2=new BigDecimal(Double.toString(100));
+        DecimalFormat df1 = new DecimalFormat("0.00");
+        return df1.format(b1.divide(b2,2,BigDecimal.ROUND_HALF_UP).doubleValue());
+    }
+
 }

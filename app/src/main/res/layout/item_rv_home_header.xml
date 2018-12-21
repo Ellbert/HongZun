@@ -8,7 +8,6 @@
 
     <com.bigkoo.convenientbanner.ConvenientBanner
         android:id="@+id/cb_ads"
-        android:background="@color/txt_blue"
         android:layout_width="match_parent"
         android:layout_height="210dp" />
 
@@ -26,7 +25,6 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:padding="10dp"
-        android:text="捱三顶五多撒所多啊是的飒飒的骄傲了看看速度加快进度款据我了解阿拉山口大家撒拉大家撒来得及所多"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_eight" />
 
@@ -58,18 +56,18 @@
 
     <LinearLayout
         android:id="@+id/ll_item"
-        android:orientation="horizontal"
-        android:layout_below="@+id/tv_more"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_more"
+        android:orientation="horizontal">
 
         <TextView
 
             android:id="@+id/tv_mall"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
             android:drawableTop="@mipmap/icn_home_mall"
             android:drawablePadding="10dp"
             android:gravity="center_horizontal"
@@ -80,9 +78,9 @@
         <TextView
             android:id="@+id/tv_hongbao"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
             android:drawableTop="@mipmap/icn_hongbao"
             android:drawablePadding="10dp"
             android:gravity="center_horizontal"
@@ -93,9 +91,9 @@
         <TextView
             android:id="@+id/tv_vip"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
             android:drawableTop="@mipmap/icn_vip"
             android:drawablePadding="10dp"
             android:gravity="center_horizontal"
@@ -118,15 +116,15 @@
         android:background="@color/bg_view" />
 
     <LinearLayout
-        android:layout_below="@+id/view2"
         android:id="@+id/ll_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/view2"
         android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginEnd="6dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
         android:layout_marginBottom="21dp"
         android:orientation="horizontal">
 
@@ -190,7 +188,7 @@
         android:layout_toStartOf="@+id/view4"
         android:layout_toLeftOf="@+id/view4"
         android:gravity="center"
-        android:text="8888.888"
+        android:text="0.00"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_home" />
 
@@ -221,7 +219,7 @@
         android:layout_toEndOf="@+id/view4"
         android:layout_toRightOf="@+id/view4"
         android:gravity="center"
-        android:text="8888.888"
+        android:text="0.00"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_home" />
 

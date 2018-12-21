@@ -12,6 +12,7 @@ import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.me.presenter.ResetPresenter;
 import com.cecilia.framework.module.me.view.ResetView;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
@@ -96,6 +97,7 @@ public class ResetActivity extends BaseActivity implements ResetView {
                     ToastUtil.newSafelyShow("新密码和确认密码不一致！");
                     return;
                 }
+                DialogUtil.createLoadingDialog(this,"修改中...",false,null);
                 mResetPresenter.resetPassword(String.valueOf(GcGuangApplication.getId()),olderPwd,newPwd);
 //                HeaderActivity.launch(DataActivity.this);
                 break;

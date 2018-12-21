@@ -4,10 +4,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.NetworkObserver;
-import com.cecilia.framework.module.main.presenter.MePresenter;
 import com.cecilia.framework.module.me.MeRealization;
 import com.cecilia.framework.module.me.view.CollectView;
-import com.cecilia.framework.module.product.ProductRealization;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 

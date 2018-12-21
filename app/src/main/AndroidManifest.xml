@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!--读取SD卡的权限:打开相册选取图片所必须的权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -87,7 +89,6 @@
         <activity android:name=".module.payment.activity.PaymentActivity" />
         <activity android:name=".module.payment.activity.PaymentDetailActivity" />
         <activity android:name=".module.customer.activity.CustomerActivity" />
-        <activity android:name=".module.shop.activity.ShopActivity" />
         <activity android:name=".module.customer.activity.UserRegisterActivity" />
         <activity android:name=".module.customer.activity.ShopRegisterActivity" />
         <activity android:name=".module.customer.activity.ProductActivity" />
@@ -97,6 +98,21 @@
         <activity android:name=".module.product.activity.CommentActivity" />
         <activity android:name=".module.cart.activity.CartActivity" />
         <activity android:name=".module.product.activity.ResultActivity" />
+        <activity android:name=".module.cart.activity.SummitOrderActivity" />
+        <activity android:name=".module.cart.activity.ChooseWayActivity" />
+        <activity android:name=".module.order.activity.OrderDetailActivity" />
+
+        <provider
+            android:authorities="com.cecilia.framework.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"/>
+        </provider>
+
+
     </application>
 
 </manifest>

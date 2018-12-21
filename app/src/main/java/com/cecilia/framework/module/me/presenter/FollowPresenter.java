@@ -46,4 +46,33 @@ public class FollowPresenter {
             }
         });
     }
+
+    public void removeConcern(int id){
+        MeRealization.removeConcern(id, new NetworkObserver<Object>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mFollowView.onRemoveSuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
 }

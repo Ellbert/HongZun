@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
-import com.cecilia.framework.module.main.adapter.OrderListAdapter;
 import com.cecilia.framework.module.me.adapter.PriceAdapter;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 

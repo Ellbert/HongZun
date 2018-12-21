@@ -9,5 +9,7 @@ import io.reactivex.annotations.NonNull;
 public interface FollowView {
 
     void onGetListSuccess(@NonNull List<FollowBean> list);
+    void onRemoveSuccess();
     void onGetFailed();
+
 }

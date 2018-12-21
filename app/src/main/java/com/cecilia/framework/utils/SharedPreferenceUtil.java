@@ -32,6 +32,7 @@ public class SharedPreferenceUtil {
         return sharedPreferences.edit().putString(key, value).commit();
     }
 
+
     /**
      * 获取一个String数据
      *

@@ -21,6 +21,7 @@ import com.cecilia.framework.module.main.fragment.OrderFragment;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
 
@@ -84,10 +85,24 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void doEvents(EventBean event) {
         if (event.getType() == -1) {
-            GuangUtil.saveUserInfo(null);
-            GcGuangApplication.setUserBean(null);
-            LoginActivity.launch(this);
-            finish();
+            DialogUtil.createLoadingDialog(this,"退出中...",false,null);
+            if (SharedPreferenceUtil.putInt(this,"userId",0) &&
+                    SharedPreferenceUtil.putString(this,"tel",null) &&
+                    SharedPreferenceUtil.putString(this,"userName",null)  &&
+                    SharedPreferenceUtil.putInt(this,"level",0) &&
+                    SharedPreferenceUtil.putInt(this,"merchantId",0) &&
+                    SharedPreferenceUtil.putString(this,"header",null)&&
+                    SharedPreferenceUtil.putLong(this,"balance",0) &&
+                    SharedPreferenceUtil.putLong(this,"honeBalance",0)){
+                DialogUtil.dismissLoadingDialog();
+                ToastUtil.newSafelyShow("退出成功！");
+                GcGuangApplication.setId(0);
+                LoginActivity.launch(this);
+                finish();
+            } else {
+                DialogUtil.dismissLoadingDialog();
+                ToastUtil.newSafelyShow("登录失败！");
+            }
         }
     }
 

@@ -38,10 +38,12 @@ public class ResultActivity extends BaseActivity {
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
     private String code;
+    private int mType;
 
-    public static void launch(Context context, String code) {
+    public static void launch(Context context, String code, int type) {
         Intent intent = new Intent(context, ResultActivity.class);
         intent.putExtra("code", code);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -52,8 +54,8 @@ public class ResultActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        mTvTitleText.setText("支付结果");
         code = getIntent().getStringExtra("code");
+        mType = getIntent().getIntExtra("type", 0);
         initView();
     }
 
@@ -62,15 +64,32 @@ public class ResultActivity extends BaseActivity {
             mTvFailed.setVisibility(View.GONE);
             mTvDone.setVisibility(View.VISIBLE);
             mTvSuccess.setVisibility(View.VISIBLE);
+            initSuccessTextView();
         } else {
             mTvFailed.setVisibility(View.VISIBLE);
             mTvDone.setVisibility(View.GONE);
             mTvSuccess.setVisibility(View.GONE);
-            initTextView();
+            initFailTextView();
         }
     }
 
-    private void initTextView() {
+    private void initSuccessTextView() {
+        if (mType == 1) {
+            mTvTitleText.setText("支付结果");
+            mTvSuccess.setText("支付成功");
+        } else {
+            mTvTitleText.setText("充值结果");
+            mTvSuccess.setText("充值成功");
+        }
+    }
+
+    private void initFailTextView() {
+        if (mType == 1) {
+            mTvTitleText.setText("支付结果");
+            mTvFailed.setText("支付失败");
+            return;
+        }
+        mTvTitleText.setText("充值结果");
         SpannableStringBuilder style = new SpannableStringBuilder();
         //设置文字
         style.append("充值失败，请联系客服");
@@ -78,7 +97,7 @@ public class ResultActivity extends BaseActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                ToastUtil.newSafelyShow("点击事件");
+//                ToastUtil.newSafelyShow("点击事件");
             }
 
             @Override

@@ -14,6 +14,8 @@ import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.me.presenter.NamePresenter;
 import com.cecilia.framework.module.me.view.NameView;
 import com.cecilia.framework.module.me.widget.NamePopupWindow;
+import com.cecilia.framework.utils.DialogUtil;
+import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -81,6 +83,12 @@ public class NameActivity extends BaseActivity implements NameView {
                 forgetPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
             case R.id.tv_confirm:
+                String name =  mEtName.getText().toString();
+                if (StringUtil.isNullOrEmpty(name)){
+                    ToastUtil.newSafelyShow("昵称不能为空");
+                    return;
+                }
+                DialogUtil.createLoadingDialog(this,"修改中...",false,null);
                 mNamePresenter.updateName(String.valueOf(GcGuangApplication.getId()), "0", mEtName.getText().toString());
                 break;
         }

@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.cecilia.framework.R;
+import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.main.bean.SkuBean;
 import com.cecilia.framework.utils.DensityUtil;
@@ -104,7 +105,7 @@ public class SkuPopupWindow extends PopupWindow {
         //设置SelectPicPopupWindow弹出窗体的背景
         this.setBackgroundDrawable(dw);
         mSkuBean = null;
-        ImageUtil.loadNetworkImage(context, image, mIvHeader, null);
+        ImageUtil.loadNetworkImage(context, NetworkConstant.IMAGE_URL + image, mIvHeader, null);
         ViewUtil.setBackgroundAlpha(0.6f, context);
         this.setOnDismissListener(new OnDismissListener() {
             @Override

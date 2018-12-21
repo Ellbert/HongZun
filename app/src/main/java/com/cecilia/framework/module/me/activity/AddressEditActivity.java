@@ -16,6 +16,7 @@ import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.me.presenter.AddressEditPresenter;
 import com.cecilia.framework.module.me.presenter.AddressPresenter;
 import com.cecilia.framework.module.me.view.AddressEditView;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
@@ -112,6 +113,7 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
                     ToastUtil.newSafelyShow("输入资料不可为空");
                     return;
                 }
+                DialogUtil.createLoadingDialog(this, "添加中...", true, null);
                 mAddressEditPresenter.saveAddress(id, name, mAddressId, address, phone);
                 break;
         }

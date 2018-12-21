@@ -108,7 +108,7 @@ public class MallActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-//        mVpMall.setOffscreenPageLimit(10);
+        mVpMall.setOffscreenPageLimit(10);
         mVpMall.setAdapter(new MainPagerAdapter(mFragments, getSupportFragmentManager()));
         mIndex = getIntent().getIntExtra("index", 0);
         mTlMall.postDelayed(new Runnable() {
@@ -116,7 +116,7 @@ public class MallActivity extends BaseActivity {
             public void run() {
                 mTlMall.getTabAt(mIndex).select();
             }
-        }, 100);
+        }, 50);
     }
 
     @Override

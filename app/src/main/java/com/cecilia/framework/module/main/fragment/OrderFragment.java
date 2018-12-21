@@ -47,16 +47,19 @@ public class OrderFragment extends BaseFragment {
     @Override
     public void initData() {
         List<String> titleList = new ArrayList<>();
-        titleList.add("全部订单");
+        titleList.add("全部");
         titleList.add("待付款");
-        titleList.add("代收货");
-        titleList.add("已完成");
+        titleList.add("待发货");
+        titleList.add("待收货");
+        titleList.add("待评价");
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new OrderListFragment(OrderListFragment.ALL));
         fragmentList.add(new OrderListFragment(OrderListFragment.PAY));
+        fragmentList.add(new OrderListFragment(OrderListFragment.SEND));
         fragmentList.add(new OrderListFragment(OrderListFragment.GET));
-        fragmentList.add(new OrderListFragment(OrderListFragment.FINISH));
+        fragmentList.add(new OrderListFragment(OrderListFragment.COMMENT));
         TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList,fragmentList,getFragmentManager());
+        mVpOrder.setOffscreenPageLimit(5);
         mVpOrder.setAdapter(tabFragmentAdapter);
         mTlOrder.setupWithViewPager(mVpOrder);
         LinearLayout linearLayout = (LinearLayout) mTlOrder.getChildAt(0);

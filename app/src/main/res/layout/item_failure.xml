@@ -19,7 +19,6 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="17dp"
         android:layout_marginLeft="17dp"
-        android:background="@color/color_main"
         android:gravity="bottom|center_horizontal"
         android:padding="5dp"
         android:text="失效"
@@ -38,7 +37,7 @@
         android:layout_toRightOf="@+id/iv_header"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="白芷魏晋风汉服学生古装超仙女广袖中国风齐腰襦裙古风套装秋冬款s阿斯顿发生发送卡看电视看我肯定是第四代"
+        android:text=""
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_seven" />
 

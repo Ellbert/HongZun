@@ -2,12 +2,17 @@ package com.cecilia.framework.module.payment.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.me.adapter.MessageDetailAdapter;
+import com.cecilia.framework.module.me.bean.MessageBean;
 import com.cecilia.framework.utils.LogUtil;
 
 import butterknife.BindView;
@@ -53,11 +58,18 @@ public class PaymentDetailActivity extends BaseActivity {
     TextView mTvText8;
     @BindView(R.id.tv_customer_service)
     TextView mTvCustomerService;
+    @BindView(R.id.rl_payment)
+    RelativeLayout mRlPayment;
+    @BindView(R.id.rv_detail)
+    RecyclerView mRvDetail;
+    private MessageDetailAdapter mMessageDetailAdapter;
     private int mType;
+    private MessageBean mMessageBean;
 
-    public static void launch(Context context, int type) {
+    public static void launch(Context context, int type, MessageBean messageBean) {
         Intent intent = new Intent(context, PaymentDetailActivity.class);
         intent.putExtra("Type", type);
+        intent.putExtra("message", messageBean);
         context.startActivity(intent);
     }
 
@@ -69,10 +81,12 @@ public class PaymentDetailActivity extends BaseActivity {
     @Override
     protected void initViews() {
         mType = getIntent().getIntExtra("Type", 0);
-        switch (mType){
+        switch (mType) {
             case 1:
+                mRvDetail.setVisibility(View.GONE);
                 break;
             case 2:
+                mRvDetail.setVisibility(View.GONE);
                 mTvApply.setVisibility(View.GONE);
                 mTvText4.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
@@ -85,6 +99,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText8.setText("充值银行账号");
                 break;
             case 3:
+                mRvDetail.setVisibility(View.GONE);
                 mTvApply.setVisibility(View.GONE);
                 mTvText4.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
@@ -97,6 +112,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText8.setText("消费账号");
                 break;
             case 4:
+                mRvDetail.setVisibility(View.GONE);
                 mTvApply.setVisibility(View.GONE);
                 mTvText4.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
@@ -110,6 +126,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText7.setText("流水单号");
                 break;
             case 5:
+                mRvDetail.setVisibility(View.GONE);
                 mTvApply.setVisibility(View.GONE);
                 mTvText4.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
@@ -122,6 +139,17 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText5.setText("到账时间");
                 mTvTitle.setText("奖金已成功到账");
                 mTvText7.setText("推荐单号");
+                break;
+            case 6:
+                mRlPayment.setVisibility(View.GONE);
+                mMessageDetailAdapter = new MessageDetailAdapter(this, R.layout.item_message_detail);
+                mRvDetail.setNestedScrollingEnabled(false);
+                mRvDetail.setLayoutManager(new LinearLayoutManager(this));
+                mRvDetail.setAdapter(mMessageDetailAdapter);
+                mMessageBean = (MessageBean) getIntent().getSerializableExtra("message");
+                mMessageDetailAdapter.setDataList(mMessageBean.getInfoList());
+                mTvTitle.setText(mMessageBean.getTMessageTitle());
+                mTvMoney.setText(mMessageBean.getTMessageDescribe());
                 break;
         }
     }

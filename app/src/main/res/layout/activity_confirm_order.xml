@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_view"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header" />
+
+    <ScrollView
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="49dp"
+        android:descendantFocusability="beforeDescendants">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/iv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:src="@mipmap/icn_confirm_address" />
+
+                <TextView
+                    android:id="@+id/tv_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/iv_address"
+                    android:layout_toRightOf="@+id/iv_address"
+                    android:text="收件人："
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_third" />
+
+                <TextView
+                    android:id="@+id/tv_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_get"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_toEndOf="@+id/iv_address"
+                    android:layout_toRightOf="@+id/iv_address"
+                    android:text="联系方式："
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_third" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_contact"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/iv_address"
+                    android:layout_toRightOf="@+id/iv_address"
+                    android:text="详细地址："
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_third" />
+
+                <ImageView
+                    android:id="@+id/iv_add_address"
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tv_get"
+                    android:layout_alignBottom="@+id/tv_address"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="12dp"
+                    android:src="@mipmap/icn_next_gray_big" />
+
+                <TextView
+                    android:id="@+id/tv_add_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tv_get"
+                    android:layout_alignBottom="@+id/tv_address"
+                    android:layout_toStartOf="@+id/iv_add_address"
+                    android:layout_toLeftOf="@+id/iv_add_address"
+                    android:gravity="center_vertical"
+                    android:padding="22dp"
+                    android:text="点击添加地址"
+                    android:textColor="@color/txt_first"
+                    android:textSize="@dimen/txt_second"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_shop"
+                android:layout_below="@+id/rl_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/color_main"
+            android:gravity="center"
+            android:text="提交订单"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_sum_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_toStartOf="@+id/tv_commit"
+            android:layout_toLeftOf="@+id/tv_commit"
+            android:text="¥888.88"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/txt_bank" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_toStartOf="@+id/tv_sum_money"
+            android:layout_toLeftOf="@+id/tv_sum_money"
+            android:text="合计金额："
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_first" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

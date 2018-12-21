@@ -30,8 +30,7 @@
         android:paddingStart="15dp"
         android:paddingLeft="15dp"
         android:paddingEnd="0dp"
-        android:paddingRight="0dp"
-        android:text="十年九下" />
+        android:paddingRight="0dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_goods_cart"

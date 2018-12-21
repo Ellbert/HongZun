@@ -13,6 +13,7 @@ import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.product.activity.ProductActivity;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 
 public class ProductAdapter extends BaseLmrvAdapter<GoodsBean> {
@@ -44,7 +45,7 @@ public class ProductAdapter extends BaseLmrvAdapter<GoodsBean> {
             }
         });
         tvName.setText(data.getTTitle());
-        tvPrice.setText("¥ "+data.getTPrice());
+        tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

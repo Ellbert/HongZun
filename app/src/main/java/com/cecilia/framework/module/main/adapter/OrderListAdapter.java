@@ -16,19 +16,25 @@ import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.activity.SubmitCommentActivity;
+import com.cecilia.framework.module.main.bean.OrderBean;
+import com.cecilia.framework.module.order.activity.OrderDetailActivity;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
 
-public class OrderListAdapter extends BaseLmrvAdapter<BaseGoodBean> {
+public class OrderListAdapter extends BaseLmrvAdapter {
 
-    private Dialog mExitDialog;
-    private OnItemClickListener mOnItemBuyClickListener;
-    private OnItemClickListener mOnItemDeleteClickListener;
-    private OnItemClickListener mOnItemCommentClickListener;
+    private Dialog mDeleteDialog;
+    private Dialog mGetDialog;
+    private Dialog mBuyDialog;
+    private OnOrderItemClickListener mOnItemBuyClickListener;
+    private OnOrderItemClickListener mOnItemDeleteClickListener;
+    private OnOrderItemClickListener mOnItemCommentClickListener;
     private int type;
+    private int mId;
 
     public OrderListAdapter(Context context, int type) {
         super(context);
@@ -38,29 +44,39 @@ public class OrderListAdapter extends BaseLmrvAdapter<BaseGoodBean> {
     }
 
     private void initDialog() {
-        switch (type) {
-            case 0:
-                mExitDialog = DialogUtil.createPromptDialog(mContext,
-                        "提示", "确定删除订单？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
-                            @Override
-                            public boolean onClick() {
-                                ToastUtil.newSafelyShow("订单删除成功");
-                                return false;
-                            }
-                        }, ViewUtil.getString(R.string.cancel), null, null);
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-        }
+        mDeleteDialog = DialogUtil.createPromptDialog(mContext,
+                "提示", "确定删除订单？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
+                    @Override
+                    public boolean onClick() {
+                        if (mOnItemDeleteClickListener != null) {
+                            mOnItemDeleteClickListener.onItemClick("删除订单", mId);
+                        }
+                        return false;
+                    }
+                }, ViewUtil.getString(R.string.cancel), null, null);
+        mGetDialog = DialogUtil.createPromptDialog(mContext,
+                "提示", "确定收货？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
+                    @Override
+                    public boolean onClick() {
+                        if (mOnItemDeleteClickListener != null) {
+                            mOnItemDeleteClickListener.onItemClick("确认收货", mId);
+                        }
+                        return false;
+                    }
+                }, ViewUtil.getString(R.string.cancel), null, null);
+        mBuyDialog = DialogUtil.createPromptDialog(mContext,
+                "提示", "确定购买？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
+                    @Override
+                    public boolean onClick() {
+                        if (mOnItemCommentClickListener != null) {
+                            mOnItemCommentClickListener.onItemClick("立即购买", mId);
+                        }
+                        return false;
+                    }
+                }, ViewUtil.getString(R.string.cancel), null, null);
     }
 
-    private void initView(BaseViewHolder holder, final BaseGoodBean baseGoodBean) {
+    private void initView(BaseViewHolder holder, Object baseGoodBean) {
         TextView delete = holder.getView(R.id.tv_delete);
         TextView comment = holder.getView(R.id.tv_comment);
         TextView buy = holder.getView(R.id.tv_buy);
@@ -68,55 +84,237 @@ public class OrderListAdapter extends BaseLmrvAdapter<BaseGoodBean> {
         ImageView header = holder.getView(R.id.iv_photo);
         TextView sales = holder.getView(R.id.tv_sales);
         TextView price = holder.getView(R.id.tv_price);
-        holder.getView(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mExitDialog.show();
-            }
-        });
-        holder.getView(R.id.tv_comment).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SubmitCommentActivity.launch((Activity) mContext);
-            }
-        });
         switch (type) {
             case 0:
+                final OrderBean orderBean1 = (OrderBean) baseGoodBean;
+                name.setText(orderBean1.getMerchant().getTName());
+                sales.setText("商品数量" + orderBean1.getGoodsNum() + "件");
+                price.setText(ArithmeticalUtil.getMoneyString(orderBean1.getTTotalMoney()));
+                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean1.getFirstGoodsImg(), header, null);
+                if (orderBean1.getTStatus() == 0) {
+                    buy.setText("订单详情");
+                    delete.setText("删除订单");
+                    comment.setText("立即购买");
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mId = orderBean1.getTId();
+                            mDeleteDialog.show();
+                        }
+                    });
+                    comment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mId = orderBean1.getTId();
+                            mBuyDialog.show();
+                        }
+                    });
+                } else if (orderBean1.getTStatus() == 1) {
+                    comment.setVisibility(View.GONE);
+                    buy.setText("订单详情");
+                    delete.setVisibility(View.GONE);
+                } else if (orderBean1.getTStatus() == 2) {
+                    comment.setVisibility(View.GONE);
+                    buy.setText("订单详情");
+                    delete.setText("确认收货");
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mId = orderBean1.getTId();
+                            mGetDialog.show();
+                        }
+                    });
+                } else if (orderBean1.getTStatus() == 3) {
+                    comment.setText("再次购买");
+                    buy.setText("订单详情");
+                    delete.setText("立即评价");
+                    comment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemCommentClickListener != null) {
+                                mOnItemCommentClickListener.onItemClick("待评价",orderBean1.getTId());
+                            }
+//                            OrderDetailActivity.launch(mContext, "待评价", orderBean1.getTId(),true);
+                        }
+                    });
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemDeleteClickListener != null) {
+                                mOnItemDeleteClickListener.onItemClick("待评价",orderBean1.getTId());
+                            }
+//                            OrderDetailActivity.launch(mContext, "待评价", orderBean1.getTId(),false);
+                        }
+                    });
+                } else if (orderBean1.getTStatus() == 4) {
+                    comment.setVisibility(View.GONE);
+                    buy.setText("订单详情");
+                    delete.setText("删除订单");
+                    comment.setText("已完成");
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mId = orderBean1.getTId();
+                            mDeleteDialog.show();
+                        }
+                    });
+                } else if (orderBean1.getTStatus() == 5) {
+                    buy.setText("订单详情");
+                    delete.setText("删除订单");
+                    comment.setText("已关闭");
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mId = orderBean1.getTId();
+                            mDeleteDialog.show();
+                        }
+                    });
+                }
+                buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        OrderDetailActivity.launch(mContext,orderBean1.getTId(),false,false);
+                    }
+                });
                 break;
             case 1:
+                final OrderBean orderBean2 = (OrderBean) baseGoodBean;
+                name.setText(orderBean2.getMerchant().getTName());
+                sales.setText("商品数量" + orderBean2.getGoodsNum() + "件");
+                price.setText(ArithmeticalUtil.getMoneyString(orderBean2.getTTotalMoney()));
+                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean2.getFirstGoodsImg(), header, null);
+                buy.setText("订单详情");
+                delete.setText("删除订单");
+                comment.setText("立即购买");
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mId = orderBean2.getTId();
+                        mDeleteDialog.show();
+                    }
+                });
+                comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mId = orderBean2.getTId();
+                        mBuyDialog.show();
+                    }
+                });
+                buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        OrderDetailActivity.launch(mContext, orderBean2.getTId(),false,false);
+                    }
+                });
                 break;
             case 2:
+                final OrderBean orderBean3 = (OrderBean) baseGoodBean;
+                name.setText(orderBean3.getMerchant().getTName());
+                sales.setText("商品数量" + orderBean3.getGoodsNum() + "件");
+                price.setText(ArithmeticalUtil.getMoneyString(orderBean3.getTTotalMoney()));
+                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean3.getFirstGoodsImg(), header, null);
+                comment.setVisibility(View.GONE);
+                buy.setText("订单详情");
+                delete.setVisibility(View.GONE);
+                buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        OrderDetailActivity.launch(mContext, orderBean3.getTId(),false,false);
+                    }
+                });
                 break;
             case 3:
+                final OrderBean orderBean4 = (OrderBean) baseGoodBean;
+                name.setText(orderBean4.getMerchant().getTName());
+                sales.setText("商品数量" + orderBean4.getGoodsNum() + "件");
+                price.setText(ArithmeticalUtil.getMoneyString(orderBean4.getTTotalMoney()));
+                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean4.getFirstGoodsImg(), header, null);
+                comment.setVisibility(View.GONE);
+                buy.setText("订单详情");
+                delete.setText("确认收货");
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mId = orderBean4.getTId();
+                        mGetDialog.show();
+                    }
+                });
+                buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        OrderDetailActivity.launch(mContext ,orderBean4.getTId(),false,false);
+                    }
+                });
                 break;
             case 4:
+                final OrderBean orderBean5 = (OrderBean) baseGoodBean;
+                name.setText(orderBean5.getMerchant().getTName());
+                sales.setText("商品数量" + orderBean5.getGoodsNum() + "件");
+                price.setText(ArithmeticalUtil.getMoneyString(orderBean5.getTTotalMoney()));
+                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean5.getFirstGoodsImg(), header, null);
+                comment.setText("再次购买");
+                buy.setText("订单详情");
+                delete.setText("立即评价");
+                comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnItemCommentClickListener != null) {
+                            mOnItemCommentClickListener.onItemClick("待评价",orderBean5.getTId());
+                        }
+                    }
+                });
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnItemDeleteClickListener != null) {
+                            mOnItemDeleteClickListener.onItemClick("待评价",orderBean5.getTId());
+                        }
+                    }
+                });
+                buy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        OrderDetailActivity.launch(mContext, orderBean5.getTId(),false,false);
+                    }
+                });
+                break;
+            case 5:
+                final BaseGoodBean goodBean = (BaseGoodBean) baseGoodBean;
                 delete.setVisibility(View.GONE);
                 comment.setVisibility(View.GONE);
                 buy.setText("取消收藏");
-                name.setText(baseGoodBean.getTGoodsTitle());
-                price.setText("¥ "+ baseGoodBean.getTPrice());
-                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + baseGoodBean.getTPic(), header, null);
+                name.setText(goodBean.getTGoodsTitle());
+                price.setText(ArithmeticalUtil.getMoneyString(goodBean.getTPrice()));
+                ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + goodBean.getTPic(), header, null);
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (mOnItemBuyClickListener != null) {
-                            mOnItemBuyClickListener.onItemClick(v, baseGoodBean.getTId());
+                            mOnItemBuyClickListener.onItemClick("取消收藏", goodBean.getTId());
                         }
                     }
                 });
                 break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
         }
     }
 
-    public void setOnItemBuyClickListener(OnItemClickListener mOnItemClickListener) {
+    public void setOnItemBuyClickListener(OnOrderItemClickListener mOnItemClickListener) {
         this.mOnItemBuyClickListener = mOnItemClickListener;
     }
 
-    public void setOnItemCommentClickListener(OnItemClickListener mOnItemClickListener) {
+    public void setOnItemCommentClickListener(OnOrderItemClickListener mOnItemClickListener) {
         this.mOnItemCommentClickListener = mOnItemClickListener;
     }
 
-    public void setOnItemDeleteClickListener(OnItemClickListener mOnItemClickListener) {
+    public void setOnItemDeleteClickListener(OnOrderItemClickListener mOnItemClickListener) {
         this.mOnItemDeleteClickListener = mOnItemClickListener;
     }
 
@@ -126,8 +324,12 @@ public class OrderListAdapter extends BaseLmrvAdapter<BaseGoodBean> {
     }
 
     @Override
-    public void onBindRecyclerViewHolder(BaseViewHolder holder, BaseGoodBean data) {
+    public void onBindRecyclerViewHolder(BaseViewHolder holder, Object data) {
         initView(holder, data);
+    }
+
+    public interface OnOrderItemClickListener {
+        void onItemClick(String info, int id);
     }
 
 }

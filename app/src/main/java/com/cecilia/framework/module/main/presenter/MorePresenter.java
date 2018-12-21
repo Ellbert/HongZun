@@ -5,7 +5,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.module.main.HomeRealization;
 import com.cecilia.framework.module.main.bean.GoodsBean;
-import com.cecilia.framework.module.main.bean.MoreListBean;
 import com.cecilia.framework.module.main.view.MoreView;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;

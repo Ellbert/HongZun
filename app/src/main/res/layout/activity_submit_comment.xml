@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_title_text"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_centerHorizontal="true"
@@ -66,7 +67,6 @@
         android:layout_toRightOf="@+id/iv_photo"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="saddddsdsasdwda撒大声地和挖掘和速度为很短速度哇哈USD我的速度撒多无多圣诞袜是飞洒的"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 
@@ -101,7 +101,7 @@
         android:background="@color/bg_view" />
 
     <EditText
-        android:id="@+id/tv_comment"
+        android:id="@+id/et_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/v2"
@@ -111,12 +111,24 @@
         android:textSize="@dimen/txt_second" />
 
     <ImageView
-        android:background="@drawable/bg_tv_sumbit_text"
         android:id="@+id/iv_add_picture"
         android:layout_width="110dp"
-        android:src="@mipmap/icn_add_picture"
         android:layout_height="110dp"
-        android:layout_below="@+id/tv_comment"
+        android:layout_below="@+id/et_comment"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/bg_tv_sumbit_text"
+        android:padding="25dp"
+        android:src="@mipmap/icn_add_picture" />
+
+    <ImageView
+        android:id="@+id/iv_comment_photo"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_toRightOf="@+id/iv_add_picture"
+        android:layout_toEndOf="@+id/iv_add_picture"
+        android:layout_below="@+id/et_comment"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="45dp"

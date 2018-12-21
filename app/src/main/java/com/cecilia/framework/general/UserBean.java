@@ -20,8 +20,8 @@ public class UserBean implements Serializable {
     private long tCreatetime;
     private int tProperty;
     private int tMerchantId;
-    private double tBalance;
-    private double tHongBalance;
+    private long tBalance;
+    private long tHongBalance;
 
     public void setTId(int tId) {
         this.tId = tId;
@@ -120,19 +120,20 @@ public class UserBean implements Serializable {
         this.tMerchantId = tMerchantId;
     }
 
-    public double getTBalance() {
+    public long getTBalance() {
         return tBalance;
     }
 
-    public void setTBalance(double tBalance) {
+    public void setTBalance(long tBalance) {
         this.tBalance = tBalance;
     }
 
-    public double getTHongBalance() {
+    public long getTHongBalance() {
         return tHongBalance;
     }
 
-    public void setTHongBalance(double tHongBalance) {
+    public void setTHongBalance(long tHongBalance) {
         this.tHongBalance = tHongBalance;
     }
+
 }

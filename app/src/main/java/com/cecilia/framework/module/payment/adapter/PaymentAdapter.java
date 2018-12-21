@@ -29,7 +29,7 @@ public class PaymentAdapter extends BaseLmrvAdapter {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PaymentDetailActivity.launch(mContext,mType);
+                PaymentDetailActivity.launch(mContext,mType,null);
             }
         });
     }

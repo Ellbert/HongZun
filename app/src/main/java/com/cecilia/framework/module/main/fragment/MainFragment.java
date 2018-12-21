@@ -8,22 +8,23 @@ import android.view.View;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
-import com.cecilia.framework.general.PageBean;
+import com.cecilia.framework.listener.OnItemClickListener;
+import com.cecilia.framework.module.customer.activity.CustomerActivity;
 import com.cecilia.framework.module.main.adapter.MainAdapterEx;
 import com.cecilia.framework.module.main.adapter.ProductAdapter;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
-import com.cecilia.framework.module.main.bean.HomeBean;
-import com.cecilia.framework.module.main.bean.RecommendBean;
+import com.cecilia.framework.module.main.bean.NoticeBean;
+import com.cecilia.framework.module.main.bean.ShopBean;
 import com.cecilia.framework.module.main.presenter.HomePresenter;
 import com.cecilia.framework.module.main.view.HomeView;
+import com.cecilia.framework.utils.DialogUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 
 public class MainFragment extends BaseFragment implements HomeView, SwipeRefreshLayout.OnRefreshListener {
@@ -73,6 +74,23 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
 
     @Override
     protected void initListener() {
+        mMainAdapterEx.setOnCustomerClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                int merchantId = SharedPreferenceUtil.getInt(mActivity, "merchantId", 0);
+                if (0 == merchantId) {
+                    CustomerActivity.launch(MainFragment.this.getContext(), -1, null);
+                } else {
+                    DialogUtil.createLoadingDialog(MainFragment.this.getContext(), "查询中...", false, null);
+                    mHomePresenter.getShopStatus(String.valueOf(merchantId));
+                }
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
+            }
+        });
 //        mRvRecommend.setOnLoadMoreListener(new LoadMoreRecyclerView.OnLoadMoreListener() {
 //            @Override
 //            public void onLoadMore() {
@@ -86,6 +104,8 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     @Override
     public void onRefresh() {
         mHomePresenter.getRecommendList(mSrlMain);
+        mHomePresenter.getPromotionList();
+        mHomePresenter.lastNotice();
 //        mCuPage = 1;
 //        mHomePresenter.getAdvertising();
 //        mHomePresenter.getHomeData(mSrlMain);
@@ -103,7 +123,7 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     }
 
     @Override
-    public void getFail() {
+    public void onFailed() {
 //        ToastUtil.newSafelyShow("网络异常，请稍后再试！");
         mRvRecommend.setLoadMoreNull();
 //        mLinearLayout.setVisibility(View.Vi);
@@ -122,7 +142,19 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
 //        }
     }
 
+    @Override
+    public void onShopStatusSuccess(ShopBean data) {
+        CustomerActivity.launch(MainFragment.this.getContext(), data.getTStatus(), data);
+    }
 
+    @Override
+    public void onGetPromotionListSuccess(List<AdvertisingBean> data) {
+        mMainAdapterEx.setAdsData(data);
+    }
 
+    @Override
+    public void onGetNoticeSuccess(NoticeBean data) {
+        mMainAdapterEx.setNoticeData(data);
+    }
 }
 

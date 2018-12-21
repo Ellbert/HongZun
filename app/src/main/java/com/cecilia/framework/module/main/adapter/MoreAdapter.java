@@ -15,9 +15,8 @@ import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.module.main.bean.GoodsBean;
-import com.cecilia.framework.module.main.bean.MoreListBean;
-import com.cecilia.framework.module.main.bean.RecommendBean;
 import com.cecilia.framework.module.product.activity.ProductActivity;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
 
@@ -39,7 +38,7 @@ public class MoreAdapter extends BaseRvAdapter<GoodsBean> {
             }
         });
         tvName.setText(data.getTTitle());
-        tvPrice.setText("¥ "+data.getTPrice());
+        tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

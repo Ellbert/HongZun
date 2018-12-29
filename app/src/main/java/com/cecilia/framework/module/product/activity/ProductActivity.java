@@ -1,8 +1,11 @@
 package com.cecilia.framework.module.product.activity;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,12 +46,17 @@ import com.cecilia.framework.utils.DensityUtil;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.PermissionUtil;
+import com.cecilia.framework.utils.ShareUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.MyScrollView;
 import com.cecilia.framework.widget.NumberChoicesLayout;
+import com.cecilia.framework.widget.SharePopupWindow;
 import com.google.gson.JsonObject;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,6 +170,10 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     private int mIsCollect;
     private int mIsFollow;
     private AddressBean mAddressBean;
+    String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+    private SharePopupWindow mSharePopupWindow;
+    private static final int SHARE_MSG = 0;
+    private SHARE_MEDIA mShareMedia;
 
     public static void launch(Context context, int goodsId) {
         Intent intent = new Intent(context, ProductActivity.class);
@@ -195,6 +207,8 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     protected void initData() {
         mForgetPopupWindow = new SkuPopupWindow();
         mAddressPopupWindow = new AddressPopupWindow();
+        mSharePopupWindow = new SharePopupWindow();
+        mSharePopupWindow.initView(this);
         mGoodsId = getIntent().getIntExtra("goods_id", 0);
         DialogUtil.createLoadingDialog(this, "加载中...", false, null);
         mProductPresenter = new ProductPresenter(this);
@@ -215,7 +229,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                         cartShopBean.setMerchantId(mMerchantBean.getTId());
                         cartShopBean.setMerchantLogo(mMerchantBean.getTLogo());
                         cartShopBean.setMerchantName(mMerchantBean.getTName());
-                        double simPrice = ArithmeticalUtil.add(mGoodsBean.getTLogisticsMoney(),ArithmeticalUtil.mul(mGoodsBean.getTPrice(),Double.parseDouble(mNumber)));
+                        double simPrice = ArithmeticalUtil.add(mGoodsBean.getTLogisticsMoney(), ArithmeticalUtil.mul(mGoodsBean.getTPrice(), Double.parseDouble(mNumber)));
                         cartShopBean.setSumPrice(ArithmeticalUtil.getMoneyString(simPrice));
                         cartGoodsBean.setTGoodsTitle(mGoodsBean.getTTitle());
                         cartGoodsBean.setTSpec(mSpec);
@@ -224,7 +238,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                         cartGoodsBean.setTId(mGoodsBean.getTId());
                         list.add(cartGoodsBean);
                         cartShopBean.setList(list);
-                        SummitOrderActivity.launch(ProductActivity.this,"",cartShopBean,mAddressBean);
+                        SummitOrderActivity.launch(ProductActivity.this, "", cartShopBean, mAddressBean);
                         return false;
                     }
                 }, ViewUtil.getString(R.string.cancel), null, null);
@@ -258,8 +272,6 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                 mSpec = skuBean.getName();
                 mNumber = number;
                 mTvSku.setText("规格：" + mSpec + "   数量：" + number);
-//                mTvNumber.setText("请选择数量(剩余库存" + skuBean.getStock() + ")");
-//                mNumberChoicesLayout.setSelectNumber("0", "0", skuBean.getStock());
             }
         });
         mScrollView.setOnScrollListener(this);
@@ -301,6 +313,20 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                 mTvSendAddress.setText(addressBean.getTAddress());
             }
         });
+        mSharePopupWindow.setShareListener(new SharePopupWindow.ShareListener() {
+            @Override
+            public void ShareMedia(SHARE_MEDIA shareMedia) {
+                LogUtil.e("ShareMedia");
+                shareMsg(mShareMedia = shareMedia);
+            }
+        });
+    }
+
+    private void shareMsg(SHARE_MEDIA shareMedia) {
+        if (PermissionUtil.checkRequestPermissionInActivity(this, SHARE_MSG, mPermissionList)) {
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
+            ShareUtil.shareMessage2(this, shareMedia);
+        }
     }
 
     @Override
@@ -369,7 +395,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         lastTagIndex = currentTagIndex;
     }
 
-    @OnClick({R.id.iv_back_white, R.id.iv_back_black, R.id.tv_all_comment, R.id.tv_text3, R.id.tv_text10, R.id.tv_buy, R.id.tv_add_cart, R.id.iv_collect,R.id.tv_follow})
+    @OnClick({R.id.iv_share, R.id.iv_back_white, R.id.iv_back_black, R.id.tv_all_comment, R.id.tv_text3, R.id.tv_text10, R.id.tv_buy, R.id.tv_add_cart, R.id.iv_collect, R.id.tv_follow})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back_white:
@@ -433,11 +459,14 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                 boolean follow = (boolean) mTvFollow.getTag();
                 if (!follow) {
                     DialogUtil.createLoadingDialog(ProductActivity.this, "关注中...", false, null);
-                    mProductPresenter.addFollow(GcGuangApplication.getId(), mShopId,mShopName, mShopImageString);
+                    mProductPresenter.addFollow(GcGuangApplication.getId(), mShopId, mShopName, mShopImageString);
                 } else {
                     DialogUtil.createLoadingDialog(ProductActivity.this, "取消中...", false, null);
                     mProductPresenter.removeConcern(GcGuangApplication.getId(), mShopId);
                 }
+                break;
+            case R.id.iv_share:
+//                mSharePopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
         }
     }
@@ -511,12 +540,16 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     public void onAddCollectSuccess() {
         mIvCollect.setTag(true);
         mIvCollect.setImageResource(R.drawable.icn_collect_selected);
+        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+        mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
     }
 
     @Override
     public void onRemoveCollectSuccess() {
         mIvCollect.setTag(false);
         mIvCollect.setImageResource(R.drawable.icn_collect_normal);
+        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+        mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
     }
 
     @Override
@@ -528,11 +561,34 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     public void onRemoveFollowSuccess() {
         mTvFollow.setTag(false);
         mTvFollow.setText("关注");
+        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+        mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
     }
 
     @Override
     public void onAddFollowSuccess() {
         mTvFollow.setTag(true);
         mTvFollow.setText("取消关注");
+        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+        mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
+    }
+
+    @Override
+    protected void onRequestPermissionsSucceed(int requestCode) {
+        super.onRequestPermissionsSucceed(requestCode);
+        if (requestCode == SHARE_MSG) {
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
+            ShareUtil.shareMessage2(this, mShareMedia);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 54) {
+            DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+            mProductPresenter.getAddressList(String.valueOf(GcGuangApplication.getId()));
+        }
     }
 }

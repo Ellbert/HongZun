@@ -2,6 +2,7 @@ package com.cecilia.framework.module.login.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.text.Spannable;
@@ -123,6 +124,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
     protected void initData() {
         mLoginPresenter = new LoginPresenter(this);
         mCount = new SendCodeAgainCount(60000, 1000);
+        String action = getIntent().getAction();
+        String phone = "";
+//        String age = "";
+        if (Intent.ACTION_VIEW.equals(action)) {
+            Uri uri = getIntent().getData();
+            if (uri != null) {
+                phone = uri.getQueryParameter("phone");
+                mEtPhone.setText(phone);
+//                mEtPhone.setEnabled(false);
+//                age = uri.getQueryParameter("age");
+            }
+        }
+//        LogUtil.e(phone);
+//        LogUtil.e(name);
     }
 
     @Override
@@ -211,8 +226,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     ToastUtil.newShow("请输入正确的手机号码！");
                     return;
                 }
-                DialogUtil.createLoadingDialog(this,"发送中...",false,null);
-                mLoginPresenter.getSms(mEtPhone.getText().toString(),mType);
+                DialogUtil.createLoadingDialog(this, "发送中...", false, null);
+                mLoginPresenter.getSms(mEtPhone.getText().toString(), mType);
                 mTvCode.setEnabled(false);
                 mCount.start();
                 break;
@@ -231,7 +246,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     return;
                 }
                 if (text.equals("登录")) {
-                    DialogUtil.createLoadingDialog(this,"登录中...",false,null);
+                    DialogUtil.createLoadingDialog(this, "登录中...", false, null);
                     mLoginPresenter.login(phone, password);
                     return;
                 }
@@ -240,13 +255,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     return;
                 }
                 if (text.equals("确认修改")) {
-                    DialogUtil.createLoadingDialog(this,"修改中...",false,null);
+                    DialogUtil.createLoadingDialog(this, "修改中...", false, null);
                     mLoginPresenter.retrieve(phone, code, password);
                     return;
                 }
+                if (!mCbRead.isChecked()) {
+                    ToastUtil.newSafelyShow("请阅读并同意服务条款！");
+                    return;
+                }
                 if (text.equals("注册")) {
-                    if (str.length() == 6 || StringUtil.isMobile(str)) {
-                        DialogUtil.createLoadingDialog(this,"注册中...",false,null);
+                    if (str.length() == 8 || StringUtil.isMobile(str)) {
+                        DialogUtil.createLoadingDialog(this, "注册中...", false, null);
                         mLoginPresenter.register(phone, code, str, password);
                     } else {
                         ToastUtil.newSafelyShow("输入的邀请码或邀请人手机号码不正确！");
@@ -313,16 +332,16 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void loginSuccess(UserBean userBean,String other) {
-        DialogUtil.createLoadingDialog(this,"登录中...",false,null);
-        if (SharedPreferenceUtil.putInt(this,"userId",userBean.getTId()) &&
-                SharedPreferenceUtil.putString(this,"tel",userBean.getTTel()) &&
-                SharedPreferenceUtil.putString(this,"userName",userBean.getTUsername())  &&
-                SharedPreferenceUtil.putInt(this,"level",userBean.getTLevel()) &&
-                SharedPreferenceUtil.putInt(this,"merchantId",userBean.getTMerchantId()) &&
-                SharedPreferenceUtil.putString(this,"header",userBean.getTHeadurl()) &&
-                SharedPreferenceUtil.putLong(this,"balance",userBean.getTBalance()) &&
-                SharedPreferenceUtil.putLong(this,"honeBalance",userBean.getTHongBalance())){
+    public void loginSuccess(UserBean userBean, String other) {
+        DialogUtil.createLoadingDialog(this, "登录中...", false, null);
+        if (SharedPreferenceUtil.putInt(this, "userId", userBean.getTId()) &&
+                SharedPreferenceUtil.putString(this, "tel", userBean.getTTel()) &&
+                SharedPreferenceUtil.putString(this, "userName", userBean.getTUsername()) &&
+                SharedPreferenceUtil.putInt(this, "level", userBean.getTLevel()) &&
+                SharedPreferenceUtil.putInt(this, "merchantId", userBean.getTMerchantId()) &&
+                SharedPreferenceUtil.putString(this, "header", userBean.getTHeadurl()) &&
+                SharedPreferenceUtil.putLong(this, "balance", userBean.getTBalance()) &&
+                SharedPreferenceUtil.putLong(this, "honeBalance", userBean.getTHongBalance())) {
             DialogUtil.dismissLoadingDialog();
             ToastUtil.newSafelyShow("登录成功！");
             GcGuangApplication.setId(userBean.getTId());

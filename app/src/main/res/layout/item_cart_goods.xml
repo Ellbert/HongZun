@@ -36,8 +36,7 @@
         android:layout_toRightOf="@+id/iv_header"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="白芷魏晋风汉服学生古装超仙女广袖中国风齐腰襦裙古风套装秋冬款s阿斯顿发生发送卡看电视看我肯定是第四代"
-        android:textColor="@color/txt_first"
+  android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_seven" />
 
     <TextView
@@ -49,7 +48,6 @@
         android:layout_marginLeft="10dp"
         android:layout_toEndOf="@+id/iv_header"
         android:layout_toRightOf="@+id/iv_header"
-        android:text="¥ 888.88"
         android:textColor="@color/color_main"
         android:textSize="@dimen/txt_second" />
 
@@ -62,7 +60,6 @@
         android:layout_marginLeft="10dp"
         android:layout_toEndOf="@+id/tv_price"
         android:layout_toRightOf="@+id/tv_price"
-        android:text="S码"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_third" />
 

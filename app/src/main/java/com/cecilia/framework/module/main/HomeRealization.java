@@ -8,6 +8,7 @@ import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.main.bean.OrderBean;
 import com.cecilia.framework.module.main.bean.ShopBean;
+import com.cecilia.framework.module.main.bean.VersionBean;
 import com.cecilia.framework.utils.AsynchronousUtil;
 import com.cecilia.framework.utils.NetworkUtil;
 
@@ -22,7 +23,7 @@ public class HomeRealization {
                 .subscribe(observer);
     }
 
-    public static void getUserInfo(String id, NetworkObserver<UserBean> observer) {
+    public static void getUserInfo(int id, NetworkObserver<UserBean> observer) {
         NetworkUtil.getInstance().setApi(HomeApi.class)
                 .getUserInfo(id)
                 .compose(AsynchronousUtil.<BaseBean<UserBean>>setThread())
@@ -78,10 +79,31 @@ public class HomeRealization {
                 .subscribe(observer);
     }
 
+    public static void cancelOrder(int orderId,NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(HomeApi.class)
+                .cancelOrder(orderId)
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
+
     public static void noticeList(int page, NetworkObserver<List<NoticeBean>> observer) {
         NetworkUtil.getInstance().setApi(HomeApi.class)
                 .noticeList(page)
                 .compose(AsynchronousUtil.<BaseBean<List<NoticeBean>>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void getVersion( NetworkObserver<VersionBean> observer) {
+        NetworkUtil.getInstance().setApi(HomeApi.class)
+                .getVersion()
+                .compose(AsynchronousUtil.<BaseBean<VersionBean>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void getQrCode(int userId, NetworkObserver<String> observer) {
+        NetworkUtil.getInstance().setApi(HomeApi.class)
+                .getQrCode(userId)
+                .compose(AsynchronousUtil.<BaseBean<String>>setThread())
                 .subscribe(observer);
     }
 }

@@ -47,4 +47,33 @@ public class MallPresenter {
             }
         });
     }
+
+    public void getGoodsList(final SwipeRefreshLayout swipeRefreshLayout, int id, int page){
+        MallRealization.goodsList(id, page, new NetworkObserver<PageBean<GoodsBean>>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return swipeRefreshLayout;
+            }
+
+            @Override
+            protected void onSuccess(PageBean<GoodsBean> data, String other) {
+                mMallView.onGetGoodsListSuccess(data.getList());
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
 }

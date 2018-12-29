@@ -16,7 +16,7 @@ public class MePresenter {
         this.mMeView = mMeView;
     }
 
-    public void getUserInfo(final SwipeRefreshLayout swipeRefreshLayout, String id) {
+    public void getUserInfo(final SwipeRefreshLayout swipeRefreshLayout, int id) {
         HomeRealization.getUserInfo(id, new NetworkObserver<UserBean>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {

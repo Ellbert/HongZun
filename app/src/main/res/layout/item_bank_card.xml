@@ -27,7 +27,6 @@
         android:layout_toEndOf="@+id/iv_bank"
         android:layout_toRightOf="@+id/iv_bank"
         android:gravity="center"
-        android:text="中国农业银行"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_bank" />
 
@@ -51,7 +50,6 @@
         android:layout_alignStart="@+id/tv_bank"
         android:layout_alignLeft="@+id/tv_bank"
         android:layout_marginTop="30dp"
-        android:text="****  ****  ****  8888"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_home" />
 

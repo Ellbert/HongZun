@@ -87,7 +87,6 @@
                     android:layout_alignBottom="@+id/ll_balance"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="中国人中"
                     android:textColor="@color/white"
                     android:textSize="@dimen/txt_first" />
 

@@ -10,9 +10,5 @@ public interface OrderListView {
 
     void onGetListSuccess(@NonNull List<OrderBean> beanList);
 
-    void onDeleteSuccess();
-
-    void onReceiveSuccess();
-
     void onFailed();
 }

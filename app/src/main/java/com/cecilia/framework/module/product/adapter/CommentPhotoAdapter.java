@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 
 public class CommentPhotoAdapter extends BaseRvAdapter<String> {
@@ -25,6 +26,6 @@ public class CommentPhotoAdapter extends BaseRvAdapter<String> {
         } else {
             imageView = holder.getView(R.id.iv_comment);
         }
-        ImageUtil.loadNetworkImage(mContext, data, imageView, null);
+        ImageUtil.loadNetworkImage(mContext,NetworkConstant.IMAGE_URL+ data, imageView, null);
     }
 }

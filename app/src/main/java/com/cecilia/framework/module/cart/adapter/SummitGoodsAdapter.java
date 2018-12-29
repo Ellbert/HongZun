@@ -19,13 +19,11 @@ import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 
 public class SummitGoodsAdapter extends BaseRvAdapter {
 
-    private boolean isComment;
-    private boolean isBuy;
+    private String mInfo;
 
-    public SummitGoodsAdapter(Context context, int layoutId, boolean isComment, boolean isBuy) {
+    public SummitGoodsAdapter(Context context, int layoutId, String info) {
         super(context, layoutId);
-        this.isComment = isComment;
-        this.isBuy = isBuy;
+        this.mInfo = info;
     }
 
     @Override
@@ -36,7 +34,6 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
         TextView tvSpec = holder.getView(R.id.tv_spec);
         TextView tvNumber = holder.getView(R.id.tv_number);
         TextView tvComment = holder.getView(R.id.tv_comment);
-        TextView tvBuy = holder.getView(R.id.tv_buy);
         if (cartGoodsBean instanceof CartGoodsBean) {
             CartGoodsBean data = (CartGoodsBean) cartGoodsBean;
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTPic(), imageView, null);
@@ -45,7 +42,6 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
             tvSpec.setText(data.getTSpec());
             tvNumber.setText("×" + data.getTNum());
             tvComment.setVisibility(View.GONE);
-            tvBuy.setVisibility(View.GONE);
         } else if (cartGoodsBean instanceof GoodsBean) {
             final GoodsBean data = (GoodsBean) cartGoodsBean;
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTGoodsImg(), imageView, null);
@@ -53,26 +49,23 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
             tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTGoodsMoney()));
             tvSpec.setText(data.getTGoodsSpec());
             tvNumber.setText("×" + data.getTNum());
-            if (isComment) {
+            tvComment.setText(mInfo);
+            if (data.getTComment() == 0 && mInfo.equals("立即评价")) {
+                tvComment.setVisibility(View.VISIBLE);
+            } else if ( mInfo.equals("再次购买")){
                 tvComment.setVisibility(View.VISIBLE);
             } else {
                 tvComment.setVisibility(View.GONE);
             }
-            if (isBuy) {
-                tvBuy.setVisibility(View.VISIBLE);
-            } else {
-                tvBuy.setVisibility(View.GONE);
-            }
             tvComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SubmitCommentActivity.launch((Activity) mContext, data);
-                }
-            });
-            tvBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProductActivity.launch(mContext,data.getTGoodsId());
+                    if (mInfo.equals("立即评价")) {
+                        SubmitCommentActivity.launch((Activity) mContext, data);
+                    }else {
+                        ProductActivity.launch(mContext, data.getTGoodsId());
+                    }
+
                 }
             });
         }

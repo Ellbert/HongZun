@@ -18,9 +18,12 @@ import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.NewDetailActivity;
 import com.cecilia.framework.module.main.activity.NewsActivity;
+import com.cecilia.framework.module.main.activity.RecommendActivity;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.payment.activity.PaymentActivity;
+import com.cecilia.framework.module.vip.activity.VipActivity;
+import com.cecilia.framework.utils.ToastUtil;
 
 import java.util.List;
 
@@ -63,7 +66,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             @Override
             public void onClick(View v) {
                 if (null == mNoticeBean) return;
-                NewDetailActivity.launch(mContext,mNoticeBean);
+                NewDetailActivity.launch(mContext, mNoticeBean);
             }
         });
         baseViewHolder.getView(R.id.tv_mall).setOnClickListener(new View.OnClickListener() {
@@ -75,13 +78,26 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.iv_payment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PaymentActivity.launch(mContext);
+                PaymentActivity.launch(mContext, 0,0);
+            }
+        });
+        baseViewHolder.getView(R.id.tv_hongbao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                PaymentActivity.launch(mContext, 0,0);
+                ToastUtil.newSafelyShow("尚未开通");
+            }
+        });
+        baseViewHolder.getView(R.id.tv_vip).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VipActivity.launch(mContext);
             }
         });
         baseViewHolder.getView(R.id.iv_recommend).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RecommendActivity.launch(mContext);
             }
         });
         baseViewHolder.getView(R.id.iv_client).setOnClickListener(new View.OnClickListener() {

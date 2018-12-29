@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
@@ -25,6 +26,8 @@ public class PriceActivity extends BaseActivity {
     LinearLayout mLlNoting;
     @BindView(R.id.lmrv_price)
     LoadMoreRecyclerView mLmrvPrice;
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
     private PriceAdapter mPriceAdapter;
 
     public static void launch(Fragment context) {
@@ -40,24 +43,25 @@ public class PriceActivity extends BaseActivity {
     @Override
     protected void initViews() {
         mLlNoting.setVisibility(View.GONE);
+        mTvTitleText.setText("我的奖金");
     }
 
     @Override
     protected void initData() {
-        mLlNoting.setVisibility(View.GONE);
-        mLmrvPrice.setVisibility(View.VISIBLE);
+//        mLlNoting.setVisibility(View.GONE);
+//        mLmrvPrice.setVisibility(View.VISIBLE);
         mLmrvPrice.setState(true,new LinearLayoutManager(this));
         mPriceAdapter = new PriceAdapter(this);
         mLmrvPrice.setAdapter(mPriceAdapter);
-        List<Object> list = new ArrayList<>();
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        list.add("dwdwasd");
-        mPriceAdapter.setData(list);
+//        List<Object> list = new ArrayList<>();
+//        list.add("dwdwasd");
+//        list.add("dwdwasd");
+//        list.add("dwdwasd");
+//        list.add("dwdwasd");
+//        list.add("dwdwasd");
+//        list.add("dwdwasd");
+//        list.add("dwdwasd");
+//        mPriceAdapter.setData(list);
     }
 
     @Override

@@ -25,9 +25,9 @@ public class AddressAdapter extends BaseRvAdapter<AddressBean> {
 
     @Override
     public void bindData(BaseViewHolder holder, final AddressBean data) {
-        ((TextView) holder.getView(R.id.tv_name)).setText(data.getTName());
-        ((TextView) holder.getView(R.id.tv_phone)).setText(data.getTPhone());
-        ((TextView) holder.getView(R.id.tv_address)).setText(data.getTAddress());
+        ((TextView) holder.getView(R.id.tv_name)).setText("收件人：" + data.getTName());
+        ((TextView) holder.getView(R.id.tv_phone)).setText("联系方式：" + data.getTPhone());
+        ((TextView) holder.getView(R.id.tv_address)).setText("详细地址：" + data.getTAddress());
         holder.getView(R.id.tv_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

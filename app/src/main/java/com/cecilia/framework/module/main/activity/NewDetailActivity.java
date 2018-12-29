@@ -3,6 +3,7 @@ package com.cecilia.framework.module.main.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class NewDetailActivity extends BaseActivity {
     protected void initData() {
         mNoticeBean = (NoticeBean) getIntent().getSerializableExtra("notice");
         mTvTitle.setText(mNoticeBean.getTTitle());
-        mTvDetail.setText(mNoticeBean.getTInfo());
+        mTvDetail.setText(Html.fromHtml(mNoticeBean.getTInfo()));
     }
 
     @Override

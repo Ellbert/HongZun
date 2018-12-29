@@ -29,12 +29,14 @@ import com.cecilia.framework.module.me.activity.MyBankCardActivity;
 import com.cecilia.framework.module.me.activity.NewsActivity;
 import com.cecilia.framework.module.me.activity.PriceActivity;
 import com.cecilia.framework.module.me.activity.SafetyActivity;
+import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.StringUtil;
+import com.cecilia.framework.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -101,13 +103,16 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_recharge:
-                RechargeActivity.launch(MeFragment.this);
+                ToastUtil.newSafelyShow("尚未开通");
+//                RechargeActivity.launch(MeFragment.this);
                 break;
             case R.id.tv_detail:
-                HongBaoActivity.launch(MeFragment.this);
+                ToastUtil.newSafelyShow("尚未开通");
+//                HongBaoActivity.launch(MeFragment.this);
                 break;
             case R.id.iv_price:
-                PriceActivity.launch(MeFragment.this);
+//                PriceActivity.launch(MeFragment.this);
+                PaymentActivity.launch(this.getContext(), 0, 0);
                 break;
             case R.id.iv_fans:
                 FansActivity.launch(MeFragment.this);
@@ -137,7 +142,7 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
                 NewsActivity.launch(MeFragment.this);
                 break;
             case R.id.tv_cart:
-                CartActivity.launch(MeFragment.this.getContext());
+                CartActivity.launch(MeFragment.this);
                 break;
         }
     }
@@ -145,8 +150,12 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtil.e("LogUtil");
         onRefresh();
+        if (requestCode == 100 && resultCode == 100) {
+            if (this.getContext() != null) {
+                ((MainActivity) this.getContext()).setBottomButtonCheck(1);
+            }
+        }
     }
 
     @Override
@@ -154,11 +163,14 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
 //        mTvBalance.setText();
 //        mTvHongBao.setText();
 //        LogUtil.e(StringUtil.isNullOrEmpty(other) + "  == isNullOrEmpty");
-        SharedPreferenceUtil.putInt(mActivity, "level", 0);
+        SharedPreferenceUtil.putInt(mActivity, "userId", userBean.getTId());
+        SharedPreferenceUtil.putString(mActivity, "tel", userBean.getTTel());
+        SharedPreferenceUtil.putString(mActivity, "userName", userBean.getTUsername());
+        SharedPreferenceUtil.putInt(mActivity, "level", userBean.getTLevel());
+        SharedPreferenceUtil.putInt(mActivity, "merchantId", userBean.getTMerchantId());
+        SharedPreferenceUtil.putString(mActivity, "header", userBean.getTHeadurl());
         SharedPreferenceUtil.putLong(mActivity, "balance", userBean.getTBalance());
         SharedPreferenceUtil.putLong(mActivity, "honeBalance", userBean.getTHongBalance());
-        SharedPreferenceUtil.putString(mActivity,"userName",userBean.getTUsername());
-        SharedPreferenceUtil.putString(mActivity,"header",userBean.getTHeadurl());
         ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + userBean.getTHeadurl(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
         mTvName.setText(userBean.getTUsername());
         mSwipeRefreshLayout.setRefreshing(false);
@@ -171,6 +183,6 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
 
     @Override
     public void onRefresh() {
-        mMePresenter.getUserInfo(mSwipeRefreshLayout, String.valueOf(GcGuangApplication.getId()));
+        mMePresenter.getUserInfo(mSwipeRefreshLayout, GcGuangApplication.getId());
     }
 }

@@ -12,8 +12,10 @@ import android.os.Environment;
 import android.support.v4.content.FileProvider;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.cecilia.framework.GcGuangApplication;
@@ -68,10 +70,18 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
     EditText mEtComment;
     @BindView(R.id.iv_comment_photo)
     ImageView mIvComment;
-    private int mGoodsId;
+    @BindView(R.id.rb_comment)
+    RatingBar mRatingBar;
+    @BindView(R.id.cb_middle)
+    CheckBox mCbMiddle;
+    @BindView(R.id.cb_bad)
+    CheckBox mCbBad;
+    @BindView(R.id.cb_good)
+    CheckBox mCbGood;
     private String mHeaderUrl;
     private String mNickName;
     private String mImageUrl = "";
+    private int mType = -1;
     private Uri imageUri;
     private GoodsBean mGoodsBean;
     private Dialog mSubmitDialog;
@@ -104,10 +114,10 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
     protected void initData() {
         mChoosePhotoPopupWindow = new ChoosePhotoPopupWindow();
         mSubmitCommentPresenter = new SubmitCommentPresenter(this);
+//        mRatingBar.setRating(3);
         mHeaderUrl = SharedPreferenceUtil.getString(this, "header");
         mNickName = SharedPreferenceUtil.getString(this, "userName");
         mGoodsBean = (GoodsBean) getIntent().getSerializableExtra("goodsBean");
-        mGoodsId = mGoodsBean.getTGoodsId();
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mGoodsBean.getTGoodsImg(), mIvPhoto, null);
         mTvName.setText(mGoodsBean.getTGoodsTitle());
         mTvSales.setText("商品数量" + mGoodsBean.getTNum() + "件");
@@ -122,7 +132,7 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
                     public boolean onClick() {
                         String commentText =  mEtComment.getText().toString();
                         DialogUtil.createLoadingDialog(SubmitCommentActivity.this, "提交中...", false, null);
-                        mSubmitCommentPresenter.submitComment(GcGuangApplication.getId(), mNickName, mHeaderUrl, mGoodsBean.getTOrderId(), mGoodsBean.getTGoodsId(), 0, commentText, mImageUrl);
+                        mSubmitCommentPresenter.submitComment(GcGuangApplication.getId(), mNickName, mHeaderUrl, mGoodsBean.getTOrderId(), mGoodsBean.getTGoodsId(), mType, commentText, mImageUrl);
                         return false;
                     }
                 }, ViewUtil.getString(R.string.cancel), null, null);
@@ -153,7 +163,7 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
 
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_submit, R.id.iv_add_picture})
+    @OnClick({R.id.iv_back, R.id.tv_submit, R.id.iv_add_picture,R.id.cb_good,R.id.cb_bad,R.id.cb_middle})
     protected void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_back:
@@ -165,12 +175,34 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
                     ToastUtil.newSafelyShow("评论不能为空");
                     return ;
                 }
+                if (mType == -1) {
+                    ToastUtil.newSafelyShow("请选择好中差评");
+                    return ;
+                }
                 mSubmitDialog.show();
 //                finish();
                 break;
             case R.id.iv_add_picture:
                 mChoosePhotoPopupWindow.initView(this);
                 mChoosePhotoPopupWindow.showAtLocation(v, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                break;
+            case R.id.cb_good:
+                mType = 0;
+                mCbGood.setChecked(true);
+                mCbBad.setChecked(false);
+                mCbMiddle.setChecked(false);
+                break;
+            case R.id.cb_middle:
+                mType = 1;
+                mCbMiddle.setChecked(true);
+                mCbGood.setChecked(false);
+                mCbBad.setChecked(false);
+                break;
+            case R.id.cb_bad:
+                mType = 2;
+                mCbBad.setChecked(true);
+                mCbGood.setChecked(false);
+                mCbMiddle.setChecked(false);
                 break;
         }
     }

@@ -34,6 +34,7 @@
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:padding="13dp"
+        android:visibility="visible"
         android:src="@mipmap/icn_point_right"
         android:textColor="@color/txt_second"
         android:textSize="@dimen/txt_second" />

@@ -152,15 +152,16 @@ public class CustomerActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_income_detail:
-                ProductActivity.launch(CustomerActivity.this, 1);
+//                ProductActivity.launch(CustomerActivity.this, 1);
                 break;
             case R.id.iv_commodity_management:
-                ProductActivity.launch(CustomerActivity.this, 2);
+//                ProductActivity.launch(CustomerActivity.this, 2);
                 break;
             case R.id.iv_revenue_management:
+                ShopPaymentActivity.launch(this, mShopBean.getTId(),mShopBean.getTName());
                 break;
             case R.id.iv_order_management:
-                ShopOrderActivity.launch(CustomerActivity.this);
+//                ShopOrderActivity.launch(CustomerActivity.this);
                 break;
             case R.id.tv_no_pass_done:
                 finish();

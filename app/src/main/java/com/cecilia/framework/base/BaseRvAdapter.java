@@ -36,6 +36,11 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
         this.notifyDataSetChanged();
     }
 
+    public void addDataList(List<T> dataList){
+        this.dataList.addAll(dataList);
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         return super.getItemViewType(position);

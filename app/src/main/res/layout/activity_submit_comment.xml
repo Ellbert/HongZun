@@ -77,7 +77,6 @@
         android:layout_alignStart="@+id/tv_name"
         android:layout_alignLeft="@+id/tv_name"
         android:layout_marginTop="118dp"
-        android:text="商品数量1件"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_third" />
 
@@ -89,7 +88,6 @@
         android:layout_alignStart="@+id/tv_name"
         android:layout_alignLeft="@+id/tv_name"
         android:layout_marginTop="2dp"
-        android:text="￥888"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_third" />
 
@@ -100,24 +98,85 @@
         android:layout_below="@+id/iv_photo"
         android:background="@color/bg_view" />
 
+    <LinearLayout
+        android:id="@+id/ll_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v2"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/cb_good"
+                style="@style/style_good_cb" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/cb_middle"
+                style="@style/style_middle_cb" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/cb_bad"
+                style="@style/style_bad_cb" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/et_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/v2"
+        android:layout_below="@+id/ll_check_box"
         android:layout_margin="12dp"
         android:background="@null"
         android:hint="说说您对此商品的看法~"
         android:textSize="@dimen/txt_second" />
 
+    <RatingBar
+        android:id="@+id/rb_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/et_comment"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:numStars="3"
+        android:progressDrawable="@drawable/bg_rating_bar"
+        android:stepSize="1"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/iv_add_picture"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_below="@+id/et_comment"
+        android:layout_below="@+id/rb_comment"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bg_tv_sumbit_text"
         android:padding="25dp"
         android:src="@mipmap/icn_add_picture" />
@@ -126,12 +185,12 @@
         android:id="@+id/iv_comment_photo"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_toRightOf="@+id/iv_add_picture"
-        android:layout_toEndOf="@+id/iv_add_picture"
-        android:layout_below="@+id/et_comment"
+        android:layout_below="@+id/rb_comment"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/iv_add_picture"
+        android:layout_toRightOf="@+id/iv_add_picture"
         android:padding="25dp" />
 
 </RelativeLayout>

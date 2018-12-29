@@ -44,6 +44,16 @@ public class ChooseAddressAdapter extends BaseRvAdapter<AddressBean> {
                 }
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    position = holder.getAdapterPosition();
+                    mOnItemClickListener.onItemClick(v,position);
+                    notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){

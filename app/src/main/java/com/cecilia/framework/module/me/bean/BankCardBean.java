@@ -6,6 +6,8 @@ public class BankCardBean {
     private int tUserId;
     private String tUsername;
     private String tBankType;
+    private String tBranch;
+    private String tBankName;
     private String tCardNum;
     private int tDefault;
     private long tCreatetime;
@@ -75,4 +77,19 @@ public class BankCardBean {
         return tProperty;
     }
 
+    public String gettBranch() {
+        return tBranch;
+    }
+
+    public void settBranch(String tBranch) {
+        this.tBranch = tBranch;
+    }
+
+    public String gettBankName() {
+        return tBankName;
+    }
+
+    public void settBankName(String tBankName) {
+        this.tBankName = tBankName;
+    }
 }

@@ -62,12 +62,14 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
 
     @Override
     protected void onVisible() {
-
+        if (mSwipeRefreshLayout != null) {
+            onRefresh();
+        }
     }
 
     @Override
     protected void onInvisible() {
-
+//        LogUtil.e("onInvisible" + type);
     }
 
     @Override
@@ -117,30 +119,10 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
                 mOrderListPresenter.getList(null, GcGuangApplication.getId(), type, mPage);
             }
         });
-        mOrderListAdapter.setOnItemDeleteClickListener(new OrderListAdapter.OnOrderItemClickListener() {
+        mOrderListAdapter.setOnItemBuyClickListener(new OrderListAdapter.OnOrderItemClickListener() {
             @Override
             public void onItemClick(String info, int id) {
-                if ("删除订单".equals(info)) {
-                    DialogUtil.createLoadingDialog(mActivity, "删除中...", false, null);
-                    mOrderListPresenter.deleteOrder(id);
-                } else if ("确认收货".equals(info)) {
-                    DialogUtil.createLoadingDialog(mActivity, "提交中...", false, null);
-                    mOrderListPresenter.receiveOrder(id);
-                } else if ("待评价".equals(info)) {
-                    OrderDetailActivity.launch(OrderListFragment.this, id, false,true);
-                }
-            }
-        });
-        mOrderListAdapter.setOnItemCommentClickListener(new OrderListAdapter.OnOrderItemClickListener() {
-            @Override
-            public void onItemClick(String info, int id) {
-                if ("立即购买".equals(info)) {
-                    ArrayList<Integer> list = new ArrayList<>();
-                    list.add(id);
-                    ChooseWayActivity.launch(OrderListFragment.this, list);
-                } else if ("待评价".equals(info)) {
-                    OrderDetailActivity.launch(OrderListFragment.this, id, true,false);
-                }
+                OrderDetailActivity.launch(OrderListFragment.this, id, info);
             }
         });
     }
@@ -178,26 +160,13 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
     public void onRefresh() {
         mPage = 1;
         mData = null;
-        LogUtil.e("onRefresh");
         mOrderListPresenter.getList(mSwipeRefreshLayout, GcGuangApplication.getId(), type, mPage);
-    }
-
-    @Override
-    public void onDeleteSuccess() {
-        ToastUtil.newSafelyShow("删除成功");
-        onRefresh();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtil.e("requestCode == " + requestCode);
         onRefresh();
     }
 
-    @Override
-    public void onReceiveSuccess() {
-        ToastUtil.newSafelyShow("收货成功");
-        onRefresh();
-    }
 }

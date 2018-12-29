@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.me.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -40,6 +41,11 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), AddressActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void launch(Activity context) {
+        Intent intent = new Intent(context, AddressActivity.class);
+        context.startActivityForResult(intent,54);
     }
 
     @Override

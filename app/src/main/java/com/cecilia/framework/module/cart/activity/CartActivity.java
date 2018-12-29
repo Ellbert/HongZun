@@ -1,7 +1,9 @@
 package com.cecilia.framework.module.cart.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cecilia.framework.GcGuangApplication;
@@ -37,6 +40,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static android.view.View.VISIBLE;
+
 public class CartActivity extends BaseActivity implements CartView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_shop_cart)
@@ -59,6 +64,12 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
     SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.tv_num)
     TextView mTvCartNum;
+    @BindView(R.id.tv_nothing)
+    TextView mTvNothing;
+    @BindView(R.id.tv_shopping)
+    TextView mTvShopping;
+    @BindView(R.id.ll_cart)
+    LinearLayout mLlCart;
     private CartShopAdapter mCartShopAdapter;
     private FailureAdapter mFailureAdapter;
     private List<CartShopBean> cartShopBeans;
@@ -66,9 +77,9 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
     private double mSumMoney;
     private String mCartIds;
 
-    public static void launch(Context context) {
-        Intent intent = new Intent(context, CartActivity.class);
-        context.startActivity(intent);
+    public static void launch(Fragment context) {
+        Intent intent = new Intent(context.getContext(), CartActivity.class);
+        context.startActivityForResult(intent, 100);
     }
 
     @Override
@@ -184,7 +195,7 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
 
     }
 
-    @OnClick({R.id.tv_title_text, R.id.iv_back, R.id.tv_settlement})
+    @OnClick({R.id.tv_title_text, R.id.iv_back, R.id.tv_settlement, R.id.tv_shopping})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_title_text:
@@ -204,11 +215,15 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
             case R.id.tv_settlement:
                 if (StringUtil.isNullOrEmpty(mCartIds)) return;
                 if (mTvSettlement.getText().equals("结算")) {
-                    SummitOrderActivity.launch(this, mCartIds, null,null);
+                    SummitOrderActivity.launch(this, mCartIds, null, null);
                 } else {
                     DialogUtil.createLoadingDialog(this, "删除中...", false, null);
                     mCartPresenter.delete(mCartIds);
                 }
+                break;
+            case R.id.tv_shopping:
+                setResult(100);
+                finish();
                 break;
         }
     }
@@ -216,6 +231,11 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
     @Override
     public void onGetCartList(List<CartShopBean> list) {
         cartShopBeans = list;
+        if (list.size() > 0) {
+            mTvNothing.setVisibility(View.GONE);
+            mTvShopping.setVisibility(View.GONE);
+            mLlCart.setVisibility(VISIBLE);
+        }
         mTvCartNum.setText("购物车共" + cartShopBeans.size() + "件商品");
         mSwipeRefreshLayout.setRefreshing(false);
         mCartShopAdapter.setDataList(list);
@@ -223,6 +243,11 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
 
     @Override
     public void onGetFailedList(List<FailedGoodsBean> list) {
+        if (list.size() > 0) {
+            mTvNothing.setVisibility(View.GONE);
+            mTvShopping.setVisibility(View.GONE);
+            mLlCart.setVisibility(VISIBLE);
+        }
         mFailureAdapter.setDataList(list);
     }
 

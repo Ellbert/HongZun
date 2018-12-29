@@ -72,22 +72,7 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/bg_btn_small_gray_edge_normal"
         android:gravity="center"
-        android:text="评价商品"
         android:textSize="@dimen/txt_third" />
 
-    <TextView
-        android:id="@+id/tv_buy"
-        android:layout_width="60dp"
-        android:layout_height="23dp"
-        android:visibility="gone"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/iv_header"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/bg_btn_small_gray_edge_normal"
-        android:gravity="center"
-        android:text="再次购买"
-        android:textSize="@dimen/txt_third" />
 
 </RelativeLayout>

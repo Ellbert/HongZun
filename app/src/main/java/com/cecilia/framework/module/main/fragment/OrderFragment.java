@@ -16,6 +16,7 @@ import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.TabFragmentAdapter;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ViewUtil;
+import com.cecilia.framework.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class OrderFragment extends BaseFragment {
     @BindView(R.id.tl_order)
     TabLayout mTlOrder;
     @BindView(R.id.vp_order)
-    ViewPager mVpOrder;
+    NoScrollViewPager mVpOrder;
 
     @Override
     protected void onVisible() {

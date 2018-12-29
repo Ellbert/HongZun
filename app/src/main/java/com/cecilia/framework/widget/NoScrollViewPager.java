@@ -45,7 +45,9 @@ public class NoScrollViewPager extends ViewPager {
 
     @Override
     public void setCurrentItem(int item) {
-        super.setCurrentItem(item);
+        //去除页面切换时的滑动翻页效果
+        super.setCurrentItem(item, false);
     }
+
 
 }

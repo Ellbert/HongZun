@@ -6,8 +6,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
+import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.customer.activity.CustomerActivity;
 import com.cecilia.framework.module.main.adapter.MainAdapterEx;
@@ -77,13 +79,14 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
         mMainAdapterEx.setOnCustomerClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int id) {
-                int merchantId = SharedPreferenceUtil.getInt(mActivity, "merchantId", 0);
-                if (0 == merchantId) {
-                    CustomerActivity.launch(MainFragment.this.getContext(), -1, null);
-                } else {
-                    DialogUtil.createLoadingDialog(MainFragment.this.getContext(), "查询中...", false, null);
-                    mHomePresenter.getShopStatus(String.valueOf(merchantId));
-                }
+//                int merchantId = SharedPreferenceUtil.getInt(mActivity, "merchantId", 0);
+//                if (0 == merchantId) {
+//                    CustomerActivity.launch(MainFragment.this.getContext(), -1, null);
+//                } else {
+                DialogUtil.createLoadingDialog(MainFragment.this.getContext(), "查询中...", false, null);
+//                    mHomePresenter.getShopStatus(String.valueOf(merchantId));
+                mHomePresenter.getUserInfo(GcGuangApplication.getId());
+//                }
             }
 
             @Override
@@ -155,6 +158,19 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     @Override
     public void onGetNoticeSuccess(NoticeBean data) {
         mMainAdapterEx.setNoticeData(data);
+    }
+
+    @Override
+    public void onGetUserInfoSuccess(UserBean userBean, String other) {
+        int merchantId = userBean.getTMerchantId();
+        SharedPreferenceUtil.putInt(mActivity, "merchantId", userBean.getTMerchantId());
+        if (0 == merchantId) {
+            CustomerActivity.launch(MainFragment.this.getContext(), -1, null);
+        } else {
+            DialogUtil.createLoadingDialog(MainFragment.this.getContext(), "查询中...", false, null);
+            mHomePresenter.getShopStatus(String.valueOf(merchantId));
+//        mHomePresenter.getUserInfo(GcGuangApplication.getId());
+        }
     }
 }
 

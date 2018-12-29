@@ -46,7 +46,7 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
     public static void launch(Activity context, AddressBean addressBean) {
         Intent intent = new Intent(context, AddressEditActivity.class);
         intent.putExtra("address_bean", addressBean);
-        context.startActivityForResult(intent,0);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -109,8 +109,12 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
                 String name = mEtName.getText().toString();
                 String phone = mEtPhone.getText().toString();
                 String address = mEtAddress.getText().toString();
-                if (StringUtil.isEmail(name) || StringUtil.isEmail(phone) || StringUtil.isEmail(phone)) {
+                if (StringUtil.isNullOrEmpty(name) || StringUtil.isNullOrEmpty(phone) || StringUtil.isNullOrEmpty(address)) {
                     ToastUtil.newSafelyShow("输入资料不可为空");
+                    return;
+                }
+                if (!StringUtil.isMobile(phone)) {
+                    ToastUtil.newSafelyShow("输入手机号码不正确");
                     return;
                 }
                 DialogUtil.createLoadingDialog(this, "添加中...", true, null);

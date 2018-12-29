@@ -153,7 +153,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
                         notifyItem();
                         mOnLoadMoreListener.onLoadMore();
                     } else {
-                        if (totalItemCount > 1 ) {
+                        if (totalItemCount > 1) {
                             notifyItem();
 //                        getAdapter().notifyDataSetChanged();
                         }
@@ -180,11 +180,14 @@ public class LoadMoreRecyclerView extends RecyclerView {
         void onScrolled(int distance);
     }
 
-    private void notifyItem(){
+    private void notifyItem() {
         this.post(new Runnable() {
             @Override
             public void run() {
-                getAdapter().notifyItemChanged(getAdapter().getItemCount() - 1);
+                LogUtil.e("getAdapter().getItemCount() == " + getAdapter().getItemCount());
+                if (getAdapter().getItemCount() > 1) {
+                    getAdapter().notifyItemChanged(getAdapter().getItemCount() - 1);
+                }
             }
         });
     }

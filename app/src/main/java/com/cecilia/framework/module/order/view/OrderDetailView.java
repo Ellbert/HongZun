@@ -8,6 +8,12 @@ public interface OrderDetailView {
 
     void onGetDetailSuccess(@NonNull OrderDetailBean orderDetailBean);
 
+    void onCancelSuccess();
+
+    void onDeleteSuccess();
+
+    void onReceiveSuccess();
+
     void onGetFailed();
 }
 

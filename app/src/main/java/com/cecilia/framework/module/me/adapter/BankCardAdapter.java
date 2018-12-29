@@ -24,7 +24,7 @@ public class BankCardAdapter extends BaseRvAdapter<BankCardBean> {
     @Override
     public void bindData(BaseViewHolder holder, final BankCardBean data) {
         ((TextView)holder.getView(R.id.tv_bank_num)).setText(data.getTCardNum());
-        ((TextView)holder.getView(R.id.tv_bank)).setText(data.getTBankType());
+        ((TextView)holder.getView(R.id.tv_bank)).setText(data.gettBankName());
         final CheckBox checkBox = holder.getView(R.id.cb_default);
         if (data.getTDefault() == 0) {
             checkBox.setChecked(false);

@@ -27,54 +27,15 @@ import com.cecilia.framework.utils.ViewUtil;
 
 public class OrderListAdapter extends BaseLmrvAdapter {
 
-    private Dialog mDeleteDialog;
-    private Dialog mGetDialog;
-    private Dialog mBuyDialog;
-    private OnOrderItemClickListener mOnItemBuyClickListener;
-    private OnOrderItemClickListener mOnItemDeleteClickListener;
-    private OnOrderItemClickListener mOnItemCommentClickListener;
+    private OnOrderItemClickListener mOnItemClickListener;
     private int type;
     private int mId;
 
     public OrderListAdapter(Context context, int type) {
         super(context);
         this.type = type;
-        LogUtil.e("type == " + type);
-        initDialog();
     }
 
-    private void initDialog() {
-        mDeleteDialog = DialogUtil.createPromptDialog(mContext,
-                "提示", "确定删除订单？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
-                    @Override
-                    public boolean onClick() {
-                        if (mOnItemDeleteClickListener != null) {
-                            mOnItemDeleteClickListener.onItemClick("删除订单", mId);
-                        }
-                        return false;
-                    }
-                }, ViewUtil.getString(R.string.cancel), null, null);
-        mGetDialog = DialogUtil.createPromptDialog(mContext,
-                "提示", "确定收货？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
-                    @Override
-                    public boolean onClick() {
-                        if (mOnItemDeleteClickListener != null) {
-                            mOnItemDeleteClickListener.onItemClick("确认收货", mId);
-                        }
-                        return false;
-                    }
-                }, ViewUtil.getString(R.string.cancel), null, null);
-        mBuyDialog = DialogUtil.createPromptDialog(mContext,
-                "提示", "确定购买？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
-                    @Override
-                    public boolean onClick() {
-                        if (mOnItemCommentClickListener != null) {
-                            mOnItemCommentClickListener.onItemClick("立即购买", mId);
-                        }
-                        return false;
-                    }
-                }, ViewUtil.getString(R.string.cancel), null, null);
-    }
 
     private void initView(BaseViewHolder holder, Object baseGoodBean) {
         TextView delete = holder.getView(R.id.tv_delete);
@@ -84,6 +45,9 @@ public class OrderListAdapter extends BaseLmrvAdapter {
         ImageView header = holder.getView(R.id.iv_photo);
         TextView sales = holder.getView(R.id.tv_sales);
         TextView price = holder.getView(R.id.tv_price);
+        buy.setVisibility(View.VISIBLE);
+        delete.setVisibility(View.VISIBLE);
+        comment.setVisibility(View.VISIBLE);
         switch (type) {
             case 0:
                 final OrderBean orderBean1 = (OrderBean) baseGoodBean;
@@ -93,26 +57,44 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean1.getFirstGoodsImg(), header, null);
                 if (orderBean1.getTStatus() == 0) {
                     buy.setText("订单详情");
-                    delete.setText("删除订单");
+                    delete.setText("取消订单");
                     comment.setText("立即购买");
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mId = orderBean1.getTId();
-                            mDeleteDialog.show();
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("取消订单", orderBean1.getTId());
+                            }
                         }
                     });
                     comment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mId = orderBean1.getTId();
-                            mBuyDialog.show();
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("立即购买", orderBean1.getTId());
+                            }
+                        }
+                    });
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("",orderBean1.getTId());
+                            }
                         }
                     });
                 } else if (orderBean1.getTStatus() == 1) {
                     comment.setVisibility(View.GONE);
                     buy.setText("订单详情");
                     delete.setVisibility(View.GONE);
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("",orderBean1.getTId());
+                            }
+                        }
+                    });
                 } else if (orderBean1.getTStatus() == 2) {
                     comment.setVisibility(View.GONE);
                     buy.setText("订单详情");
@@ -120,8 +102,18 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mId = orderBean1.getTId();
-                            mGetDialog.show();
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("确认收货", orderBean1.getTId());
+                            }
+
+                        }
+                    });
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("",orderBean1.getTId());
+                            }
                         }
                     });
                 } else if (orderBean1.getTStatus() == 3) {
@@ -131,31 +123,45 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     comment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (mOnItemCommentClickListener != null) {
-                                mOnItemCommentClickListener.onItemClick("待评价",orderBean1.getTId());
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("再次购买", orderBean1.getTId());
                             }
-//                            OrderDetailActivity.launch(mContext, "待评价", orderBean1.getTId(),true);
                         }
                     });
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (mOnItemDeleteClickListener != null) {
-                                mOnItemDeleteClickListener.onItemClick("待评价",orderBean1.getTId());
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("立即评价", orderBean1.getTId());
                             }
-//                            OrderDetailActivity.launch(mContext, "待评价", orderBean1.getTId(),false);
+                        }
+                    });
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("投诉店家",orderBean1.getTId());
+                            }
                         }
                     });
                 } else if (orderBean1.getTStatus() == 4) {
-                    comment.setVisibility(View.GONE);
                     buy.setText("订单详情");
                     delete.setText("删除订单");
                     comment.setText("已完成");
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mId = orderBean1.getTId();
-                            mDeleteDialog.show();
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("删除订单", orderBean1.getTId());
+                            }
+                        }
+                    });
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("投诉店家",orderBean1.getTId());
+                            }
                         }
                     });
                 } else if (orderBean1.getTStatus() == 5) {
@@ -165,17 +171,20 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mId = orderBean1.getTId();
-                            mDeleteDialog.show();
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("删除订单", orderBean1.getTId());
+                            }
+                        }
+                    });
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("投诉店家",orderBean1.getTId());
+                            }
                         }
                     });
                 }
-                buy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        OrderDetailActivity.launch(mContext,orderBean1.getTId(),false,false);
-                    }
-                });
                 break;
             case 1:
                 final OrderBean orderBean2 = (OrderBean) baseGoodBean;
@@ -184,26 +193,30 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 price.setText(ArithmeticalUtil.getMoneyString(orderBean2.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean2.getFirstGoodsImg(), header, null);
                 buy.setText("订单详情");
-                delete.setText("删除订单");
+                delete.setText("取消订单");
                 comment.setText("立即购买");
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mId = orderBean2.getTId();
-                        mDeleteDialog.show();
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("取消订单", orderBean2.getTId());
+                        }
                     }
                 });
                 comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mId = orderBean2.getTId();
-                        mBuyDialog.show();
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("立即购买", orderBean2.getTId());
+                        }
                     }
                 });
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OrderDetailActivity.launch(mContext, orderBean2.getTId(),false,false);
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("",orderBean2.getTId());
+                        }
                     }
                 });
                 break;
@@ -219,9 +232,11 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OrderDetailActivity.launch(mContext, orderBean3.getTId(),false,false);
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("",orderBean3.getTId());
+                        }
                     }
-                });
+                });;
                 break;
             case 3:
                 final OrderBean orderBean4 = (OrderBean) baseGoodBean;
@@ -235,14 +250,18 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mId = orderBean4.getTId();
-                        mGetDialog.show();
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("确认收货", orderBean4.getTId());
+                        }
+
                     }
                 });
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OrderDetailActivity.launch(mContext ,orderBean4.getTId(),false,false);
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("",orderBean4.getTId());
+                        }
                     }
                 });
                 break;
@@ -258,23 +277,25 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mOnItemCommentClickListener != null) {
-                            mOnItemCommentClickListener.onItemClick("待评价",orderBean5.getTId());
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("再次购买", orderBean5.getTId());
                         }
                     }
                 });
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mOnItemDeleteClickListener != null) {
-                            mOnItemDeleteClickListener.onItemClick("待评价",orderBean5.getTId());
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("立即评价", orderBean5.getTId());
                         }
                     }
                 });
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        OrderDetailActivity.launch(mContext, orderBean5.getTId(),false,false);
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("投诉店家",orderBean5.getTId());
+                        }
                     }
                 });
                 break;
@@ -289,8 +310,8 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mOnItemBuyClickListener != null) {
-                            mOnItemBuyClickListener.onItemClick("取消收藏", goodBean.getTId());
+                        if (mOnItemClickListener != null) {
+                            mOnItemClickListener.onItemClick("取消收藏", goodBean.getTId());
                         }
                     }
                 });
@@ -307,15 +328,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
     }
 
     public void setOnItemBuyClickListener(OnOrderItemClickListener mOnItemClickListener) {
-        this.mOnItemBuyClickListener = mOnItemClickListener;
-    }
-
-    public void setOnItemCommentClickListener(OnOrderItemClickListener mOnItemClickListener) {
-        this.mOnItemCommentClickListener = mOnItemClickListener;
-    }
-
-    public void setOnItemDeleteClickListener(OnOrderItemClickListener mOnItemClickListener) {
-        this.mOnItemDeleteClickListener = mOnItemClickListener;
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @Override

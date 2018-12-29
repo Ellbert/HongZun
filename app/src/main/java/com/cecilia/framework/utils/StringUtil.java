@@ -667,6 +667,15 @@ public class StringUtil {
     }
 
     /**
+     * 获取银行卡后四位
+     * @param nonCheckCodeBankCard
+     * @return
+     */
+    public static String getLastBankCard(String nonCheckCodeBankCard){
+        return nonCheckCodeBankCard.substring(nonCheckCodeBankCard.length()-4,nonCheckCodeBankCard.length());
+    }
+
+    /**
      * 从不含校验位的银行卡卡号采用 Luhm 校验算法获得校验位
      * @param nonCheckCodeBankCard
      * @return

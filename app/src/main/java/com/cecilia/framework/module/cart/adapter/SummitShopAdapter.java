@@ -27,7 +27,7 @@ public class SummitShopAdapter extends BaseRvAdapter<CartShopBean> {
         RecyclerView recyclerView = holder.getView(R.id.rv_goods_cart);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        SummitGoodsAdapter goodsAdapter = new SummitGoodsAdapter(mContext, R.layout.item_commit_goods,false,false);
+        SummitGoodsAdapter goodsAdapter = new SummitGoodsAdapter(mContext, R.layout.item_commit_goods,"");
         recyclerView.setAdapter(goodsAdapter);
         goodsAdapter.setDataList(data.getList());
         TextView tvName = holder.getView(R.id.tv_to_shop);

@@ -12,33 +12,6 @@ import static com.cecilia.framework.common.NetworkConstant.PAGE_SIZE;
 
 public class LoginRealization {
 
-//    public static void getAdvertiseData(NetworkObserver<List<AdvertisingBean>> observer) {
-//        NetworkUtil.getInstance().setApi(HomeApi.class)
-//                .getAdvertiseData()
-//                .compose(AsynchronousUtil.<BaseBean<List<AdvertisingBean>>>setThread())
-//                .subscribe(observer);
-//    }
-//
-//    public static void getHomeData(NetworkObserver<HomeBean> observer) {
-//        NetworkUtil.getInstance().setApi(HomeApi.class)
-//                .getHomeData()
-//                .compose(AsynchronousUtil.<BaseBean<HomeBean>>setThread())
-//                .subscribe(observer);
-//    }
-//
-//    public static void getRecommendData(int cuPage,NetworkObserver<PageBean<RecommendBean>> observer) {
-//        NetworkUtil.getInstance().setApi(HomeApi.class)
-//                .getRecommendData(String.valueOf(cuPage),String.valueOf(PAGE_SIZE))
-//                .compose(AsynchronousUtil.<BaseBean<PageBean<RecommendBean>>>setThread())
-//                .subscribe(observer);
-//    }
-//
-//    public static void getMoreListData(NetworkObserver<List<MoreListBean>> observer){
-//        NetworkUtil.getInstance().setApi(HomeApi.class)
-//                .getCategoryData()
-//                .compose(AsynchronousUtil.<BaseBean<List<MoreListBean>>>setThread())
-//                .subscribe(observer);
-//    }
 
     public static void getSMS(String phone,String type, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(LoginApi.class)

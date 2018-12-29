@@ -22,7 +22,6 @@
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/tv_header"
         android:layout_toRightOf="@+id/tv_header"
-        android:text="萝卜仔"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 
@@ -33,7 +32,6 @@
         android:layout_below="@+id/tv_name"
         android:layout_alignStart="@+id/tv_name"
         android:layout_alignLeft="@+id/tv_name"
-        android:text="萝卜仔"
         android:textColor="@color/txt_second"
         android:textSize="@dimen/txt_third" />
 

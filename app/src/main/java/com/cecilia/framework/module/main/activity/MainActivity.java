@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -14,16 +15,20 @@ import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.adapter.MainPagerAdapter;
+import com.cecilia.framework.module.main.bean.VersionBean;
 import com.cecilia.framework.module.main.fragment.MainFragment;
 import com.cecilia.framework.module.main.fragment.MeFragment;
 import com.cecilia.framework.module.main.fragment.MoreFragment;
 import com.cecilia.framework.module.main.fragment.OrderFragment;
+import com.cecilia.framework.module.main.presenter.MainPresenter;
+import com.cecilia.framework.module.main.view.MainView;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
+import com.cecilia.framework.widget.VersionPopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +36,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnPageChange;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainView {
 
     @BindView(R.id.vp_pager)
     ViewPager mVpPager;
@@ -40,6 +45,8 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> mFragments = new ArrayList<>();
     //    private UpdateBroadCast mUpdateBroadCast;
     private Dialog mExitDialog;
+    private MainPresenter mMainPresenter;
+    private VersionPopupWindow mVersionPopupWindow;
 //    private Dialog mOfflineDialog;
 //    private CartFragment mCartFragment;
 
@@ -55,6 +62,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        DialogUtil.createLoadingDialog(this, "查询中...", false, null);
+        mMainPresenter = new MainPresenter(this);
+        mMainPresenter.getVersion();
+        mVersionPopupWindow = new VersionPopupWindow();
 //        ToastUtil.newSafelyShow(getHeight()+"");
 //        ToastUtil.newSafelyShow(getWidth()+"");
 
@@ -79,21 +90,26 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        mVersionPopupWindow.setShareListener(new VersionPopupWindow.UpdateListener() {
+            @Override
+            public void onUpdate() {
+                finish();
+            }
+        });
     }
 
     @Override
     protected void doEvents(EventBean event) {
         if (event.getType() == -1) {
-            DialogUtil.createLoadingDialog(this,"退出中...",false,null);
-            if (SharedPreferenceUtil.putInt(this,"userId",0) &&
-                    SharedPreferenceUtil.putString(this,"tel",null) &&
-                    SharedPreferenceUtil.putString(this,"userName",null)  &&
-                    SharedPreferenceUtil.putInt(this,"level",0) &&
-                    SharedPreferenceUtil.putInt(this,"merchantId",0) &&
-                    SharedPreferenceUtil.putString(this,"header",null)&&
-                    SharedPreferenceUtil.putLong(this,"balance",0) &&
-                    SharedPreferenceUtil.putLong(this,"honeBalance",0)){
+            DialogUtil.createLoadingDialog(this, "退出中...", false, null);
+            if (SharedPreferenceUtil.putInt(this, "userId", 0) &&
+                    SharedPreferenceUtil.putString(this, "tel", null) &&
+                    SharedPreferenceUtil.putString(this, "userName", null) &&
+                    SharedPreferenceUtil.putInt(this, "level", 0) &&
+                    SharedPreferenceUtil.putInt(this, "merchantId", 0) &&
+                    SharedPreferenceUtil.putString(this, "header", null) &&
+                    SharedPreferenceUtil.putLong(this, "balance", 0) &&
+                    SharedPreferenceUtil.putLong(this, "honeBalance", 0)) {
                 DialogUtil.dismissLoadingDialog();
                 ToastUtil.newSafelyShow("退出成功！");
                 GcGuangApplication.setId(0);
@@ -136,6 +152,8 @@ public class MainActivity extends BaseActivity {
 
     @OnPageChange(R.id.vp_pager)
     public void onPageSelected(int position) {
+//        DialogUtil.createLoadingDialog(this, "查询中...", false, null);
+        mMainPresenter.getVersion();
         ((RadioButton) mRgMainTap.getChildAt(position)).setChecked(true);
         // 获取当前被选中的页面, 初始化该页面数据
     }
@@ -172,4 +190,17 @@ public class MainActivity extends BaseActivity {
 //    }
 
 
+    @Override
+    public void onGetVersionSuccess(VersionBean data) {
+        String name = GuangUtil.packageName(this);
+        if (!name.equals(data.getTVersion())) {
+            mVersionPopupWindow.initView(this,data);
+            mVersionPopupWindow.showAtLocation(mVpPager, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+        }
+    }
+
+    @Override
+    public void onFailed() {
+
+    }
 }

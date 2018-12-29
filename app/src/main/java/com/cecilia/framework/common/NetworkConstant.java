@@ -12,7 +12,7 @@ import junit.runner.Version;
 
 public class NetworkConstant {
 
-    private static final String API = "HZ";
+    private static final String API = "/HZ";
     /**
      * 对于请求列表数据时，一次最多加载的数据条数
      */
@@ -24,7 +24,7 @@ public class NetworkConstant {
 
     private static final String VERSION = "v1/";
 
-    public static final String IMAGE_URL = "http://www.hongzuncctv.com";
+    public static final String IMAGE_URL = BuildConfig.BASE_URL;
 
     public class Login {
         public static final String SEND_SMS = API + "/appUser/sendSms";
@@ -82,7 +82,7 @@ public class NetworkConstant {
 
     public class Follow {
         public static final String COLLECT_LIST = API + "/merchantCollect/list";
-        public static final String REMOVE_FOLLOW = API + "/concern/removeConcern";
+        public static final String REMOVE_FOLLOW = API + "/merchantCollect/removeCollect";
         public static final String ADD_FOLLOW = API + "/merchantCollect/save";
         public static final String REMOVE_FOLLOW_IN_GOODS = API + "/merchantCollect/removeByUser";
     }
@@ -98,6 +98,7 @@ public class NetworkConstant {
 
     public class Mall {
         public static final String SEARCH = API + "/goods/search";
+        public static final String GOODS_LIST = API + "/goods/list";
     }
 
     public class Order {
@@ -106,6 +107,7 @@ public class NetworkConstant {
         public static final String ORDER_DETAIL = API + "/goodsOrder/findById";
         public static final String DELETE_ORDER = API + "/goodsOrder/delete";
         public static final String RECEIVE_ORDER = API + "/goodsOrder/receive";
+        public static final String CANCEL_ORDER = API + "/goodsOrder/cancel";
     }
 
     public class Image {
@@ -114,17 +116,38 @@ public class NetworkConstant {
 
     public class Shop {
         public static final String ENTER = API + "/merchant/enter";
+        public static final String GET_WALLET = API + "/merchant/getWallet";
+        public static final String GET_RATIO = API + "/retio/getRatio";
+        public static final String WITHDRAW = API + "/merchant/withdrow";
     }
 
     public class Promotion {
         public static final String LIST = API + "/promotion/list";
         public static final String LAST_NOTICE = API + "/notice/lastOne";
         public static final String NOTICE_LIST = API + "/notice/list";
+        public static final String GET_QR_CODE = API + "/appUser/getQrcode";
     }
 
     public class Friend {
         public static final String SECOND_LIST = API + "/customer/secondList";
         public static final String FIRST_LIST = API + "/customer/firstList";
     }
+
+    public class Vip {
+        public static final String VIP_CARD_LIST = API + "/vipCard/list";
+        public static final String CREATE_ORDER = API + "/vipCardOrder/createOrder";
+        public static final String BUY_VIP = API + "/vipCardOrder/buy";
+    }
+
+    public class Payment {
+        public static final String USER_PAYMENT_LIST = API + "/bill/userBillList";
+        public static final String MERCHANT_PAYMENT_LIST = API + "/bill/merchantBillList";
+        public static final String WITHDRAW_RECORD = API + "/merchant/withdrowRecord";
+    }
+
+    public class Version {
+        public static final String GET_VERSION = API + "/version/getVersion";
+    }
+
 }
 

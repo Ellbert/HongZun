@@ -8,6 +8,7 @@ import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.main.bean.OrderBean;
 import com.cecilia.framework.module.main.bean.ShopBean;
+import com.cecilia.framework.module.main.bean.VersionBean;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface HomeApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Home.GET_USER_INFO)
-    Observable<BaseBean<UserBean>> getUserInfo(@Field("userId") String id);
+    Observable<BaseBean<UserBean>> getUserInfo(@Field("userId") int id);
 
     //    @FormUrlEncoded
     @POST(NetworkConstant.Goods.RECOMMEND_LIST)
@@ -39,6 +40,10 @@ public interface HomeApi {
     Observable<BaseBean<List<OrderBean>>> getOrderList(@Field("userId") int id, @Field("type") int type, @Field("page") int page);
 
     @FormUrlEncoded
+    @POST(NetworkConstant.Order.CANCEL_ORDER)
+    Observable<BaseBean<Object>> cancelOrder(@Field("orderId") int orderId);
+
+    @FormUrlEncoded
     @POST(NetworkConstant.Order.RECEIVE_ORDER)
     Observable<BaseBean<Object>> receiveOrder(@Field("orderId") int orderId);
 
@@ -48,11 +53,20 @@ public interface HomeApi {
     @POST(NetworkConstant.Promotion.LAST_NOTICE)
     Observable<BaseBean<NoticeBean>> lastNotice();
 
+    @POST(NetworkConstant.Version.GET_VERSION)
+    Observable<BaseBean<VersionBean>> getVersion();
+
     @FormUrlEncoded
     @POST(NetworkConstant.Promotion.NOTICE_LIST)
     Observable<BaseBean<List<NoticeBean>>> noticeList(@Field("page") int page);
 
     @FormUrlEncoded
+    @POST(NetworkConstant.Promotion.GET_QR_CODE)
+    Observable<BaseBean<String>> getQrCode(@Field("userId") int userId);
+
+    @FormUrlEncoded
     @POST(NetworkConstant.Goods.SUBMIT_COMMENT)
     Observable<BaseBean<Object>> submitComment(@Field("userId") int userId, @Field("username") String username, @Field("headurl") String headurl, @Field("orderId") int orderId, @Field("goodsId") int goodsId, @Field("type") int type, @Field("comment") String comment, @Field("img") String img);
+
+
 }

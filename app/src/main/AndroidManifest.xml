@@ -43,14 +43,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:windowSoftInputMode="adjustPan"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:windowSoftInputMode="adjustPan">
         <activity
             android:name=".module.splash.activity.LogoActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -60,12 +59,26 @@
         <activity
             android:name=".module.product.activity.ProductActivity"
             android:launchMode="singleTask" />
+
         <activity
             android:name=".module.login.activity.LoginActivity"
-            android:launchMode="singleTask" />
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="jp.app"
+                    android:path="/openwith"
+                    android:scheme="myapp" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".module.main.activity.SubmitCommentActivity"
-            android:launchMode="standard"/>
+            android:launchMode="standard" />
         <activity android:name=".module.main.activity.RechargeActivity" />
         <activity android:name=".module.main.activity.HongBaoActivity" />
         <activity android:name=".module.me.activity.PriceActivity" />
@@ -90,7 +103,6 @@
         <activity android:name=".module.payment.activity.PaymentDetailActivity" />
         <activity android:name=".module.customer.activity.CustomerActivity" />
         <activity android:name=".module.customer.activity.UserRegisterActivity" />
-        <activity android:name=".module.customer.activity.ShopRegisterActivity" />
         <activity android:name=".module.customer.activity.ProductActivity" />
         <activity android:name=".module.customer.activity.ShopOrderActivity" />
         <activity android:name=".module.mall.activity.MallActivity" />
@@ -101,17 +113,54 @@
         <activity android:name=".module.cart.activity.SummitOrderActivity" />
         <activity android:name=".module.cart.activity.ChooseWayActivity" />
         <activity android:name=".module.order.activity.OrderDetailActivity" />
+        <activity android:name=".module.vip.activity.VipActivity" />
+        <activity android:name=".module.vip.activity.BuyVipActivity" />
+
+        <!-- wechat callback-->
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="100424468" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".module.customer.activity.ShopPaymentActivity" />
+        <activity android:name=".module.main.activity.RecommendActivity" />
+        <activity android:name=".module.main.activity.RecommendPhotoActivity" />
+        <activity android:name=".module.customer.activity.WithDrawActivity" />
 
         <provider
-            android:authorities="com.cecilia.framework.fileprovider"
             android:name="android.support.v4.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:authorities="com.cecilia.framework.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths"/>
+                android:resource="@xml/filepaths" />
         </provider>
 
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5c20970bf1f55638ac000075" />
 
     </application>
 

@@ -18,8 +18,8 @@ public class BankCardPresenter {
         this.mBankCardView = mBankCardView;
     }
 
-    public void saveBankCard(int userId, String username, int bankId, String cardNum, String isDefault){
-        MeRealization.saveBankCard(userId, username, bankId, cardNum, isDefault, new NetworkObserver<Object>() {
+    public void saveBankCard(int userId, String username, String bankName, String cardNum, String branch, String isDefault) {
+        MeRealization.saveBankCard(userId, username, bankName, cardNum, branch, isDefault, new NetworkObserver<Object>() {
 
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -27,7 +27,7 @@ public class BankCardPresenter {
             }
 
             @Override
-            protected void onSuccess(Object data,String other) {
+            protected void onSuccess(Object data, String other) {
                 mBankCardView.onSaveSuccess();
             }
 
@@ -48,7 +48,7 @@ public class BankCardPresenter {
         });
     }
 
-    public void getBankList(){
+    public void getBankList() {
         MeRealization.getBankList(new NetworkObserver<List<BankBean>>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {

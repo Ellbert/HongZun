@@ -61,7 +61,6 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:gravity="center_vertical"
-        android:text="萝卜哥"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_second" />
 
@@ -101,7 +100,6 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:gravity="center_vertical"
-        android:text="12345678910"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_second" />
 
@@ -154,7 +152,6 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:gravity="center_vertical"
-        android:text="泓樽勇士"
         android:textColor="@color/txt_third"
         android:textSize="@dimen/txt_second" />
 

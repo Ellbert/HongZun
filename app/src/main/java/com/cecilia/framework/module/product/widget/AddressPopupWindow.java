@@ -16,6 +16,7 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.bean.SkuBean;
+import com.cecilia.framework.module.me.activity.AddressActivity;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.product.adapter.ChooseAddressAdapter;
 import com.cecilia.framework.utils.DensityUtil;
@@ -41,6 +42,8 @@ public class AddressPopupWindow extends PopupWindow {
     TextView mTvCancel;
     @BindView(R.id.iv_close)
     ImageView mIvClose;
+    @BindView(R.id.tv_text2)
+    TextView mIvText2;
     @BindView(R.id.rv_address)
     RecyclerView mRecyclerView;
     private OnAddressConfirmListener mOnSkuConfirmListener;
@@ -75,7 +78,7 @@ public class AddressPopupWindow extends PopupWindow {
         void onConfirm(AddressBean addressBean);
     }
 
-    public void initView(final Activity context, final List<AddressBean> list,int height) {
+    public void initView(final Activity context, final List<AddressBean> list, int height) {
         final LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = mInflater.inflate(R.layout.layout_address_pup, null);
         ButterKnife.bind(this, mView);
@@ -111,6 +114,13 @@ public class AddressPopupWindow extends PopupWindow {
             @Override
             public void onItemLongClick(View view, int id) {
 
+            }
+        });
+        mIvText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddressActivity.launch(context);
+                dismiss();
             }
         });
         this.setOnDismissListener(new OnDismissListener() {

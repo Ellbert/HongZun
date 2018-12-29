@@ -29,6 +29,7 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
     SwipeRefreshLayout mSrlMall;
     private ProductAdapter mMoreAdapter;
     private int mIndex;
+    private int mClassifyId;
     private int mPage = 1;
     private MallPresenter mMallPresenter;
     private String mKeyword;
@@ -36,11 +37,14 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
 
     public MallFragment(int mIndex) {
         this.mIndex = mIndex;
+        mClassifyId = getClassifyId();
     }
 
     @Override
     protected void onVisible() {
-
+        if (mSrlMall != null) {
+            onRefresh();
+        }
     }
 
     @Override
@@ -56,20 +60,12 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
 
     @Override
     public void initData() {
+        LogUtil.e("mClassifyId == " + mClassifyId);
         mMallPresenter = new MallPresenter(this);
         mLmrvMall.setState(true, new GridLayoutManager(getContext(), 2));
         mMoreAdapter = new ProductAdapter(getContext());
         mLmrvMall.setAdapter(mMoreAdapter);
         onRefresh();
-//        List<Object> list = new ArrayList<>();
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        list.add("dwdwasd");
-//        mMoreAdapter.setData(list);
     }
 
     @Override
@@ -83,8 +79,7 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
         mLmrvMall.setOnLoadMoreListener(new LoadMoreRecyclerView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                mPage++;
-                mMallPresenter.search(null, mKeyword, mPage);
+                MallFragment.this.onLoadMore();
             }
         });
     }
@@ -116,12 +111,71 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
 
     }
 
+    private void onLoadMore() {
+        mPage++;
+        switch (mIndex) {
+            case -1:
+                mMallPresenter.search(null, mKeyword, mPage);
+                break;
+            default:
+                mMallPresenter.getGoodsList(null, mClassifyId, mPage);
+                break;
+        }
+    }
+
     @Override
     public void onRefresh() {
         mData = null;
         mPage = 1;
-        if (mIndex == -1) {
-            mMallPresenter.search(mSrlMall, mKeyword, mPage);
+        switch (mIndex) {
+            case -1:
+                mMallPresenter.search(mSrlMall, mKeyword, mPage);
+                break;
+            default:
+                mMallPresenter.getGoodsList(mSrlMall, mClassifyId, mPage);
+                break;
         }
+    }
+
+    @Override
+    public void onGetGoodsListSuccess(List<GoodsBean> goodsBeans) {
+        // 分页数据处理
+        if (mData == null || mData.size() == 0) {
+            mData = goodsBeans;
+            mMoreAdapter.setData(goodsBeans);
+        } else {
+            mMoreAdapter.addData(goodsBeans);
+        }
+        if (goodsBeans.size() < NetworkConstant.PAGE_SIZE) {
+            mLmrvMall.setLoadMoreNull();
+        } else {
+            mLmrvMall.setLoadMoreFinish();
+        }
+    }
+
+    private int getClassifyId() {
+        switch (mIndex) {
+            case 0:
+                return 10;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 3;
+            case 4:
+                return 4;
+            case 5:
+                return 5;
+            case 6:
+                return 6;
+            case 7:
+                return 7;
+            case 8:
+                return 8;
+            case 9:
+                return 9;
+        }
+        return 0;
     }
 }

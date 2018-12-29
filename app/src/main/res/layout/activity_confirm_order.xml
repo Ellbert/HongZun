@@ -145,7 +145,7 @@
             android:layout_marginRight="12dp"
             android:layout_toStartOf="@+id/tv_commit"
             android:layout_toLeftOf="@+id/tv_commit"
-            android:text="¥888.88"
+            android:text="¥0.00"
             android:textColor="@color/color_main"
             android:textSize="@dimen/txt_bank" />
 

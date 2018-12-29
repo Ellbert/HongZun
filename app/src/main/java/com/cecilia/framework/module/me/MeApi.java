@@ -4,6 +4,7 @@ import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.PageBean;
+import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.me.bean.BankBean;
 import com.cecilia.framework.module.me.bean.BankCardBean;
@@ -62,7 +63,7 @@ public interface MeApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.BankCard.SAVE_BANK_CARD)
-    Observable<BaseBean<Object>> saveBankCard(@Field("userId") int userId, @Field("username") String username, @Field("bankId") int bankId, @Field("cardNum") String cardNum, @Field("isDefault") String isDefault);
+    Observable<BaseBean<Object>> saveBankCard(@Field("userId") int userId, @Field("username") String username, @Field("bankName") String bankName, @Field("cardNum") String cardNum,@Field("branch") String branch, @Field("isDefault") String isDefault);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Collect.REMOVE_COLLECT)
@@ -90,5 +91,13 @@ public interface MeApi {
     @FormUrlEncoded
     @POST(NetworkConstant.Follow.REMOVE_FOLLOW)
     Observable<BaseBean<Object>> removeConcern(@Field("collectId") int id);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Friend.FIRST_LIST)
+    Observable<BaseBean<PageBean<UserBean>>> firstFansList(@Field("userId") int userId,@Field("page") int page);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Friend.SECOND_LIST)
+    Observable<BaseBean<PageBean<UserBean>>> secondFansList(@Field("userId") int userId,@Field("page") int page);
 
 }

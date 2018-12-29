@@ -286,12 +286,54 @@
         <item name="android:textSize">@dimen/txt_first</item>
     </style>
 
+    <!--PayCheckBox-->
+    <style name="style_pay_cb">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">11dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <!--CartItemCheckBox-->
     <style name="style_cart_cb">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">20dp</item>
         <item name="android:button">@drawable/bg_cb_cart_btn_selector</item>
         <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/txt_first</item>
+        <item name="android:textSize">@dimen/txt_second</item>
+    </style>
+
+    <!--MiddleCheckBox-->
+    <style name="style_middle_cb">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:background">@drawable/bg_cb_middle_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/txt_first</item>
+        <item name="android:textSize">@dimen/txt_second</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!--BadCheckBox-->
+    <style name="style_bad_cb">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:background">@drawable/bg_cb_bad_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/txt_first</item>
+        <item name="android:textSize">@dimen/txt_second</item>
+    </style>
+
+    <!--GoodCheckBox-->
+    <style name="style_good_cb">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:background">@drawable/bg_cb_good_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
         <item name="android:textColor">@color/txt_first</item>
         <item name="android:textSize">@dimen/txt_second</item>
     </style>

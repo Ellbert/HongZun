@@ -26,6 +26,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static android.view.View.VISIBLE;
+
 public class FollowActivity extends BaseActivity implements FollowView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.srl_follow)
@@ -36,6 +38,8 @@ public class FollowActivity extends BaseActivity implements FollowView, SwipeRef
     TextView mTvTitleText;
     @BindView(R.id.tv_text1)
     TextView mTvText1;
+    @BindView(R.id.tv_nothing)
+    TextView mTvNothing;
     private FollowAdapter mFollowAdapter;
     private FollowPresenter mFollowPresenter;
 
@@ -106,6 +110,11 @@ public class FollowActivity extends BaseActivity implements FollowView, SwipeRef
 
     @Override
     public void onGetListSuccess(List<FollowBean> list) {
+        if (list.size() > 0) {
+            mTvNothing.setVisibility(View.GONE);
+            mSrlFollow.setVisibility(VISIBLE);
+            mTvText1.setVisibility(VISIBLE);
+        }
         mTvText1.setText("共" + list.size() + "个关注");
         mFollowAdapter.setData(list);
         mLmrvFollow.setLoadMoreNull();

@@ -13,6 +13,7 @@ import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.me.adapter.MessageDetailAdapter;
 import com.cecilia.framework.module.me.bean.MessageBean;
+import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.LogUtil;
 
 import butterknife.BindView;
@@ -147,9 +148,13 @@ public class PaymentDetailActivity extends BaseActivity {
                 mRvDetail.setLayoutManager(new LinearLayoutManager(this));
                 mRvDetail.setAdapter(mMessageDetailAdapter);
                 mMessageBean = (MessageBean) getIntent().getSerializableExtra("message");
+                if (mMessageBean.getTMoney() == 0) {
+                    mTvMoney.setText(mMessageBean.getTMessageDescribe());
+                } else {
+                    mTvMoney.setText(ArithmeticalUtil.getMoneyString(mMessageBean.getTMoney()));
+                }
                 mMessageDetailAdapter.setDataList(mMessageBean.getInfoList());
                 mTvTitle.setText(mMessageBean.getTMessageTitle());
-                mTvMoney.setText(mMessageBean.getTMessageDescribe());
                 break;
         }
     }

@@ -39,7 +39,6 @@
         android:layout_marginRight="12dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="快递很快，就是包装简陋了，直接一个气泡袋包装，开贷后盒子两边有封口贴，拆开后是吸塑包装，数据线在银盘下面..."
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_seven" />
 
@@ -55,7 +54,6 @@
         android:layout_marginRight="10dp" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_spec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +65,8 @@
         android:layout_marginBottom="15dp"
         android:text="高端金属多彩版（皓月银）；1T"
         android:textColor="@color/txt_third"
-        android:textSize="@dimen/txt_eight" />
+        android:textSize="@dimen/txt_eight"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"

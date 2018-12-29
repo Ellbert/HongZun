@@ -66,7 +66,7 @@ public class WebActivity extends BaseActivity implements View.OnClickListener, S
 
     @Override
     protected void initViews() {
-        mSharePopupWindow = new SharePopupWindow("WebActivity");
+        mSharePopupWindow = new SharePopupWindow();
 
         urlStr = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
@@ -194,12 +194,12 @@ public class WebActivity extends BaseActivity implements View.OnClickListener, S
 
     @Override
     protected void initData() {
-        mSharePopupWindow.setShareListener(new SharePopupWindow.ShareListener() {
+//        mSharePopupWindow.setShareListener(new SharePopupWindow.ShareListener() {
 //            @Override
 //            public void ShareMedia(SHARE_MEDIA shareMedia) {
 //                shareMsg(mShareMedia = shareMedia);
 //            }
-        });
+//        });
     }
 
     @Override

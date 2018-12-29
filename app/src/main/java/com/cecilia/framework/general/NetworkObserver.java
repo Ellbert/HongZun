@@ -15,7 +15,6 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
-import static com.cecilia.framework.common.NetworkConstant.NO_SUCCESS;
 import static com.cecilia.framework.common.NetworkConstant.SUCCESS;
 
 /**

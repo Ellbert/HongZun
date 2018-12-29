@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_view"
@@ -10,22 +9,49 @@
         android:id="@+id/header"
         layout="@layout/layout_header" />
 
-    <com.cecilia.framework.widget.VerticalTabLayout.VerticalTabLayout
-        android:id="@+id/vtb_payment"
-        android:layout_width="100dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_payment"
+        android:visibility="gone"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/header"
-        app:indicator_color="@color/bg_view"
-        app:tab_height="45dp"
-        app:tab_mode="scrollable" />
+        android:layout_below="@+id/header">
 
-    <com.cecilia.framework.widget.NoScrollViewPager
-        android:id="@+id/nsvp_payment"
+        <com.cecilia.framework.widget.LoadMoreRecyclerView
+            android:id="@+id/rv_payment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/tv_nothing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/header"
-        android:layout_toEndOf="@+id/vtb_payment"
-        android:layout_toRightOf="@+id/vtb_payment"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:drawablePadding="60dp"
+        android:drawableTop="@mipmap/img_nothing"
+        android:gravity="center_horizontal"
+        android:paddingTop="99dp"
+        android:text="您还没有账单哦~" />
+
+
+    <!--<com.cecilia.framework.widget.VerticalTabLayout.VerticalTabLayout-->
+    <!--android:id="@+id/vtb_payment"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/header"-->
+    <!--app:indicator_color="@color/bg_view"-->
+    <!--app:tab_height="45dp"-->
+    <!--app:tab_mode="scrollable" />-->
+
+    <!--<com.cecilia.framework.widget.NoScrollViewPager-->
+    <!--android:id="@+id/nsvp_payment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/header"-->
+    <!--android:layout_toEndOf="@+id/vtb_payment"-->
+    <!--android:layout_toRightOf="@+id/vtb_payment"-->
+    <!--android:background="@color/white" />-->
 
 </RelativeLayout>

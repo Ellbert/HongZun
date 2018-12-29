@@ -2,121 +2,151 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_view"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <include layout="@layout/layout_header" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl_cart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:textColor="@color/txt_third"
-                    android:textSize="@dimen/btn_fillet_first" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_shop_cart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_num"
-                    android:background="@color/white" />
-
-                <TextView
-                    android:id="@+id/tv_text1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/rv_shop_cart"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:paddingStart="12dp"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="9dp"
-                    android:paddingEnd="12dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="9dp"
-                    android:text="失效商品"
-                    android:textColor="@color/txt_first"
-                    android:textSize="@dimen/txt_second" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_failure"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_text1"
-                    android:layout_marginTop="1dp"
-                    android:background="@color/white" />
-
-            </RelativeLayout>
-
-        </ScrollView>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/bg_view" />
-
     <LinearLayout
+        android:id="@+id/ll_cart"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@color/white"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:background="@color/bg_view"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <CheckBox
-            android:id="@+id/cb_all"
-            style="@style/style_cart_cb"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp"
-            android:paddingRight="15dp"
-            android:text="全选" />
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/srl_cart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_sum"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical|end"
-            android:text="¥ 888.88"
-            android:textColor="@color/color_main"
-            android:textSize="@dimen/txt_first" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_settlement"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/bg_btn_small_main_normal"
-            android:gravity="center"
-            android:text="结算"
-            android:textColor="@color/white"
-            android:textSize="@dimen/txt_second" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:textColor="@color/txt_third"
+                        android:textSize="@dimen/btn_fillet_first" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_shop_cart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_num"
+                        android:background="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tv_text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/rv_shop_cart"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:paddingStart="12dp"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="9dp"
+                        android:paddingEnd="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="9dp"
+                        android:text="失效商品"
+                        android:textColor="@color/txt_first"
+                        android:textSize="@dimen/txt_second" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_failure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_text1"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white" />
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_view" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/cb_all"
+                style="@style/style_cart_cb"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp"
+                android:paddingEnd="15dp"
+                android:paddingRight="15dp"
+                android:text="全选" />
+
+            <TextView
+                android:id="@+id/tv_sum"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end"
+                android:text="¥ 888.88"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/txt_first" />
+
+            <TextView
+                android:id="@+id/tv_settlement"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_btn_small_main_normal"
+                android:gravity="center"
+                android:text="结算"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_second" />
 
 
+        </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_nothing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableTop="@mipmap/icn_no_cart"
+        android:drawablePadding="40dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="125dp"
+        android:text="购物车还没有商品哦~~" />
+
+    <TextView
+        android:id="@+id/tv_shopping"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_small_green_edge_normal"
+        android:gravity="center"
+        android:text="去逛逛"
+        android:textColor="@color/color_main"
+        android:textSize="@dimen/txt_first" />
 </LinearLayout>

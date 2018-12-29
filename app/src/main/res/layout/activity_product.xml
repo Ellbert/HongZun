@@ -15,7 +15,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants">
 
             <!--<com.bigkoo.convenientbanner.ConvenientBanner-->
             <!--android:id="@+id/cb_product"-->
@@ -369,17 +370,18 @@
                 android:text="进店瞧瞧"
                 android:textColor="@color/color_main"
                 android:textSize="@dimen/txt_third"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_follow"
                 android:layout_width="65dp"
                 android:layout_height="25dp"
-                android:layout_alignTop="@+id/tv_to_shop"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_toStartOf="@+id/tv_to_shop"
-                android:layout_toLeftOf="@+id/tv_to_shop"
+                android:layout_below="@+id/view6"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="21dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
                 android:background="@drawable/bg_btn_small_gray_edge_normal"
                 android:gravity="center"
                 android:text="关注"

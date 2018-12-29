@@ -17,4 +17,8 @@ public interface MallApi {
     @FormUrlEncoded
     @POST(NetworkConstant.Mall.SEARCH)
     Observable<BaseBean<PageBean<GoodsBean>>> search(@Field("search") String search, @Field("page") int page);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Mall.GOODS_LIST)
+    Observable<BaseBean<PageBean<GoodsBean>>> goodsList(@Field("classifyId") int classifyId, @Field("page") int page);
 }

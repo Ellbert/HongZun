@@ -17,4 +17,11 @@ public class MallRealization {
                 .compose(AsynchronousUtil.<BaseBean<PageBean<GoodsBean>>>setThread())
                 .subscribe(observer);
     }
+
+    public static void goodsList(int search, int page, NetworkObserver<PageBean<GoodsBean>> observer) {
+        NetworkUtil.getInstance().setApi(MallApi.class)
+                .goodsList(search, page)
+                .compose(AsynchronousUtil.<BaseBean<PageBean<GoodsBean>>>setThread())
+                .subscribe(observer);
+    }
 }

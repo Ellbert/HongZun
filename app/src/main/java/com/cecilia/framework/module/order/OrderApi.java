@@ -14,4 +14,5 @@ public interface OrderApi {
     @FormUrlEncoded
     @POST(NetworkConstant.Order.ORDER_DETAIL)
     Observable<BaseBean<OrderDetailBean>> orderDetail(@Field("orderId") int orderId);
+
 }

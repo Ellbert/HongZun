@@ -9,6 +9,7 @@ public class MessageBean implements Serializable {
     private int tUserId;
     private String tMessageTitle;
     private String tMessageDescribe;
+    private long tMoney;
     private String tMessageInfo;
     private int tStatus;
     private long tCreatTime;
@@ -85,5 +86,13 @@ public class MessageBean implements Serializable {
 
     public void setInfoList(List<MessageDetailBean> infoList) {
         this.infoList = infoList;
+    }
+
+    public long getTMoney() {
+        return tMoney;
+    }
+
+    public void setTMoney(long tMoney) {
+        this.tMoney = tMoney;
     }
 }

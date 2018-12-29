@@ -10,6 +10,7 @@ import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.main.bean.ShopBean;
+import com.cecilia.framework.module.main.bean.VersionBean;
 import com.cecilia.framework.module.main.view.HomeView;
 import com.cecilia.framework.utils.ToastUtil;
 
@@ -31,7 +32,7 @@ public class HomePresenter {
             }
 
             @Override
-            protected void onSuccess(List<GoodsBean> data,String other) {
+            protected void onSuccess(List<GoodsBean> data, String other) {
                 mHomeView.getRecommendSuccess(data);
             }
 
@@ -52,7 +53,7 @@ public class HomePresenter {
         });
     }
 
-    public void getShopStatus(String id){
+    public void getShopStatus(String id) {
         HomeRealization.geShopStatus(id, new NetworkObserver<ShopBean>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -81,7 +82,7 @@ public class HomePresenter {
         });
     }
 
-    public void getPromotionList(){
+    public void getPromotionList() {
         HomeRealization.getPromotionList(new NetworkObserver<List<AdvertisingBean>>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -110,7 +111,7 @@ public class HomePresenter {
         });
     }
 
-    public void lastNotice(){
+    public void lastNotice() {
         HomeRealization.lastNotice(new NetworkObserver<NoticeBean>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -120,6 +121,35 @@ public class HomePresenter {
             @Override
             protected void onSuccess(NoticeBean data, String other) {
                 mHomeView.onGetNoticeSuccess(data);
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+        });
+    }
+
+    public void getUserInfo(int id) {
+        HomeRealization.getUserInfo(id, new NetworkObserver<UserBean>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(UserBean data,String other) {
+                mHomeView.onGetUserInfoSuccess(data,other);
             }
 
             @Override

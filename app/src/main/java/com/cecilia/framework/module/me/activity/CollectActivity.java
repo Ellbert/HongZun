@@ -18,6 +18,7 @@ import com.cecilia.framework.module.me.presenter.CollectPresenter;
 import com.cecilia.framework.module.me.view.CollectView;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.ToastUtil;
+import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static android.view.View.VISIBLE;
 import static com.cecilia.framework.module.main.fragment.OrderListFragment.COLLECT;
 
 public class CollectActivity extends BaseActivity implements CollectView, SwipeRefreshLayout.OnRefreshListener {
@@ -38,6 +40,8 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     TextView mTvTitleText;
     @BindView(R.id.tv_text1)
     TextView mTvText1;
+    @BindView(R.id.tv_nothing)
+    TextView mTvNothing;
     private OrderListAdapter mOrderListAdapter;
     private CollectPresenter mCollectPresenter;
 
@@ -55,6 +59,8 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     protected void initViews() {
         mTvTitleText.setText("我的收藏");
         mLmrvFollow.setState(true, new LinearLayoutManager(this));
+        mTvNothing.setCompoundDrawablesWithIntrinsicBounds(null, ViewUtil.getDrawable(R.mipmap.icn_no_collect), null, null);
+        mTvNothing.setText("您还没有收藏哦~");
     }
 
     @Override
@@ -104,6 +110,11 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
 
     @Override
     public void onGetSuccess(List<BaseGoodBean> list) {
+        if (list.size() > 0) {
+            mTvNothing.setVisibility(View.GONE);
+            mSrlFollow.setVisibility(VISIBLE);
+            mTvText1.setVisibility(VISIBLE);
+        }
         mTvText1.setText("共" + list.size() + "个收藏");
         mOrderListAdapter.setData(list);
         mLmrvFollow.setLoadMoreNull();
@@ -122,6 +133,6 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
 
     @Override
     public void onRefresh() {
-        mCollectPresenter.getList(mSrlFollow,String.valueOf(GcGuangApplication.getId()));
+        mCollectPresenter.getList(mSrlFollow, String.valueOf(GcGuangApplication.getId()));
     }
 }

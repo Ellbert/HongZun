@@ -30,6 +30,7 @@ public class GoodsBean implements Serializable {
     private String tDetails;
     private MerchantBean merchant;
     private int goodsCollect;
+    private int tComment;
     private int merchantCollect;
 
     public String getTDetails() {
@@ -305,5 +306,13 @@ public class GoodsBean implements Serializable {
 
     public void setMerchantCollect(int merchantCollect) {
         this.merchantCollect = merchantCollect;
+    }
+
+    public int getTComment() {
+        return tComment;
+    }
+
+    public void setTComment(int tComment) {
+        this.tComment = tComment;
     }
 }

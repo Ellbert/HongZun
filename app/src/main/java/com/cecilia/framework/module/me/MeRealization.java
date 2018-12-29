@@ -4,6 +4,7 @@ import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
+import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.me.bean.BankBean;
 import com.cecilia.framework.module.me.bean.BankCardBean;
@@ -71,9 +72,9 @@ public class MeRealization {
                 .subscribe(observer);
     }
 
-    public static void saveBankCard(int userId,String username,int bankId,String cardNum,String isDefault,NetworkObserver<Object> observer){
+    public static void saveBankCard(int userId,String username,String bankName,String cardNum,String branch,String isDefault,NetworkObserver<Object> observer){
         NetworkUtil.getInstance().setApi(MeApi.class)
-                .saveBankCard(userId,username,bankId,cardNum,isDefault)
+                .saveBankCard(userId,username,bankName,cardNum,branch,isDefault)
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }
@@ -140,6 +141,20 @@ public class MeRealization {
         NetworkUtil.getInstance().setApi(MeApi.class)
                 .removeConcern(id)
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void firstList(int userId,int page,NetworkObserver<PageBean<UserBean>> observer){
+        NetworkUtil.getInstance().setApi(MeApi.class)
+                .firstFansList(userId,page)
+                .compose(AsynchronousUtil.<BaseBean<PageBean<UserBean>>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void secondList(int userId,int page,NetworkObserver<PageBean<UserBean>> observer){
+        NetworkUtil.getInstance().setApi(MeApi.class)
+                .secondFansList(userId,page)
+                .compose(AsynchronousUtil.<BaseBean<PageBean<UserBean>>>setThread())
                 .subscribe(observer);
     }
 }

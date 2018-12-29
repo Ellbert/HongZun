@@ -3,14 +3,19 @@ package com.cecilia.framework.module.me.activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class AboutActivity extends BaseActivity {
+
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), AboutActivity.class);
@@ -24,7 +29,7 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        mTvTitleText.setText("关于我们");
     }
 
     @Override

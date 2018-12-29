@@ -21,6 +21,7 @@ import com.cecilia.framework.module.me.presenter.BankCardPresenter;
 import com.cecilia.framework.module.me.view.BankCardView;
 import com.cecilia.framework.module.product.activity.ProductActivity;
 import com.cecilia.framework.utils.DialogUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
@@ -42,9 +43,12 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
     EditText mEtBankNum;
     @BindView(R.id.cb_default)
     CheckBox mCheckBox;
+    @BindView(R.id.et_branch)
+    EditText mEtBranch;
     private BankCardPresenter mBankCardPresenter;
     private List<BankBean> mBankBeanList;
     private BankBean mBankBean;
+    private String mUserName;
     private String isDefault = "0";
 
     public static void launch(Activity context) {
@@ -65,6 +69,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
     @Override
     protected void initData() {
         DialogUtil.createLoadingDialog(BankCardActivity.this, "加载中...", true, null);
+        mUserName = SharedPreferenceUtil.getString(this, "userName");
         mBankCardPresenter = new BankCardPresenter(this);
         mBankCardPresenter.getBankList();
     }
@@ -111,8 +116,13 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
                 break;
             case R.id.tv_confirm:
                 String number = mEtBankNum.getText().toString();
+                String branch = mEtBranch.getText().toString();
                 if (mBankBean == null) {
                     ToastUtil.newSafelyShow("请选择银行名称！");
+                    return;
+                }
+                if (StringUtil.isNullOrEmpty(branch)) {
+                    ToastUtil.newSafelyShow("银行支行名不可为空！");
                     return;
                 }
                 if (StringUtil.isNullOrEmpty(number)) {
@@ -129,7 +139,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
                     isDefault = "0";
                 }
                 DialogUtil.createLoadingDialog(BankCardActivity.this, "添加中...", true, null);
-                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), mBankBean.getTBank(), mBankBean.getTId(), number, "0");
+                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), mUserName, mBankBean.getTBank(), number, branch, isDefault);
                 break;
         }
     }

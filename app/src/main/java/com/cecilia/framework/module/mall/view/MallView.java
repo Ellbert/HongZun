@@ -10,5 +10,7 @@ public interface MallView {
 
     void onGetSuccess(@NonNull List<GoodsBean> goodsBeans);
 
+    void onGetGoodsListSuccess(@NonNull List<GoodsBean> goodsBeans);
+
     void onGetFailed();
 }

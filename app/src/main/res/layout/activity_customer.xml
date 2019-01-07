@@ -99,7 +99,7 @@
             android:drawableTop="@mipmap/icn_no_pass"
             android:drawablePadding="19dp"
             android:gravity="center"
-            android:text="您的店铺申请未通过，详细请咨询泓宝平台客服，谢谢！"
+            android:text="您的店铺申请未通过，请重新入驻，详细请咨询泓宝平台客服，谢谢！"
             android:textColor="@color/txt_first"
             android:textSize="@dimen/txt_second" />
 
@@ -112,7 +112,7 @@
             android:layout_marginTop="73dp"
             android:background="@drawable/bg_btn_large_green_normal"
             android:gravity="center"
-            android:text="完成"
+            android:text="重新入驻"
             android:textColor="@color/white"
             android:textSize="@dimen/txt_first" />
 

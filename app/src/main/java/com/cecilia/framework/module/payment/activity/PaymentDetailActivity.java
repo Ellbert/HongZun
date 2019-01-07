@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.payment.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -149,12 +150,12 @@ public class PaymentDetailActivity extends BaseActivity {
                 mRvDetail.setAdapter(mMessageDetailAdapter);
                 mMessageBean = (MessageBean) getIntent().getSerializableExtra("message");
                 if (mMessageBean.getTMoney() == 0) {
-                    mTvMoney.setText(mMessageBean.getTMessageDescribe());
+                    mTvMoney.setText(mMessageBean.getTMessageDescribe()+"");
                 } else {
-                    mTvMoney.setText(ArithmeticalUtil.getMoneyString(mMessageBean.getTMoney()));
+                    mTvMoney.setText(ArithmeticalUtil.getMoneyString(mMessageBean.getTMoney())+"");
                 }
                 mMessageDetailAdapter.setDataList(mMessageBean.getInfoList());
-                mTvTitle.setText(mMessageBean.getTMessageTitle());
+                mTvTitle.setText(mMessageBean.getTMessageTitle()+"");
                 break;
         }
     }

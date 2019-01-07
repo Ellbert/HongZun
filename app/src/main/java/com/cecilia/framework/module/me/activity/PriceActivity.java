@@ -32,7 +32,7 @@ public class PriceActivity extends BaseActivity {
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), PriceActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -92,4 +92,5 @@ public class PriceActivity extends BaseActivity {
                 break;
         }
     }
+
 }

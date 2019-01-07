@@ -26,9 +26,9 @@ public class ChooseAddressAdapter extends BaseRvAdapter<AddressBean> {
         TextView tvAddress = holder.getView(R.id.tv_address);
         TextView tvPhone = holder.getView(R.id.tv_phone);
         CheckBox checkBox = holder.getView(R.id.cb_check);
-        tvName.setText(data.getTName());
-        tvAddress.setText(data.getTAddress());
-        tvPhone.setText(data.getTPhone());
+        tvName.setText(data.getTName()+"");
+        tvAddress.setText(data.getTAddress()+"");
+        tvPhone.setText(data.getTPhone()+"");
         if (position == holder.getAdapterPosition()) {
             checkBox.setChecked(true);
         } else {

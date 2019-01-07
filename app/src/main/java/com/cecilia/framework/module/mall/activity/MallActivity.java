@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.mall.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -40,10 +41,10 @@ public class MallActivity extends BaseActivity {
     private List<Fragment> mFragments = new ArrayList<>();
     private int mIndex;
 
-    public static void launch(Context context, int index) {
+    public static void launch(Activity context, int index) {
         Intent intent = new Intent(context, MallActivity.class);
         intent.putExtra("index", index);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -189,6 +190,15 @@ public class MallActivity extends BaseActivity {
             case R.id.iv_back:
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 }

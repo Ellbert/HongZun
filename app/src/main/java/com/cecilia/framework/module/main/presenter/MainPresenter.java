@@ -42,6 +42,11 @@ public class MainPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMainView.onFailed();
+            }
         });
     }
 }

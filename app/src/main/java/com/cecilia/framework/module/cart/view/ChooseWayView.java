@@ -8,5 +8,7 @@ public interface ChooseWayView {
 
     void showAlipayResult(@NonNull String data);
 
+    void onHongBaoPaySuccess();
+
     void onFailed();
 }

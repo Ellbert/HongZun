@@ -3,6 +3,7 @@ package com.cecilia.framework.module.main.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import android.widget.RadioGroup;
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
+import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.adapter.MainPagerAdapter;
@@ -93,7 +95,11 @@ public class MainActivity extends BaseActivity implements MainView {
         mVersionPopupWindow.setShareListener(new VersionPopupWindow.UpdateListener() {
             @Override
             public void onUpdate() {
-                finish();
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri uri = Uri.parse(NetworkConstant.DOWNLOAD_URL);
+                intent.setData(uri);
+                startActivity(intent);
             }
         });
     }
@@ -109,10 +115,12 @@ public class MainActivity extends BaseActivity implements MainView {
                     SharedPreferenceUtil.putInt(this, "merchantId", 0) &&
                     SharedPreferenceUtil.putString(this, "header", null) &&
                     SharedPreferenceUtil.putLong(this, "balance", 0) &&
-                    SharedPreferenceUtil.putLong(this, "honeBalance", 0)) {
+                    SharedPreferenceUtil.putLong(this, "honeBalance", 0) &&
+                    SharedPreferenceUtil.putString(this, "token", null)) {
                 DialogUtil.dismissLoadingDialog();
-                ToastUtil.newSafelyShow("退出成功！");
+//                ToastUtil.newSafelyShow("退出成功！");
                 GcGuangApplication.setId(0);
+                GcGuangApplication.setsToken(null);
                 LoginActivity.launch(this);
                 finish();
             } else {
@@ -180,6 +188,9 @@ public class MainActivity extends BaseActivity implements MainView {
             setBottomButtonCheck(1);
         } else if (requestCode == 827 && resultCode == 0) {
             ToastUtil.newSafelyShow("商品评论成功");
+        } if (resultCode == 99) {
+            LogUtil.e("onActivityResult  activity");
+            doEvents(new EventBean(-1));
         }
     }
 
@@ -201,6 +212,6 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void onFailed() {
-
+        doEvents(new EventBean(-1));
     }
 }

@@ -1,6 +1,7 @@
 package com.cecilia.framework.module.product;
 
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
@@ -21,70 +22,70 @@ public class ProductRealization {
 
     public static void getGoodsDetail(int id, int userId, NetworkObserver<GoodsBean> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .getGoodsDetail(id, userId)
+                .getGoodsDetail(id, userId,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<GoodsBean>>setThread())
                 .subscribe(observer);
     }
 
     public static void createOrder(int userId, int goodsId, String spec, String num, String addressId, String remark, NetworkObserver<ArrayList<Integer>> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .createOrder(userId, goodsId, spec, num, addressId, remark)
+                .createOrder(userId, goodsId, spec, num, addressId, remark,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<ArrayList<Integer>>>setThread())
                 .subscribe(observer);
     }
 
     public static void buy(String orderIds, int userID, String subject, NetworkObserver<String> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .buy(orderIds, userID, subject)
+                .buy(orderIds, userID, subject,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<String>>setThread())
                 .subscribe(observer);
     }
 
     public static void addCart(JsonObject object, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .addCart(object)
+                .addCart(object,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }
 
     public static void addCollect(int userId, int goodsId, String goodsTitle, String pic, String price, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .addCollect(userId, goodsId, goodsTitle, pic, price)
+                .addCollect(userId, goodsId, goodsTitle, pic, price,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }
 
     public static void removeCollect(int userId, int goodsId, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .removeCollect(userId, goodsId)
+                .removeCollect(userId, goodsId,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .safeSubscribe(observer);
     }
 
     public static void getCommentList(int goodsId, int type, int page, NetworkObserver<PageBean<CommentBean>> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .commentList(goodsId, type, page)
+                .commentList(goodsId, type, page,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<PageBean<CommentBean>>>setThread())
                 .safeSubscribe(observer);
     }
 
     public static void getCommentList(int goodsId, NetworkObserver<List<CommentBean>> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .recentlyList(goodsId)
+                .recentlyList(goodsId,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<List<CommentBean>>>setThread())
                 .safeSubscribe(observer);
     }
 
     public static void addFollow(int userId, int shopId, String name, String url, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .addFollow(userId, shopId, name, url)
+                .addFollow(userId, shopId, name, url,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }
 
     public static void removeFollow(int userId, int shopId, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ProductApi.class)
-                .removeFollow(userId, shopId)
+                .removeFollow(userId, shopId,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }

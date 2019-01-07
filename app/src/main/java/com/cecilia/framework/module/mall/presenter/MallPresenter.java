@@ -45,6 +45,11 @@ public class MallPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMallView.onGetFailed();
+            }
         });
     }
 
@@ -73,6 +78,11 @@ public class MallPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMallView.onGetFailed();
             }
         });
     }

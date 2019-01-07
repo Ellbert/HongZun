@@ -18,7 +18,7 @@ public class CartGoodsBean implements Serializable {
     private String tPic;
     private long tLogisticsMoney;
     private int tStatus;
-    private String tCreatetime;
+    private long tCreatetime;
     private int tProperty;
 
     public void setTId(int tId) {
@@ -125,11 +125,11 @@ public class CartGoodsBean implements Serializable {
         return tStatus;
     }
 
-    public void setTCreatetime(String tCreatetime) {
+    public void setTCreatetime(long tCreatetime) {
         this.tCreatetime = tCreatetime;
     }
 
-    public String getTCreatetime() {
+    public long getTCreatetime() {
         return tCreatetime;
     }
 

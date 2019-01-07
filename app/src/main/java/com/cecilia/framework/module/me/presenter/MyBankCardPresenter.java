@@ -26,7 +26,7 @@ public class MyBankCardPresenter {
             }
 
             @Override
-            protected void onSuccess(List<BankCardBean> data,String other) {
+            protected void onSuccess(List<BankCardBean> data, String other) {
                 mMyBankCardView.onGetListSuccess(data);
             }
 
@@ -44,6 +44,11 @@ public class MyBankCardPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMyBankCardView.onFailed();
+            }
         });
     }
 
@@ -56,7 +61,7 @@ public class MyBankCardPresenter {
             }
 
             @Override
-            protected void onSuccess(Object data,String other) {
+            protected void onSuccess(Object data, String other) {
                 mMyBankCardView.onDeleteSuccess();
             }
 
@@ -74,10 +79,15 @@ public class MyBankCardPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMyBankCardView.onFailed();
+            }
         });
     }
 
-    public void setDefaultCard(int cardId){
+    public void setDefaultCard(int cardId) {
         MeRealization.setDefaultBankCart(cardId, new NetworkObserver<Object>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -102,6 +112,11 @@ public class MyBankCardPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMyBankCardView.onFailed();
             }
         });
     }

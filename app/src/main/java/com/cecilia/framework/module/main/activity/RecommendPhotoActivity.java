@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +24,10 @@ import com.cecilia.framework.utils.FileUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.PermissionUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.ViewUtil;
+import com.cecilia.framework.utils.WXShare;
+import com.cecilia.framework.widget.SharePopupWindow;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,7 +48,9 @@ public class RecommendPhotoActivity extends BaseActivity implements RecommendPho
     String[] mPermissionList = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private RecommendPhotoPresenter mRecommendPhotoPresenter;
-
+    private String mPhotoImage;
+    private WXShare mWXShare;
+    private SharePopupWindow mSharePopupWindow;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, RecommendPhotoActivity.class);
@@ -62,11 +68,14 @@ public class RecommendPhotoActivity extends BaseActivity implements RecommendPho
         mTvTitleText.setText("推荐好友");
         mTvSubmit.setVisibility(View.GONE);
         mTvEdit.setVisibility(View.VISIBLE);
-        mTvEdit.setText("保存图片");
+        mTvEdit.setText("分享");
     }
 
     @Override
     protected void initData() {
+        mWXShare = new WXShare(this);
+        mSharePopupWindow = new SharePopupWindow();
+        mSharePopupWindow.initView(this);
         DialogUtil.createLoadingDialog(this, "获取中...", false, null);
         mRecommendPhotoPresenter = new RecommendPhotoPresenter(this);
         mRecommendPhotoPresenter.getCode(GcGuangApplication.getId());
@@ -79,7 +88,34 @@ public class RecommendPhotoActivity extends BaseActivity implements RecommendPho
 
     @Override
     protected void initListener() {
+        mSharePopupWindow.setShareListener(new SharePopupWindow.ShareListener() {
+            @Override
+            public void ShareMedia(int type) {
+//                LogUtil.e("ShareMedia");
+                Bitmap bitmap = ViewUtil.createViewBitmap(mLlPhoto);
+                //设置缩略图
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 200, 200, true);
+                bitmap.recycle();
+                mWXShare.shareUrl(type, RecommendPhotoActivity.this, "http://www.hongzuncctv.com/HZ/open.jsp?phone=" + SharedPreferenceUtil.getString(RecommendPhotoActivity.this, "tel"), "推荐好友", "推荐好友得佣金", scaledBitmap);
+//                mWXShare.shareUrl(type, RecommendPhotoActivity.this, null, "", "", scaledBitmap);
+            }
+        });
+        mWXShare.setListener(new WXShare.OnResponseListener() {
+            @Override
+            public void onSuccess() {
+                ImageUtil.loadNetworkImage(RecommendPhotoActivity.this, NetworkConstant.IMAGE_URL + mPhotoImage, mTvCode, null);
+            }
 
+            @Override
+            public void onCancel() {
+                ImageUtil.loadNetworkImage(RecommendPhotoActivity.this, NetworkConstant.IMAGE_URL + mPhotoImage, mTvCode, null);
+            }
+
+            @Override
+            public void onFail(String message) {
+                ImageUtil.loadNetworkImage(RecommendPhotoActivity.this, NetworkConstant.IMAGE_URL + mPhotoImage, mTvCode, null);
+            }
+        });
     }
 
     @Override
@@ -100,8 +136,8 @@ public class RecommendPhotoActivity extends BaseActivity implements RecommendPho
                 break;
             case R.id.tv_edit:
                 if (PermissionUtil.checkRequestPermissionInActivity(this, SHARE_MSG, mPermissionList)) {
-                    Bitmap bitmap = ViewUtil.createViewBitmap(mLlPhoto);
-                    FileUtil.saveBitmap(this, bitmap);
+                    mSharePopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//                    FileUtil.saveBitmap(this, bitmap);
                 }
                 break;
         }
@@ -111,18 +147,29 @@ public class RecommendPhotoActivity extends BaseActivity implements RecommendPho
     protected void onRequestPermissionsSucceed(int requestCode) {
         super.onRequestPermissionsSucceed(requestCode);
         if (requestCode == SHARE_MSG) {
-            Bitmap bitmap = ViewUtil.createViewBitmap(mLlPhoto);
-            FileUtil.saveBitmap(this, bitmap);
+            mSharePopupWindow.showAtLocation(mLlPhoto, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//            FileUtil.saveBitmap(this, bitmap);
         }
     }
 
     @Override
     public void onGetCodeSuccess(String data) {
-        ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + data, mTvCode, null);
+        mPhotoImage = data;
+        ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mPhotoImage, mTvCode, null);
     }
 
     @Override
     public void onFailed() {
+        setResult(99);
+        finish();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

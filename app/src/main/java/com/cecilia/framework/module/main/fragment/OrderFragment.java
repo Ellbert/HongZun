@@ -14,6 +14,7 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.TabFragmentAdapter;
+import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.NoScrollViewPager;
@@ -82,6 +83,9 @@ public class OrderFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtil.e("Fragment onActivityResult");
+//        if (resultCode == 99) {
+//            LoginActivity.launch(this.getContext());
+//            this.mActivity.finish();
+//        }
     }
 }

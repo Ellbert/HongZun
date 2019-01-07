@@ -34,7 +34,7 @@ public class FollowAdapter extends BaseLmrvAdapter<FollowBean> {
         TextView tvName = holder.getView(R.id.tv_name);
         ImageView imageView = holder.getView(R.id.iv_header);
         TextView tvCancel = holder.getView(R.id.tv_cancel);
-        tvName.setText(data.getTName());
+        tvName.setText(data.getTName()+"");
 //        ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTPic(), imageView, null);
         ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL +  data.getTPic(), imageView, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(mContext));
         RatingBar ratingBar = holder.getView(R.id.rb_follow);

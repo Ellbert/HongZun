@@ -10,6 +10,7 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseLmrvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.module.main.activity.NewDetailActivity;
+import com.cecilia.framework.module.main.activity.NewsActivity;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 
 public class NewsAdapter extends BaseLmrvAdapter<NoticeBean> {
@@ -27,7 +28,7 @@ public class NewsAdapter extends BaseLmrvAdapter<NoticeBean> {
     public void onBindRecyclerViewHolder(BaseViewHolder holder, final NoticeBean data) {
 //        ImageUtil.loadNetworkImage(mContext, data.getProduct_img(), (ImageView) holder.getView(R.id.iv_recommend), true, false, null);
         TextView textView = holder.getView(R.id.tv_text);
-        textView.setText(data.getTTitle());
+        textView.setText(data.getTTitle()+"");
         holder.getView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

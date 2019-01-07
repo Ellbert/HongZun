@@ -33,7 +33,7 @@ public class SummitShopAdapter extends BaseRvAdapter<CartShopBean> {
         TextView tvName = holder.getView(R.id.tv_to_shop);
         TextView tvFreight = holder.getView(R.id.tv_freight);
         EditText editText = holder.getView(R.id.rt_remake);
-        tvName.setText(data.getMerchantName());
+        tvName.setText(data.getMerchantName()+"");
         double sumFreight = 0;
         for (CartGoodsBean goodsBean : data.getList()) {
             sumFreight = ArithmeticalUtil.add(sumFreight, goodsBean.getTLogisticsMoney());

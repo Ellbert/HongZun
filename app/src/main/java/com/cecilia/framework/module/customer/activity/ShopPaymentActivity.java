@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.customer.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -39,11 +40,11 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
     private double mMoney;
     private ShopPaymentPresenter mShopPaymentPresenter;
 
-    public static void launch(Context context, int shopId,String shopName) {
+    public static void launch(Activity context, int shopId, String shopName) {
         Intent intent = new Intent(context, ShopPaymentActivity.class);
         intent.putExtra("shopId", shopId);
         intent.putExtra("shopName", shopName);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -101,10 +102,11 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
-    @OnClick({R.id.iv_back, R.id.ll_has_withdraw, R.id.ll_can_withdraw, R.id.ll_no_record,R.id.tv_withdraw})
+    @OnClick({R.id.iv_back, R.id.ll_has_withdraw, R.id.ll_can_withdraw, R.id.ll_no_record, R.id.tv_withdraw})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -120,7 +122,7 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
                 PaymentActivity.launch(this, 2, mShopId);
                 break;
             case R.id.tv_withdraw:
-                WithDrawActivity.launch(this,mMoney,mShopId,mShopName);
+                WithDrawActivity.launch(this, mMoney, mShopId, mShopName);
                 break;
         }
     }
@@ -128,7 +130,12 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
-        mShopPaymentPresenter.getWallet(mShopId);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        } else {
+            DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+            mShopPaymentPresenter.getWallet(mShopId);
+        }
     }
 }

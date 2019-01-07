@@ -264,7 +264,7 @@
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/v1"
         android:layout_toRightOf="@+id/v1"
-        android:text="泓樽超市"
+        android:text="泓宝超市"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_second" />
 

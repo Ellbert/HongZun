@@ -63,7 +63,7 @@ public class FansActivity extends BaseActivity implements FansView {
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), FansActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -230,5 +230,20 @@ public class FansActivity extends BaseActivity implements FansView {
     public void onFailed() {
         mTvFirstLoadMore.setEnabled(true);
         mTvSecondLoadMore.setEnabled(true);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
+    }
+
+    @Override
+    public void onLoginFailed() {
+        setResult(99);
+        finish();
     }
 }

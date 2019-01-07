@@ -39,7 +39,7 @@ public class CartShopAdapter extends BaseRvAdapter<CartShopBean> {
         final CheckBox checkBox = holder.getView(R.id.cb_shop);
         TextView tvName = holder.getView(R.id.tv_to_shop);
         checkBox.setChecked(data.isSelected());
-        tvName.setText(data.getMerchantName());
+        tvName.setText(data.getMerchantName()+"");
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

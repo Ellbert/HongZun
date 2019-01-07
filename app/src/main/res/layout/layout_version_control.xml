@@ -65,8 +65,8 @@
         <TextView
             android:id="@+id/tv_update"
             android:layout_width="153dp"
-            android:layout_height="23dp"
-            android:layout_marginBottom="25dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_btn_large_green_selector"
             android:gravity="center"
             android:text="立即更新"

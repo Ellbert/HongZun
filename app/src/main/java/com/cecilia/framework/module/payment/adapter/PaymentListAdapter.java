@@ -31,7 +31,7 @@ public class PaymentListAdapter extends BaseLmrvAdapter {
         TextView tvMoney = holder.getView(R.id.tv_money);
         if (data instanceof PaymentBean) {
             PaymentBean paymentBean = (PaymentBean) data;
-            tvTitle.setText(paymentBean.getTTitle());
+            tvTitle.setText(paymentBean.getTTitle()+"");
             tvDate.setText(StringUtil.stampToDate(paymentBean.getTCreattime()));
             if (paymentBean.getTType() == 0) {
                 tvMoney.setText("-" + ArithmeticalUtil.getMoneyStringWithoutSymbol(paymentBean.getTAmount()));

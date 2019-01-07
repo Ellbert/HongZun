@@ -1,6 +1,7 @@
 package com.cecilia.framework.module.main.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +12,14 @@ import android.widget.TextView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
+import com.cecilia.framework.listener.OnItemClickListener;
+import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.adapter.MoreAdapter;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.presenter.MorePresenter;
 import com.cecilia.framework.module.main.view.MoreView;
 import com.cecilia.framework.module.mall.activity.MallActivity;
+import com.cecilia.framework.module.product.activity.ProductActivity;
 import com.cecilia.framework.widget.MyScrollView;
 
 import java.util.List;
@@ -37,7 +41,7 @@ public class MoreFragment extends BaseFragment implements MoreView, SwipeRefresh
     TextView mTvText1;
     @BindView(R.id.rv_more)
     RecyclerView mRvMore;
-//    @BindView(R.id.iv_bg)
+    //    @BindView(R.id.iv_bg)
 //    ImageView mIvBg;
 //    @BindView(R.id.tv_search)
 //    TextView mTvSearch;
@@ -257,6 +261,17 @@ public class MoreFragment extends BaseFragment implements MoreView, SwipeRefresh
     @Override
     protected void initListener() {
         mSrlMore.setOnRefreshListener(this);
+        mMoreAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                ProductActivity.launch(MoreFragment.this.mActivity,id);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
+            }
+        });
 //        mSvMall.setOnScrollListener(this);
 //        mSvMall.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 //            @Override
@@ -391,44 +406,45 @@ public class MoreFragment extends BaseFragment implements MoreView, SwipeRefresh
 
     @Override
     public void showFail() {
-
+        LoginActivity.launch(this.getContext());
+        this.mActivity.finish();
     }
 
     @OnClick({R.id.tv_search, R.id.tv_mall, R.id.tv_brand, R.id.tv_food, R.id.tv_makeup, R.id.tv_luxury, R.id.tv_woman, R.id.tv_man, R.id.tv_kid, R.id.tv_sport, R.id.tv_digital})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_search:
-                MallActivity.launch(MoreFragment.this.getContext(), 0);
+                MallActivity.launch(MoreFragment.this.mActivity, 0);
                 break;
             case R.id.tv_mall:
-                MallActivity.launch(MoreFragment.this.getContext(), 1);
+                MallActivity.launch(MoreFragment.this.mActivity, 1);
                 break;
             case R.id.tv_brand:
-                MallActivity.launch(MoreFragment.this.getContext(), 2);
+                MallActivity.launch(MoreFragment.this.mActivity, 2);
                 break;
             case R.id.tv_food:
-                MallActivity.launch(MoreFragment.this.getContext(), 3);
+                MallActivity.launch(MoreFragment.this.mActivity, 3);
                 break;
             case R.id.tv_makeup:
-                MallActivity.launch(MoreFragment.this.getContext(), 4);
+                MallActivity.launch(MoreFragment.this.mActivity, 4);
                 break;
             case R.id.tv_luxury:
-                MallActivity.launch(MoreFragment.this.getContext(), 5);
+                MallActivity.launch(MoreFragment.this.mActivity, 5);
                 break;
             case R.id.tv_woman:
-                MallActivity.launch(MoreFragment.this.getContext(), 6);
+                MallActivity.launch(MoreFragment.this.mActivity, 6);
                 break;
             case R.id.tv_man:
-                MallActivity.launch(MoreFragment.this.getContext(), 7);
+                MallActivity.launch(MoreFragment.this.mActivity, 7);
                 break;
             case R.id.tv_kid:
-                MallActivity.launch(MoreFragment.this.getContext(), 8);
+                MallActivity.launch(MoreFragment.this.mActivity, 8);
                 break;
             case R.id.tv_sport:
-                MallActivity.launch(MoreFragment.this.getContext(), 9);
+                MallActivity.launch(MoreFragment.this.mActivity, 9);
                 break;
             case R.id.tv_digital:
-                MallActivity.launch(MoreFragment.this.getContext(), 10);
+                MallActivity.launch(MoreFragment.this.mActivity, 10);
                 break;
         }
     }
@@ -451,6 +467,15 @@ public class MoreFragment extends BaseFragment implements MoreView, SwipeRefresh
 //            mTlMall.setAlpha(f);
 //            mIvBg.setAlpha(f);
 //            mTvSearch.setAlpha(f);
+//        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == 99) {
+//            LoginActivity.launch(this.getContext());
+//            this.mActivity.finish();
 //        }
     }
 }

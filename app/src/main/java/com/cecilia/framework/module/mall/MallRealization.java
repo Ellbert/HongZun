@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.mall;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.NetworkObserver;
 import com.cecilia.framework.general.PageBean;
@@ -13,14 +14,14 @@ public class MallRealization {
 
     public static void search(String search, int page, NetworkObserver<PageBean<GoodsBean>> observer) {
         NetworkUtil.getInstance().setApi(MallApi.class)
-                .search(search, page)
+                .search(search, page,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<PageBean<GoodsBean>>>setThread())
                 .subscribe(observer);
     }
 
     public static void goodsList(int search, int page, NetworkObserver<PageBean<GoodsBean>> observer) {
         NetworkUtil.getInstance().setApi(MallApi.class)
-                .goodsList(search, page)
+                .goodsList(search, page,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<PageBean<GoodsBean>>>setThread())
                 .subscribe(observer);
     }

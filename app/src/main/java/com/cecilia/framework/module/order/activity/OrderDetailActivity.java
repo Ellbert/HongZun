@@ -177,13 +177,13 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
         mTvGet.setText("收件人：" + orderDetailBean.getTConsignee());
         mTvContact.setText("联系方式：" + orderDetailBean.getTTel());
         mTvAddress.setText("详细地址：" + orderDetailBean.getTAddress());
-        mTvShopName.setText(orderDetailBean.getMerchant().getTName());
+        mTvShopName.setText(orderDetailBean.getMerchant().getTName()+"");
         mTvGoodsMoney.setText(getGoodsMoney(orderDetailBean.getGoodsList()));
         mTvPostage.setText(getPostageMoney(orderDetailBean.getGoodsList()));
         mTvOrderMoney.setText(ArithmeticalUtil.getMoneyString(orderDetailBean.getTTotalMoney()));
         mTvPayMoney.setText(ArithmeticalUtil.getMoneyString(orderDetailBean.getTPayMoney()));
         mTvPayWay.setText("支付宝");
-        mTvOrderNo.setText(orderDetailBean.getTOutTradeNo());
+        mTvOrderNo.setText(orderDetailBean.getTOutTradeNo()+"");
         mGoodsAdapter.setDataList(orderDetailBean.getGoodsList());
         mTvCreateTime.setText(StringUtil.stampToDate(orderDetailBean.getTCreatetime()));
         if (orderDetailBean.getTPayTime() == 0) {
@@ -200,7 +200,8 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
 
     @Override
     public void onGetFailed() {
-
+        setResult(99);
+        finish();
     }
 
     private String getGoodsMoney(List<GoodsBean> goodsBeans) {
@@ -220,17 +221,14 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
     }
 
     @Override
-    protected void onFinish() {
-        setResult(10);
-        super.onFinish();
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 87) {
             DialogUtil.createLoadingDialog(this, "加载中...", false, null);
             mOrderPresenter.getOrderDetail(mOrderId);
+        } else if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 
@@ -296,4 +294,5 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
         ToastUtil.newSafelyShow("收货成功");
         finish();
     }
+
 }

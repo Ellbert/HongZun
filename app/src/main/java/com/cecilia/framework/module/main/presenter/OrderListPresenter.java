@@ -44,6 +44,11 @@ public class OrderListPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mOrderListView.onFailed();
+            }
         });
     }
 }

@@ -49,6 +49,7 @@
             app:layout_columnWeight="1" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_copy_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

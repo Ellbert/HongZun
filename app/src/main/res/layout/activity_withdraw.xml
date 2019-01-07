@@ -107,6 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_union"
+        android:gravity="center_vertical"
         android:background="@color/white"
         android:orientation="horizontal">
 
@@ -148,7 +149,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_wechat"
+            android:id="@+id/tv_union"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

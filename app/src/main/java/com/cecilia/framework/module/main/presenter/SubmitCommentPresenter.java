@@ -44,6 +44,11 @@ public class SubmitCommentPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mSubmitCommentView.onFailed();
+            }
         });
     }
 
@@ -72,6 +77,11 @@ public class SubmitCommentPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mSubmitCommentView.onFailed();
             }
         });
     }

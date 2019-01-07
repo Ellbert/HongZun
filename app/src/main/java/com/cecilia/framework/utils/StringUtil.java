@@ -595,16 +595,16 @@ public class StringUtil {
         String levelString = "";
         switch (level) {
             case 0:
-                levelString = "泓樽士兵";
+                levelString = "泓宝士兵";
                 break;
             case 1:
-                levelString = "泓樽勇士";
+                levelString = "泓宝勇士";
                 break;
             case 2:
-                levelString = "泓樽将军";
+                levelString = "泓宝将军";
                 break;
             case 3:
-                levelString = "泓樽元帅";
+                levelString = "泓宝元帅";
                 break;
         }
         return levelString;
@@ -652,15 +652,18 @@ public class StringUtil {
     2、从卡号最后一位数字开始，逆向将偶数位数字，先乘以2（如果乘积为两位数，将个位十位数字相加，即将其减去9），再求和。
     3、将奇数位总和加上偶数位总和，结果应该可以被10整除。
     */
+
     /**
      * 校验银行卡卡号
      */
     public static boolean checkBankCard(String bankCard) {
-        if(bankCard.length() < 15 || bankCard.length() > 19) {
+        if (StringUtil.isNullOrEmpty(bankCard))
+            return false;
+        if (bankCard.length() < 15 || bankCard.length() > 19) {
             return false;
         }
         char bit = getBankCardCheckCode(bankCard.substring(0, bankCard.length() - 1));
-        if(bit == 'N'){
+        if (bit == 'N') {
             return false;
         }
         return bankCard.charAt(bankCard.length() - 1) == bit;
@@ -668,35 +671,57 @@ public class StringUtil {
 
     /**
      * 获取银行卡后四位
+     *
      * @param nonCheckCodeBankCard
      * @return
      */
-    public static String getLastBankCard(String nonCheckCodeBankCard){
-        return nonCheckCodeBankCard.substring(nonCheckCodeBankCard.length()-4,nonCheckCodeBankCard.length());
+    public static String getStarBankCard(String nonCheckCodeBankCard) {
+        int length = nonCheckCodeBankCard.length();
+        String cardNumber = "";
+        for (int j = 1; j < length - 3; j++) {
+            if (j % 4 == 0) {
+                cardNumber = cardNumber + "* ";
+            } else {
+                cardNumber = cardNumber + "*";
+            }
+        }
+        cardNumber = cardNumber + nonCheckCodeBankCard.substring(length - 4, length);
+        return cardNumber;
+    }
+
+    /**
+     * 获取银行卡后四位
+     *
+     * @param nonCheckCodeBankCard
+     * @return
+     */
+    public static String getLastBankCard(String nonCheckCodeBankCard) {
+        return nonCheckCodeBankCard.substring(nonCheckCodeBankCard.length() - 4, nonCheckCodeBankCard.length());
     }
 
     /**
      * 从不含校验位的银行卡卡号采用 Luhm 校验算法获得校验位
+     *
      * @param nonCheckCodeBankCard
      * @return
      */
-    public static char getBankCardCheckCode(String nonCheckCodeBankCard){
-        if(nonCheckCodeBankCard == null || nonCheckCodeBankCard.trim().length() == 0
+    public static char getBankCardCheckCode(String nonCheckCodeBankCard) {
+        if (nonCheckCodeBankCard == null || nonCheckCodeBankCard.trim().length() == 0
                 || !nonCheckCodeBankCard.matches("\\d+")) {
             //如果传的不是数据返回N
             return 'N';
         }
         char[] chs = nonCheckCodeBankCard.trim().toCharArray();
         int luhmSum = 0;
-        for(int i = chs.length - 1, j = 0; i >= 0; i--, j++) {
+        for (int i = chs.length - 1, j = 0; i >= 0; i--, j++) {
             int k = chs[i] - '0';
-            if(j % 2 == 0) {
+            if (j % 2 == 0) {
                 k *= 2;
                 k = k / 10 + k % 10;
             }
             luhmSum += k;
         }
-        return (luhmSum % 10 == 0) ? '0' : (char)((10 - luhmSum % 10) + '0');
+        return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
     }
 
 

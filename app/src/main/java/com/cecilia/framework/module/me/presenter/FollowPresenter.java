@@ -44,6 +44,11 @@ public class FollowPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mFollowView.onGetFailed();
+            }
         });
     }
 
@@ -72,6 +77,11 @@ public class FollowPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mFollowView.onGetFailed();
             }
         });
     }

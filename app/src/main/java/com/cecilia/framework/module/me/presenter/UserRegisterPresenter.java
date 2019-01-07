@@ -44,6 +44,11 @@ public class UserRegisterPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mUserRegisterView.onFailed();
+            }
         });
     }
 
@@ -89,6 +94,11 @@ public class UserRegisterPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mUserRegisterView.onFailed();
             }
         });
 

@@ -1,12 +1,10 @@
 package com.cecilia.framework.module.payment.activity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cecilia.framework.GcGuangApplication;
@@ -14,22 +12,12 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
-import com.cecilia.framework.general.TabFragmentAdapter;
-import com.cecilia.framework.module.main.activity.MainActivity;
-import com.cecilia.framework.module.main.fragment.OrderListFragment;
-import com.cecilia.framework.module.payment.adapter.PaymentAdapter;
 import com.cecilia.framework.module.payment.adapter.PaymentListAdapter;
 import com.cecilia.framework.module.payment.bean.PaymentBean;
 import com.cecilia.framework.module.payment.bean.WithdrawBean;
-import com.cecilia.framework.module.payment.fragment.PaymentFragment;
 import com.cecilia.framework.module.payment.presenter.PaymentPresenter;
 import com.cecilia.framework.module.payment.view.PaymentView;
-import com.cecilia.framework.utils.DensityUtil;
-import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
-import com.cecilia.framework.widget.NoScrollViewPager;
-import com.cecilia.framework.widget.VerticalTabLayout.QTabView;
-import com.cecilia.framework.widget.VerticalTabLayout.VerticalTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,11 +46,11 @@ public class PaymentActivity extends BaseActivity implements PaymentView, SwipeR
     private int mPage = 1;
     private List mData;
 
-    public static void launch(Context context, int type, int merchantId) {
+    public static void launch(Activity context, int type, int merchantId) {
         Intent intent = new Intent(context, PaymentActivity.class);
         intent.putExtra("type", type);
         intent.putExtra("merchantId", merchantId);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -185,7 +173,8 @@ public class PaymentActivity extends BaseActivity implements PaymentView, SwipeR
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -219,6 +208,15 @@ public class PaymentActivity extends BaseActivity implements PaymentView, SwipeR
             mLoadMoreRecyclerView.setLoadMoreNull();
         } else {
             mLoadMoreRecyclerView.setLoadMoreFinish();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 }

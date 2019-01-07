@@ -50,6 +50,11 @@ public class HomePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHomeView.onFailed();
+            }
         });
     }
 
@@ -78,6 +83,11 @@ public class HomePresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHomeView.onFailed();
             }
         });
     }
@@ -108,6 +118,11 @@ public class HomePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHomeView.onFailed();
+            }
         });
     }
 
@@ -137,6 +152,11 @@ public class HomePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHomeView.onFailed();
+            }
         });
     }
 
@@ -165,6 +185,11 @@ public class HomePresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHomeView.onFailed();
             }
         });
     }

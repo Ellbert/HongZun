@@ -43,6 +43,11 @@ public class VipPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mVipView.onFailed();
+            }
         });
     }
 }

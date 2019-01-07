@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--城市选择器选项动画效果-->
     <style name="style_bottom_animation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/push_down_in_translate</item>
@@ -415,4 +415,18 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bg_tv_gray_shape</item>
     </style>
+
+    <style name="AppTheme.Fullscreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
+    </style>
+
+    <style name="AppTheme.Fullscreen.Translucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
 </resources>

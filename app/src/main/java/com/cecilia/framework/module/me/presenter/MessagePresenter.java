@@ -45,6 +45,11 @@ public class MessagePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMessageView.onGetFailed();
+            }
         });
     }
 }

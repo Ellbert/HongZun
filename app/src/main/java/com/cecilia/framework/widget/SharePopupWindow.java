@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.utils.DensityUtil;
-import com.cecilia.framework.utils.ViewUtil;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,15 +41,15 @@ public class SharePopupWindow extends PopupWindow implements View.OnClickListene
         if (mShareListener == null) return;
         switch (v.getId()) {
             case R.id.tv_share_wechat: {
-                mShareListener.ShareMedia(SHARE_MEDIA.WEIXIN);
+                mShareListener.ShareMedia(0);
                 break;
             }
             case R.id.tv_share_wechat_circle: {
-                mShareListener.ShareMedia(SHARE_MEDIA.WEIXIN_CIRCLE);
+                mShareListener.ShareMedia(1);
                 break;
             }
             case R.id.tv_copy_link: {
-//                mShareListener.ShareMedia(SHARE_MEDIA.QQ);
+//                mShareListener.ShareMedia(2);
                 break;
             }
         }
@@ -94,7 +92,9 @@ public class SharePopupWindow extends PopupWindow implements View.OnClickListene
     }
 
     public interface ShareListener {
-        void ShareMedia(SHARE_MEDIA shareMedia);
+        void ShareMedia(int type);
+//        void ShareMedia(SHARE_MEDIA shareMedia);
+
     }
 
 

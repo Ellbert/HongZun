@@ -86,13 +86,13 @@ public class DataActivity extends BaseActivity implements DataView {
 
     @Override
     protected void initViews() {
-        String headerUrl = SharedPreferenceUtil.getString(this,"header");
-        String name = SharedPreferenceUtil.getString(this,"userName");
-        String tel = SharedPreferenceUtil.getString(this,"tel");
-        int level = SharedPreferenceUtil.getInt(this,"level");
+        String headerUrl = SharedPreferenceUtil.getString(this, "header");
+        String name = SharedPreferenceUtil.getString(this, "userName");
+        String tel = SharedPreferenceUtil.getString(this, "tel");
+        int level = SharedPreferenceUtil.getInt(this, "level");
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + headerUrl, mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this));
-        mTvName.setText(name);
-        mTvPhone.setText(tel);
+        mTvName.setText(name + "");
+        mTvPhone.setText(tel + "");
         mTvTitle.setText(StringUtil.getLevel(level));
         mTvTitleText.setText("个人资料");
     }
@@ -249,8 +249,10 @@ public class DataActivity extends BaseActivity implements DataView {
                     }
                     break;
             }
+        } else if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
-
     }
 
     /**
@@ -271,7 +273,8 @@ public class DataActivity extends BaseActivity implements DataView {
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -279,4 +282,5 @@ public class DataActivity extends BaseActivity implements DataView {
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mHeader, mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this));
         ToastUtil.newSafelyShow("上传成功！");
     }
+
 }

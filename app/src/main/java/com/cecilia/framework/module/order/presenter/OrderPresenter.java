@@ -43,6 +43,11 @@ public class OrderPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mOrderDetailView.onGetFailed();
+            }
         });
     }
 
@@ -73,6 +78,11 @@ public class OrderPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mOrderDetailView.onGetFailed();
+            }
         });
     }
 
@@ -102,6 +112,11 @@ public class OrderPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mOrderDetailView.onGetFailed();
+            }
         });
     }
 
@@ -130,6 +145,11 @@ public class OrderPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mOrderDetailView.onGetFailed();
             }
         });
     }

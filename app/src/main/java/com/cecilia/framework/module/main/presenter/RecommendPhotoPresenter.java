@@ -41,6 +41,11 @@ public class RecommendPhotoPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mRecommendPhotoView.onFailed();
+            }
         });
     }
 }

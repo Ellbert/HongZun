@@ -315,4 +315,5 @@ public class GoodsBean implements Serializable {
     public void setTComment(int tComment) {
         this.tComment = tComment;
     }
+
 }

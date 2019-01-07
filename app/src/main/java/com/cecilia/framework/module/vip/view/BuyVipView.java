@@ -12,5 +12,7 @@ public interface BuyVipView {
 
     void showAlipayResult(@NonNull String data);
 
+    void onLoginFailed();
+
     void onFailed();
 }

@@ -33,7 +33,7 @@ public class CartPresenter {
 
             @Override
             protected void onFailure(int errorCode, String errorMsg) {
-
+                ToastUtil.newSafelyShow(errorMsg);
             }
 
             @Override
@@ -44,6 +44,11 @@ public class CartPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mCartView.onGetFailed();
             }
         });
     }
@@ -73,6 +78,11 @@ public class CartPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mCartView.onGetFailed();
             }
         });
     }
@@ -104,6 +114,11 @@ public class CartPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mCartView.onGetFailed();
+            }
         });
     }
 
@@ -132,6 +147,11 @@ public class CartPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mCartView.onGetFailed();
             }
         });
     }

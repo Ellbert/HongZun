@@ -44,6 +44,11 @@ public class NoticePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNoticeView.onFailed();
+            }
         });
     }
 }

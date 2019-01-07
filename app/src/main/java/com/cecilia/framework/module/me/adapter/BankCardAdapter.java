@@ -10,6 +10,7 @@ import com.cecilia.framework.base.BaseRvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.me.bean.BankCardBean;
+import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
 public class BankCardAdapter extends BaseRvAdapter<BankCardBean> {
@@ -23,8 +24,8 @@ public class BankCardAdapter extends BaseRvAdapter<BankCardBean> {
 
     @Override
     public void bindData(BaseViewHolder holder, final BankCardBean data) {
-        ((TextView)holder.getView(R.id.tv_bank_num)).setText(data.getTCardNum());
-        ((TextView)holder.getView(R.id.tv_bank)).setText(data.gettBankName());
+        ((TextView)holder.getView(R.id.tv_bank_num)).setText(StringUtil.getStarBankCard(data.getTCardNum()+""));
+        ((TextView)holder.getView(R.id.tv_bank)).setText(data.gettBankName()+"");
         final CheckBox checkBox = holder.getView(R.id.cb_default);
         if (data.getTDefault() == 0) {
             checkBox.setChecked(false);

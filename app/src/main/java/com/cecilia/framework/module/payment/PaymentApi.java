@@ -16,13 +16,13 @@ public interface PaymentApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Payment.USER_PAYMENT_LIST)
-    Observable<BaseBean<List<PaymentBean>>> paymentList(@Field("userId") int userId, @Field("type") int type, @Field("page") int page);
+    Observable<BaseBean<List<PaymentBean>>> paymentList(@Field("userId") int userId, @Field("type") int type, @Field("page") int page,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Payment.MERCHANT_PAYMENT_LIST)
-    Observable<BaseBean<List<PaymentBean>>> merchantPaymentList(@Field("merchantId") int merchantId, @Field("type") int type, @Field("page") int page);
+    Observable<BaseBean<List<PaymentBean>>> merchantPaymentList(@Field("merchantId") int merchantId, @Field("type") int type, @Field("page") int page,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Payment.WITHDRAW_RECORD)
-    Observable<BaseBean<List<WithdrawBean>>> withdrawRecord(@Field("merchantId") int merchantId, @Field("page") int page);
+    Observable<BaseBean<List<WithdrawBean>>> withdrawRecord(@Field("merchantId") int merchantId, @Field("page") int page,@Field("token") String token);
 }

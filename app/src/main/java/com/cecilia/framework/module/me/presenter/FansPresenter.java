@@ -44,6 +44,11 @@ public class FansPresenter {
             protected void onTimeout() {
                 mFansView.onFailed();
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mFansView.onLoginFailed();
+            }
         });
     }
 
@@ -73,6 +78,11 @@ public class FansPresenter {
             @Override
             protected void onTimeout() {
                 mFansView.onFailed();
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mFansView.onLoginFailed();
             }
         });
     }

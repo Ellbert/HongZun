@@ -1,7 +1,9 @@
 package com.cecilia.framework.module.main.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -21,6 +23,7 @@ import com.cecilia.framework.module.main.activity.NewsActivity;
 import com.cecilia.framework.module.main.activity.RecommendActivity;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
+import com.cecilia.framework.module.main.fragment.MainFragment;
 import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.module.vip.activity.VipActivity;
 import com.cecilia.framework.utils.ToastUtil;
@@ -59,7 +62,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewsActivity.launch(mContext);
+                NewsActivity.launch((MainActivity) mContext);
             }
         });
         baseViewHolder.getView(R.id.tv_message).setOnClickListener(new View.OnClickListener() {
@@ -78,7 +81,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.iv_payment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PaymentActivity.launch(mContext, 0,0);
+                PaymentActivity.launch((MainActivity) mContext, 0,0);
             }
         });
         baseViewHolder.getView(R.id.tv_hongbao).setOnClickListener(new View.OnClickListener() {
@@ -91,7 +94,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.tv_vip).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VipActivity.launch(mContext);
+                VipActivity.launch((Activity) mContext);
             }
         });
         baseViewHolder.getView(R.id.iv_recommend).setOnClickListener(new View.OnClickListener() {
@@ -109,7 +112,7 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             }
         });
         if (null != mAdsData) setBanner(baseViewHolder);
-        if (null != mNoticeBean) tvMessage.setText(mNoticeBean.getTTitle());
+        if (null != mNoticeBean) tvMessage.setText(mNoticeBean.getTTitle()+"");
     }
 
     @Override

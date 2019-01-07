@@ -13,7 +13,8 @@ import butterknife.OnClick;
 public class HongBaoFragment extends BaseFragment {
 
     public static final int CHANGE = 0;
-    public static final int WITHDRAW = 1;
+    public static final int FINANCIAL = 1;
+    public static final int WITHDRAW = 2;
     private int type;
 
     public HongBaoFragment(int type) {

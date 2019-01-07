@@ -216,7 +216,8 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
 

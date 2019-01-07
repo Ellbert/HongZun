@@ -45,6 +45,11 @@ public class BankCardPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mBankCardView.onSaveFailed();
+            }
         });
     }
 
@@ -73,6 +78,11 @@ public class BankCardPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mBankCardView.onSaveFailed();
             }
         });
     }

@@ -139,7 +139,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
                     isDefault = "0";
                 }
                 DialogUtil.createLoadingDialog(BankCardActivity.this, "添加中...", true, null);
-                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), mUserName, mBankBean.getTBank(), number, branch, isDefault);
+                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), mUserName, mBankBean.getTBank()+"", number, branch, isDefault);
                 break;
         }
     }
@@ -153,7 +153,8 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
 
     @Override
     public void onSaveFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -161,7 +162,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
         mBankBeanList = list;
         List<String> stringList = new ArrayList<>();
         for (BankBean bankBean : list) {
-            stringList.add(bankBean.getTBank());
+            stringList.add(bankBean.getTBank()+"");
         }
         stringList.add("请选择银行");
         //适配器
@@ -171,5 +172,14 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
         //加载适配器
         mSpinner.setAdapter(mArrayAdapter);
         mSpinner.setSelection(stringList.size() - 1, true);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

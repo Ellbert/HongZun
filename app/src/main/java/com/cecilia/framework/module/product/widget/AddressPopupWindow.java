@@ -17,6 +17,7 @@ import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.bean.SkuBean;
 import com.cecilia.framework.module.me.activity.AddressActivity;
+import com.cecilia.framework.module.me.activity.AddressEditActivity;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.product.adapter.ChooseAddressAdapter;
 import com.cecilia.framework.utils.DensityUtil;
@@ -119,7 +120,7 @@ public class AddressPopupWindow extends PopupWindow {
         mIvText2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddressActivity.launch(context);
+                AddressEditActivity.launch(context,null);
                 dismiss();
             }
         });

@@ -57,6 +57,11 @@ public class SummitOrderPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mSummitOrderView.onFailed();
+            }
         });
     }
 
@@ -84,6 +89,12 @@ public class SummitOrderPresenter {
 
             @Override
             protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mSummitOrderView.onFailed();
 
             }
         });
@@ -116,6 +127,12 @@ public class SummitOrderPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mSummitOrderView.onFailed();
+
+            }
         });
     }
 
@@ -143,6 +160,12 @@ public class SummitOrderPresenter {
 
             @Override
             protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mSummitOrderView.onFailed();
 
             }
         });

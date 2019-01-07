@@ -56,6 +56,11 @@ public class ChooseWayPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mChooseWayView.onFailed();
+            }
         });
     }
 
@@ -83,5 +88,40 @@ public class ChooseWayPresenter {
                         mChooseWayView.onFailed();
                     }
                 });
+    }
+
+    public void hongBaoPay(String orderIds, int userID){
+        CartRealization.buyByHongBao(orderIds, userID, new NetworkObserver<Object>() {
+
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mChooseWayView.onHongBaoPaySuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mChooseWayView.onFailed();
+            }
+        });
     }
 }

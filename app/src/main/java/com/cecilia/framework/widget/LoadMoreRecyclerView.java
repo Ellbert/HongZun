@@ -184,7 +184,6 @@ public class LoadMoreRecyclerView extends RecyclerView {
         this.post(new Runnable() {
             @Override
             public void run() {
-                LogUtil.e("getAdapter().getItemCount() == " + getAdapter().getItemCount());
                 if (getAdapter().getItemCount() > 1) {
                     getAdapter().notifyItemChanged(getAdapter().getItemCount() - 1);
                 }

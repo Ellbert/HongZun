@@ -74,6 +74,11 @@ public class MorePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMoreView.showFail();
+            }
         });
 
     }

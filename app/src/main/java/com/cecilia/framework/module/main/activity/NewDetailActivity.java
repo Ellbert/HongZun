@@ -44,8 +44,8 @@ public class NewDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         mNoticeBean = (NoticeBean) getIntent().getSerializableExtra("notice");
-        mTvTitle.setText(mNoticeBean.getTTitle());
-        mTvDetail.setText(Html.fromHtml(mNoticeBean.getTInfo()));
+        mTvTitle.setText(mNoticeBean.getTTitle()+"");
+        mTvDetail.setText(Html.fromHtml(mNoticeBean.getTInfo()+""));
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ResetActivity extends BaseActivity implements ResetView {
 
     public static void launch(Activity context) {
         Intent intent = new Intent(context, ResetActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -112,6 +112,16 @@ public class ResetActivity extends BaseActivity implements ResetView {
 
     @Override
     public void onResetFailed() {
+        setResult(99);
+        finish();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

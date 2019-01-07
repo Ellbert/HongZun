@@ -33,6 +33,8 @@ import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -253,7 +255,8 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
 
     @Override
     public void onGetFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -279,6 +282,11 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        onRefresh();
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        } else {
+            onRefresh();
+        }
     }
 }

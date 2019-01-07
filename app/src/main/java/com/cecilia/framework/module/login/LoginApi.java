@@ -28,17 +28,17 @@ public interface LoginApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Login.SEND_SMS)
-    Observable<BaseBean<Object>> getSMS(@Field("phone") String phone,@Field("type") String type);
+    Observable<BaseBean<Object>> getSMS(@Field("phone") String phone,@Field("type") String type,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Login.REGISTER)
-    Observable<BaseBean<UserBean>> register(@Field("phone") String phone, @Field("code") String code, @Field("invitationCode") String invitationCode, @Field("pwd") String pwd);
+    Observable<BaseBean<UserBean>> register(@Field("phone") String phone, @Field("code") String code, @Field("invitationCode") String invitationCode, @Field("pwd") String pwd,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Login.RETRIEVE)
-    Observable<BaseBean<Object>> retrieve(@Field("phone") String phone, @Field("code") String code, @Field("pwd") String pwd);
+    Observable<BaseBean<Object>> retrieve(@Field("phone") String phone, @Field("code") String code, @Field("pwd") String pwd,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Login.LOGIN)
-    Observable<BaseBean<UserBean>> login(@Field("phone") String phone, @Field("pwd") String pwd);
+    Observable<BaseBean<UserBean>> login(@Field("phone") String phone, @Field("pwd") String pwd,@Field("token") String token);
 }

@@ -9,20 +9,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
-import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LogUtil;
-import com.cecilia.framework.utils.PermissionUtil;
-import com.cecilia.framework.utils.ShareUtil;
 import com.cecilia.framework.utils.WXShare;
 import com.cecilia.framework.widget.SharePopupWindow;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,9 +24,7 @@ public class RecommendActivity extends BaseActivity {
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
     String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
-    private SharePopupWindow mSharePopupWindow;
     private static final int SHARE_MSG = 0;
-    private SHARE_MEDIA mShareMedia;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, RecommendActivity.class);
@@ -53,8 +43,6 @@ public class RecommendActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        mSharePopupWindow = new SharePopupWindow();
-        mSharePopupWindow.initView(this);
     }
 
     @Override
@@ -64,23 +52,17 @@ public class RecommendActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-        mSharePopupWindow.setShareListener(new SharePopupWindow.ShareListener() {
-            @Override
-            public void ShareMedia(SHARE_MEDIA shareMedia) {
-                LogUtil.e("ShareMedia");
-                shareMsg(mShareMedia = shareMedia);
-            }
-        });
+
     }
 
-    private void shareMsg(SHARE_MEDIA shareMedia) {
-        LogUtil.e("shareMsg");
-        if (PermissionUtil.checkRequestPermissionInActivity(this, SHARE_MSG, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
-            LogUtil.e("checkRequestPermissionInActivity");
-            ShareUtil.shareMessage(this, bmp, shareMedia);
-        }
-    }
+//    private void shareMsg(SHARE_MEDIA shareMedia) {
+//        LogUtil.e("shareMsg");
+//        if (PermissionUtil.checkRequestPermissionInActivity(this, SHARE_MSG, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+//            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
+//            LogUtil.e("checkRequestPermissionInActivity");
+//            ShareUtil.shareMessage(this, bmp, shareMedia);
+//        }
+//    }
 
     @Override
     protected boolean isUseEventBus() {
@@ -92,7 +74,7 @@ public class RecommendActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back,R.id.iv_share})
+    @OnClick({R.id.iv_back, R.id.iv_share})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -110,15 +92,14 @@ public class RecommendActivity extends BaseActivity {
     protected void onRequestPermissionsSucceed(int requestCode) {
         super.onRequestPermissionsSucceed(requestCode);
         if (requestCode == SHARE_MSG) {
-            LogUtil.e("onRequestPermissionsSucceed");
             Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
-            ShareUtil.shareMessage(this, bmp, mShareMedia);
+//            ShareUtil.shareMessage(this, bmp, mShareMedia);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+//        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }

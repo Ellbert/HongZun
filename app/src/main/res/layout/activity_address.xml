@@ -13,6 +13,7 @@
         android:background="@color/bg_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:layout_weight="1">
 
         <ScrollView
@@ -45,6 +46,19 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="添加地址"
+        android:visibility="gone"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_no_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableTop="@mipmap/icn_no_address"
+        android:drawablePadding="47dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="116dp"
+        android:text="您还没有添加地址信息哦，快去添加吧~"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 

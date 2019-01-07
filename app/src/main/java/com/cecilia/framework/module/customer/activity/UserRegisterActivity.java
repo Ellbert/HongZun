@@ -1,6 +1,7 @@
 package com.cecilia.framework.module.customer.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -126,9 +127,9 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
     private String mPhone;
     private String mIdNumber;
 
-    public static void launch(Context context) {
+    public static void launch(Activity context) {
         Intent intent = new Intent(context, UserRegisterActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -195,7 +196,6 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
                     return;
                 }
                 if (!StringUtil.isCardId(mIdNumber)) {
-                    LogUtil.e(mIdNumber);
                     ToastUtil.newSafelyShow("身份证号码不正确");
                     return;
                 }
@@ -235,6 +235,12 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
                 mChoosePhotoPopupWindow.initView(this);
                 mChoosePhotoPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
+            case R.id.tv_upload_header:
+                file = shopFileUri;
+                mType = 4;
+                mChoosePhotoPopupWindow.initView(this);
+                mChoosePhotoPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                break;
             case R.id.tv_done:
                 String shopName = mEtShopName.getText().toString();
                 String introduction = mEtIntroduction.getText().toString();
@@ -268,7 +274,7 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
                     return;
                 }
                 if(StringUtil.isNullOrEmpty(bankName)){
-                    ToastUtil.newSafelyShow("银行开户名不能为空");
+                    ToastUtil.newSafelyShow("开户人姓名不能为空");
                     return;
                 }
                 if(StringUtil.isNullOrEmpty(mStringShop)){
@@ -282,12 +288,7 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
                 DialogUtil.createLoadingDialog(this, "上传中...", false, null);
                 mUserRegisterPresenter.enter(GcGuangApplication.getId(),shopName,mStringShop,address,introduction,mReadName,mPhone,mIdNumber,mStringFount,mStringBehind,mStringShop,bank,bankAddress,bankNumber,bankName);
                 break;
-            case R.id.tv_upload_header:
-                file = shopFileUri;
-                mType = 4;
-                mChoosePhotoPopupWindow.initView(this);
-                mChoosePhotoPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-                break;
+
         }
     }
 
@@ -305,7 +306,7 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
     private void setCheckBoxStyle() {
         SpannableStringBuilder style = new SpannableStringBuilder();
         //设置文字
-        style.append("我已阅读并同意《泓樽用户注册协议和隐私条款》");
+        style.append("我已阅读并同意《泓宝用户注册协议和隐私条款》");
         //设置部分文字点击事件
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
@@ -448,7 +449,8 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -465,4 +467,5 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
             ToastUtil.newSafelyShow("提交失败！");
         }
     }
+
 }

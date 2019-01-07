@@ -42,6 +42,11 @@ public class CommentPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+
+            }
         });
     }
 }

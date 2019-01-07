@@ -37,17 +37,17 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
         if (cartGoodsBean instanceof CartGoodsBean) {
             CartGoodsBean data = (CartGoodsBean) cartGoodsBean;
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTPic(), imageView, null);
-            tvName.setText(data.getTGoodsTitle());
+            tvName.setText(data.getTGoodsTitle()+"");
             tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
-            tvSpec.setText(data.getTSpec());
+            tvSpec.setText(data.getTSpec()+"");
             tvNumber.setText("×" + data.getTNum());
             tvComment.setVisibility(View.GONE);
         } else if (cartGoodsBean instanceof GoodsBean) {
             final GoodsBean data = (GoodsBean) cartGoodsBean;
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTGoodsImg(), imageView, null);
-            tvName.setText(data.getTGoodsTitle());
+            tvName.setText(data.getTGoodsTitle()+"");
             tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTGoodsMoney()));
-            tvSpec.setText(data.getTGoodsSpec());
+            tvSpec.setText(data.getTGoodsSpec()+"");
             tvNumber.setText("×" + data.getTNum());
             tvComment.setText(mInfo);
             if (data.getTComment() == 0 && mInfo.equals("立即评价")) {
@@ -63,7 +63,7 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
                     if (mInfo.equals("立即评价")) {
                         SubmitCommentActivity.launch((Activity) mContext, data);
                     }else {
-                        ProductActivity.launch(mContext, data.getTGoodsId());
+                        ProductActivity.launch((Activity)mContext, data.getTGoodsId());
                     }
 
                 }

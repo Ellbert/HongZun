@@ -3,6 +3,7 @@ package com.cecilia.framework.module.customer.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,11 +45,11 @@ public class CustomerActivity extends BaseActivity {
     private int mType;
     private ShopBean mShopBean;
 
-    public static void launch(Context context, int type, ShopBean shopBean) {
-        Intent intent = new Intent(context, CustomerActivity.class);
+    public static void launch(Fragment context, int type, ShopBean shopBean) {
+        Intent intent = new Intent(context.getContext(), CustomerActivity.class);
         intent.putExtra("type", type);
         intent.putExtra("shop", shopBean);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -88,8 +89,8 @@ public class CustomerActivity extends BaseActivity {
                 mSrlCustomer.setVisibility(View.VISIBLE);
                 mRlNoPass.setVisibility(View.GONE);
                 mRlFreeze.setVisibility(View.GONE);
-                mTvIntroduction.setText(mShopBean.getTIntroduce());
-                mTvShopName.setText(mShopBean.getTName());
+                mTvIntroduction.setText(mShopBean.getTIntroduce() + "");
+                mTvShopName.setText(mShopBean.getTName() + "");
                 ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mShopBean.getTLogo(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this));
 
                 break;
@@ -158,17 +159,27 @@ public class CustomerActivity extends BaseActivity {
 //                ProductActivity.launch(CustomerActivity.this, 2);
                 break;
             case R.id.iv_revenue_management:
-                ShopPaymentActivity.launch(this, mShopBean.getTId(),mShopBean.getTName());
+                ShopPaymentActivity.launch(this, mShopBean.getTId(), mShopBean.getTName()+"");
                 break;
             case R.id.iv_order_management:
 //                ShopOrderActivity.launch(CustomerActivity.this);
                 break;
             case R.id.tv_no_pass_done:
-                finish();
+                UserRegisterActivity.launch(CustomerActivity.this);
+//                finish();
                 break;
             case R.id.tv_freeze_done:
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 }

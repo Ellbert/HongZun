@@ -131,7 +131,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
             Uri uri = getIntent().getData();
             if (uri != null) {
                 phone = uri.getQueryParameter("phone");
-                mEtPhone.setText(phone);
+                doEvents(new EventBean(3));
+                mEtInvite.setText(phone);
 //                mEtPhone.setEnabled(false);
 //                age = uri.getQueryParameter("age");
             }
@@ -341,10 +342,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 SharedPreferenceUtil.putInt(this, "merchantId", userBean.getTMerchantId()) &&
                 SharedPreferenceUtil.putString(this, "header", userBean.getTHeadurl()) &&
                 SharedPreferenceUtil.putLong(this, "balance", userBean.getTBalance()) &&
-                SharedPreferenceUtil.putLong(this, "honeBalance", userBean.getTHongBalance())) {
+                SharedPreferenceUtil.putLong(this, "honeBalance", userBean.getTHongBalance()) &&
+                SharedPreferenceUtil.putString(this, "token", other)) {
             DialogUtil.dismissLoadingDialog();
             ToastUtil.newSafelyShow("登录成功！");
             GcGuangApplication.setId(userBean.getTId());
+            GcGuangApplication.setsToken(other);
             MainActivity.launch(this);
             finish();
         } else {

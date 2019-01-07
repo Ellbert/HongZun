@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.module.main.bean.VersionBean;
-import com.cecilia.framework.utils.DensityUtil;
 import com.cecilia.framework.utils.ViewUtil;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,9 +66,9 @@ public class VersionPopupWindow extends PopupWindow implements View.OnClickListe
         this.setTouchable(true);
         //设置非PopupWindow区域是否可触摸
         this.setOutsideTouchable(false);
-        mTvVersion.setText(data.getTVersion());
-        mTvTitle.setText(data.getTTitle());
-        mTvDescribe.setText(data.getTDescribe());
+        mTvVersion.setText(data.getTVersion()+"");
+        mTvTitle.setText(data.getTTitle()+"");
+        mTvDescribe.setText(data.getTDescribe()+"");
         //设置SelectPicPopupWindow弹出窗体动画效果
 //    this.setAnimationStyle(R.style.select_anim);
         //实例化一个ColorDrawable颜色为半透明

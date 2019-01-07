@@ -42,6 +42,45 @@ public class MePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMeView.onGetUserInfoFail();
+            }
+        });
+    }
+
+    public void getMessageCount(int userId){
+        HomeRealization.getMessageCount(userId, new NetworkObserver<Integer>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Integer data, String other) {
+                mMeView.onGetMessageCountSuccess(data);
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mMeView.onGetUserInfoFail();
+            }
         });
     }
 }

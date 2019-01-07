@@ -1,6 +1,7 @@
 package com.cecilia.framework.module.mall.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
@@ -9,10 +10,13 @@ import android.view.View;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.common.NetworkConstant;
+import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.adapter.ProductAdapter;
 import com.cecilia.framework.module.main.bean.GoodsBean;
+import com.cecilia.framework.module.mall.activity.MallActivity;
 import com.cecilia.framework.module.mall.presenter.MallPresenter;
 import com.cecilia.framework.module.mall.view.MallView;
+import com.cecilia.framework.module.product.activity.ProductActivity;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 
@@ -60,12 +64,13 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
 
     @Override
     public void initData() {
-        LogUtil.e("mClassifyId == " + mClassifyId);
         mMallPresenter = new MallPresenter(this);
         mLmrvMall.setState(true, new GridLayoutManager(getContext(), 2));
         mMoreAdapter = new ProductAdapter(getContext());
         mLmrvMall.setAdapter(mMoreAdapter);
-        onRefresh();
+        if (mIndex == -1) {
+            onRefresh();
+        }
     }
 
     @Override
@@ -80,6 +85,17 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
             @Override
             public void onLoadMore() {
                 MallFragment.this.onLoadMore();
+            }
+        });
+        mMoreAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                ProductActivity.launch(MallFragment.this.mActivity,id);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
             }
         });
     }
@@ -108,7 +124,8 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
 
     @Override
     public void onGetFailed() {
-
+        this.mActivity.setResult(99);
+        this.mActivity.finish();
     }
 
     private void onLoadMore() {
@@ -177,5 +194,14 @@ public class MallFragment extends BaseFragment implements MallView, SwipeRefresh
                 return 9;
         }
         return 0;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99){
+            this.mActivity.setResult(99);
+            this.mActivity.finish();
+        }
     }
 }

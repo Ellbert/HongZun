@@ -44,6 +44,11 @@ public class DataPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mDataView.onFailed();
+            }
         });
     }
 
@@ -72,6 +77,11 @@ public class DataPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mDataView.onFailed();
             }
         });
 

@@ -14,6 +14,7 @@ import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.cart.activity.CartActivity;
+import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.activity.HongBaoActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.RechargeActivity;
@@ -55,8 +56,11 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     TextView mTvHongBao;
     @BindView(R.id.iv_header)
     ImageView mIvHeader;
-
+    @BindView(R.id.tv_message_number)
+    TextView mTvMessageNumber;
     private MePresenter mMePresenter;
+    private long mBalance;
+    private long mHongBalance;
 
     @Override
     protected void onVisible() {
@@ -80,12 +84,14 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
         String name = SharedPreferenceUtil.getString(mActivity, "userName");
         String tel = SharedPreferenceUtil.getString(mActivity, "tel");
         int level = SharedPreferenceUtil.getInt(mActivity, "level");
-        long balance = SharedPreferenceUtil.getLong(mActivity, "balance");
-        long hongBalance = SharedPreferenceUtil.getLong(mActivity, "honeBalance");
+        mBalance = SharedPreferenceUtil.getLong(mActivity, "balance");
+        mHongBalance = SharedPreferenceUtil.getLong(mActivity, "honeBalance");
         ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + header, mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
-        mTvName.setText(name);
-        mTvHongBao.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(balance)));
-        mTvBalance.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(hongBalance)));
+        mTvName.setText(name + "");
+        mTvHongBao.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(mHongBalance)));
+        mTvBalance.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(mBalance)));
+        mMePresenter.getMessageCount(GcGuangApplication.getId());
+
     }
 
     @Override
@@ -103,16 +109,16 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_recharge:
-                ToastUtil.newSafelyShow("尚未开通");
-//                RechargeActivity.launch(MeFragment.this);
+//                ToastUtil.newSafelyShow("尚未开通");
+                RechargeActivity.launch(MeFragment.this, mBalance);
                 break;
             case R.id.tv_detail:
-                ToastUtil.newSafelyShow("尚未开通");
-//                HongBaoActivity.launch(MeFragment.this);
+//                ToastUtil.newSafelyShow("尚未开通");
+                HongBaoActivity.launch(MeFragment.this);
                 break;
             case R.id.iv_price:
 //                PriceActivity.launch(MeFragment.this);
-                PaymentActivity.launch(this.getContext(), 0, 0);
+                PaymentActivity.launch(this.mActivity, 0, 0);
                 break;
             case R.id.iv_fans:
                 FansActivity.launch(MeFragment.this);
@@ -150,12 +156,17 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == 99) {
+//            LoginActivity.launch(this.getContext());
+//            this.mActivity.finish();
+//        }else {
         onRefresh();
         if (requestCode == 100 && resultCode == 100) {
             if (this.getContext() != null) {
                 ((MainActivity) this.getContext()).setBottomButtonCheck(1);
             }
         }
+//        }
     }
 
     @Override
@@ -163,7 +174,6 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
 //        mTvBalance.setText();
 //        mTvHongBao.setText();
 //        LogUtil.e(StringUtil.isNullOrEmpty(other) + "  == isNullOrEmpty");
-        SharedPreferenceUtil.putInt(mActivity, "userId", userBean.getTId());
         SharedPreferenceUtil.putString(mActivity, "tel", userBean.getTTel());
         SharedPreferenceUtil.putString(mActivity, "userName", userBean.getTUsername());
         SharedPreferenceUtil.putInt(mActivity, "level", userBean.getTLevel());
@@ -173,16 +183,35 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
         SharedPreferenceUtil.putLong(mActivity, "honeBalance", userBean.getTHongBalance());
         ImageUtil.loadNetworkImage(this.getContext(), NetworkConstant.IMAGE_URL + userBean.getTHeadurl(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this.getContext()));
         mTvName.setText(userBean.getTUsername());
+        mTvHongBao.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(userBean.getTHongBalance())));
+        mTvBalance.setText(String.valueOf(ArithmeticalUtil.getMoneyStringWithoutSymbol(userBean.getTBalance())));
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onGetUserInfoFail() {
         mSwipeRefreshLayout.setRefreshing(false);
+        LoginActivity.launch(this.getContext());
+        this.mActivity.finish();
     }
 
     @Override
     public void onRefresh() {
         mMePresenter.getUserInfo(mSwipeRefreshLayout, GcGuangApplication.getId());
+        mMePresenter.getMessageCount(GcGuangApplication.getId());
+    }
+
+    @Override
+    public void onGetMessageCountSuccess(Integer integer) {
+        if (integer > 0 && integer <= 99) {
+            mTvMessageNumber.setText(integer + "");
+            mTvMessageNumber.setVisibility(View.VISIBLE);
+        } else if (integer <= 0) {
+            mTvMessageNumber.setText("0");
+            mTvMessageNumber.setVisibility(View.GONE);
+        } else {
+            mTvMessageNumber.setText("99+");
+            mTvMessageNumber.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -2,10 +2,17 @@ package com.cecilia.framework.module.me.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +25,7 @@ import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.me.presenter.AddressPresenter;
 import com.cecilia.framework.module.me.view.AddressView;
 import com.cecilia.framework.utils.ToastUtil;
+import com.cecilia.framework.utils.ViewUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -35,17 +43,16 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
     TextView mTvTitleText;
     @BindView(R.id.srl_address)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.tv_no_address)
+    TextView mTvNoCard;
+    @BindView(R.id.tv_confirm)
+    TextView mTvAdd;
     private AddressAdapter mAddressAdapter;
     private AddressPresenter mAddressPresenter;
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), AddressActivity.class);
-        context.startActivity(intent);
-    }
-
-    public static void launch(Activity context) {
-        Intent intent = new Intent(context, AddressActivity.class);
-        context.startActivityForResult(intent,54);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -56,6 +63,36 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
     @Override
     protected void initViews() {
         mTvTitleText.setText("我的地址");
+        setCheckBoxStyle();
+    }
+
+    private void setCheckBoxStyle() {
+        SpannableStringBuilder style = new SpannableStringBuilder();
+        //设置文字
+        style.append("您还没有添加地址信息哦，快去添加吧~");
+        //设置部分文字点击事件
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+//                ToastUtil.newSafelyShow("点击事件");
+                AddressEditActivity.launch(AddressActivity.this, null);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                /**Remove the underline**/
+                ds.setUnderlineText(false);
+            }
+        };
+        style.setSpan(clickableSpan, 14, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mTvNoCard.setText(style);
+        //设置部分文字颜色
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ViewUtil.getColor(R.color.txt_blue));
+        style.setSpan(foregroundColorSpan, 14, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //配置给TextView
+        mTvNoCard.setMovementMethod(LinkMovementMethod.getInstance());
+        mTvNoCard.setText(style);
+
     }
 
     @Override
@@ -110,6 +147,11 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
 
     @Override
     public void onGetSuccess(List<AddressBean> list) {
+        if (list.size() >0) {
+            mTvNoCard.setVisibility(View.GONE);
+            mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+            mTvAdd.setVisibility(View.VISIBLE);
+        }
         mAddressAdapter.setDataList(list);
         mSwipeRefreshLayout.setRefreshing(false);
     }
@@ -117,6 +159,8 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
     @Override
     public void onGetFailed() {
         mSwipeRefreshLayout.setRefreshing(false);
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -134,6 +178,11 @@ public class AddressActivity extends BaseActivity implements AddressView, SwipeR
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mAddressPresenter.getAddressList(mSwipeRefreshLayout, String.valueOf(GcGuangApplication.getId()));
+        if  (resultCode == 99) {
+            setResult(99);
+            finish();
+        }else {
+            mAddressPresenter.getAddressList(mSwipeRefreshLayout, String.valueOf(GcGuangApplication.getId()));
+        }
     }
 }

@@ -28,7 +28,6 @@ public class CollectPresenter {
 
             @Override
             protected void onSuccess(List<BaseGoodBean> data,String other) {
-                LogUtil.e(data.size() + " == size");
                 mNameView.onGetSuccess(data);
             }
 
@@ -45,6 +44,11 @@ public class CollectPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNameView.onGetFailed();
             }
         });
     }
@@ -74,6 +78,11 @@ public class CollectPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNameView.onGetFailed();
             }
         });
     }

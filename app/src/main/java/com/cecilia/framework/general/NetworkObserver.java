@@ -15,6 +15,7 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
+import static com.cecilia.framework.common.NetworkConstant.OVERDUE;
 import static com.cecilia.framework.common.NetworkConstant.SUCCESS;
 
 /**
@@ -59,6 +60,11 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
         if (bean.getCode() != SUCCESS) {
             LogUtil.e("bean.getResult() == " + bean.getCode());
             LogUtil.e("bean.getMsg() == " + bean.getInfo());
+            if (bean.getCode() == OVERDUE) {
+                ToastUtil.newSafelyShow(bean.getInfo() + "，请重新登录");
+                onLoginTimeOut();
+                return;
+            }
             onFailure(bean.getCode(), bean.getInfo());
             return;
         }
@@ -114,5 +120,10 @@ public abstract class NetworkObserver<T> implements Observer<BaseBean<T>> {
      * 网络请求超时
      */
     protected abstract void onTimeout();
+
+    /**
+     * token失效
+     */
+    protected abstract void onLoginTimeOut();
 
 }

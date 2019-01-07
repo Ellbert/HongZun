@@ -47,6 +47,11 @@ public class WithdrawPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+
+            }
         });
     }
 
@@ -76,6 +81,11 @@ public class WithdrawPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+
+            }
         });
     }
 
@@ -103,6 +113,11 @@ public class WithdrawPresenter {
 
             @Override
             protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
 
             }
         });

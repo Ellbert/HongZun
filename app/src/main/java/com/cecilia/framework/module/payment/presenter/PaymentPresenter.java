@@ -45,6 +45,11 @@ public class PaymentPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mPaymentView.onFailed();
+            }
         });
     }
 
@@ -74,6 +79,11 @@ public class PaymentPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mPaymentView.onFailed();
+            }
         });
     }
 
@@ -102,6 +112,11 @@ public class PaymentPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mPaymentView.onFailed();
             }
         });
     }

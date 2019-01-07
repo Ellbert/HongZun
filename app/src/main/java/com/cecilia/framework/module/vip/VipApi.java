@@ -14,14 +14,15 @@ import retrofit2.http.POST;
 
 public interface VipApi {
 
+    @FormUrlEncoded
     @POST(NetworkConstant.Vip.VIP_CARD_LIST)
-    Observable<BaseBean<List<VipBean>>> vipList();
+    Observable<BaseBean<List<VipBean>>> vipList(@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Vip.CREATE_ORDER)
-    Observable<BaseBean<VipOrderBean>> createOrder(@Field("userId") int userId, @Field("cardId") int cardId);
+    Observable<BaseBean<VipOrderBean>> createOrder(@Field("userId") int userId, @Field("cardId") int cardId,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Vip.BUY_VIP)
-    Observable<BaseBean<String>> buy(@Field("userId") int userId, @Field("orderId") int orderId, @Field("subject") String subject);
+    Observable<BaseBean<String>> buy(@Field("userId") int userId, @Field("orderId") int orderId, @Field("subject") String subject,@Field("token") String token);
 }

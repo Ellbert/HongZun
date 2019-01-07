@@ -63,6 +63,12 @@ public class ProductPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("getDetail");
+                mProductView.onFailed();
+            }
         });
     }
 
@@ -91,6 +97,12 @@ public class ProductPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("getAddressList");
+                mProductView.onFailed();
             }
         });
     }
@@ -122,6 +134,12 @@ public class ProductPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("addCart");
+                mProductView.onFailed();
+            }
         });
     }
 
@@ -151,11 +169,18 @@ public class ProductPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("addCollect");
+                mProductView.onFailed();
+            }
         });
     }
 
 
     public void removeCollect(int userId, int goodsId) {
+        LogUtil.e("addCollect");
         ProductRealization.removeCollect(userId, goodsId, new NetworkObserver<Object>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -180,6 +205,12 @@ public class ProductPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("addCollect");
+                mProductView.onFailed();
             }
         });
     }
@@ -210,6 +241,12 @@ public class ProductPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("getRecentlyList");
+                mProductView.onFailed();
+            }
         });
     }
 
@@ -239,6 +276,12 @@ public class ProductPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("removeConcern");
+                mProductView.onFailed();
+            }
         });
     }
 
@@ -267,6 +310,12 @@ public class ProductPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                LogUtil.e("addFollow");
+                mProductView.onFailed();
             }
         });
     }

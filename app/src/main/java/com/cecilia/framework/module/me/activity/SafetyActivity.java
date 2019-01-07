@@ -20,7 +20,7 @@ public class SafetyActivity extends BaseActivity {
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), SafetyActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -68,6 +68,15 @@ public class SafetyActivity extends BaseActivity {
                 ResetActivity.launch(SafetyActivity.this);
 //                HeaderActivity.launch(DataActivity.this);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 }

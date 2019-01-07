@@ -56,6 +56,11 @@ public class BuyVipPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mBuyVipView.onLoginFailed();
+            }
         });
     }
 
@@ -84,6 +89,11 @@ public class BuyVipPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mBuyVipView.onLoginFailed();
             }
         });
     }

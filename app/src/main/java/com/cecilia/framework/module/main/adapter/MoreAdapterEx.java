@@ -8,6 +8,7 @@ import android.view.View;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseRvAdapterEx;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.mall.activity.MallActivity;
 
 public class MoreAdapterEx extends BaseRvAdapterEx {
@@ -37,61 +38,61 @@ public class MoreAdapterEx extends BaseRvAdapterEx {
         baseViewHolder.getView(R.id.tv_mall).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 1);
+                MallActivity.launch((MainActivity)mContext, 1);
             }
         });
         baseViewHolder.getView(R.id.tv_brand).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 2);
+                MallActivity.launch((MainActivity)mContext, 2);
             }
         });
         baseViewHolder.getView(R.id.tv_food).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 3);
+                MallActivity.launch((MainActivity)mContext, 3);
             }
         });
         baseViewHolder.getView(R.id.tv_makeup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 4);
+                MallActivity.launch((MainActivity)mContext, 4);
             }
         });
         baseViewHolder.getView(R.id.tv_luxury).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 5);
+                MallActivity.launch((MainActivity)mContext, 5);
             }
         });
         baseViewHolder.getView(R.id.tv_woman).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 6);
+                MallActivity.launch((MainActivity)mContext, 6);
             }
         });
         baseViewHolder.getView(R.id.tv_man).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 7);
+                MallActivity.launch((MainActivity)mContext, 7);
             }
         });
         baseViewHolder.getView(R.id.tv_kid).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 8);
+                MallActivity.launch((MainActivity)mContext, 8);
             }
         });
         baseViewHolder.getView(R.id.tv_sport).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext, 9);
+                MallActivity.launch((MainActivity)mContext, 9);
             }
         });
         baseViewHolder.getView(R.id.tv_digital).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MallActivity.launch(mContext,10);
+                MallActivity.launch((MainActivity)mContext,10);
             }
         });
     }

@@ -41,6 +41,11 @@ public class NamePresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNameView.onUpdateFail();
+            }
         });
     }
 

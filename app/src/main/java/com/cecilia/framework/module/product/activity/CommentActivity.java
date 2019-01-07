@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.product.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -37,10 +38,10 @@ public class CommentActivity extends BaseActivity implements CommentView, SwipeR
     private CommentPresenter mCommentPresenter;
     private List<CommentBean> mData;
 
-    public static void launch(Context context, int goodsId) {
+    public static void launch(Activity context, int goodsId) {
         Intent intent = new Intent(context, CommentActivity.class);
         intent.putExtra("goods_id", goodsId);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -120,7 +121,8 @@ public class CommentActivity extends BaseActivity implements CommentView, SwipeR
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -135,4 +137,16 @@ public class CommentActivity extends BaseActivity implements CommentView, SwipeR
         mPage++;
         mCommentPresenter.getCommentList(null, mGoodsId, 0, mPage);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }else {
+            onRefresh();
+        }
+    }
+
 }

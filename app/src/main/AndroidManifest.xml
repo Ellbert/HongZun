@@ -62,6 +62,7 @@
 
         <activity
             android:name=".module.login.activity.LoginActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
 
             <intent-filter>
@@ -78,43 +79,115 @@
         </activity>
         <activity
             android:name=".module.main.activity.SubmitCommentActivity"
-            android:launchMode="standard" />
-        <activity android:name=".module.main.activity.RechargeActivity" />
-        <activity android:name=".module.main.activity.HongBaoActivity" />
-        <activity android:name=".module.me.activity.PriceActivity" />
-        <activity android:name=".module.me.activity.PriceDetailActivity" />
-        <activity android:name=".module.me.activity.FansActivity" />
-        <activity android:name=".module.me.activity.FollowActivity" />
-        <activity android:name=".module.me.activity.CollectActivity" />
-        <activity android:name=".module.me.activity.DataActivity" />
-        <activity android:name=".module.me.activity.HeaderActivity" />
-        <activity android:name=".module.me.activity.NameActivity" />
-        <activity android:name=".module.me.activity.PhoneActivity" />
-        <activity android:name=".module.me.activity.SafetyActivity" />
-        <activity android:name=".module.me.activity.ResetActivity" />
-        <activity android:name=".module.me.activity.BankCardActivity" />
-        <activity android:name=".module.me.activity.AddressActivity" />
-        <activity android:name=".module.me.activity.AddressEditActivity" />
-        <activity android:name=".module.me.activity.AboutActivity" />
-        <activity android:name=".module.main.activity.NewsActivity" />
-        <activity android:name=".module.main.activity.NewDetailActivity" />
-        <activity android:name=".module.me.activity.MyBankCardActivity" />
-        <activity android:name=".module.payment.activity.PaymentActivity" />
-        <activity android:name=".module.payment.activity.PaymentDetailActivity" />
-        <activity android:name=".module.customer.activity.CustomerActivity" />
-        <activity android:name=".module.customer.activity.UserRegisterActivity" />
-        <activity android:name=".module.customer.activity.ProductActivity" />
-        <activity android:name=".module.customer.activity.ShopOrderActivity" />
-        <activity android:name=".module.mall.activity.MallActivity" />
-        <activity android:name=".module.me.activity.NewsActivity" />
-        <activity android:name=".module.product.activity.CommentActivity" />
-        <activity android:name=".module.cart.activity.CartActivity" />
-        <activity android:name=".module.product.activity.ResultActivity" />
-        <activity android:name=".module.cart.activity.SummitOrderActivity" />
-        <activity android:name=".module.cart.activity.ChooseWayActivity" />
-        <activity android:name=".module.order.activity.OrderDetailActivity" />
-        <activity android:name=".module.vip.activity.VipActivity" />
-        <activity android:name=".module.vip.activity.BuyVipActivity" />
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.main.activity.RechargeActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.main.activity.HongBaoActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.PriceActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.PriceDetailActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.FansActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.FollowActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.CollectActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.DataActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.HeaderActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.NameActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.PhoneActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.SafetyActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.ResetActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.BankCardActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.AddressActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.AddressEditActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.AboutActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.main.activity.NewsActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.main.activity.NewDetailActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.MyBankCardActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.payment.activity.PaymentActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.payment.activity.PaymentDetailActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.CustomerActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.UserRegisterActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.ProductActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.ShopOrderActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.mall.activity.MallActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.NewsActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.product.activity.CommentActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.cart.activity.CartActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.product.activity.ResultActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.cart.activity.SummitOrderActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.cart.activity.ChooseWayActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.order.activity.OrderDetailActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.vip.activity.VipActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.vip.activity.BuyVipActivity"
+            android:launchMode="singleTask" />
 
         <!-- wechat callback-->
 
@@ -123,30 +196,21 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme.Fullscreen.Translucent" />
 
         <activity
-            android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="100424468" />
-            </intent-filter>
-        </activity>
-
+            android:name=".module.customer.activity.ShopPaymentActivity"
+            android:launchMode="singleTask" />
         <activity
-            android:name="com.tencent.connect.common.AssistActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".module.customer.activity.ShopPaymentActivity" />
-        <activity android:name=".module.main.activity.RecommendActivity" />
-        <activity android:name=".module.main.activity.RecommendPhotoActivity" />
-        <activity android:name=".module.customer.activity.WithDrawActivity" />
+            android:name=".module.main.activity.RecommendActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.main.activity.RecommendPhotoActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.WithDrawActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".module.main.activity.FinancialActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

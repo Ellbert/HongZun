@@ -46,7 +46,7 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
     public static void launch(Activity context, AddressBean addressBean) {
         Intent intent = new Intent(context, AddressEditActivity.class);
         intent.putExtra("address_bean", addressBean);
-        context.startActivityForResult(intent, 0);
+        context.startActivityForResult(intent, 54);
     }
 
     @Override
@@ -68,9 +68,9 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
             mToastString = "添加成功";
             mAddressId = null;
         } else {
-            mEtName.setText(mAddressBean.getTName());
-            mEtPhone.setText(mAddressBean.getTPhone());
-            mEtAddress.setText(mAddressBean.getTAddress());
+            mEtName.setText(mAddressBean.getTName() + "");
+            mEtPhone.setText(mAddressBean.getTPhone() + "");
+            mEtAddress.setText(mAddressBean.getTAddress() + "");
             mTvTitleText.setText("修改地址");
             mTvConfirm.setText("修改");
             mToastString = "修改成功";
@@ -132,6 +132,16 @@ public class AddressEditActivity extends BaseActivity implements AddressEditView
 
     @Override
     public void onFailed() {
+        setResult(99);
+        finish();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

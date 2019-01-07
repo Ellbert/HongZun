@@ -12,6 +12,8 @@ public interface FansView {
 
     void onGetSecondListSuccess(@NonNull List<UserBean> data);
 
+    void onLoginFailed();
+
     void onFailed();
 
 }

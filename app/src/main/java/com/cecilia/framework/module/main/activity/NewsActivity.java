@@ -1,7 +1,9 @@
 package com.cecilia.framework.module.main.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -36,9 +38,9 @@ public class NewsActivity extends BaseActivity implements NoticeView, SwipeRefre
     private int mPage = 1;
     private List<NoticeBean> mData;
 
-    public static void launch(Context context) {
+    public static void launch(Activity context) {
         Intent intent = new Intent(context, NewsActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -116,7 +118,8 @@ public class NewsActivity extends BaseActivity implements NoticeView, SwipeRefre
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -126,4 +129,12 @@ public class NewsActivity extends BaseActivity implements NoticeView, SwipeRefre
         mNoticePresenter.noticeList(mSrlNews, mPage);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
+    }
 }

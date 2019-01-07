@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.vip.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,9 +34,9 @@ public class VipActivity extends BaseActivity implements VipView {
     private int mLevel;
     private VipPresenter mVipPresenter;
 
-    public static void launch(Context context) {
+    public static void launch(Activity context) {
         Intent intent = new Intent(context, VipActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, 99);
     }
 
     @Override
@@ -85,7 +86,8 @@ public class VipActivity extends BaseActivity implements VipView {
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @OnClick({R.id.iv_back})
@@ -100,7 +102,12 @@ public class VipActivity extends BaseActivity implements VipView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mLevel = SharedPreferenceUtil.getInt(this, "level");
-        mVipPresenter.vipList();
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        } else {
+            mLevel = SharedPreferenceUtil.getInt(this, "level");
+            mVipPresenter.vipList();
+        }
     }
 }

@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/bg_view">
+        android:background="@color/bg_view"
+        android:visibility="gone">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_bank"
@@ -33,6 +34,19 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="增加银行卡"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_no_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableTop="@mipmap/icn_no_bank_card"
+        android:drawablePadding="47dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="116dp"
+        android:text="您还没有添加银行卡，快去添加吧~"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 

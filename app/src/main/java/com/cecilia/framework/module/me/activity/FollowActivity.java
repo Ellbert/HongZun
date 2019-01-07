@@ -45,7 +45,7 @@ public class FollowActivity extends BaseActivity implements FollowView, SwipeRef
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), FollowActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -123,6 +123,8 @@ public class FollowActivity extends BaseActivity implements FollowView, SwipeRef
     @Override
     public void onGetFailed() {
         mLmrvFollow.setLoadMoreNull();
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -135,4 +137,14 @@ public class FollowActivity extends BaseActivity implements FollowView, SwipeRef
         ToastUtil.newSafelyShow("取消成功");
         onRefresh();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
+    }
+
 }

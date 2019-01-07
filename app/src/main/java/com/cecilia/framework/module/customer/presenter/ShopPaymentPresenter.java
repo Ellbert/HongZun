@@ -41,6 +41,11 @@ public class ShopPaymentPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mShopPaymentView.onFailed();
+            }
         });
     }
 }

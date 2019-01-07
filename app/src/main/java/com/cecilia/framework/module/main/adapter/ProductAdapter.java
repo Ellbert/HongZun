@@ -11,12 +11,15 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseLmrvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.common.NetworkConstant;
+import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.product.activity.ProductActivity;
 import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 
 public class ProductAdapter extends BaseLmrvAdapter<GoodsBean> {
+
+    private OnItemClickListener mOnItemClickListener;
 
     public ProductAdapter(Context context) {
         super(context);
@@ -32,7 +35,9 @@ public class ProductAdapter extends BaseLmrvAdapter<GoodsBean> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductActivity.launch(mContext,data.getTId());
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(v,data.getTId());
+                }
             }
         });
         ImageView imageView = holder.getView(R.id.iv_header);
@@ -41,17 +46,25 @@ public class ProductAdapter extends BaseLmrvAdapter<GoodsBean> {
         ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTImg(), imageView, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductActivity.launch(mContext,data.getTId());
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(v,data.getTId());
+                }
             }
         });
-        tvName.setText(data.getTTitle());
+        tvName.setText(data.getTTitle()+"");
         tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductActivity.launch(mContext,data.getTId());
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(v,data.getTId());
+                }
             }
         });
 //        ImageUtil.loadNetworkImage(mContext, data.getProduct_img(), (ImageView) holder.getView(R.id.iv_recommend), true, false, null);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 }

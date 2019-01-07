@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/srl_me"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -215,24 +216,45 @@
                 android:text="个人资料"
                 android:textColor="@color/txt_first" />
 
-            <TextView
-                android:id="@+id/tv_news"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:background="@color/white"
-                android:drawableStart="@mipmap/icn_news"
-                android:drawableLeft="@mipmap/icn_news"
-                android:drawablePadding="25dp"
-                android:gravity="center_vertical"
-                android:paddingStart="37dp"
-                android:paddingLeft="37dp"
-                android:paddingTop="16dp"
-                android:paddingEnd="37dp"
-                android:paddingRight="37dp"
-                android:paddingBottom="16dp"
-                android:text="消息中心"
-                android:textColor="@color/txt_first" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:drawableStart="@mipmap/icn_news"
+                    android:drawableLeft="@mipmap/icn_news"
+                    android:drawablePadding="25dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="37dp"
+                    android:paddingLeft="37dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="37dp"
+                    android:paddingRight="37dp"
+                    android:paddingBottom="16dp"
+                    android:text="消息中心"
+                    android:textColor="@color/txt_first" />
+
+                <TextView
+                    android:id="@+id/tv_message_number"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textSize="@dimen/txt_fifth"
+                    android:layout_centerVertical="true"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:background="@mipmap/icn_point_green"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_safety"

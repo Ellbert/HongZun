@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseLmrvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.module.me.activity.NewsActivity;
 import com.cecilia.framework.module.me.bean.MessageBean;
 import com.cecilia.framework.module.payment.activity.PaymentDetailActivity;
 import com.cecilia.framework.utils.StringUtil;
@@ -26,8 +27,8 @@ public class NewsAdapter extends BaseLmrvAdapter<MessageBean> {
 
     @Override
     public void onBindRecyclerViewHolder(BaseViewHolder holder, final MessageBean data) {
-        ((TextView) holder.getView(R.id.tv_title)).setText(data.getTMessageTitle());
-        ((TextView) holder.getView(R.id.tv_text)).setText(data.getTMessageDescribe());
+        ((TextView) holder.getView(R.id.tv_title)).setText(data.getTMessageTitle()+"");
+        ((TextView) holder.getView(R.id.tv_text)).setText(data.getTMessageDescribe()+"");
          holder.getView(R.id.tv_detail).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {

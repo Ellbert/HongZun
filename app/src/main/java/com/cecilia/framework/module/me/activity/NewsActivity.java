@@ -41,7 +41,7 @@ public class NewsActivity extends BaseActivity implements MessageView, SwipeRefr
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), NewsActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -124,6 +124,8 @@ public class NewsActivity extends BaseActivity implements MessageView, SwipeRefr
     @Override
     public void onGetFailed() {
         mLmrvNews.setLoadMoreNull();
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -132,4 +134,16 @@ public class NewsActivity extends BaseActivity implements MessageView, SwipeRefr
         mData = null;
         mMessagePresenter.getMessageList(mSwipeRefreshLayout, GcGuangApplication.getId(), mPage);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        } else {
+            onRefresh();
+        }
+    }
+
 }

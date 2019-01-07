@@ -132,4 +132,19 @@ public class BuyVipActivity extends BaseActivity implements BuyVipView {
             finish();
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
+    }
+
+    @Override
+    public void onLoginFailed() {
+        setResult(99);
+        finish();
+    }
 }

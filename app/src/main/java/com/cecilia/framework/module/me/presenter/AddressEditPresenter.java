@@ -43,6 +43,11 @@ public class AddressEditPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNameView.onFailed();
+            }
         });
     }
 }

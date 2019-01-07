@@ -9,8 +9,6 @@ import android.view.View;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
-import com.cecilia.framework.module.main.adapter.MoreAdapter;
-import com.cecilia.framework.module.main.adapter.MoreAdapterEx;
 import com.cecilia.framework.module.payment.adapter.PaymentAdapter;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
 

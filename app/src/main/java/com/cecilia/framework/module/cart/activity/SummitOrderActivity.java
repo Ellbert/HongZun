@@ -109,7 +109,6 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
             mTvAddress.setVisibility(View.VISIBLE);
             mIvAddress.setVisibility(View.VISIBLE);
             mAddressId = String.valueOf(mAddressBean.getTId());
-            LogUtil.e(mAddressId + " == mAddressId      " + mAddressBean.getTAddress());
             mTvAddress.setText("详细地址：" + mAddressBean.getTAddress());
             mTvContact.setText("联系方式：" + mAddressBean.getTPhone());
             mTvGet.setText("收件人：" + mAddressBean.getTName());
@@ -133,7 +132,7 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
             List<CartShopBean> list = new ArrayList<>();
             list.add(data);
             mSummitShopAdapter.setDataList(list);
-            mTvSumMoney.setText("¥ " + data.getSumPrice());
+            mTvSumMoney.setText(data.getSumPrice());
         }
     }
 
@@ -179,7 +178,8 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @OnClick({R.id.iv_add_address, R.id.iv_back, R.id.tv_add_address, R.id.tv_commit})
@@ -258,5 +258,14 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
     public void onCreateOrderSuccess(ArrayList<Integer> orderId) {
         ChooseWayActivity.launch(this, orderId);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

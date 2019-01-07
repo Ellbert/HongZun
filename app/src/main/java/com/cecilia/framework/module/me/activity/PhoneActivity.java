@@ -26,7 +26,7 @@ public class PhoneActivity extends BaseActivity {
 
     public static void launch(Activity context) {
         Intent intent = new Intent(context, PhoneActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override

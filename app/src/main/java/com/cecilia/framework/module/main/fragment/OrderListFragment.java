@@ -15,6 +15,7 @@ import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.cart.activity.ChooseWayActivity;
+import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.activity.SubmitCommentActivity;
 import com.cecilia.framework.module.main.adapter.OrderListAdapter;
 import com.cecilia.framework.module.main.bean.OrderBean;
@@ -63,7 +64,7 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
     @Override
     protected void onVisible() {
         if (mSwipeRefreshLayout != null) {
-            onRefresh();
+            initDataList();
         }
     }
 
@@ -83,7 +84,9 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
         mLmrvOrder.setState(true, new LinearLayoutManager(getContext()));
         mOrderListAdapter = new OrderListAdapter(getContext(), type);
         mLmrvOrder.setAdapter(mOrderListAdapter);
-        initDataList();
+        if (type == ALL) {
+            initDataList();
+        }
     }
 
     private void initDataList() {
@@ -153,7 +156,8 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
 
     @Override
     public void onFailed() {
-
+        LoginActivity.launch(this.getContext());
+        this.mActivity.finish();
     }
 
     @Override
@@ -166,7 +170,12 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == 99) {
+//            LoginActivity.launch(this.getContext());
+//            this.mActivity.finish();
+//        } else {
         onRefresh();
+//        }
     }
 
 }

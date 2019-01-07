@@ -14,12 +14,14 @@ public interface ShopApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Shop.GET_WALLET)
-    Observable<BaseBean<ShopPaymentBean>> getWallet(@Field("merchantId") int merchantId);
+    Observable<BaseBean<ShopPaymentBean>> getWallet(@Field("merchantId") int merchantId,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Shop.WITHDRAW)
-    Observable<BaseBean<Object>> withdraw(@Field("merchantId") int merchantId,@Field("merchantName") String merchantName,@Field("cardId") int cardId,@Field("money") long money);
+    Observable<BaseBean<Object>> withdraw(@Field("merchantId") int merchantId,@Field("merchantName") String merchantName,@Field("cardId") int cardId,@Field("money") long money,@Field("token") String token);
 
+    @FormUrlEncoded
     @POST(NetworkConstant.Shop.GET_RATIO)
-    Observable<BaseBean<RateBean>> getRatio();
+    Observable<BaseBean<RateBean>> getRatio(@Field("token") String token);
+
 }

@@ -118,7 +118,7 @@ public class SkuPopupWindow extends PopupWindow {
             @Override
             public View getView(FlowLayout parent, int position, SkuBean o) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.layout_tab_sku, parent, false);
-                tv.setText(skuBeans.get(position).getName());
+                tv.setText(skuBeans.get(position).getName()+"");
                 return tv;
             }
         });
@@ -132,7 +132,7 @@ public class SkuPopupWindow extends PopupWindow {
                 } else {
                     int o = (int) selectPosSet.toArray()[0];
                     mSkuBean = skuBeans.get(o);
-                    mNumberChoicesLayout.setSelectNumber("1", "1", mSkuBean.getStock());
+                    mNumberChoicesLayout.setSelectNumber("1", "1", mSkuBean.getStock()+"");
                     mTvText1.setText("请选择数量(剩余库存" + mSkuBean.getStock() + ")");
                 }
             }

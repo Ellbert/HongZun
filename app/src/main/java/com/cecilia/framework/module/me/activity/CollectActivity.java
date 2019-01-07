@@ -47,7 +47,7 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), CollectActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -123,6 +123,8 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     @Override
     public void onGetFailed() {
         mLmrvFollow.setLoadMoreNull();
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -134,5 +136,14 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     @Override
     public void onRefresh() {
         mCollectPresenter.getList(mSrlFollow, String.valueOf(GcGuangApplication.getId()));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

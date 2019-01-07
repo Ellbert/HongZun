@@ -1,12 +1,14 @@
 package com.cecilia.framework.module.product.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,15 +50,15 @@ import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
 import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.PermissionUtil;
 import com.cecilia.framework.utils.ShareUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
+import com.cecilia.framework.utils.WXShare;
 import com.cecilia.framework.widget.MyScrollView;
 import com.cecilia.framework.widget.NumberChoicesLayout;
 import com.cecilia.framework.widget.SharePopupWindow;
 import com.google.gson.JsonObject;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,12 +175,18 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
     private SharePopupWindow mSharePopupWindow;
     private static final int SHARE_MSG = 0;
-    private SHARE_MEDIA mShareMedia;
+    private WXShare mWXShare;
 
-    public static void launch(Context context, int goodsId) {
+    public static void launch(Activity context, int goodsId) {
         Intent intent = new Intent(context, ProductActivity.class);
         intent.putExtra("goods_id", goodsId);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mWXShare.register();
     }
 
     @Override
@@ -205,6 +213,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
 
     @Override
     protected void initData() {
+        mWXShare = new WXShare(this);
         mForgetPopupWindow = new SkuPopupWindow();
         mAddressPopupWindow = new AddressPopupWindow();
         mSharePopupWindow = new SharePopupWindow();
@@ -212,6 +221,8 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         mGoodsId = getIntent().getIntExtra("goods_id", 0);
         DialogUtil.createLoadingDialog(this, "加载中...", false, null);
         mProductPresenter = new ProductPresenter(this);
+        LogUtil.e("initData");
+        LogUtil.e("token == " + SharedPreferenceUtil.getString(this, "token"));
         mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
         mProductPresenter.getAddressList(String.valueOf(GcGuangApplication.getId()));
         mProductPresenter.getRecentlyList(mGoodsId);
@@ -227,15 +238,16 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                         List<CartGoodsBean> list = new ArrayList<>();
                         CartGoodsBean cartGoodsBean = new CartGoodsBean();
                         cartShopBean.setMerchantId(mMerchantBean.getTId());
-                        cartShopBean.setMerchantLogo(mMerchantBean.getTLogo());
-                        cartShopBean.setMerchantName(mMerchantBean.getTName());
+                        cartShopBean.setMerchantLogo(mMerchantBean.getTLogo() + "");
+                        cartShopBean.setMerchantName(mMerchantBean.getTName() + "");
                         double simPrice = ArithmeticalUtil.add(mGoodsBean.getTLogisticsMoney(), ArithmeticalUtil.mul(mGoodsBean.getTPrice(), Double.parseDouble(mNumber)));
                         cartShopBean.setSumPrice(ArithmeticalUtil.getMoneyString(simPrice));
                         cartGoodsBean.setTGoodsTitle(mGoodsBean.getTTitle());
                         cartGoodsBean.setTSpec(mSpec);
                         cartGoodsBean.setTNum(Integer.parseInt(mNumber));
-                        cartGoodsBean.setTPic(mGoodsBean.getTImg());
+                        cartGoodsBean.setTPic(mGoodsBean.getTImg() + "");
                         cartGoodsBean.setTId(mGoodsBean.getTId());
+                        cartGoodsBean.setTPrice(mGoodsBean.getTPrice());
                         list.add(cartGoodsBean);
                         cartShopBean.setList(list);
                         SummitOrderActivity.launch(ProductActivity.this, "", cartShopBean, mAddressBean);
@@ -252,8 +264,8 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                         object.addProperty("merchantId", mMerchantBean.getTId());
                         object.addProperty("goodsTitle", mTitle);
                         object.addProperty("pic", mImageString);
-                        object.addProperty("merchantName", mMerchantBean.getTName());
-                        object.addProperty("merchantLogo", mMerchantBean.getTLogo());
+                        object.addProperty("merchantName", mMerchantBean.getTName() + "");
+                        object.addProperty("merchantLogo", mMerchantBean.getTLogo() + "");
                         object.addProperty("spec", mSpec);
                         object.addProperty("price", mPrice);
                         object.addProperty("num", mNumber);
@@ -269,7 +281,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         mForgetPopupWindow.setOnSkuConfirmListener(new SkuPopupWindow.OnSkuConfirmListener() {
             @Override
             public void onConfirm(SkuBean skuBean, String number) {
-                mSpec = skuBean.getName();
+                mSpec = skuBean.getName() + "";
                 mNumber = number;
                 mTvSku.setText("规格：" + mSpec + "   数量：" + number);
             }
@@ -310,24 +322,43 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
             public void onConfirm(AddressBean addressBean) {
                 mAddressBean = addressBean;
                 mAddressId = String.valueOf(addressBean.getTId());
-                mTvSendAddress.setText(addressBean.getTAddress());
+                mTvSendAddress.setText(addressBean.getTAddress() + "");
             }
         });
         mSharePopupWindow.setShareListener(new SharePopupWindow.ShareListener() {
             @Override
-            public void ShareMedia(SHARE_MEDIA shareMedia) {
-                LogUtil.e("ShareMedia");
-                shareMsg(mShareMedia = shareMedia);
+            public void ShareMedia(int type) {
+//                if (type == 2) {
+//
+//                } else {
+                    mWXShare.shareUrl(type, ProductActivity.this, "http://www.baidu.com", mGoodsBean.getTTitle(), "", null);
+//                }
+            }
+        });
+        mWXShare.setListener(new WXShare.OnResponseListener() {
+            @Override
+            public void onSuccess() {
+                LogUtil.e("onSuccess");
+            }
+
+            @Override
+            public void onCancel() {
+                LogUtil.e("onCancel");
+            }
+
+            @Override
+            public void onFail(String message) {
+                LogUtil.e("onFail");
             }
         });
     }
 
-    private void shareMsg(SHARE_MEDIA shareMedia) {
-        if (PermissionUtil.checkRequestPermissionInActivity(this, SHARE_MSG, mPermissionList)) {
-            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
-            ShareUtil.shareMessage2(this, shareMedia);
-        }
-    }
+//    private void shareMsg(SHARE_MEDIA shareMedia) {
+//        if (PermissionUtil.checkRequestPermissionInActivity(this, SHARE_MSG, mPermissionList)) {
+//            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
+//            ShareUtil.shareMessage2(this, shareMedia);
+//        }
+//    }
 
     @Override
     public void onScroll(int scrollY) {
@@ -474,26 +505,28 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     @Override
     public void getDetailSuccess(GoodsBean goodsBean) {
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + goodsBean.getTImg(), mCbProduct, null);
-        mTitle = goodsBean.getTTitle();
+        mTitle = goodsBean.getTTitle() + "";
         mPrice = goodsBean.getTPrice();
-        mTvName.setText(mTitle);
+        mTvName.setText(mTitle + "");
         mTvPrice.setText(ArithmeticalUtil.getMoneyString(mPrice));
         mTvFreight.setText("运费：" + ArithmeticalUtil.getMoneyString(goodsBean.getTLogisticsMoney()));
         mTvSales.setText("月销量：" + goodsBean.getTSales());
-        mTvAddress.setText(goodsBean.getTSendCity());
+        mTvAddress.setText(goodsBean.getTSendCity() + "");
         mSkuBeans = goodsBean.getSkuList();
-        mImageString = goodsBean.getTImg();
+        mImageString = goodsBean.getTImg() + "";
         mMerchantBean = goodsBean.getMerchant();
-        mShopImageString = goodsBean.getMerchant().getTLogo();
+        mShopImageString = goodsBean.getMerchant().getTLogo() + "";
         mGoodsBean = goodsBean;
-        mShopName = mMerchantBean.getTName();
+        mShopName = mMerchantBean.getTName() + "";
         mShopId = mMerchantBean.getTId();
         mIsCollect = goodsBean.getGoodsCollect();
         mIsFollow = goodsBean.getMerchantCollect();
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mMerchantBean.getTLogo(), mIvHeader, true, false, null, 0, 0, true, new jp.wasabeef.glide.transformations.CropCircleTransformation(this));
         mTvShopName.setText(mShopName);
         List<String> list = new ArrayList<>();
-        list.add(goodsBean.getTDetails());
+        if (StringUtil.isNullOrEmpty(goodsBean.getTDetails())) {
+            list.add(goodsBean.getTDetails());
+        }
         mCommentPhotoAdapter.setDataList(list);
         initGoodsCollect();
         initShopCollect();
@@ -519,10 +552,17 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        mWXShare.unregister();
+        super.onDestroy();
+    }
+
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
@@ -578,14 +618,15 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         super.onRequestPermissionsSucceed(requestCode);
         if (requestCode == SHARE_MSG) {
             Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
-            ShareUtil.shareMessage2(this, mShareMedia);
+            mWXShare.share("这是要分享的文字");
+//            ShareUtil.shareMessage2(this, mShareMedia);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+//        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         if (requestCode == 54) {
             DialogUtil.createLoadingDialog(this, "加载中...", false, null);
             mProductPresenter.getAddressList(String.valueOf(GcGuangApplication.getId()));

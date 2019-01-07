@@ -46,7 +46,7 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
     LinearLayout mLlUnion;
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
-    @BindView(R.id.tv_wechat)
+    @BindView(R.id.tv_union)
     TextView mTvWechat;
     @BindView(R.id.tv_confirm)
     TextView mTvConfirm;
@@ -135,7 +135,7 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
                     return;
                 }
                 money = Double.parseDouble(s.toString());
-                if (money > ArithmeticalUtil.div(mMoney,100)) {
+                if (money > ArithmeticalUtil.div(mMoney, 100)) {
                     ToastUtil.newSafelyShow("输入金额大于可提现金额");
                     mEvMoney.setText("0");
                     return;
@@ -155,13 +155,18 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.ll_union, R.id.cb_union, R.id.tv_confirm})
+    @OnClick({R.id.iv_back, R.id.ll_union, R.id.cb_union, R.id.tv_confirm, R.id.tv_union})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.ll_union:
+                mAddressPopupWindow.initView(this, mAddressBeans, DensityUtil.dp2px(this, 350));
+                mAddressPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                mCbUnion.setChecked(true);
+                break;
+            case R.id.tv_union:
                 mAddressPopupWindow.initView(this, mAddressBeans, DensityUtil.dp2px(this, 350));
                 mAddressPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 mCbUnion.setChecked(true);
@@ -184,6 +189,7 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
                 DialogUtil.createLoadingDialog(this, "提交中...", false, null);
                 mMyBankCardPresenter.withdraw(mShopId, mShopName, mAddressBean.getTId(), Double.valueOf(money).longValue());
                 break;
+
         }
     }
 
@@ -194,14 +200,20 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
-        mMyBankCardPresenter.getList(null, String.valueOf(GcGuangApplication.getId()));
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        } else {
+            DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+            mMyBankCardPresenter.getList(null, String.valueOf(GcGuangApplication.getId()));
+        }
     }
 
     @Override

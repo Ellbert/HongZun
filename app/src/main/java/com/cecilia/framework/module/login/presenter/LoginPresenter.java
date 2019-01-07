@@ -45,6 +45,11 @@ public class LoginPresenter {
             protected void onTimeout() {
 //                mLoginView.getFail();
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+
+            }
         });
     }
 
@@ -72,6 +77,11 @@ public class LoginPresenter {
 
             @Override
             protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
 
             }
         });
@@ -103,6 +113,11 @@ public class LoginPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+
+            }
         });
     }
 
@@ -130,6 +145,11 @@ public class LoginPresenter {
 
             @Override
             protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
 
             }
         });

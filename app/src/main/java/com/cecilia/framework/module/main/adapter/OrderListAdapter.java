@@ -51,7 +51,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
         switch (type) {
             case 0:
                 final OrderBean orderBean1 = (OrderBean) baseGoodBean;
-                name.setText(orderBean1.getMerchant().getTName());
+                name.setText(orderBean1.getMerchant().getTName()+"");
                 sales.setText("商品数量" + orderBean1.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyString(orderBean1.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean1.getFirstGoodsImg(), header, null);
@@ -188,7 +188,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 break;
             case 1:
                 final OrderBean orderBean2 = (OrderBean) baseGoodBean;
-                name.setText(orderBean2.getMerchant().getTName());
+                name.setText(orderBean2.getMerchant().getTName()+"");
                 sales.setText("商品数量" + orderBean2.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyString(orderBean2.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean2.getFirstGoodsImg(), header, null);
@@ -222,7 +222,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 break;
             case 2:
                 final OrderBean orderBean3 = (OrderBean) baseGoodBean;
-                name.setText(orderBean3.getMerchant().getTName());
+                name.setText(orderBean3.getMerchant().getTName()+"");
                 sales.setText("商品数量" + orderBean3.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyString(orderBean3.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean3.getFirstGoodsImg(), header, null);
@@ -240,7 +240,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 break;
             case 3:
                 final OrderBean orderBean4 = (OrderBean) baseGoodBean;
-                name.setText(orderBean4.getMerchant().getTName());
+                name.setText(orderBean4.getMerchant().getTName()+"");
                 sales.setText("商品数量" + orderBean4.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyString(orderBean4.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean4.getFirstGoodsImg(), header, null);
@@ -267,7 +267,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 break;
             case 4:
                 final OrderBean orderBean5 = (OrderBean) baseGoodBean;
-                name.setText(orderBean5.getMerchant().getTName());
+                name.setText(orderBean5.getMerchant().getTName()+"");
                 sales.setText("商品数量" + orderBean5.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyString(orderBean5.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean5.getFirstGoodsImg(), header, null);

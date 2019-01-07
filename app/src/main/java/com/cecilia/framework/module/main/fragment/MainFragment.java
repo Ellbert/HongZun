@@ -1,6 +1,7 @@
 package com.cecilia.framework.module.main.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.cecilia.framework.base.BaseFragment;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.customer.activity.CustomerActivity;
+import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.adapter.MainAdapterEx;
 import com.cecilia.framework.module.main.adapter.ProductAdapter;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
@@ -20,6 +22,7 @@ import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.main.bean.ShopBean;
 import com.cecilia.framework.module.main.presenter.HomePresenter;
 import com.cecilia.framework.module.main.view.HomeView;
+import com.cecilia.framework.module.product.activity.ProductActivity;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.widget.LoadMoreRecyclerView;
@@ -101,6 +104,17 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
 //            }
 //        });
         mSrlMain.setOnRefreshListener(this);
+        mMoreAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int id) {
+                ProductActivity.launch(MainFragment.this.mActivity,id);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int id) {
+
+            }
+        });
         onRefresh();
     }
 
@@ -128,8 +142,10 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
     @Override
     public void onFailed() {
 //        ToastUtil.newSafelyShow("网络异常，请稍后再试！");
-        mRvRecommend.setLoadMoreNull();
+//        mRvRecommend.setLoadMoreNull();
 //        mLinearLayout.setVisibility(View.Vi);
+        LoginActivity.launch(this.getContext());
+        this.mActivity.finish();
     }
 
     @Override
@@ -147,7 +163,7 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
 
     @Override
     public void onShopStatusSuccess(ShopBean data) {
-        CustomerActivity.launch(MainFragment.this.getContext(), data.getTStatus(), data);
+        CustomerActivity.launch(MainFragment.this, data.getTStatus(), data);
     }
 
     @Override
@@ -165,12 +181,21 @@ public class MainFragment extends BaseFragment implements HomeView, SwipeRefresh
         int merchantId = userBean.getTMerchantId();
         SharedPreferenceUtil.putInt(mActivity, "merchantId", userBean.getTMerchantId());
         if (0 == merchantId) {
-            CustomerActivity.launch(MainFragment.this.getContext(), -1, null);
+            CustomerActivity.launch(MainFragment.this, -1, null);
         } else {
             DialogUtil.createLoadingDialog(MainFragment.this.getContext(), "查询中...", false, null);
             mHomePresenter.getShopStatus(String.valueOf(merchantId));
 //        mHomePresenter.getUserInfo(GcGuangApplication.getId());
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == 99) {
+//            LoginActivity.launch(this.getContext());
+//            this.mActivity.finish();
+//        }
     }
 }
 

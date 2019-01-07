@@ -42,6 +42,11 @@ public class ResetPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mResetView.onResetFailed();
+            }
         });
     }
 }

@@ -5,11 +5,15 @@ import android.os.CountDownTimer;
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
+import com.cecilia.framework.common.AppConstant;
+import com.cecilia.framework.general.AppStatusManager;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
+import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.GuangUtil;
 import com.cecilia.framework.utils.SharedPreferenceUtil;
+import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ViewUtil;
 
 /**
@@ -18,6 +22,7 @@ import com.cecilia.framework.utils.ViewUtil;
 public class LogoActivity extends BaseActivity {
 
     private OpenCountTimer mTimer;
+
 //    private boolean mIsFirst = false; // 是否是第一次启动app
 
 //     private boolean mIsCheckSuccess = false; // 是否检查更新完成
@@ -56,7 +61,9 @@ public class LogoActivity extends BaseActivity {
 //        mIsFirst = GuangUtil.loadFirstMessage(ViewUtil.getContext());
         //LogoPresenter logoPresenter = new LogoPresenter(LogoActivity.this);
         //logoPresenter.getVersionUpdate("1", String.valueOf(BuildConfig.VERSION_NAME), "SX");
-        mTimer = new OpenCountTimer(500, 1000);
+        GcGuangApplication.setId(SharedPreferenceUtil.getInt(this, "userId"));
+        GcGuangApplication.setsToken(SharedPreferenceUtil.getString(this, "token"));
+        mTimer = new OpenCountTimer(2000, 2000);
         mTimer.start();
 //        initIM5();
     }
@@ -117,22 +124,23 @@ public class LogoActivity extends BaseActivity {
 //        if (/*!mIsCheckSuccess ||*/ !mIsInitIMSuccess || !mIsTimingSuccess) {
 //            return;
 //        }
-        GcGuangApplication.setId(SharedPreferenceUtil.getInt(this, "userId"));
-        if (GcGuangApplication.getId() == 0) {
+        //app状态改为正常
+//        AppStatusManager.getInstance().setAppStatus(AppConstant.STATUS_NORMAL);
+        if (GcGuangApplication.getId() == 0 || StringUtil.isNullOrEmpty(GcGuangApplication.getsToken())) {
 //             if (false) { // TODO: 2018/1/26 临时处理
             LoginActivity.launch(LogoActivity.this);
-            finish();
         } else {
             MainActivity.launch(LogoActivity.this);
-            finish();
 //             }
         }
+        finish();
     }
 
     /**
      * 定义一个倒计时的内部类
      */
     class OpenCountTimer extends CountDownTimer {
+
         OpenCountTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }

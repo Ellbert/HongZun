@@ -42,11 +42,13 @@ public class HongBaoActivity extends BaseActivity {
     protected void initViews() {
         List<String> titleList = new ArrayList<>();
         titleList.add("复投转换");
+        titleList.add("理财");
         titleList.add("提现");
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new HongBaoFragment(HongBaoFragment.CHANGE));
+        fragmentList.add(new HongBaoFragment(HongBaoFragment.FINANCIAL));
         fragmentList.add(new HongBaoFragment(HongBaoFragment.WITHDRAW));
-        TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList,fragmentList,getSupportFragmentManager());
+        TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList, fragmentList, getSupportFragmentManager());
         mVpHongBao.setAdapter(tabFragmentAdapter);
         mTlHongBao.setupWithViewPager(mVpHongBao);
         LinearLayout linearLayout = (LinearLayout) mTlHongBao.getChildAt(0);
@@ -86,6 +88,15 @@ public class HongBaoActivity extends BaseActivity {
             case R.id.iv_back:
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 }

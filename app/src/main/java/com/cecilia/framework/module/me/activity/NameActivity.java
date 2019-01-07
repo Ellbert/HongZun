@@ -33,7 +33,7 @@ public class NameActivity extends BaseActivity implements NameView {
 
     public static void launch(Activity context) {
         Intent intent = new Intent(context, NameActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,0);
     }
 
     @Override
@@ -105,6 +105,16 @@ public class NameActivity extends BaseActivity implements NameView {
 
     @Override
     public void onUpdateFail() {
+        setResult(99);
+        finish();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
+        }
     }
 }

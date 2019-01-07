@@ -66,8 +66,9 @@ public class PhotoUtils {
      *         打开相册的请求码
      */
     public static void openPic(Activity activity, int requestCode) {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        photoPickerIntent.setType("image/*");
+//        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//        photoPickerIntent.setType("image/*");
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         activity.startActivityForResult(photoPickerIntent, requestCode);
     }
 
@@ -78,8 +79,9 @@ public class PhotoUtils {
      *         打开相册的请求码
      */
     public static void openPic(Fragment fragment, int requestCode) {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        photoPickerIntent.setType("image/*");
+//        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//        photoPickerIntent.setType("image/*");
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         fragment.startActivityForResult(photoPickerIntent, requestCode);
     }
 

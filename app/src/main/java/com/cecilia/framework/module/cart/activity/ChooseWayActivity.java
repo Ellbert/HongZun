@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.cart.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,16 +34,17 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
     TextView mTvTitleText;
     @BindView(R.id.cb_alipay)
     CheckBox mCbAlipay;
-    @BindView(R.id.ll_alipay)
-    LinearLayout mLlAlipay;
+    @BindView(R.id.cb_balance)
+    CheckBox mCbBalance;
     private ArrayList<Integer> mOrderId;
     private ChooseWayPresenter mChooseWayPresenter;
     private Dialog mBuyDialog;
+    private int mPayType = 1;
 
-    public static void launch(Context context, ArrayList<Integer> orderId) {
+    public static void launch(Activity context, ArrayList<Integer> orderId) {
         Intent intent = new Intent(context, ChooseWayActivity.class);
         intent.putIntegerArrayListExtra("order_id", orderId);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, 88);
     }
 
     public static void launch(Fragment context, ArrayList<Integer> orderId) {
@@ -78,7 +80,11 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
                         for (int orderId : mOrderId) {
                             orderIds += orderId + "#";
                         }
-                        mChooseWayPresenter.buy(orderIds, GcGuangApplication.getId(), "购物车购买商品");
+                        if (mPayType == 1) {
+                            mChooseWayPresenter.buy(orderIds, GcGuangApplication.getId(), "购买商品");
+                        } else if (mPayType == 2) {
+                            mChooseWayPresenter.hongBaoPay(orderIds, GcGuangApplication.getId());
+                        }
                         return false;
                     }
                 }, ViewUtil.getString(R.string.cancel), null, null);
@@ -106,10 +112,11 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
 
     @Override
     public void onFailed() {
-
+        setResult(99);
+        finish();
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_confirm,R.id.cb_alipay,R.id.ll_alipay})
+    @OnClick({R.id.iv_back, R.id.tv_confirm, R.id.cb_alipay, R.id.tv_alipay, R.id.tv_balance, R.id.cb_balance, R.id.ll_alipay, R.id.ll_balance})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -119,10 +126,34 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
                 mBuyDialog.show();
                 break;
             case R.id.cb_alipay:
+                mPayType = 1;
                 mCbAlipay.setChecked(true);
+                mCbBalance.setChecked(false);
+                break;
+            case R.id.tv_alipay:
+                mPayType = 1;
+                mCbAlipay.setChecked(true);
+                mCbBalance.setChecked(false);
                 break;
             case R.id.ll_alipay:
+                mPayType = 1;
                 mCbAlipay.setChecked(true);
+                mCbBalance.setChecked(false);
+                break;
+            case R.id.tv_balance:
+                mPayType = 2;
+                mCbBalance.setChecked(true);
+                mCbAlipay.setChecked(false);
+                break;
+            case R.id.cb_balance:
+                mPayType = 2;
+                mCbBalance.setChecked(true);
+                mCbAlipay.setChecked(false);
+                break;
+            case R.id.ll_balance:
+                mPayType = 2;
+                mCbBalance.setChecked(true);
+                mCbAlipay.setChecked(false);
                 break;
         }
     }
@@ -131,6 +162,21 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
     public void showAlipayResult(String data) {
         ResultActivity.launch(this, data, 1);
         if ("9000".equals(data)) {
+            finish();
+        }
+    }
+
+    @Override
+    public void onHongBaoPaySuccess() {
+        ResultActivity.launch(this, "9000", 1);
+        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 99) {
+            setResult(99);
             finish();
         }
     }

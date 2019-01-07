@@ -48,8 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_details"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp" />
 

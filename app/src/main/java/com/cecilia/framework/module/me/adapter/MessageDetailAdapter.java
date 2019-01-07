@@ -18,7 +18,7 @@ public class MessageDetailAdapter extends BaseRvAdapter<MessageDetailBean> {
     public void bindData(BaseViewHolder holder, MessageDetailBean data) {
         TextView tvName = holder.getView(R.id.tv_name);
         TextView tvDetail = holder.getView(R.id.tv_detail);
-        tvName.setText(data.getName());
-        tvDetail.setText(data.getValue());
+        tvName.setText(data.getName()+"");
+        tvDetail.setText(data.getValue()+"");
     }
 }

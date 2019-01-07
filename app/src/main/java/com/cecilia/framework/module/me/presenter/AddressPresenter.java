@@ -45,6 +45,11 @@ public class AddressPresenter {
             protected void onTimeout() {
 
             }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNameView.onGetFailed();
+            }
         });
     }
 
@@ -74,6 +79,11 @@ public class AddressPresenter {
             @Override
             protected void onTimeout() {
 
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mNameView.onGetFailed();
             }
         });
     }

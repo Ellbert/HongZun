@@ -215,6 +215,32 @@ public class FileUtil {
         return null;
     }
 
+//    public static Bitmap compressImage(Bitmap image, int imageSize) {
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        int options = 100;
+//        image.compress(Bitmap.CompressFormat.JPEG, options, outputStream);
+//        while (outputStream.toByteArray().length / 1024 > imageSize) {
+//            outputStream.reset();
+//            options -= 10;
+//            image.compress(Bitmap.CompressFormat.JPEG, options, outputStream);
+//        }
+//        File storageDir = new File(Environment.getExternalStorageDirectory(), "temp_data");
+//        if (!storageDir.exists() && !storageDir.mkdir()) {
+//            return null;
+//        }
+//        try {
+//            File file = File.createTempFile(generateFileName(), ".jpg", storageDir);
+//            FileOutputStream fileOutputStream = new FileOutputStream(file);
+//            fileOutputStream.write(outputStream.toByteArray());
+//            fileOutputStream.flush();
+//            fileOutputStream.close();
+//            return file;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
     private static final String SD_PATH = "/sdcard/dskqxt/pic/";
     private static final String IN_PATH = "/dskqxt/pic/";
 

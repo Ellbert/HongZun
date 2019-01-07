@@ -17,7 +17,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.cecilia.framework.common.AppConstant;
+import com.cecilia.framework.general.AppStatusManager;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.main.activity.MainActivity;
+import com.cecilia.framework.module.splash.activity.LogoActivity;
 import com.cecilia.framework.utils.AsynchronousUtil;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LoadImageWithGlide.ImageUtil;
@@ -48,21 +52,25 @@ public abstract class BaseActivity extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//竖屏
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        super.onCreate(savedInstanceState);
-        setContentView(getContentViewId());
-        mUnBinder = ButterKnife.bind(this);
-        mEventBus = EventBus.getDefault();
-        if (isUseEventBus()) {
-            mEventBus.register(this);
-        }
-//        LogUtil.e("savedInstanceState = " + (savedInstanceState == null ? "null" : savedInstanceState.getBoolean(CRASH)));
-        if (savedInstanceState == null || savedInstanceState.getBoolean(CRASH)) {
-            initViews();
-            initData();
-            initDialog();
-            initListener();
+        try {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//竖屏
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            super.onCreate(savedInstanceState);
+            setContentView(getContentViewId());
+            mUnBinder = ButterKnife.bind(this);
+            mEventBus = EventBus.getDefault();
+            if (isUseEventBus()) {
+                mEventBus.register(this);
+            }
+            LogUtil.e("savedInstanceState = " + (savedInstanceState == null ? "null" : savedInstanceState.getBoolean(CRASH)));
+            if (savedInstanceState == null || savedInstanceState.getBoolean(CRASH)) {
+                initViews();
+                initData();
+                initDialog();
+                initListener();
+            }
+        } catch (Exception e) {
+            LogUtil.e(e.getMessage());
         }
     }
 
@@ -144,8 +152,12 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onDestroy() {
         //解绑控件
         hintKeyBoard();
-        mUnBinder.unbind();
-        mEventBus.unregister(this);
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
+        }
+        if (mEventBus != null) {
+            mEventBus.unregister(this);
+        }
         super.onDestroy();
     }
 

@@ -20,4 +20,30 @@
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 
+    <TextView
+        android:id="@+id/tv_pay_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/icn_next_gray_big"
+        android:drawableRight="@mipmap/icn_next_gray_big"
+        android:padding="12dp"
+        android:text="支付密码"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_certification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/icn_next_gray_big"
+        android:drawableRight="@mipmap/icn_next_gray_big"
+        android:padding="12dp"
+        android:text="实名认证"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
 </LinearLayout>

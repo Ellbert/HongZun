@@ -210,7 +210,9 @@
         <activity
             android:name=".module.customer.activity.WithDrawActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".module.main.activity.FinancialActivity" />
+        <activity
+            android:name=".module.main.activity.FinancialActivity"
+            android:launchMode="singleTask" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

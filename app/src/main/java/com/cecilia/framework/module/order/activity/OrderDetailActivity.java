@@ -180,8 +180,8 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
         mTvShopName.setText(orderDetailBean.getMerchant().getTName()+"");
         mTvGoodsMoney.setText(getGoodsMoney(orderDetailBean.getGoodsList()));
         mTvPostage.setText(getPostageMoney(orderDetailBean.getGoodsList()));
-        mTvOrderMoney.setText(ArithmeticalUtil.getMoneyString(orderDetailBean.getTTotalMoney()));
-        mTvPayMoney.setText(ArithmeticalUtil.getMoneyString(orderDetailBean.getTPayMoney()));
+        mTvOrderMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderDetailBean.getTTotalMoney()));
+        mTvPayMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderDetailBean.getTPayMoney()));
         mTvPayWay.setText("支付宝");
         mTvOrderNo.setText(orderDetailBean.getTOutTradeNo()+"");
         mGoodsAdapter.setDataList(orderDetailBean.getGoodsList());
@@ -209,7 +209,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
         for (GoodsBean goodsBean : goodsBeans) {
             sumMoney = ArithmeticalUtil.add(sumMoney, goodsBean.getTGoodsMoney());
         }
-        return ArithmeticalUtil.getMoneyString(sumMoney);
+        return ArithmeticalUtil.getMoneyStringWithoutSymbol(sumMoney);
     }
 
     private String getPostageMoney(List<GoodsBean> goodsBean) {
@@ -217,7 +217,7 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
         for (GoodsBean goodBean : goodsBean) {
             sumMoney = ArithmeticalUtil.add(sumMoney, goodBean.getTLogisticsMoney());
         }
-        return ArithmeticalUtil.getMoneyString(sumMoney);
+        return ArithmeticalUtil.getMoneyStringWithoutSymbol(sumMoney);
     }
 
     @Override

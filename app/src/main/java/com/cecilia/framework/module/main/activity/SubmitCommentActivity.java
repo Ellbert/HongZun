@@ -121,7 +121,7 @@ public class SubmitCommentActivity extends BaseActivity implements SubmitComment
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mGoodsBean.getTGoodsImg(), mIvPhoto, null);
         mTvName.setText(mGoodsBean.getTGoodsTitle());
         mTvSales.setText("商品数量" + mGoodsBean.getTNum() + "件");
-        mTvPrice.setText(ArithmeticalUtil.getMoneyString(mGoodsBean.getTGoodsPrice()));
+        mTvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mGoodsBean.getTGoodsPrice()));
     }
 
     @Override

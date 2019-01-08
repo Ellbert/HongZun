@@ -15,6 +15,7 @@ import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.listener.LimitInputTextWatcher;
 import com.cecilia.framework.module.me.adapter.SimpleArrayAdapter;
 import com.cecilia.framework.module.me.bean.BankBean;
 import com.cecilia.framework.module.me.presenter.BankCardPresenter;
@@ -69,7 +70,6 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
     @Override
     protected void initData() {
         DialogUtil.createLoadingDialog(BankCardActivity.this, "加载中...", true, null);
-        mUserName = SharedPreferenceUtil.getString(this, "userName");
         mBankCardPresenter = new BankCardPresenter(this);
         mBankCardPresenter.getBankList();
     }
@@ -96,6 +96,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
 
             }
         });
+//        mEtName.addTextChangedListener(new LimitInputTextWatcher(mEtName));
     }
 
     @Override
@@ -117,6 +118,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
             case R.id.tv_confirm:
                 String number = mEtBankNum.getText().toString();
                 String branch = mEtBranch.getText().toString();
+                String name = mEtName.getText().toString();
                 if (mBankBean == null) {
                     ToastUtil.newSafelyShow("请选择银行名称！");
                     return;
@@ -129,6 +131,10 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
                     ToastUtil.newSafelyShow("银行卡号不可为空！");
                     return;
                 }
+                if (StringUtil.isNullOrEmpty(name)) {
+                    ToastUtil.newSafelyShow("开户姓名不可为空！");
+                    return;
+                }
                 if (!StringUtil.checkBankCard(number)) {
                     ToastUtil.newSafelyShow("输入银行卡号不正确！");
                     return;
@@ -139,7 +145,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
                     isDefault = "0";
                 }
                 DialogUtil.createLoadingDialog(BankCardActivity.this, "添加中...", true, null);
-                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), mUserName, mBankBean.getTBank()+"", number, branch, isDefault);
+                mBankCardPresenter.saveBankCard(GcGuangApplication.getId(), name, mBankBean.getTBank() + "", number, branch, isDefault);
                 break;
         }
     }
@@ -162,7 +168,7 @@ public class BankCardActivity extends BaseActivity implements BankCardView {
         mBankBeanList = list;
         List<String> stringList = new ArrayList<>();
         for (BankBean bankBean : list) {
-            stringList.add(bankBean.getTBank()+"");
+            stringList.add(bankBean.getTBank() + "");
         }
         stringList.add("请选择银行");
         //适配器

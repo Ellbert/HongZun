@@ -47,7 +47,7 @@ public class CartGoodsAdapter extends BaseRvAdapter<CartGoodsBean> {
         });
         ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTPic(), imageView, null);
         tvName.setText(data.getTGoodsTitle()+"");
-        tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
+        tvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.getTPrice()));
         tvSpec.setText(data.getTSpec()+"");
         numberChoicesLayout.setSelectNumber("1", String.valueOf(data.getTNum()), "10");
         numberChoicesLayout.setNumberChangeListener(new NumberChoicesLayout.OnNumberChangeListener() {

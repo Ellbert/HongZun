@@ -47,7 +47,18 @@ public class NetworkConstant {
 
     public class Me {
         public static final String UPDATE_USER_INFO = APP + "/appUser/updateUser";
+    }
 
+    public class Recharge {
+        public static final String CREATE_ORDER = APP + "/recharge/createOrder";
+        public static final String RECHARGE_BUY = APP + "/recharge/buy";
+    }
+
+    public class HongBao {
+        public static final String GET_WALLET = APP + "/appUser/getWallet";
+        public static final String RECHARGE_FINANCIAL = APP + "/arrange/recharge";
+        public static final String REDELIVERY = APP + "/arrange/redelivery";
+        public static final String GET_USER_ARRANGE = APP + "/arrange/getUserArrange";
     }
 
     public class Cart {

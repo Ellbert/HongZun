@@ -125,7 +125,12 @@ public class CustomerActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        mSrlCustomer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSrlCustomer.setRefreshing(false);
+            }
+        });
     }
 
     @Override

@@ -145,7 +145,7 @@
             android:layout_marginRight="12dp"
             android:layout_toStartOf="@+id/tv_commit"
             android:layout_toLeftOf="@+id/tv_commit"
-            android:text="¥0.00"
+            android:text="0.00"
             android:textColor="@color/color_main"
             android:textSize="@dimen/txt_bank" />
 
@@ -158,7 +158,7 @@
             android:layout_marginRight="12dp"
             android:layout_toStartOf="@+id/tv_sum_money"
             android:layout_toLeftOf="@+id/tv_sum_money"
-            android:text="合计金额："
+            android:text="合计积分："
             android:textColor="@color/txt_first"
             android:textSize="@dimen/txt_first" />
 

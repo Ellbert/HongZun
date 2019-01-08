@@ -130,14 +130,14 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
             @Override
             public void afterTextChanged(Editable s) {
                 double money = 0;
-                if (StringUtil.isNullOrEmpty(s.toString())) {
+                if (StringUtil.isNullOrEmpty(s.toString()) || ".".equals(s.toString())) {
                     mTvPoundage.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(ArithmeticalUtil.mul(money, mRate)));
                     return;
                 }
                 money = Double.parseDouble(s.toString());
                 if (money > ArithmeticalUtil.div(mMoney, 100)) {
-                    ToastUtil.newSafelyShow("输入金额大于可提现金额");
-                    mEvMoney.setText("0");
+                    ToastUtil.newSafelyShow("输入积分大于可提现积分");
+                    mEvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mMoney));
                     return;
                 }
                 mTvPoundage.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(ArithmeticalUtil.mul(money, mRate)));
@@ -177,8 +177,8 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
                 mCbUnion.setChecked(true);
                 break;
             case R.id.tv_confirm:
-                if (StringUtil.isNullOrEmpty(mEvMoney.getText().toString()) || Double.parseDouble(mEvMoney.getText().toString()) == 0) {
-                    ToastUtil.newSafelyShow("输入的金额不正确");
+                if (StringUtil.isNullOrEmpty(mEvMoney.getText().toString()) || ".".equals(mEvMoney.getText().toString()) || Double.parseDouble(mEvMoney.getText().toString()) == 0) {
+                    ToastUtil.newSafelyShow("输入的积分不正确");
                     return;
                 }
                 if (mAddressBean == null) {
@@ -195,7 +195,15 @@ public class WithDrawActivity extends BaseActivity implements WithdrawView {
 
     @Override
     public void onGetListSuccess(List<BankCardBean> list) {
+        DialogUtil.createLoadingDialog(this, "获取中...", false, null);
         mAddressBeans = list;
+        for (BankCardBean bankCardBean : mAddressBeans) {
+            if (bankCardBean.getTDefault() == 1) {
+                mAddressBean = bankCardBean;
+                mTvWechat.setText(mAddressBean.gettBankName() + "(" + StringUtil.getLastBankCard(mAddressBean.getTCardNum()) + ")");
+            }
+        }
+        DialogUtil.dismissLoadingDialog();
     }
 
     @Override

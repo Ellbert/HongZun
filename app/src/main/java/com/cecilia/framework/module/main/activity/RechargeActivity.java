@@ -1,6 +1,7 @@
 package com.cecilia.framework.module.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -13,18 +14,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.module.main.presenter.RechargePresenter;
+import com.cecilia.framework.module.main.view.RechargeView;
 import com.cecilia.framework.module.payment.activity.PaymentActivity;
+import com.cecilia.framework.module.product.activity.ResultActivity;
 import com.cecilia.framework.utils.ArithmeticalUtil;
+import com.cecilia.framework.utils.DialogUtil;
+import com.cecilia.framework.utils.LogUtil;
+import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ToastUtil;
+import com.cecilia.framework.utils.ViewUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RechargeActivity extends BaseActivity {
+public class RechargeActivity extends BaseActivity implements RechargeView {
 
     @BindView(R.id.et_recharge)
     EditText mEtRecharge;
@@ -49,6 +58,8 @@ public class RechargeActivity extends BaseActivity {
     @BindView(R.id.tv_edit)
     TextView mIvEdit;
     private long mMoney;
+    private RechargePresenter mRechargePresenter;
+    private Dialog mBuyDialog;
 
     public static void launch(Fragment context, long balance) {
         Intent intent = new Intent(context.getContext(), RechargeActivity.class);
@@ -67,18 +78,27 @@ public class RechargeActivity extends BaseActivity {
         mIvSubmit.setVisibility(View.GONE);
         mIvEdit.setVisibility(View.VISIBLE);
         mIvEdit.setText("账单");
-        mMoney = getIntent().getIntExtra("balance", 0);
+        mMoney = getIntent().getLongExtra("balance", 0);
         mTvBalance.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mMoney));
     }
 
     @Override
     protected void initData() {
-
+        mRechargePresenter = new RechargePresenter(this);
     }
 
     @Override
     protected void initDialog() {
-
+        mBuyDialog = DialogUtil.createPromptDialog(this,
+                "提示", "确定支付？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
+                    @Override
+                    public boolean onClick() {
+                        DialogUtil.createLoadingDialog(RechargeActivity.this, "创建中...", false, null);
+                        long money = Double.valueOf(ArithmeticalUtil.mul(Double.parseDouble(mEtRecharge.getText().toString()), 100)).longValue();
+                        mRechargePresenter.createOrder(GcGuangApplication.getId(), money);
+                        return false;
+                    }
+                }, ViewUtil.getString(R.string.cancel), null, null);
     }
 
     @Override
@@ -94,8 +114,7 @@ public class RechargeActivity extends BaseActivity {
                 //删除.后面超过两位的数字
                 if (s.toString().contains(".")) {
                     if (s.length() - 1 - s.toString().indexOf(".") > 2) {
-                        s = s.toString().subSequence(0,
-                                s.toString().indexOf(".") + 3);
+                        s = s.toString().subSequence(0, s.toString().indexOf(".") + 3);
                         mEtRecharge.setText(s);
                         mEtRecharge.setSelection(s.length());
                     }
@@ -127,8 +146,13 @@ public class RechargeActivity extends BaseActivity {
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_confirm:
-                setResult(23);
-                finish();
+//                setResult(23);
+//                finish();
+                if (StringUtil.isNullOrEmpty(mEtRecharge.getText().toString()) || Double.parseDouble(mEtRecharge.getText().toString()) == 0) {
+                    ToastUtil.newSafelyShow("请输入正确积分");
+                    return;
+                }
+                mBuyDialog.show();
                 break;
             case R.id.iv_back:
                 finish();
@@ -143,7 +167,7 @@ public class RechargeActivity extends BaseActivity {
                 mCbAlipay.setChecked(true);
                 break;
             case R.id.tv_edit:
-                PaymentActivity.launch(this,2,0);
+                PaymentActivity.launch(this, 2, 0);
                 break;
         }
     }
@@ -153,6 +177,31 @@ public class RechargeActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 99) {
             setResult(99);
+            finish();
+        }
+    }
+
+    @Override
+    public void onCreateOrderSuccess(String orderId) {
+        DialogUtil.createLoadingDialog(RechargeActivity.this, "下单中...", false, null);
+        mRechargePresenter.buy(orderId, GcGuangApplication.getId(), "积分充值");
+    }
+
+    @Override
+    public void onFailed() {
+        setResult(99);
+        finish();
+    }
+
+    @Override
+    public void onGetSuccess(String payInfo) {
+        mRechargePresenter.doAlipayPay(this, payInfo);
+    }
+
+    @Override
+    public void showAlipayResult(String data) {
+        ResultActivity.launch(this, data, 2);
+        if ("9000".equals(data)) {
             finish();
         }
     }

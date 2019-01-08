@@ -140,7 +140,7 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
                 }
                 mSumMoney = sumPrice;
                 mCartIds = carts;
-                mTvSum.setText(ArithmeticalUtil.getMoneyString(mSumMoney));
+                mTvSum.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mSumMoney));
                 mCartShopAdapter.notifyDataSetChanged();
             }
         });
@@ -160,7 +160,7 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
                 }
                 mCartIds = carts;
                 mSumMoney = sumPrice;
-                mTvSum.setText(ArithmeticalUtil.getMoneyString(mSumMoney));
+                mTvSum.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mSumMoney));
             }
         });
         mCartShopAdapter.setSumCheck(new CartShopAdapter.SumCheck() {
@@ -264,7 +264,7 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
         mSumMoney = 0;
         mCartIds = "";
         mCbAll.setChecked(false);
-        mTvSum.setText(ArithmeticalUtil.getMoneyString(mSumMoney));
+        mTvSum.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mSumMoney));
         mCartPresenter.getCartList(mSwipeRefreshLayout, GcGuangApplication.getId());
     }
 

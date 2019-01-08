@@ -94,7 +94,7 @@
         android:layout_marginTop="1dp"
         android:background="@color/white"
         android:padding="14dp"
-        android:text="开户名"
+        android:text="开户姓名"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 
@@ -107,7 +107,7 @@
         android:layout_toEndOf="@+id/tv_text3"
         android:layout_toRightOf="@+id/tv_text3"
         android:background="@color/white"
-        android:hint="请输入银行开户名"
+        android:hint="请输入银行开户人姓名"
         android:padding="14dp"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />

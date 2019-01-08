@@ -20,7 +20,7 @@ public class SafetyActivity extends BaseActivity {
 
     public static void launch(Fragment context) {
         Intent intent = new Intent(context.getContext(), SafetyActivity.class);
-        context.startActivityForResult(intent,0);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class SafetyActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_reset})
+    @OnClick({R.id.iv_back, R.id.tv_reset, R.id.tv_pay_password, R.id.tv_certification})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -66,7 +66,10 @@ public class SafetyActivity extends BaseActivity {
                 break;
             case R.id.tv_reset:
                 ResetActivity.launch(SafetyActivity.this);
-//                HeaderActivity.launch(DataActivity.this);
+                break;
+            case R.id.tv_pay_password:
+                break;
+            case R.id.tv_certification:
                 break;
         }
     }

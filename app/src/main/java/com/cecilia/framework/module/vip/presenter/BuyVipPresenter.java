@@ -119,7 +119,7 @@ public class BuyVipPresenter {
                     @Override
                     protected void onException(Throwable e) {
                         ToastUtil.newSafelyShow(e.getMessage());
-                        mBuyVipView.onFailed();
+//                        mBuyVipView.onFailed();
                     }
                 });
     }

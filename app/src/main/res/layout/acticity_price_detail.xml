@@ -75,7 +75,7 @@
         android:layout_alignStart="@+id/tv_invites"
         android:layout_alignLeft="@+id/tv_invites"
         android:layout_marginTop="28dp"
-        android:text="奖励金额："
+        android:text="奖励积分："
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 

@@ -50,7 +50,7 @@ public class WithdrawPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-
+                mWithdrawView.onFailed();
             }
         });
     }
@@ -84,7 +84,7 @@ public class WithdrawPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-
+                mWithdrawView.onFailed();
             }
         });
     }
@@ -118,7 +118,7 @@ public class WithdrawPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-
+                mWithdrawView.onFailed();
             }
         });
     }

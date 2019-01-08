@@ -90,9 +90,9 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
     public void onGetWalletSuccess(ShopPaymentBean shopPaymentBean) {
         mMoney = shopPaymentBean.getTMerchantBalance();
         mTvIncome.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(ArithmeticalUtil.add(ArithmeticalUtil.add(shopPaymentBean.getTMerchantBalance(), shopPaymentBean.getTWaitMoney()), shopPaymentBean.getTTxMoney())));
-        mTvCanWithdraw.setText(ArithmeticalUtil.getMoneyString(mMoney));
-        mTvNoRecord.setText(ArithmeticalUtil.getMoneyString(shopPaymentBean.getTWaitMoney()));
-        mTvHasWithdraw.setText(ArithmeticalUtil.getMoneyString(shopPaymentBean.getTTxMoney()));
+        mTvCanWithdraw.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mMoney));
+        mTvNoRecord.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(shopPaymentBean.getTWaitMoney()));
+        mTvHasWithdraw.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(shopPaymentBean.getTTxMoney()));
         if (shopPaymentBean.getTMerchantBalance() > 0) {
             mLlWithdraw.setVisibility(View.VISIBLE);
         } else {

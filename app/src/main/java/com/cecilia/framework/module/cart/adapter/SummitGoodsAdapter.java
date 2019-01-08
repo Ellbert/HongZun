@@ -38,7 +38,7 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
             CartGoodsBean data = (CartGoodsBean) cartGoodsBean;
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTPic(), imageView, null);
             tvName.setText(data.getTGoodsTitle()+"");
-            tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
+            tvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.getTPrice()));
             tvSpec.setText(data.getTSpec()+"");
             tvNumber.setText("×" + data.getTNum());
             tvComment.setVisibility(View.GONE);
@@ -46,7 +46,7 @@ public class SummitGoodsAdapter extends BaseRvAdapter {
             final GoodsBean data = (GoodsBean) cartGoodsBean;
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTGoodsImg(), imageView, null);
             tvName.setText(data.getTGoodsTitle()+"");
-            tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTGoodsMoney()));
+            tvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.getTGoodsMoney()));
             tvSpec.setText(data.getTGoodsSpec()+"");
             tvNumber.setText("×" + data.getTNum());
             tvComment.setText(mInfo);

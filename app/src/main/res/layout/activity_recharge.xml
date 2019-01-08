@@ -16,7 +16,7 @@
         android:layout_below="@+id/header"
         android:background="@color/white"
         android:padding="12dp"
-        android:text="可用金额"
+        android:text="可用积分"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 
@@ -40,7 +40,7 @@
         android:layout_marginTop="1dp"
         android:background="@color/white"
         android:padding="12dp"
-        android:text="充值金额"
+        android:text="充值积分"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />
 
@@ -54,7 +54,7 @@
         android:inputType="numberDecimal"
         android:layout_toRightOf="@+id/tv_text1"
         android:background="@color/white"
-        android:hint="请输入充值金额"
+        android:hint="请输入充值积分"
         android:padding="12dp"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_first" />

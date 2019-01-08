@@ -131,7 +131,6 @@ public class SummitOrderPresenter {
             @Override
             protected void onLoginTimeOut() {
                 mSummitOrderView.onFailed();
-
             }
         });
     }

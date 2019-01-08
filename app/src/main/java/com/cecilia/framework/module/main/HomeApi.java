@@ -3,7 +3,9 @@ package com.cecilia.framework.module.main;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.UserBean;
+import com.cecilia.framework.module.customer.bean.ShopPaymentBean;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
+import com.cecilia.framework.module.main.bean.FinancialBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.main.bean.OrderBean;
@@ -71,10 +73,31 @@ public interface HomeApi {
     @POST(NetworkConstant.Message.MESSAGE_COUNT)
     Observable<BaseBean<Integer>> getMessageCount(@Field("userId") int userId, @Field("token") String token);
 
+    @FormUrlEncoded
+    @POST(NetworkConstant.Recharge.CREATE_ORDER)
+    Observable<BaseBean<String>> createOrder(@Field("userId") int userId, @Field("money") long money, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.HongBao.GET_WALLET)
+    Observable<BaseBean<ShopPaymentBean>> getWallet(@Field("userId") int userId, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Recharge.RECHARGE_BUY)
+    Observable<BaseBean<String>> buy(@Field("orderId") String orderIds, @Field("userId") int userId, @Field("subject") String subject, @Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Goods.SUBMIT_COMMENT)
     Observable<BaseBean<Object>> submitComment(@Field("userId") int userId, @Field("username") String username, @Field("headurl") String headurl, @Field("orderId") int orderId, @Field("goodsId") int goodsId, @Field("type") int type, @Field("comment") String comment, @Field("img") String img, @Field("token") String token);
 
+    @FormUrlEncoded
+    @POST(NetworkConstant.HongBao.RECHARGE_FINANCIAL)
+    Observable<BaseBean<Object>> financialRecharge(@Field("userId") int userId, @Field("money") long money, @Field("token") String token);
 
+    @FormUrlEncoded
+    @POST(NetworkConstant.HongBao.REDELIVERY)
+    Observable<BaseBean<Object>> redelivery(@Field("userId") int userId, @Field("money") long money, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.HongBao.GET_USER_ARRANGE)
+    Observable<BaseBean<FinancialBean>> getUserArrange(@Field("userId") int userId, @Field("token") String token);
 }

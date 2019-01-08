@@ -38,7 +38,7 @@
         android:layout_alignStart="@+id/tv_name"
         android:layout_alignLeft="@+id/tv_name"
         android:layout_marginTop="57dp"
-        android:text="单价：¥888.88"
+        android:text="单价：888.88"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_third" />
 
@@ -49,7 +49,7 @@
         android:layout_alignTop="@+id/tv_price"
         android:layout_alignEnd="@+id/tv_name"
         android:layout_alignRight="@+id/tv_name"
-        android:text="收入：¥8888.88"
+        android:text="收入：8888.88"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_third" />
 

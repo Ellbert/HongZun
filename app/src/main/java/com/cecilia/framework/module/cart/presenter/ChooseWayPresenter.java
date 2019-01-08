@@ -85,7 +85,7 @@ public class ChooseWayPresenter {
                     @Override
                     protected void onException(Throwable e) {
                         ToastUtil.newSafelyShow(e.getMessage());
-                        mChooseWayView.onFailed();
+//                        mChooseWayView.onFailed();
                     }
                 });
     }

@@ -17,6 +17,7 @@ import com.cecilia.framework.base.BaseRvAdapterEx;
 import com.cecilia.framework.base.BaseViewHolder;
 import com.cecilia.framework.general.NetworkImageHolderView;
 import com.cecilia.framework.listener.OnItemClickListener;
+import com.cecilia.framework.module.main.activity.FinancialActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.NewDetailActivity;
 import com.cecilia.framework.module.main.activity.NewsActivity;
@@ -24,6 +25,7 @@ import com.cecilia.framework.module.main.activity.RecommendActivity;
 import com.cecilia.framework.module.main.bean.AdvertisingBean;
 import com.cecilia.framework.module.main.bean.NoticeBean;
 import com.cecilia.framework.module.main.fragment.MainFragment;
+import com.cecilia.framework.module.main.fragment.MeFragment;
 import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.module.vip.activity.VipActivity;
 import com.cecilia.framework.utils.ToastUtil;
@@ -88,7 +90,8 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             @Override
             public void onClick(View v) {
 //                PaymentActivity.launch(mContext, 0,0);
-                ToastUtil.newSafelyShow("尚未开通");
+//                ToastUtil.newSafelyShow("尚未开通");
+                FinancialActivity.launch((MainActivity) mContext);
             }
         });
         baseViewHolder.getView(R.id.tv_vip).setOnClickListener(new View.OnClickListener() {

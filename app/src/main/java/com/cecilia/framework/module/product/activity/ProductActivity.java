@@ -241,7 +241,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                         cartShopBean.setMerchantLogo(mMerchantBean.getTLogo() + "");
                         cartShopBean.setMerchantName(mMerchantBean.getTName() + "");
                         double simPrice = ArithmeticalUtil.add(mGoodsBean.getTLogisticsMoney(), ArithmeticalUtil.mul(mGoodsBean.getTPrice(), Double.parseDouble(mNumber)));
-                        cartShopBean.setSumPrice(ArithmeticalUtil.getMoneyString(simPrice));
+                        cartShopBean.setSumPrice(ArithmeticalUtil.getMoneyStringWithoutSymbol(simPrice));
                         cartGoodsBean.setTGoodsTitle(mGoodsBean.getTTitle());
                         cartGoodsBean.setTSpec(mSpec);
                         cartGoodsBean.setTNum(Integer.parseInt(mNumber));
@@ -508,8 +508,8 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         mTitle = goodsBean.getTTitle() + "";
         mPrice = goodsBean.getTPrice();
         mTvName.setText(mTitle + "");
-        mTvPrice.setText(ArithmeticalUtil.getMoneyString(mPrice));
-        mTvFreight.setText("运费：" + ArithmeticalUtil.getMoneyString(goodsBean.getTLogisticsMoney()));
+        mTvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mPrice));
+        mTvFreight.setText("运费：" + ArithmeticalUtil.getMoneyStringWithoutSymbol(goodsBean.getTLogisticsMoney()));
         mTvSales.setText("月销量：" + goodsBean.getTSales());
         mTvAddress.setText(goodsBean.getTSendCity() + "");
         mSkuBeans = goodsBean.getSkuList();

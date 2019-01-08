@@ -73,7 +73,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:text="奖励金额：￥888"
+        android:text="奖励积分：888"
         android:textColor="@color/color_main"
         android:textSize="@dimen/txt_second" />
 

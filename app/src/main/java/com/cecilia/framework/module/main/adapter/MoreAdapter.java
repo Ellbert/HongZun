@@ -45,7 +45,7 @@ public class MoreAdapter extends BaseRvAdapter<GoodsBean> {
             }
         });
         tvName.setText(data.getTTitle() + "");
-        tvPrice.setText(ArithmeticalUtil.getMoneyString(data.getTPrice()));
+        tvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.getTPrice()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

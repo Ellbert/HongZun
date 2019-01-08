@@ -93,7 +93,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText4.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
                 mTvPoundage.setVisibility(View.GONE);
-                mTvText2.setText("充值金额");
+                mTvText2.setText("充值积分");
                 mTvText5.setText("充值时间");
                 mTvTitle.setText("充值成功");
                 mTvText6.setText("充值银行");
@@ -106,7 +106,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText4.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
                 mTvPoundage.setVisibility(View.GONE);
-                mTvText2.setText("消费金额");
+                mTvText2.setText("消费积分");
                 mTvText5.setText("消费时间");
                 mTvTitle.setText("消费成功");
                 mTvText6.setText("消费方式");
@@ -121,7 +121,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText8.setVisibility(View.GONE);
                 mTvPoundage.setVisibility(View.GONE);
                 mTvWithdrawCard.setVisibility(View.GONE);
-                mTvText2.setText("收入金额");
+                mTvText2.setText("收入积分");
                 mTvText5.setText("收入时间");
                 mTvTitle.setText("理财收入已到账");
                 mTvText6.setText("存入方式");
@@ -152,7 +152,7 @@ public class PaymentDetailActivity extends BaseActivity {
                 if (mMessageBean.getTMoney() == 0) {
                     mTvMoney.setText(mMessageBean.getTMessageDescribe()+"");
                 } else {
-                    mTvMoney.setText(ArithmeticalUtil.getMoneyString(mMessageBean.getTMoney())+"");
+                    mTvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mMessageBean.getTMoney()) + "");
                 }
                 mMessageDetailAdapter.setDataList(mMessageBean.getInfoList());
                 mTvTitle.setText(mMessageBean.getTMessageTitle()+"");

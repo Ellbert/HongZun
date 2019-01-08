@@ -62,7 +62,7 @@ public class BuyVipActivity extends BaseActivity implements BuyVipView {
         mVipBean = (VipBean) getIntent().getSerializableExtra("vipBean");
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mVipBean.getTImage(), mIvVip, null);
         LogUtil.e("mVipBean.getTPrice() == " + mVipBean.getTPrice());
-        mTvMoney.setText(ArithmeticalUtil.getMoneyString(mVipBean.getTPrice()));
+        mTvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mVipBean.getTPrice()));
         mBuyVipPresenter = new BuyVipPresenter(this);
     }
 

@@ -29,6 +29,7 @@ import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.EventBean;
+import com.cecilia.framework.listener.LimitInputTextWatcher;
 import com.cecilia.framework.listener.OnItemClickListener;
 import com.cecilia.framework.module.me.presenter.UserRegisterPresenter;
 import com.cecilia.framework.module.me.view.UserRegisterView;
@@ -168,6 +169,7 @@ public class UserRegisterActivity extends BaseActivity implements UserRegisterVi
 
             }
         });
+//        mEtBankName.addTextChangedListener(new LimitInputTextWatcher(mEtBankName));
     }
 
     @Override

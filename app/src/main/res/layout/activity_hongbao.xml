@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_view"
     android:orientation="vertical">
 
     <include
@@ -18,7 +19,7 @@
         app:tabSelectedTextColor="@color/color_main"
         app:tabTextColor="@color/txt_first" />
 
-    <android.support.v4.view.ViewPager
+    <com.cecilia.framework.widget.NoScrollViewPager
         android:id="@+id/vp_hongbao"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

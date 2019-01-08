@@ -173,7 +173,7 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
     public void onGetListSuccess(List<CartShopBean> data, String other) {
         mData = data;
         mSummitShopAdapter.setDataList(mData);
-        mTvSumMoney.setText(ArithmeticalUtil.getMoneyString(Double.parseDouble(other)));
+        mTvSumMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(Double.parseDouble(other)));
     }
 
     @Override
@@ -235,9 +235,6 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
             }
             jsonArray.put(jsonObject);
         }
-        LogUtil.e(""+GcGuangApplication.getId());
-        LogUtil.e(jsonArray.toString());
-        LogUtil.e(mAddressId);
         DialogUtil.createLoadingDialog(this, "下单中...", false, null);
         mSummitOrderPresenter.createOrder(GcGuangApplication.getId(), jsonArray, mAddressId);
     }

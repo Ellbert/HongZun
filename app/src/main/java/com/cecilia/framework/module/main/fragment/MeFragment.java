@@ -15,6 +15,7 @@ import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.UserBean;
 import com.cecilia.framework.module.cart.activity.CartActivity;
 import com.cecilia.framework.module.login.activity.LoginActivity;
+import com.cecilia.framework.module.main.activity.FinancialActivity;
 import com.cecilia.framework.module.main.activity.HongBaoActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.activity.RechargeActivity;
@@ -64,7 +65,10 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
 
     @Override
     protected void onVisible() {
-
+        if (mSwipeRefreshLayout != null) {
+            mMePresenter.getUserInfo(null, GcGuangApplication.getId());
+            mMePresenter.getMessageCount(GcGuangApplication.getId());
+        }
     }
 
     @Override
@@ -114,7 +118,7 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
                 break;
             case R.id.tv_detail:
 //                ToastUtil.newSafelyShow("尚未开通");
-                HongBaoActivity.launch(MeFragment.this);
+                FinancialActivity.launch(MeFragment.this);
                 break;
             case R.id.iv_price:
 //                PriceActivity.launch(MeFragment.this);
@@ -160,7 +164,8 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
 //            LoginActivity.launch(this.getContext());
 //            this.mActivity.finish();
 //        }else {
-        onRefresh();
+        mMePresenter.getUserInfo(null, GcGuangApplication.getId());
+        mMePresenter.getMessageCount(GcGuangApplication.getId());
         if (requestCode == 100 && resultCode == 100) {
             if (this.getContext() != null) {
                 ((MainActivity) this.getContext()).setBottomButtonCheck(1);

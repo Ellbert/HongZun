@@ -41,7 +41,7 @@ public class SummitShopAdapter extends BaseRvAdapter<CartShopBean> {
         if (sumFreight == 0) {
             tvFreight.setText("免邮费");
         } else {
-            tvFreight.setText(ArithmeticalUtil.getMoneyString(sumFreight));
+            tvFreight.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(sumFreight));
         }
         editText.addTextChangedListener(new TextWatcher() {
             @Override

@@ -20,6 +20,15 @@ public class CartGoodsBean implements Serializable {
     private int tStatus;
     private long tCreatetime;
     private int tProperty;
+    private int stock;
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public void setTId(int tId) {
         this.tId = tId;

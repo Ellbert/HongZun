@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="1dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -10,9 +11,9 @@
         android:id="@+id/iv_address"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_centerVertical="true"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="25dp"
         android:src="@mipmap/icn_confirm_address" />
 
     <TextView
@@ -42,49 +43,66 @@
 
     <TextView
         android:id="@+id/tv_address"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_phone"
         android:layout_alignStart="@+id/tv_name"
         android:layout_alignLeft="@+id/tv_name"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="98dp"
-        android:layout_marginRight="98dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="@color/txt_first"
         android:textSize="@dimen/txt_third" />
 
-    <TextView
-        android:id="@+id/tv_edit"
-        android:layout_width="45dp"
-        android:layout_height="17dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="12dp"
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:layout_marginRight="12dp"
-        android:background="@drawable/bg_btn_small_green_edge_normal"
-        android:gravity="center"
-        android:text="编辑"
-        android:textColor="@color/txt_first"
-        android:textSize="@dimen/txt_third" />
+        android:layout_marginEnd="12dp"
+        android:layout_below="@+id/tv_address"
+        android:background="@color/bg_view" />
 
-    <TextView
-        android:id="@+id/tv_delete"
-        android:layout_width="45dp"
-        android:layout_height="17dp"
-        android:layout_below="@+id/tv_edit"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/bg_btn_small_gray_edge_normal"
-        android:gravity="center"
-        android:text="删除"
-        android:textColor="@color/txt_first"
-        android:textSize="@dimen/txt_third" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="编辑"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:background="@color/bg_view" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="删除"
+            android:textColor="@color/txt_first"
+            android:textSize="@dimen/txt_third" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

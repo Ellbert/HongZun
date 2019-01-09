@@ -22,6 +22,15 @@ public class UserBean implements Serializable {
     private int tMerchantId;
     private long tBalance;
     private long tHongBalance;
+    private int tPayPassword;
+
+    public int gettPayPassword() {
+        return tPayPassword;
+    }
+
+    public void settPayPassword(int tPayPassword) {
+        this.tPayPassword = tPayPassword;
+    }
 
     public void setTId(int tId) {
         this.tId = tId;

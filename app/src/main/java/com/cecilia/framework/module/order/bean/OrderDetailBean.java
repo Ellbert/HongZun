@@ -32,6 +32,15 @@ public class OrderDetailBean {
     private MerchantBean merchant;
     private int goodsNum;
     private String firstGoodsImg;
+    private int tPayType;
+
+    public int gettPayType() {
+        return tPayType;
+    }
+
+    public void settPayType(int tPayType) {
+        this.tPayType = tPayType;
+    }
 
     public void setTId(int tId) {
         this.tId = tId;

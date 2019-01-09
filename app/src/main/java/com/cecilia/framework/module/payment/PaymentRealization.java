@@ -3,6 +3,7 @@ package com.cecilia.framework.module.payment;
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.general.BaseBean;
 import com.cecilia.framework.general.NetworkObserver;
+import com.cecilia.framework.module.me.bean.MessageBean;
 import com.cecilia.framework.module.payment.bean.PaymentBean;
 import com.cecilia.framework.module.payment.bean.WithdrawBean;
 import com.cecilia.framework.utils.AsynchronousUtil;
@@ -31,6 +32,13 @@ public class PaymentRealization {
         NetworkUtil.getInstance().setApi(PaymentApi.class)
                 .withdrawRecord(merchantId, page,GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<List<WithdrawBean>>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void getDetail(int userId, NetworkObserver<MessageBean> observer) {
+        NetworkUtil.getInstance().setApi(PaymentApi.class)
+                .getDetail(userId, GcGuangApplication.getsToken())
+                .compose(AsynchronousUtil.<BaseBean<MessageBean>>setThread())
                 .subscribe(observer);
     }
 }

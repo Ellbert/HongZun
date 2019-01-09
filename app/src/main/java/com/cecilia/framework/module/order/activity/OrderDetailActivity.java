@@ -177,15 +177,19 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
         mTvGet.setText("收件人：" + orderDetailBean.getTConsignee());
         mTvContact.setText("联系方式：" + orderDetailBean.getTTel());
         mTvAddress.setText("详细地址：" + orderDetailBean.getTAddress());
-        mTvShopName.setText(orderDetailBean.getMerchant().getTName()+"");
+        mTvShopName.setText(orderDetailBean.getMerchant().getTName() + "");
         mTvGoodsMoney.setText(getGoodsMoney(orderDetailBean.getGoodsList()));
         mTvPostage.setText(getPostageMoney(orderDetailBean.getGoodsList()));
         mTvOrderMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderDetailBean.getTTotalMoney()));
         mTvPayMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderDetailBean.getTPayMoney()));
-        mTvPayWay.setText("支付宝");
-        mTvOrderNo.setText(orderDetailBean.getTOutTradeNo()+"");
+        mTvOrderNo.setText(orderDetailBean.getTOutTradeNo() + "");
         mGoodsAdapter.setDataList(orderDetailBean.getGoodsList());
         mTvCreateTime.setText(StringUtil.stampToDate(orderDetailBean.getTCreatetime()));
+        if (orderDetailBean.gettPayType() == 0) {
+            mTvPayWay.setText("支付宝支付");
+        } else if (orderDetailBean.gettPayType() == 1) {
+            mTvPayWay.setText("释放积分支付");
+        }
         if (orderDetailBean.getTPayTime() == 0) {
             mTvPayTime.setText("-");
         } else {
@@ -224,11 +228,16 @@ public class OrderDetailActivity extends BaseActivity implements OrderDetailView
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 87) {
+            mStringInfo = "";
+            mTvInfo.setText(getBtnString());
             DialogUtil.createLoadingDialog(this, "加载中...", false, null);
             mOrderPresenter.getOrderDetail(mOrderId);
         } else if (resultCode == 99) {
             setResult(99);
             finish();
+        } else {
+            DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+            mOrderPresenter.getOrderDetail(mOrderId);
         }
     }
 

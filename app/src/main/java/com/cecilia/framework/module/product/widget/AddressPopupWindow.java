@@ -23,7 +23,6 @@ import com.cecilia.framework.module.product.adapter.ChooseAddressAdapter;
 import com.cecilia.framework.utils.DensityUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.cecilia.framework.utils.ViewUtil;
-import com.cecilia.framework.widget.NumberChoicesLayout;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;

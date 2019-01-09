@@ -631,6 +631,9 @@ public class StringUtil {
             case 5:
                 levelString = "订单已关闭";
                 break;
+            case 6:
+                levelString = "订单已退款";
+                break;
         }
         return levelString;
     }

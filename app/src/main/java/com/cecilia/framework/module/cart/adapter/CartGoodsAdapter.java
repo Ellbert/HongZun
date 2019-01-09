@@ -46,10 +46,14 @@ public class CartGoodsAdapter extends BaseRvAdapter<CartGoodsBean> {
             }
         });
         ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTPic(), imageView, null);
-        tvName.setText(data.getTGoodsTitle()+"");
+        tvName.setText(data.getTGoodsTitle() + "");
         tvPrice.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.getTPrice()));
-        tvSpec.setText(data.getTSpec()+"");
-        numberChoicesLayout.setSelectNumber("1", String.valueOf(data.getTNum()), "10");
+        tvSpec.setText(data.getTSpec() + "");
+        if (data.getStock() > 0) {
+            numberChoicesLayout.setSelectNumber("1", String.valueOf(data.getTNum()), String.valueOf(data.getStock()));
+        } else {
+            numberChoicesLayout.setSelectNumber("0", "0", "0");
+        }
         numberChoicesLayout.setNumberChangeListener(new NumberChoicesLayout.OnNumberChangeListener() {
             @Override
             public void onNumberChange(String num, String type) {

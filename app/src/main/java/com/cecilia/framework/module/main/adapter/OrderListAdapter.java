@@ -51,7 +51,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
         switch (type) {
             case 0:
                 final OrderBean orderBean1 = (OrderBean) baseGoodBean;
-                name.setText(orderBean1.getMerchant().getTName()+"");
+                name.setText(orderBean1.getMerchant().getTName() + "");
                 sales.setText("商品数量" + orderBean1.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderBean1.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean1.getFirstGoodsImg(), header, null);
@@ -79,19 +79,19 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                         @Override
                         public void onClick(View v) {
                             if (mOnItemClickListener != null) {
-                                mOnItemClickListener.onItemClick("",orderBean1.getTId());
+                                mOnItemClickListener.onItemClick("", orderBean1.getTId());
                             }
                         }
                     });
                 } else if (orderBean1.getTStatus() == 1) {
                     comment.setVisibility(View.GONE);
                     buy.setText("订单详情");
-                    delete.setVisibility(View.GONE);
+                    delete.setText("待发货");
                     buy.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (mOnItemClickListener != null) {
-                                mOnItemClickListener.onItemClick("",orderBean1.getTId());
+                                mOnItemClickListener.onItemClick("", orderBean1.getTId());
                             }
                         }
                     });
@@ -112,7 +112,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                         @Override
                         public void onClick(View v) {
                             if (mOnItemClickListener != null) {
-                                mOnItemClickListener.onItemClick("",orderBean1.getTId());
+                                mOnItemClickListener.onItemClick("", orderBean1.getTId());
                             }
                         }
                     });
@@ -140,7 +140,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                         @Override
                         public void onClick(View v) {
                             if (mOnItemClickListener != null) {
-                                mOnItemClickListener.onItemClick("投诉店家",orderBean1.getTId());
+                                mOnItemClickListener.onItemClick("投诉店家", orderBean1.getTId());
                             }
                         }
                     });
@@ -160,7 +160,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                         @Override
                         public void onClick(View v) {
                             if (mOnItemClickListener != null) {
-                                mOnItemClickListener.onItemClick("投诉店家",orderBean1.getTId());
+                                mOnItemClickListener.onItemClick("投诉店家", orderBean1.getTId());
                             }
                         }
                     });
@@ -180,7 +180,27 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                         @Override
                         public void onClick(View v) {
                             if (mOnItemClickListener != null) {
-                                mOnItemClickListener.onItemClick("投诉店家",orderBean1.getTId());
+                                mOnItemClickListener.onItemClick("投诉店家", orderBean1.getTId());
+                            }
+                        }
+                    });
+                } else if (orderBean1.getTStatus() == 6) {
+                    buy.setText("订单详情");
+                    delete.setText("删除订单");
+                    comment.setText("已退款");
+                    delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("删除订单", orderBean1.getTId());
+                            }
+                        }
+                    });
+                    buy.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (mOnItemClickListener != null) {
+                                mOnItemClickListener.onItemClick("投诉店家", orderBean1.getTId());
                             }
                         }
                     });
@@ -188,7 +208,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                 break;
             case 1:
                 final OrderBean orderBean2 = (OrderBean) baseGoodBean;
-                name.setText(orderBean2.getMerchant().getTName()+"");
+                name.setText(orderBean2.getMerchant().getTName() + "");
                 sales.setText("商品数量" + orderBean2.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderBean2.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean2.getFirstGoodsImg(), header, null);
@@ -215,14 +235,14 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     @Override
                     public void onClick(View v) {
                         if (mOnItemClickListener != null) {
-                            mOnItemClickListener.onItemClick("",orderBean2.getTId());
+                            mOnItemClickListener.onItemClick("", orderBean2.getTId());
                         }
                     }
                 });
                 break;
             case 2:
                 final OrderBean orderBean3 = (OrderBean) baseGoodBean;
-                name.setText(orderBean3.getMerchant().getTName()+"");
+                name.setText(orderBean3.getMerchant().getTName() + "");
                 sales.setText("商品数量" + orderBean3.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderBean3.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean3.getFirstGoodsImg(), header, null);
@@ -233,14 +253,15 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     @Override
                     public void onClick(View v) {
                         if (mOnItemClickListener != null) {
-                            mOnItemClickListener.onItemClick("",orderBean3.getTId());
+                            mOnItemClickListener.onItemClick("", orderBean3.getTId());
                         }
                     }
-                });;
+                });
+                ;
                 break;
             case 3:
                 final OrderBean orderBean4 = (OrderBean) baseGoodBean;
-                name.setText(orderBean4.getMerchant().getTName()+"");
+                name.setText(orderBean4.getMerchant().getTName() + "");
                 sales.setText("商品数量" + orderBean4.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderBean4.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean4.getFirstGoodsImg(), header, null);
@@ -260,14 +281,14 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     @Override
                     public void onClick(View v) {
                         if (mOnItemClickListener != null) {
-                            mOnItemClickListener.onItemClick("",orderBean4.getTId());
+                            mOnItemClickListener.onItemClick("", orderBean4.getTId());
                         }
                     }
                 });
                 break;
             case 4:
                 final OrderBean orderBean5 = (OrderBean) baseGoodBean;
-                name.setText(orderBean5.getMerchant().getTName()+"");
+                name.setText(orderBean5.getMerchant().getTName() + "");
                 sales.setText("商品数量" + orderBean5.getGoodsNum() + "件");
                 price.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(orderBean5.getTTotalMoney()));
                 ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + orderBean5.getFirstGoodsImg(), header, null);
@@ -294,7 +315,7 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                     @Override
                     public void onClick(View v) {
                         if (mOnItemClickListener != null) {
-                            mOnItemClickListener.onItemClick("投诉店家",orderBean5.getTId());
+                            mOnItemClickListener.onItemClick("投诉店家", orderBean5.getTId());
                         }
                     }
                 });

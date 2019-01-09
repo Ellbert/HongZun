@@ -31,7 +31,7 @@ public class PaymentListAdapter extends BaseLmrvAdapter {
         TextView tvMoney = holder.getView(R.id.tv_money);
         if (data instanceof PaymentBean) {
             PaymentBean paymentBean = (PaymentBean) data;
-            tvTitle.setText(paymentBean.getTTitle()+"");
+            tvTitle.setText(paymentBean.getTTitle() + "");
             tvDate.setText(StringUtil.stampToDate(paymentBean.getTCreattime()));
             if (paymentBean.getTType() == 0) {
                 tvMoney.setText("-" + ArithmeticalUtil.getMoneyStringWithoutSymbol(paymentBean.getTAmount()));
@@ -41,12 +41,15 @@ public class PaymentListAdapter extends BaseLmrvAdapter {
         } else if (data instanceof WithdrawBean) {
             WithdrawBean withdrawBean = (WithdrawBean) data;
             tvDate.setText(StringUtil.stampToDate(withdrawBean.gettCreattime()));
-            tvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(((WithdrawBean) data).gettMoney()));
             if (withdrawBean.gettStatus() == 0) {
                 tvTitle.setText("未到账");
-            } else {
+                tvMoney.setText("+" + ArithmeticalUtil.getMoneyStringWithoutSymbol(((WithdrawBean) data).gettMoney()));
+            } else if (withdrawBean.gettStatus() == 1) {
                 tvTitle.setText("已到账");
-
+                tvMoney.setText("+" + ArithmeticalUtil.getMoneyStringWithoutSymbol(((WithdrawBean) data).gettMoney()));
+            } else if (withdrawBean.gettStatus() == 2) {
+                tvTitle.setText("已取消");
+                tvMoney.setText("-" + ArithmeticalUtil.getMoneyStringWithoutSymbol(((WithdrawBean) data).gettMoney()));
             }
         }
     }

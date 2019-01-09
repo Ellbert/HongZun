@@ -47,6 +47,7 @@ public class NetworkConstant {
 
     public class Me {
         public static final String UPDATE_USER_INFO = APP + "/appUser/updateUser";
+        public static final String SET_PAY_PASSWORD = APP + "/appUser/setPayPassword";
     }
 
     public class Recharge {
@@ -88,6 +89,7 @@ public class NetworkConstant {
         public static final String FIND_MESSAGE = APP + "/userMessage/findMessage";
         public static final String FIND_BY_USER = APP + "/userMessage/findByUser";
         public static final String MESSAGE_COUNT = APP + "/userMessage/countNewMessage";
+        public static final String GET_DETAIL = APP + "/userMessage/findById";
     }
 
     public class BankCard {

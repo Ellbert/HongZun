@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cecilia.framework.general.AsynchronousObserver;
 import com.cecilia.framework.general.NetworkObserver;
+import com.cecilia.framework.module.cart.CartRealization;
 import com.cecilia.framework.module.product.bean.PayResult;
 import com.cecilia.framework.module.vip.VipRealization;
 import com.cecilia.framework.module.vip.bean.VipOrderBean;
@@ -78,7 +79,7 @@ public class BuyVipPresenter {
 
             @Override
             protected void onFailure(int errorCode, String errorMsg) {
-
+                ToastUtil.newSafelyShow(errorMsg);
             }
 
             @Override
@@ -122,5 +123,40 @@ public class BuyVipPresenter {
 //                        mBuyVipView.onFailed();
                     }
                 });
+    }
+
+    public void hongBaoPay(String orderIds, int userID) {
+        CartRealization.buyByHongBao(orderIds, userID, new NetworkObserver<Object>() {
+
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mBuyVipView.onHongBaoPaySuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mBuyVipView.onFailed();
+            }
+        });
     }
 }

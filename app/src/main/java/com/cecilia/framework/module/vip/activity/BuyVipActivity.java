@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,11 @@ public class BuyVipActivity extends BaseActivity implements BuyVipView {
     TextView mTvMoney;
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
+    @BindView(R.id.cb_alipay)
+    CheckBox mCbAlipay;
+    @BindView(R.id.cb_balance)
+    CheckBox mCbBalance;
+    private int mPayType = 1;
     private VipBean mVipBean;
     private Dialog mBuyDialog;
     private BuyVipPresenter mBuyVipPresenter;
@@ -61,7 +67,6 @@ public class BuyVipActivity extends BaseActivity implements BuyVipView {
     protected void initData() {
         mVipBean = (VipBean) getIntent().getSerializableExtra("vipBean");
         ImageUtil.loadNetworkImage(this, NetworkConstant.IMAGE_URL + mVipBean.getTImage(), mIvVip, null);
-        LogUtil.e("mVipBean.getTPrice() == " + mVipBean.getTPrice());
         mTvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mVipBean.getTPrice()));
         mBuyVipPresenter = new BuyVipPresenter(this);
     }
@@ -95,24 +100,58 @@ public class BuyVipActivity extends BaseActivity implements BuyVipView {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_confirm})
+    @OnClick({R.id.iv_back, R.id.tv_confirm, R.id.cb_alipay, R.id.tv_alipay, R.id.ll_alipay
+//            , R.id.cb_balance, R.id.tv_balance, R.id.ll_balance
+    })
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_confirm:
-//                DialogUtil.createLoadingDialog(this, "购买中...", false, null);
-//                mChooseWayPresenter.buy(orderIds, GcGuangApplication.getId(), "购物车购买商品");
                 mBuyDialog.show();
                 break;
+            case R.id.cb_alipay:
+                mPayType = 1;
+                mCbAlipay.setChecked(true);
+                mCbBalance.setChecked(false);
+                break;
+            case R.id.tv_alipay:
+                mPayType = 1;
+                mCbAlipay.setChecked(true);
+                mCbBalance.setChecked(false);
+                break;
+            case R.id.ll_alipay:
+                mPayType = 1;
+                mCbAlipay.setChecked(true);
+                mCbBalance.setChecked(false);
+                break;
+//            case R.id.tv_balance:
+//                mPayType = 2;
+//                mCbBalance.setChecked(true);
+//                mCbAlipay.setChecked(false);
+//                break;
+//            case R.id.cb_balance:
+//                mPayType = 2;
+//                mCbBalance.setChecked(true);
+//                mCbAlipay.setChecked(false);
+//                break;
+//            case R.id.ll_balance:
+//                mPayType = 2;
+//                mCbBalance.setChecked(true);
+//                mCbAlipay.setChecked(false);
+//                break;
         }
     }
 
     @Override
     public void onCreateOrder(VipOrderBean orderBean) {
         DialogUtil.createLoadingDialog(BuyVipActivity.this, "购买中...", false, null);
-        mBuyVipPresenter.buy(GcGuangApplication.getId(), orderBean.getOrderId(), mVipBean.getTName() + " 会员激活");
+        if (mPayType == 1) {
+            mBuyVipPresenter.buy(GcGuangApplication.getId(), orderBean.getOrderId(), mVipBean.getTName() + " 会员激活");
+        } else if (mPayType == 2) {
+            mBuyVipPresenter.hongBaoPay(String.valueOf(orderBean.getOrderId()), GcGuangApplication.getId());
+        }
     }
 
     @Override
@@ -145,6 +184,12 @@ public class BuyVipActivity extends BaseActivity implements BuyVipView {
     @Override
     public void onLoginFailed() {
         setResult(99);
+        finish();
+    }
+
+    @Override
+    public void onHongBaoPaySuccess() {
+        ResultActivity.launch(this, "9000", 1);
         finish();
     }
 }

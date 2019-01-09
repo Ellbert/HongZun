@@ -1,14 +1,18 @@
 package com.cecilia.framework.module.main.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseLmrvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.module.main.bean.FinancialBean;
+import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.utils.ArithmeticalUtil;
 
 public class FinancialAdapter extends BaseLmrvAdapter<FinancialBean> {
@@ -32,5 +36,11 @@ public class FinancialAdapter extends BaseLmrvAdapter<FinancialBean> {
         tvInvestment.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.gettArrangeMoney()));
         tvFinancial.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.gettArrangeBalance()));
         tvRelease.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(data.gettFreeMoney()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentActivity.launch((Activity) mContext, 5, 0);
+            }
+        });
     }
 }

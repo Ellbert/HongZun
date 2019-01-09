@@ -68,6 +68,7 @@ public class SafetyActivity extends BaseActivity {
                 ResetActivity.launch(SafetyActivity.this);
                 break;
             case R.id.tv_pay_password:
+                PayPasswordActivity.launch(this);
                 break;
             case R.id.tv_certification:
                 break;

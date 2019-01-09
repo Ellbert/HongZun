@@ -63,6 +63,7 @@ public class LogoActivity extends BaseActivity {
         //logoPresenter.getVersionUpdate("1", String.valueOf(BuildConfig.VERSION_NAME), "SX");
         GcGuangApplication.setId(SharedPreferenceUtil.getInt(this, "userId"));
         GcGuangApplication.setsToken(SharedPreferenceUtil.getString(this, "token"));
+        GcGuangApplication.setsPayPassword(SharedPreferenceUtil.getInt(this, "payPassword"));
         mTimer = new OpenCountTimer(2000, 2000);
         mTimer.start();
 //        initIM5();

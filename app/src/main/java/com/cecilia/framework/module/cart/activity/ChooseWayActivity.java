@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -16,6 +17,8 @@ import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.cart.presenter.ChooseWayPresenter;
 import com.cecilia.framework.module.cart.view.ChooseWayView;
+import com.cecilia.framework.module.cart.widget.PayPasswordPopupWindow;
+import com.cecilia.framework.module.me.activity.PayPasswordActivity;
 import com.cecilia.framework.module.product.activity.ResultActivity;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.LogUtil;
@@ -39,7 +42,10 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
     private ArrayList<Integer> mOrderId;
     private ChooseWayPresenter mChooseWayPresenter;
     private Dialog mBuyDialog;
+    private Dialog mPayDialog;
     private int mPayType = 1;
+    private String mOrderIds = "";
+    private PayPasswordPopupWindow mPayPasswordPopupWindow;
 
     public static void launch(Activity context, ArrayList<Integer> orderId) {
         Intent intent = new Intent(context, ChooseWayActivity.class);
@@ -67,24 +73,44 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
     protected void initData() {
         mOrderId = getIntent().getIntegerArrayListExtra("order_id");
         mChooseWayPresenter = new ChooseWayPresenter(this);
+        mPayPasswordPopupWindow = new PayPasswordPopupWindow();
     }
 
     @Override
     protected void initDialog() {
+        mPayPasswordPopupWindow.setOnSkuConfirmListener(new PayPasswordPopupWindow.OnConfirmListener() {
+            @Override
+            public void onConfirm() {
+                DialogUtil.createLoadingDialog(ChooseWayActivity.this, "购买中...", false, null);
+                mChooseWayPresenter.hongBaoPay(mOrderIds, GcGuangApplication.getId());
+            }
+        });
         mBuyDialog = DialogUtil.createPromptDialog(this,
                 "提示", "确定支付？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
                     @Override
                     public boolean onClick() {
-                        DialogUtil.createLoadingDialog(ChooseWayActivity.this, "购买中...", false, null);
-                        String orderIds = "";
                         for (int orderId : mOrderId) {
-                            orderIds += orderId + "#";
+                            mOrderIds += orderId + "#";
                         }
                         if (mPayType == 1) {
-                            mChooseWayPresenter.buy(orderIds, GcGuangApplication.getId(), "购买商品");
+                            DialogUtil.createLoadingDialog(ChooseWayActivity.this, "购买中...", false, null);
+                            mChooseWayPresenter.buy(mOrderIds, GcGuangApplication.getId(), "购买商品");
                         } else if (mPayType == 2) {
-                            mChooseWayPresenter.hongBaoPay(orderIds, GcGuangApplication.getId());
+                            if (GcGuangApplication.getsPayPassword() == 0) {
+                                mPayDialog.show();
+                            } else {
+                                mPayPasswordPopupWindow.initView(ChooseWayActivity.this);
+                                mPayPasswordPopupWindow.showAtLocation(mTvTitleText, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                            }
                         }
+                        return false;
+                    }
+                }, ViewUtil.getString(R.string.cancel), null, null);
+        mPayDialog = DialogUtil.createPromptDialog(this,
+                "通知", "支付要支付密码了，您还没设置支付密码，前往设置？", ViewUtil.getString(R.string.ok), new DialogUtil.OnDialogViewButtonClickListener() {
+                    @Override
+                    public boolean onClick() {
+                        PayPasswordActivity.launch(ChooseWayActivity.this);
                         return false;
                     }
                 }, ViewUtil.getString(R.string.cancel), null, null);
@@ -162,12 +188,14 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
     public void showAlipayResult(String data) {
         ResultActivity.launch(this, data, 1);
         if ("9000".equals(data)) {
+            setResult(87);
             finish();
         }
     }
 
     @Override
     public void onHongBaoPaySuccess() {
+        setResult(87);
         ResultActivity.launch(this, "9000", 1);
         finish();
     }

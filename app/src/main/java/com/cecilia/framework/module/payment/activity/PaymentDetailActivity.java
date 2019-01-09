@@ -14,13 +14,15 @@ import com.cecilia.framework.base.BaseActivity;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.me.adapter.MessageDetailAdapter;
 import com.cecilia.framework.module.me.bean.MessageBean;
+import com.cecilia.framework.module.payment.presenter.PaymentDetailPresenter;
+import com.cecilia.framework.module.payment.view.PaymentDetailView;
 import com.cecilia.framework.utils.ArithmeticalUtil;
 import com.cecilia.framework.utils.LogUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class PaymentDetailActivity extends BaseActivity {
+public class PaymentDetailActivity extends BaseActivity implements PaymentDetailView {
 
     @BindView(R.id.tv_title)
     TextView mTvTitle;
@@ -64,15 +66,18 @@ public class PaymentDetailActivity extends BaseActivity {
     RelativeLayout mRlPayment;
     @BindView(R.id.rv_detail)
     RecyclerView mRvDetail;
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
     private MessageDetailAdapter mMessageDetailAdapter;
     private int mType;
     private MessageBean mMessageBean;
+    private PaymentDetailPresenter mPaymentDetailPresenter;
 
-    public static void launch(Context context, int type, MessageBean messageBean) {
+    public static void launch(Activity context, int type, MessageBean messageBean) {
         Intent intent = new Intent(context, PaymentDetailActivity.class);
         intent.putExtra("Type", type);
         intent.putExtra("message", messageBean);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -143,19 +148,15 @@ public class PaymentDetailActivity extends BaseActivity {
                 mTvText7.setText("推荐单号");
                 break;
             case 6:
+                mTvTitleText.setText("消息详情");
                 mRlPayment.setVisibility(View.GONE);
                 mMessageDetailAdapter = new MessageDetailAdapter(this, R.layout.item_message_detail);
+                mPaymentDetailPresenter = new PaymentDetailPresenter(this);
                 mRvDetail.setNestedScrollingEnabled(false);
                 mRvDetail.setLayoutManager(new LinearLayoutManager(this));
                 mRvDetail.setAdapter(mMessageDetailAdapter);
                 mMessageBean = (MessageBean) getIntent().getSerializableExtra("message");
-                if (mMessageBean.getTMoney() == 0) {
-                    mTvMoney.setText(mMessageBean.getTMessageDescribe()+"");
-                } else {
-                    mTvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mMessageBean.getTMoney()) + "");
-                }
-                mMessageDetailAdapter.setDataList(mMessageBean.getInfoList());
-                mTvTitle.setText(mMessageBean.getTMessageTitle()+"");
+                mPaymentDetailPresenter.getDetail(mMessageBean.getTId());
                 break;
         }
     }
@@ -192,5 +193,22 @@ public class PaymentDetailActivity extends BaseActivity {
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public void onGetSuccess(MessageBean messageBean) {
+        if (messageBean.getTMoney() == 0) {
+            mTvMoney.setText(messageBean.getTMessageDescribe() + "");
+        } else {
+            mTvMoney.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(messageBean.getTMoney()) + "");
+        }
+        mMessageDetailAdapter.setDataList(messageBean.getInfoList());
+        mTvTitle.setText(messageBean.getTMessageTitle() + "");
+    }
+
+    @Override
+    public void onFailed() {
+        setResult(99);
+        finish();
     }
 }

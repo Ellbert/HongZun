@@ -63,6 +63,10 @@ public class SkuPopupWindow extends PopupWindow {
                     ToastUtil.newSafelyShow("请选择数量！");
                     return;
                 }
+                if (Integer.parseInt(mNumberChoicesLayout.getSelectNumber()) <= 0) {
+                    ToastUtil.newSafelyShow("请选择正确数量！");
+                    return;
+                }
                 if (mOnSkuConfirmListener != null) {
                     mOnSkuConfirmListener.onConfirm(mSkuBean,mNumberChoicesLayout.getSelectNumber());
                 }
@@ -127,12 +131,16 @@ public class SkuPopupWindow extends PopupWindow {
             public void onSelected(Set<Integer> selectPosSet) {
                 if (selectPosSet.size() == 0) {
                     mSkuBean = null;
-                    mNumberChoicesLayout.setSelectNumber("1", "1");
+                    mNumberChoicesLayout.setSelectNumber("0", "0", "0");
                     mTvText1.setText("");
                 } else {
                     int o = (int) selectPosSet.toArray()[0];
                     mSkuBean = skuBeans.get(o);
-                    mNumberChoicesLayout.setSelectNumber("1", "1", mSkuBean.getStock()+"");
+                    if (!mSkuBean.getStock().equals("0")) {
+                        mNumberChoicesLayout.setSelectNumber("1", "1", mSkuBean.getStock() + "");
+                    } else {
+                        mNumberChoicesLayout.setSelectNumber("0", "0", "0");
+                    }
                     mTvText1.setText("请选择数量(剩余库存" + mSkuBean.getStock() + ")");
                 }
             }

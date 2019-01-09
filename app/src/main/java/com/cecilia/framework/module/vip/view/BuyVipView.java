@@ -12,6 +12,8 @@ public interface BuyVipView {
 
     void showAlipayResult(@NonNull String data);
 
+    void onHongBaoPaySuccess();
+
     void onLoginFailed();
 
     void onFailed();

@@ -2,6 +2,7 @@ package com.cecilia.framework.module.payment;
 
 import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseBean;
+import com.cecilia.framework.module.me.bean.MessageBean;
 import com.cecilia.framework.module.payment.bean.PaymentBean;
 import com.cecilia.framework.module.payment.bean.WithdrawBean;
 
@@ -25,4 +26,8 @@ public interface PaymentApi {
     @FormUrlEncoded
     @POST(NetworkConstant.Payment.WITHDRAW_RECORD)
     Observable<BaseBean<List<WithdrawBean>>> withdrawRecord(@Field("merchantId") int merchantId, @Field("page") int page,@Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.Message.GET_DETAIL)
+    Observable<BaseBean<MessageBean>> getDetail(@Field("messageId") int messageId, @Field("token") String token);
 }

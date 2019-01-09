@@ -116,11 +116,13 @@ public class MainActivity extends BaseActivity implements MainView {
                     SharedPreferenceUtil.putString(this, "header", null) &&
                     SharedPreferenceUtil.putLong(this, "balance", 0) &&
                     SharedPreferenceUtil.putLong(this, "honeBalance", 0) &&
-                    SharedPreferenceUtil.putString(this, "token", null)) {
+                    SharedPreferenceUtil.putString(this, "token", null) &&
+                    SharedPreferenceUtil.putInt(this, "payPassword", 0)) {
                 DialogUtil.dismissLoadingDialog();
 //                ToastUtil.newSafelyShow("退出成功！");
                 GcGuangApplication.setId(0);
                 GcGuangApplication.setsToken(null);
+                GcGuangApplication.setsPayPassword(0);
                 LoginActivity.launch(this);
                 finish();
             } else {

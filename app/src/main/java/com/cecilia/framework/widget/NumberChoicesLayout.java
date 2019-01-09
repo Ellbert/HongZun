@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cecilia.framework.R;
+import com.cecilia.framework.utils.LogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,6 +78,13 @@ public class NumberChoicesLayout extends LinearLayout {
         int nowNum = Integer.valueOf(number);
         mMaxNumber = Integer.valueOf(maxNumber) > 0 ? Integer.valueOf(maxNumber) : 1;
         mMinNumber = Integer.valueOf(minNumber) < 0 ? 0 : Integer.valueOf(minNumber) >= Integer.valueOf(maxNumber) ? Integer.valueOf(maxNumber) - 1 : Integer.valueOf(minNumber);
+        if (minNumber.equals(number) && maxNumber.equals(number)) {
+            mMaxNumber = Integer.valueOf(number);
+            mMinNumber = Integer.valueOf(number);
+            mNowNumber = Integer.valueOf(number);
+            mTvSelectNumber.setText(number);
+            return;
+        }
         if (nowNum <= mMinNumber) {
             number = minNumber;
             mIvMinus.setEnabled(false);

@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.me.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,7 @@ public class NewsAdapter extends BaseLmrvAdapter<MessageBean> {
          holder.getView(R.id.tv_detail).setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 PaymentDetailActivity.launch(mContext,6,data);
+                 PaymentDetailActivity.launch((Activity) mContext, 6, data);
              }
          });
         if (data.getTCreatTime() == 0) return;

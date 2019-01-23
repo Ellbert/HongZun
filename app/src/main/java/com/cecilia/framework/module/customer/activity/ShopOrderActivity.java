@@ -42,18 +42,21 @@ public class ShopOrderActivity extends BaseActivity {
     @Override
     protected void initViews() {
         List<String> titleList = new ArrayList<>();
-        titleList.add("全部订单");
+        titleList.add("全部");
         titleList.add("待发货");
-        titleList.add("待退货");
+        titleList.add("已发货");
+        titleList.add("已评价");
         titleList.add("已完成");
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP_ALL));
-        fragmentList.add(new OrderListFragment(OrderListFragment.UNSENT));
-        fragmentList.add(new OrderListFragment(OrderListFragment.RETURN));
-        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP_FINISH));
+        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP,0));
+        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP,1));
+        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP,2));
+        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP,3));
+        fragmentList.add(new OrderListFragment(OrderListFragment.SHOP,4));
         TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList,fragmentList,getSupportFragmentManager());
         mVpOrder.setAdapter(tabFragmentAdapter);
         mTlOrder.setupWithViewPager(mVpOrder);
+        mVpOrder.setOffscreenPageLimit(5);
         LinearLayout linearLayout = (LinearLayout) mTlOrder.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerPadding(30); // 设置分割线的pandding

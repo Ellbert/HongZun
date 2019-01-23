@@ -16,5 +16,7 @@ public interface WithdrawView {
 
     void onWithdrawSuccess();
 
+    void onAlipayWithdrawSuccess();
+
     void onFailed();
 }

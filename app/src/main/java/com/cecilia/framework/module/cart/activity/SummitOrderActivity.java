@@ -72,12 +72,14 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
     private List<CartShopBean> mData;
     private CartShopBean data;
     private AddressBean mAddressBean;
+    private String mRecommendId;
 
-    public static void launch(Activity context, String cartsId, CartShopBean data,AddressBean addressBean) {
+    public static void launch(Activity context, String cartsId, CartShopBean data, AddressBean addressBean,String recommendId) {
         Intent intent = new Intent(context, SummitOrderActivity.class);
         intent.putExtra("cartsId", cartsId);
         intent.putExtra("data", data);
-        intent.putExtra("address",addressBean);
+        intent.putExtra("address", addressBean);
+        intent.putExtra("recommendId", recommendId);
         context.startActivityForResult(intent, 0);
     }
 
@@ -91,9 +93,10 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
         mCartsId = getIntent().getStringExtra("cartsId");
         data = (CartShopBean) getIntent().getSerializableExtra("data");
         mAddressBean = (AddressBean) getIntent().getSerializableExtra("address");
+        mRecommendId = getIntent().getStringExtra("recommendId");
         mTvTitleText.setText("订单确认");
         mSummitOrderPresenter = new SummitOrderPresenter(this);
-        DialogUtil.createLoadingDialog(this,"加载中...",false,null);
+        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mSummitOrderPresenter.getAddressList(String.valueOf(GcGuangApplication.getId()));
         mAddressPopupWindow = new AddressPopupWindow();
@@ -215,7 +218,7 @@ public class SummitOrderActivity extends BaseActivity implements SummitOrderView
     private void summitGoods() {
         DialogUtil.createLoadingDialog(this, "下单中...", false, null);
         CartGoodsBean cartGoodsBean = data.getList().get(0);
-        mSummitOrderPresenter.createOrder(GcGuangApplication.getId(),cartGoodsBean.getTId(),cartGoodsBean.getTSpec(),String.valueOf(cartGoodsBean.getTNum()),mAddressId,data.getRemake());
+        mSummitOrderPresenter.createOrder(GcGuangApplication.getId(), cartGoodsBean.getTId(), cartGoodsBean.getTSpec(), String.valueOf(cartGoodsBean.getTNum()), mAddressId, data.getRemake(), mRecommendId);
     }
 
     private void summitByCart() {

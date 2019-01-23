@@ -1,5 +1,6 @@
 package com.cecilia.framework.module.customer.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +9,17 @@ import android.view.ViewGroup;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseLmrvAdapter;
 import com.cecilia.framework.base.BaseViewHolder;
+import com.cecilia.framework.module.customer.activity.ProductEditActivity;
 
 public class ProductAdapter extends BaseLmrvAdapter {
 
-    private int mType;
-
-    public ProductAdapter(Context context,int type) {
+    public ProductAdapter(Context context) {
         super(context);
-        this.mType = type;
     }
 
     @Override
     public BaseViewHolder onCreateRecyclerViewHolder(LayoutInflater layoutInflater, ViewGroup parent, int viewType) {
-        return  new BaseViewHolder(layoutInflater.inflate(R.layout.item_income_detail, parent, false));
+        return new BaseViewHolder(layoutInflater.inflate(R.layout.item_shop_goods, parent, false));
     }
 
     @Override
@@ -28,14 +27,12 @@ public class ProductAdapter extends BaseLmrvAdapter {
         setView(holder);
     }
 
-    private void setView(BaseViewHolder holder){
-        switch (mType){
-            case 1:
-
-                break;
-            case 2:
-                holder.getView(R.id.tv_income).setVisibility(View.INVISIBLE);
-                break;
-        }
+    private void setView(BaseViewHolder holder) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductEditActivity.launch((Activity) mContext,2,0);
+            }
+        });
     }
 }

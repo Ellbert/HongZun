@@ -60,6 +60,7 @@ public class NetworkConstant {
         public static final String RECHARGE_FINANCIAL = APP + "/arrange/recharge";
         public static final String REDELIVERY = APP + "/arrange/redelivery";
         public static final String GET_USER_ARRANGE = APP + "/arrange/getUserArrange";
+        public static final String WITHDRAW = APP + "/appUser/withdrow";
     }
 
     public class Cart {
@@ -140,6 +141,7 @@ public class NetworkConstant {
         public static final String GET_WALLET = APP + "/merchant/getWallet";
         public static final String GET_RATIO = APP + "/retio/getRatio";
         public static final String WITHDRAW = APP + "/merchant/withdrow";
+        public static final String WITHDRAW_ALIPAY = APP + "/merchant/alipayWithdrow";
     }
 
     public class Promotion {

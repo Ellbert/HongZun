@@ -34,41 +34,50 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_text1"
+                    <LinearLayout
+                        android:id="@+id/ll_recharge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="38dp"
-                        android:gravity="center"
-                        android:text="充值积分"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/txt_sixth" />
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_balance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
-                        android:paddingEnd="30dp"
-                        android:paddingRight="30dp"
-                        android:text="0.00"
-                        android:textColor="@color/possible_result_points"
-                        android:textSize="@dimen/txt_seven" />
+                        <TextView
+                            android:id="@+id/tv_text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="充值积分"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_sixth" />
+
+                        <TextView
+                            android:id="@+id/tv_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:paddingStart="30dp"
+                            android:paddingLeft="30dp"
+                            android:paddingEnd="30dp"
+                            android:paddingRight="30dp"
+                            android:text="0.00"
+                            android:textColor="@color/possible_result_points"
+                            android:textSize="@dimen/txt_seven" />
 
 
-                    <TextView
-                        android:id="@+id/tv_recharge"
-                        android:layout_width="60dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/bg_btn_large_white_edge_normal"
-                        android:gravity="center"
-                        android:text="充值"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/txt_third" />
+                        <TextView
+                            android:id="@+id/tv_recharge"
+                            android:layout_width="60dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/bg_btn_large_white_edge_normal"
+                            android:gravity="center"
+                            android:text="充值"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_third" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -113,41 +122,49 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_text2"
+                    <LinearLayout
+                        android:id="@+id/ll_financial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="38dp"
-                        android:gravity="center"
-                        android:text="释放积分"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/txt_sixth" />
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_hongbao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:paddingStart="30dp"
-                        android:paddingLeft="30dp"
-                        android:paddingEnd="30dp"
-                        android:paddingRight="30dp"
-                        android:text="0.00"
-                        android:textColor="@color/possible_result_points"
-                        android:textSize="@dimen/txt_seven" />
+                        <TextView
+                            android:id="@+id/tv_text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="释放积分"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_sixth" />
 
-                    <TextView
-                        android:id="@+id/tv_detail"
-                        android:layout_width="60dp"
-                        android:layout_height="20dp"
-                        android:layout_below="@+id/tv_hongbao"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/bg_btn_large_white_edge_normal"
-                        android:gravity="center"
-                        android:text="详情"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/txt_third" />
+                        <TextView
+                            android:id="@+id/tv_hongbao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:paddingStart="30dp"
+                            android:paddingLeft="30dp"
+                            android:paddingEnd="30dp"
+                            android:paddingRight="30dp"
+                            android:text="0.00"
+                            android:textColor="@color/possible_result_points"
+                            android:textSize="@dimen/txt_seven" />
+
+                        <TextView
+                            android:id="@+id/tv_detail"
+                            android:layout_width="60dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/bg_btn_large_white_edge_normal"
+                            android:gravity="center"
+                            android:text="详情"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_third" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -241,18 +258,18 @@
 
                 <TextView
                     android:id="@+id/tv_message_number"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginRight="25dp"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:textSize="@dimen/txt_fifth"
-                    android:layout_centerVertical="true"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
                     android:background="@mipmap/icn_point_green"
-                    android:textColor="@color/white" />
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_fifth"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

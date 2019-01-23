@@ -96,7 +96,7 @@ public class ChooseWayActivity extends BaseActivity implements ChooseWayView {
                             DialogUtil.createLoadingDialog(ChooseWayActivity.this, "购买中...", false, null);
                             mChooseWayPresenter.buy(mOrderIds, GcGuangApplication.getId(), "购买商品");
                         } else if (mPayType == 2) {
-                            if (GcGuangApplication.getsPayPassword() == 0) {
+                            if (GcGuangApplication.getsPayPassword().equals("0")) {
                                 mPayDialog.show();
                             } else {
                                 mPayPasswordPopupWindow.initView(ChooseWayActivity.this);

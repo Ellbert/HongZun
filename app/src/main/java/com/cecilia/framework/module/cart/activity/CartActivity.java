@@ -217,7 +217,7 @@ public class CartActivity extends BaseActivity implements CartView, SwipeRefresh
             case R.id.tv_settlement:
                 if (StringUtil.isNullOrEmpty(mCartIds)) return;
                 if (mTvSettlement.getText().equals("结算")) {
-                    SummitOrderActivity.launch(this, mCartIds, null, null);
+                    SummitOrderActivity.launch(this, mCartIds, null, null,null);
                 } else {
                     DialogUtil.createLoadingDialog(this, "删除中...", false, null);
                     mCartPresenter.delete(mCartIds);

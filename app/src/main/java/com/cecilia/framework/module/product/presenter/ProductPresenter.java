@@ -1,40 +1,24 @@
 package com.cecilia.framework.module.product.presenter;
 
-import android.app.Activity;
 import android.support.v4.widget.SwipeRefreshLayout;
-
-import com.cecilia.framework.general.AsynchronousObserver;
 import com.cecilia.framework.general.NetworkObserver;
-import com.cecilia.framework.general.PageBean;
 import com.cecilia.framework.module.main.bean.GoodsBean;
 import com.cecilia.framework.module.me.MeRealization;
 import com.cecilia.framework.module.me.bean.AddressBean;
 import com.cecilia.framework.module.product.ProductRealization;
 import com.cecilia.framework.module.product.bean.CommentBean;
-import com.cecilia.framework.module.product.bean.PayResult;
-import com.cecilia.framework.module.product.model.ProductModel;
 import com.cecilia.framework.module.product.view.ProductView;
-import com.cecilia.framework.utils.AsynchronousUtil;
-import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 
 public class ProductPresenter {
 
     private ProductView mProductView;
-    private ProductModel mPayOrderModel;
 
     public ProductPresenter(ProductView mProductView) {
         this.mProductView = mProductView;
-        mPayOrderModel = new ProductModel();
     }
 
     public void getDetail(int id, int userId) {
@@ -66,7 +50,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("getDetail");
                 mProductView.onFailed();
             }
         });
@@ -101,7 +84,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("getAddressList");
                 mProductView.onFailed();
             }
         });
@@ -137,7 +119,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("addCart");
                 mProductView.onFailed();
             }
         });
@@ -172,7 +153,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("addCollect");
                 mProductView.onFailed();
             }
         });
@@ -180,7 +160,6 @@ public class ProductPresenter {
 
 
     public void removeCollect(int userId, int goodsId) {
-        LogUtil.e("addCollect");
         ProductRealization.removeCollect(userId, goodsId, new NetworkObserver<Object>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -209,7 +188,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("addCollect");
                 mProductView.onFailed();
             }
         });
@@ -244,7 +222,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("getRecentlyList");
                 mProductView.onFailed();
             }
         });
@@ -279,7 +256,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("removeConcern");
                 mProductView.onFailed();
             }
         });
@@ -314,7 +290,6 @@ public class ProductPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-                LogUtil.e("addFollow");
                 mProductView.onFailed();
             }
         });

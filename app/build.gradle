@@ -7,8 +7,9 @@ android {
         applicationId "com.cecilia.framework"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 7
-        versionName "2.0"
+        versionCode 11
+        versionName "1.2"
+        //正式 2.2 版本
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
@@ -83,6 +84,7 @@ dependencies {
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     implementation(name: 'alipaySdk-15.5.9-20181123210657-noUtdid', ext: 'aar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.6'
+    implementation 'com.google.zxing:core:3.3.0'
 }
 
 

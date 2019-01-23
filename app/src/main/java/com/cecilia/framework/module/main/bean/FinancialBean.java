@@ -16,7 +16,7 @@ public class FinancialBean {
 
     private int tFreeRatio;//释放比例 万分比
 
-    private int tFreeMoney;//累计释放金额 单位分
+    private long tFreeMoney;//累计释放金额 单位分
 
     private long tLastTime;//上次释放时间
 
@@ -80,11 +80,11 @@ public class FinancialBean {
         this.tFreeRatio = tFreeRatio;
     }
 
-    public int gettFreeMoney() {
+    public long gettFreeMoney() {
         return tFreeMoney;
     }
 
-    public void settFreeMoney(int tFreeMoney) {
+    public void settFreeMoney(long tFreeMoney) {
         this.tFreeMoney = tFreeMoney;
     }
 

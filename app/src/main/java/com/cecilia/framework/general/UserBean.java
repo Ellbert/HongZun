@@ -22,13 +22,13 @@ public class UserBean implements Serializable {
     private int tMerchantId;
     private long tBalance;
     private long tHongBalance;
-    private int tPayPassword;
+    private String tPayPassword;
 
-    public int gettPayPassword() {
+    public String gettPayPassword() {
         return tPayPassword;
     }
 
-    public void settPayPassword(int tPayPassword) {
+    public void settPayPassword(String tPayPassword) {
         this.tPayPassword = tPayPassword;
     }
 

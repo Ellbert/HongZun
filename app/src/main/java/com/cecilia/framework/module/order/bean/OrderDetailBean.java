@@ -12,8 +12,8 @@ public class OrderDetailBean {
     private int tUserId;
     private String tHeadurl;
     private String tNickname;
-    private int tTotalMoney;
-    private int tPayMoney;
+    private long tTotalMoney;
+    private long tPayMoney;
     private int tStatus;
     private String tTradeNo;
     private String tOutTradeNo;
@@ -82,19 +82,19 @@ public class OrderDetailBean {
         return tNickname;
     }
 
-    public void setTTotalMoney(int tTotalMoney) {
+    public void setTTotalMoney(long tTotalMoney) {
         this.tTotalMoney = tTotalMoney;
     }
 
-    public int getTTotalMoney() {
+    public long getTTotalMoney() {
         return tTotalMoney;
     }
 
-    public void setTPayMoney(int tPayMoney) {
+    public void setTPayMoney(long tPayMoney) {
         this.tPayMoney = tPayMoney;
     }
 
-    public int getTPayMoney() {
+    public long getTPayMoney() {
         return tPayMoney;
     }
 

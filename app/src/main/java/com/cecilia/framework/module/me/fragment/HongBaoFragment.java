@@ -3,6 +3,7 @@ package com.cecilia.framework.module.me.fragment;
 import android.annotation.SuppressLint;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 import com.cecilia.framework.GcGuangApplication;
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
+import com.cecilia.framework.module.cart.activity.ChooseWayActivity;
+import com.cecilia.framework.module.cart.widget.PayPasswordPopupWindow;
 import com.cecilia.framework.module.customer.bean.RateBean;
 import com.cecilia.framework.module.customer.bean.ShopPaymentBean;
+import com.cecilia.framework.module.customer.widget.AlipayPopupWindow;
 import com.cecilia.framework.module.main.presenter.HongBaoPresenter;
 import com.cecilia.framework.module.main.view.HongBaoView;
 import com.cecilia.framework.utils.ArithmeticalUtil;
@@ -39,10 +43,6 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
     TextView mTvRecharge;
     @BindView(R.id.et_balance)
     EditText mEtBalance;
-    @BindView(R.id.tv_text2)
-    TextView mTvText2;
-    @BindView(R.id.et_recharge)
-    EditText mEtRecharge;
     @BindView(R.id.tv_text4)
     TextView mTvText4;
     @BindView(R.id.tv_poundage)
@@ -67,8 +67,15 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
     public static final int FINANCIAL = 1;
     public static final int WITHDRAW = 2;
     private int type;
+    private int mRate;
     private long mBalance;
+    private AlipayPopupWindow mAlipayPopupWindow;
     private HongBaoPresenter mHongBaoPresenter;
+    private PayPasswordPopupWindow mPayPasswordPopupWindow;
+    private String mAlipayAccount;
+    private String mAlipayName;
+    private int mUserId;
+    private String mUserName;
 
     public HongBaoFragment(int type) {
         this.type = type;
@@ -79,6 +86,9 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
         if (mTvRecharge != null) {
             DialogUtil.createLoadingDialog(this.getContext(), "加载中...", false, null);
             mHongBaoPresenter.getWallet(GcGuangApplication.getId());
+            if (type == WITHDRAW) {
+                mHongBaoPresenter.getRatio();
+            }
         }
     }
 
@@ -94,7 +104,11 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
 
     @Override
     public void initData() {
+        mUserId = SharedPreferenceUtil.getInt(this.getContext(), "userId");
+        mUserName = SharedPreferenceUtil.getString(this.getContext(), "userName");
+        mAlipayPopupWindow = new AlipayPopupWindow();
         mHongBaoPresenter = new HongBaoPresenter(this);
+        mPayPasswordPopupWindow = new PayPasswordPopupWindow();
         initView();
     }
 
@@ -105,9 +119,6 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
                 mTvText1.setText("转换积分");
                 mEtBalance.setHint("请输入转投积分");
                 mTvConfirm.setText("确认转投");
-                mEtRecharge.setEnabled(false);
-                mEtRecharge.setVisibility(View.GONE);
-                mTvText2.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
                 mTvText4.setVisibility(View.GONE);
                 mLlUnion.setVisibility(View.GONE);
@@ -119,19 +130,19 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
             case FINANCIAL:
                 mTvText1.setText("购买积分");
                 mEtBalance.setHint("请输入购买积分");
-                mTvText2.setText("释放积分");
                 mTvConfirm.setText("积分充值");
                 mTvText4.setText("释放率");
                 mTvPoundage.setText("0%~10%");
-                mEtRecharge.setEnabled(false);
-                mTvText2.setVisibility(View.GONE);
-                mEtRecharge.setVisibility(View.GONE);
                 mTvText3.setVisibility(View.GONE);
                 mLlUnion.setVisibility(View.GONE);
                 mLlAlipay.setVisibility(View.GONE);
                 mTvPoundage.setTextColor(ViewUtil.getColor(R.color.txt_first));
                 break;
             case WITHDRAW:
+                mTvText0.setText("可提积分");
+                mTvText1.setText("需提积分");
+                mEtBalance.setHint("请输入需要提现的积分");
+                mLlUnion.setVisibility(View.GONE);
                 break;
         }
     }
@@ -172,37 +183,89 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-            }
-        });
-    }
-
-    @OnClick({R.id.tv_confirm})
-    protected void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_confirm:
-                if (StringUtil.isNullOrEmpty(mEtBalance.getText().toString()) || ".".equals(mEtBalance.getText().toString()) || Double.parseDouble(mEtBalance.getText().toString()) == 0) {
-                    ToastUtil.newSafelyShow("输入的积分不正确");
+                double money = 0;
+                if (StringUtil.isNullOrEmpty(s.toString()) || ".".equals(s.toString())) {
+                    mTvPoundage.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(ArithmeticalUtil.mul(money, mRate)));
                     return;
                 }
+                money = Double.parseDouble(s.toString());
+                if (money > ArithmeticalUtil.div(mBalance, 100)) {
+                    ToastUtil.newSafelyShow("输入积分大于可提现积分");
+                    mEtBalance.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mBalance));
+                    return;
+                }
+                mTvPoundage.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(ArithmeticalUtil.mul(money, mRate)));
+            }
+        });
+        mPayPasswordPopupWindow.setOnSkuConfirmListener(new PayPasswordPopupWindow.OnConfirmListener() {
+            @Override
+            public void onConfirm() {
                 double money = ArithmeticalUtil.mul(Double.parseDouble(mEtBalance.getText().toString()), 100);
                 DialogUtil.createLoadingDialog(HongBaoFragment.this.getContext(), "提交中...", false, null);
                 if (type == CHANGE) {
                     mHongBaoPresenter.redelivery(GcGuangApplication.getId(), Double.valueOf(money).intValue());
                 } else if (type == FINANCIAL) {
                     mHongBaoPresenter.financialRecharge(GcGuangApplication.getId(), Double.valueOf(money).intValue());
+                } else if (type == WITHDRAW) {
+                    mHongBaoPresenter.withdraw(mUserId, mUserName, Double.valueOf(money).intValue(), mAlipayAccount, mAlipayName);
                 }
+            }
+        });
+        mAlipayPopupWindow.setOnAddressConfirmListener(new AlipayPopupWindow.OnConfirmListener() {
+            @Override
+            public void onConfirm(String account, String name) {
+                mAlipayAccount = account;
+                mAlipayName = name;
+                mTvAlipay.setText("提现到(" + mAlipayAccount + ")");
+            }
+        });
+    }
+
+    @OnClick({R.id.tv_confirm, R.id.cb_alipay, R.id.tv_alipay, R.id.ll_alipay})
+    protected void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_confirm:
+                if (StringUtil.isNullOrEmpty(mEtBalance.getText().toString()) || ".".equals(mEtBalance.getText().toString()) || Double.parseDouble(mEtBalance.getText().toString()) <= 0) {
+                    ToastUtil.newSafelyShow("输入的积分不正确");
+                    return;
+                }
+                if (type == WITHDRAW) {
+                    if (Double.parseDouble(mEtBalance.getText().toString()) < 1 && Double.parseDouble(mEtBalance.getText().toString()) > 0) {
+                        ToastUtil.newSafelyShow("不能输入小于1的积分");
+                        return;
+                    }
+                    if (StringUtil.isNullOrEmpty(mAlipayAccount) || StringUtil.isNullOrEmpty(mAlipayName)) {
+                        ToastUtil.newSafelyShow("请填写支付宝信息");
+                        return;
+                    }
+                }
+                mPayPasswordPopupWindow.initView(HongBaoFragment.this.mActivity);
+                mPayPasswordPopupWindow.showAtLocation(mLlAlipay, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
+            case R.id.ll_alipay:
+                mAlipayPopupWindow.initView(this.mActivity);
+                mAlipayPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                mCbAlipay.setChecked(true);
+                break;
+            case R.id.tv_alipay:
+                mAlipayPopupWindow.initView(this.mActivity);
+                mAlipayPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                mCbAlipay.setChecked(true);
+                break;
+            case R.id.cb_alipay:
+                mAlipayPopupWindow.initView(this.mActivity);
+                mAlipayPopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                mCbAlipay.setChecked(true);
         }
     }
 
     @Override
     public void onGetWalletSuccess(ShopPaymentBean shopPaymentBean) {
-        if (type == CHANGE) {
-            mBalance = shopPaymentBean.getTHongBalance();
-            mTvRecharge.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mBalance));
-        } else if (type == FINANCIAL) {
+        if (type == FINANCIAL) {
             mBalance = shopPaymentBean.getTBalance();
+            mTvRecharge.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mBalance));
+        } else {
+            mBalance = shopPaymentBean.getTHongBalance();
             mTvRecharge.setText(ArithmeticalUtil.getMoneyStringWithoutSymbol(mBalance));
         }
     }
@@ -210,13 +273,22 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
     @Override
     public void onRedeliverySuccess() {
         ToastUtil.newSafelyShow("转投成功");
-        this.mActivity.finish();
+        DialogUtil.createLoadingDialog(this.getContext(), "加载中...", false, null);
+        mHongBaoPresenter.getWallet(GcGuangApplication.getId());
     }
 
     @Override
     public void onFinancialRechargeSuccess() {
         ToastUtil.newSafelyShow("理财充值成功");
-        this.mActivity.finish();
+        DialogUtil.createLoadingDialog(this.getContext(), "加载中...", false, null);
+        mHongBaoPresenter.getWallet(GcGuangApplication.getId());
+    }
+
+    @Override
+    public void onWithdrawSuccess() {
+        ToastUtil.newSafelyShow("提现申请成功");
+        DialogUtil.createLoadingDialog(this.getContext(), "加载中...", false, null);
+        mHongBaoPresenter.getWallet(GcGuangApplication.getId());
     }
 
     @Override
@@ -225,4 +297,8 @@ public class HongBaoFragment extends BaseFragment implements HongBaoView {
         mActivity.finish();
     }
 
+    @Override
+    public void onGetRatioSuccess(RateBean data) {
+        mRate = data.gettService();
+    }
 }

@@ -29,7 +29,6 @@ public class OrderListAdapter extends BaseLmrvAdapter {
 
     private OnOrderItemClickListener mOnItemClickListener;
     private int type;
-    private int mId;
 
     public OrderListAdapter(Context context, int type) {
         super(context);
@@ -336,14 +335,6 @@ public class OrderListAdapter extends BaseLmrvAdapter {
                         }
                     }
                 });
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
                 break;
         }
     }

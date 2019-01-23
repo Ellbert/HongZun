@@ -7,166 +7,188 @@
 
     <include layout="@layout/layout_header" />
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_shop_payment"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:background="@mipmap/bg_payment"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="累计收入"
-            android:textColor="@color/white"
-            android:textSize="35sp" />
-
-        <View
-            android:layout_width="180dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/white" />
-
-        <TextView
-            android:id="@+id/tv_all_income"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:paddingStart="20dp"
-            android:paddingLeft="20dp"
-            android:paddingEnd="20dp"
-            android:paddingRight="20dp"
-            android:text="0.00"
-            android:textColor="@color/white"
-            android:textSize="60dp" />
+            android:layout_height="match_parent">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/ll_no_record"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@mipmap/icn_no_record"
-                android:drawableLeft="@mipmap/icn_no_record"
-                android:drawablePadding="6dp"
-                android:text="未入账收入"
-                android:textColor="@color/txt_first"
-                android:textSize="@dimen/txt_first" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_no_record"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="18dp"
-                android:text="0.00"
-                android:textColor="@color/color_assist_first"
-                android:textSize="@dimen/txt_check_box" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:background="@mipmap/bg_payment"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:text="累计收入"
+                        android:textColor="@color/white"
+                        android:textSize="35sp" />
 
-        </LinearLayout>
+                    <View
+                        android:layout_width="180dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/bg_view" />
+                    <TextView
+                        android:id="@+id/tv_all_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingEnd="20dp"
+                        android:paddingRight="20dp"
+                        android:text="0.00"
+                        android:textColor="@color/white"
+                        android:textSize="60dp" />
 
-        <LinearLayout
-            android:id="@+id/ll_can_withdraw"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@mipmap/icn_can_withdraw"
-                android:drawableLeft="@mipmap/icn_can_withdraw"
-                android:drawablePadding="6dp"
-                android:text="可提现收入"
-                android:textColor="@color/txt_first"
-                android:textSize="@dimen/txt_first" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_can_withdraw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="18dp"
-                android:text="0.00"
-                android:textColor="@color/color_assist_first"
-                android:textSize="@dimen/txt_check_box" />
+                    <LinearLayout
+                        android:id="@+id/ll_no_record"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:drawableStart="@mipmap/icn_no_record"
+                            android:drawableLeft="@mipmap/icn_no_record"
+                            android:drawablePadding="6dp"
+                            android:text="未入账收入"
+                            android:textColor="@color/txt_first"
+                            android:textSize="@dimen/txt_first" />
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/bg_view" />
-
-        <LinearLayout
-            android:id="@+id/ll_has_withdraw"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@mipmap/icn_has_withdraw"
-                android:drawableLeft="@mipmap/icn_has_withdraw"
-                android:drawablePadding="6dp"
-                android:text="已提现收入"
-                android:textColor="@color/txt_first"
-                android:textSize="@dimen/txt_first" />
-
-            <TextView
-                android:id="@+id/tv_has_withdraw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="18dp"
-                android:text="0.00"
-                android:textColor="@color/color_assist_first"
-                android:textSize="@dimen/txt_check_box" />
+                        <TextView
+                            android:id="@+id/tv_no_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="0.00"
+                            android:textColor="@color/color_assist_first"
+                            android:textSize="@dimen/txt_check_box" />
 
 
-        </LinearLayout>
+                    </LinearLayout>
 
-    </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/bg_view" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_can_withdraw"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:drawableStart="@mipmap/icn_can_withdraw"
+                            android:drawableLeft="@mipmap/icn_can_withdraw"
+                            android:drawablePadding="6dp"
+                            android:text="可提现收入"
+                            android:textColor="@color/txt_first"
+                            android:textSize="@dimen/txt_first" />
+
+                        <TextView
+                            android:id="@+id/tv_can_withdraw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="0.00"
+                            android:textColor="@color/color_assist_first"
+                            android:textSize="@dimen/txt_check_box" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/bg_view" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_has_withdraw"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:drawableStart="@mipmap/icn_has_withdraw"
+                            android:drawableLeft="@mipmap/icn_has_withdraw"
+                            android:drawablePadding="6dp"
+                            android:text="已提现收入"
+                            android:textColor="@color/txt_first"
+                            android:textSize="@dimen/txt_first" />
+
+                        <TextView
+                            android:id="@+id/tv_has_withdraw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="18dp"
+                            android:text="0.00"
+                            android:textColor="@color/color_assist_first"
+                            android:textSize="@dimen/txt_check_box" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <LinearLayout
         android:id="@+id/ll_withdraw"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="horizontal">
 

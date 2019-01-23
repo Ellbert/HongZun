@@ -58,7 +58,21 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".module.product.activity.ProductActivity"
-            android:launchMode="singleTask" />
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="jp.app"
+                    android:path="/openby"
+                    android:scheme="myapp" />
+
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".module.login.activity.LoginActivity"
@@ -75,6 +89,7 @@
                     android:host="jp.app"
                     android:path="/openwith"
                     android:scheme="myapp" />
+
             </intent-filter>
         </activity>
         <activity
@@ -213,7 +228,20 @@
         <activity
             android:name=".module.main.activity.FinancialActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".module.me.activity.PayPasswordActivity" />
+        <activity
+            android:name=".module.me.activity.PayPasswordActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.me.activity.CertificationActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.IncomeActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".module.customer.activity.ProductEditActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.cecilia.zxing.activity.CaptureActivity" />
+        <activity android:name=".common.WebActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

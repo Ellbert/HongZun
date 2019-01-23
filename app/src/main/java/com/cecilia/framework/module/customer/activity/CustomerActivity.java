@@ -144,7 +144,7 @@ public class CustomerActivity extends BaseActivity {
         setView();
     }
 
-    @OnClick({R.id.tv_apply, R.id.tv_done, R.id.iv_back, R.id.tv_income_detail, R.id.iv_commodity_management,
+    @OnClick({R.id.tv_apply, R.id.tv_done, R.id.iv_back, R.id.rl_middle, R.id.iv_commodity_management,
             R.id.iv_revenue_management, R.id.iv_order_management, R.id.tv_no_pass_done, R.id.tv_freeze_done})
     protected void onClick(View view) {
         switch (view.getId()) {
@@ -157,11 +157,11 @@ public class CustomerActivity extends BaseActivity {
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_income_detail:
-//                ProductActivity.launch(CustomerActivity.this, 1);
+            case R.id.rl_middle:
+//                IncomeActivity.launch(CustomerActivity.this,mShopBean.getTId());
                 break;
             case R.id.iv_commodity_management:
-//                ProductActivity.launch(CustomerActivity.this, 2);
+//                ProductActivity.launch(CustomerActivity.this,mShopBean.getTId());
                 break;
             case R.id.iv_revenue_management:
                 ShopPaymentActivity.launch(this, mShopBean.getTId(), mShopBean.getTName()+"");

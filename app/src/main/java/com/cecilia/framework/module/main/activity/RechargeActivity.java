@@ -148,8 +148,12 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
             case R.id.tv_confirm:
 //                setResult(23);
 //                finish();
-                if (StringUtil.isNullOrEmpty(mEtRecharge.getText().toString()) || Double.parseDouble(mEtRecharge.getText().toString()) == 0) {
+                if (StringUtil.isNullOrEmpty(mEtRecharge.getText().toString()) || Double.parseDouble(mEtRecharge.getText().toString()) <= 0) {
                     ToastUtil.newSafelyShow("请输入正确积分");
+                    return;
+                }
+                if (Double.parseDouble(mEtRecharge.getText().toString()) < 1 && Double.parseDouble(mEtRecharge.getText().toString()) > 0) {
+                    ToastUtil.newSafelyShow("不能输入小于1的积分");
                     return;
                 }
                 mBuyDialog.show();

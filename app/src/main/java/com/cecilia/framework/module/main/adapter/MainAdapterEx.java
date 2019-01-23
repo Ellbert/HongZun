@@ -3,6 +3,7 @@ package com.cecilia.framework.module.main.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ import com.cecilia.framework.module.main.fragment.MeFragment;
 import com.cecilia.framework.module.payment.activity.PaymentActivity;
 import com.cecilia.framework.module.vip.activity.VipActivity;
 import com.cecilia.framework.utils.ToastUtil;
+import com.cecilia.zxing.activity.CaptureActivity;
 
 import java.util.List;
 
@@ -65,6 +67,13 @@ public class MainAdapterEx extends BaseRvAdapterEx {
             @Override
             public void onClick(View v) {
                 NewsActivity.launch((MainActivity) mContext);
+            }
+        });
+        baseViewHolder.getView(R.id.iv_home_scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CaptureActivity.class);
+                mContext.startActivity(intent);
             }
         });
         baseViewHolder.getView(R.id.tv_message).setOnClickListener(new View.OnClickListener() {

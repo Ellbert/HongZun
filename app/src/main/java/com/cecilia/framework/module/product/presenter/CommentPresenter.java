@@ -45,7 +45,7 @@ public class CommentPresenter {
 
             @Override
             protected void onLoginTimeOut() {
-
+                mCommentView.onFailed();
             }
         });
     }

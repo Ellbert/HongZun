@@ -135,8 +135,8 @@ public class SummitOrderPresenter {
         });
     }
 
-    public void createOrder(int userId, int goodsId, String spec, String num, String addressId, String remake) {
-        ProductRealization.createOrder(userId, goodsId, spec, num, addressId, remake, new NetworkObserver<ArrayList<Integer>>() {
+    public void createOrder(int userId, int goodsId, String spec, String num, String addressId, String remake,String recommendUser) {
+        ProductRealization.createOrder(userId, goodsId, spec, num, addressId, remake,recommendUser, new NetworkObserver<ArrayList<Integer>>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
                 return null;

@@ -24,13 +24,13 @@ public class GcGuangApplication extends MultiDexApplication {
     private static int sWidth;
     private static int sId;
     private static String sToken;
-    private static int sPayPassword;
+    private static String sPayPassword;
 
-    public static int getsPayPassword() {
+    public static String getsPayPassword() {
         return sPayPassword;
     }
 
-    public static void setsPayPassword(int sPayPassword) {
+    public static void setsPayPassword(String sPayPassword) {
         GcGuangApplication.sPayPassword = sPayPassword;
     }
 

@@ -141,9 +141,7 @@ public class NewsActivity extends BaseActivity implements MessageView, SwipeRefr
         if (resultCode == 99) {
             setResult(99);
             finish();
-        } else {
-            onRefresh();
-        }
+        } 
     }
 
 }

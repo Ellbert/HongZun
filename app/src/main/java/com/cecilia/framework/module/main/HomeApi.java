@@ -100,4 +100,9 @@ public interface HomeApi {
     @FormUrlEncoded
     @POST(NetworkConstant.HongBao.GET_USER_ARRANGE)
     Observable<BaseBean<FinancialBean>> getUserArrange(@Field("userId") int userId, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST(NetworkConstant.HongBao.WITHDRAW)
+    Observable<BaseBean<Object>> withdraw(@Field("userId") int userId,@Field("username") String username,@Field("money") long money,@Field("account") String account,@Field("realName") String realName,@Field("token") String token);
+
 }

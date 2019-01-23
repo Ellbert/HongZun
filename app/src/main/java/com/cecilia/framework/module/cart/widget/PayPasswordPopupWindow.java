@@ -42,7 +42,7 @@ public class PayPasswordPopupWindow extends PopupWindow {
         switch (v.getId()) {
             case R.id.tv_confirm:
                 //销毁弹出框
-                if (!String.valueOf(GcGuangApplication.getsPayPassword()).equals(mEtPassword.getText().toString())) {
+                if (!GcGuangApplication.getsPayPassword().equals(mEtPassword.getText().toString())) {
                     ToastUtil.newSafelyShow("支付密码错误");
                     return;
                 }
@@ -68,6 +68,8 @@ public class PayPasswordPopupWindow extends PopupWindow {
     public void initView(final Activity context) {
         final LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View mView = mInflater.inflate(R.layout.layout_pay_password, null);
+        this.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         ButterKnife.bind(this, mView);
         //设置SelectPicPopupWindow的View
         this.setContentView(mView);

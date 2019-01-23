@@ -122,7 +122,7 @@ public class MainActivity extends BaseActivity implements MainView {
 //                ToastUtil.newSafelyShow("退出成功！");
                 GcGuangApplication.setId(0);
                 GcGuangApplication.setsToken(null);
-                GcGuangApplication.setsPayPassword(0);
+                GcGuangApplication.setsPayPassword("0");
                 LoginActivity.launch(this);
                 finish();
             } else {

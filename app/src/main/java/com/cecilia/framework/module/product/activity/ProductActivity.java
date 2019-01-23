@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -176,6 +177,8 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     private SharePopupWindow mSharePopupWindow;
     private static final int SHARE_MSG = 0;
     private WXShare mWXShare;
+    private int mType;
+    private String mRecommendId;
 
     public static void launch(Activity context, int goodsId) {
         Intent intent = new Intent(context, ProductActivity.class);
@@ -218,11 +221,17 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
         mAddressPopupWindow = new AddressPopupWindow();
         mSharePopupWindow = new SharePopupWindow();
         mSharePopupWindow.initView(this);
-        mGoodsId = getIntent().getIntExtra("goods_id", 0);
+        if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
+            Uri uri = getIntent().getData();
+            if (uri != null) {
+                mRecommendId = uri.getQueryParameter("userId");
+                mGoodsId = Integer.parseInt(uri.getQueryParameter("goodsId"));
+            }
+        } else {
+            mGoodsId = getIntent().getIntExtra("goods_id", 0);
+        }
         DialogUtil.createLoadingDialog(this, "加载中...", false, null);
         mProductPresenter = new ProductPresenter(this);
-        LogUtil.e("initData");
-        LogUtil.e("token == " + SharedPreferenceUtil.getString(this, "token"));
         mProductPresenter.getDetail(mGoodsId, GcGuangApplication.getId());
         mProductPresenter.getAddressList(String.valueOf(GcGuangApplication.getId()));
         mProductPresenter.getRecentlyList(mGoodsId);
@@ -250,7 +259,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                         cartGoodsBean.setTPrice(mGoodsBean.getTPrice());
                         list.add(cartGoodsBean);
                         cartShopBean.setList(list);
-                        SummitOrderActivity.launch(ProductActivity.this, "", cartShopBean, mAddressBean);
+                        SummitOrderActivity.launch(ProductActivity.this, "", cartShopBean, mAddressBean,mRecommendId);
                         return false;
                     }
                 }, ViewUtil.getString(R.string.cancel), null, null);
@@ -331,24 +340,24 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
 //                if (type == 2) {
 //
 //                } else {
-                    mWXShare.shareUrl(type, ProductActivity.this, "http://www.baidu.com", mGoodsBean.getTTitle(), "", null);
+                mType = type;
+                Bitmap bitmap = BitmapFactory.decodeResource(ViewUtil.getResources(), R.mipmap.ic_launcher);
+                mWXShare.shareUrl(mType, ProductActivity.this, "http://www.hongzuncctv.com/HZ/open.jsp?goods=" + GcGuangApplication.getId() + "&goodsId=" + mGoodsId, "分享商品", mGoodsBean.getTTitle(), bitmap);
+
 //                }
             }
         });
         mWXShare.setListener(new WXShare.OnResponseListener() {
             @Override
             public void onSuccess() {
-                LogUtil.e("onSuccess");
             }
 
             @Override
             public void onCancel() {
-                LogUtil.e("onCancel");
             }
 
             @Override
             public void onFail(String message) {
-                LogUtil.e("onFail");
             }
         });
     }
@@ -497,7 +506,7 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
                 }
                 break;
             case R.id.iv_share:
-//                mSharePopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                mSharePopupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                 break;
         }
     }
@@ -617,8 +626,8 @@ public class ProductActivity extends BaseActivity implements MyScrollView.OnScro
     protected void onRequestPermissionsSucceed(int requestCode) {
         super.onRequestPermissionsSucceed(requestCode);
         if (requestCode == SHARE_MSG) {
-            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.mipmap.icn_wechat_big_circle);
-            mWXShare.share("这是要分享的文字");
+            Bitmap bitmap = BitmapFactory.decodeResource(ViewUtil.getResources(), R.mipmap.ic_launcher);
+            mWXShare.shareUrl(mType, ProductActivity.this, "http://www.hongzuncctv.com/HZ/open.jsp?goods=" + GcGuangApplication.getId() + "&goodsId=" + mGoodsId, "分享商品", mGoodsBean.getTTitle(), bitmap);
 //            ShareUtil.shareMessage2(this, mShareMedia);
         }
     }

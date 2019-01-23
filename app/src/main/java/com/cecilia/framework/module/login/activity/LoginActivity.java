@@ -137,8 +137,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 //                age = uri.getQueryParameter("age");
             }
         }
-//        LogUtil.e(phone);
-//        LogUtil.e(name);
     }
 
     @Override
@@ -344,7 +342,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 SharedPreferenceUtil.putLong(this, "balance", userBean.getTBalance()) &&
                 SharedPreferenceUtil.putLong(this, "honeBalance", userBean.getTHongBalance()) &&
                 SharedPreferenceUtil.putString(this, "token", other) &&
-                SharedPreferenceUtil.putInt(this, "payPassword", userBean.gettPayPassword())) {
+                SharedPreferenceUtil.putString(this, "payPassword", userBean.gettPayPassword())) {
             DialogUtil.dismissLoadingDialog();
             ToastUtil.newSafelyShow("登录成功！");
             GcGuangApplication.setId(userBean.getTId());

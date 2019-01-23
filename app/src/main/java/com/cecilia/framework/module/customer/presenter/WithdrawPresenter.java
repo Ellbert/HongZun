@@ -29,7 +29,7 @@ public class WithdrawPresenter {
             }
 
             @Override
-            protected void onSuccess(List<BankCardBean> data,String other) {
+            protected void onSuccess(List<BankCardBean> data, String other) {
                 mWithdrawView.onGetListSuccess(data);
             }
 
@@ -55,7 +55,7 @@ public class WithdrawPresenter {
         });
     }
 
-    public void getRatio(){
+    public void getRatio() {
         ShopRealization.getRatio(new NetworkObserver<RateBean>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -89,7 +89,7 @@ public class WithdrawPresenter {
         });
     }
 
-    public void withdraw(int merchantId, String merchantName, int cardId, long money){
+    public void withdraw(int merchantId, String merchantName, int cardId, long money) {
         ShopRealization.withdraw(merchantId, merchantName, cardId, money, new NetworkObserver<Object>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
@@ -99,6 +99,40 @@ public class WithdrawPresenter {
             @Override
             protected void onSuccess(Object data, String other) {
                 mWithdrawView.onWithdrawSuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mWithdrawView.onFailed();
+            }
+        });
+    }
+
+    public void withdrawByAlipay(int merchantId, String merchantName, long money, String account, String realName) {
+        ShopRealization.withdrawByAlipay(merchantId, merchantName, money, account, realName, new NetworkObserver<Object>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mWithdrawView.onAlipayWithdrawSuccess();
             }
 
             @Override

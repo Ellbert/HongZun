@@ -3,6 +3,7 @@ package com.cecilia.framework.module.customer.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,7 +22,7 @@ import com.cecilia.framework.utils.LogUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView {
+public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView ,SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.tv_all_income)
     TextView mTvIncome;
@@ -35,6 +36,8 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
     LinearLayout mLlWithdraw;
     @BindView(R.id.tv_title_text)
     TextView mTvTitleText;
+    @BindView(R.id.srl_shop_payment)
+    SwipeRefreshLayout mSrlPayment;
     private int mShopId;
     private String mShopName;
     private double mMoney;
@@ -62,8 +65,7 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
     @Override
     protected void initData() {
         mShopPaymentPresenter = new ShopPaymentPresenter(this);
-        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
-        mShopPaymentPresenter.getWallet(mShopId);
+        onRefresh();
     }
 
     @Override
@@ -73,7 +75,13 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
 
     @Override
     protected void initListener() {
+        mSrlPayment.setOnRefreshListener(this);
+    }
 
+    @Override
+    public void onRefresh() {
+//        DialogUtil.createLoadingDialog(this, "加载中...", false, null);
+        mShopPaymentPresenter.getWallet(mSrlPayment,mShopId);
     }
 
     @Override
@@ -134,8 +142,7 @@ public class ShopPaymentActivity extends BaseActivity implements ShopPaymentView
             setResult(99);
             finish();
         } else {
-            DialogUtil.createLoadingDialog(this, "加载中...", false, null);
-            mShopPaymentPresenter.getWallet(mShopId);
+            onRefresh();
         }
     }
 }

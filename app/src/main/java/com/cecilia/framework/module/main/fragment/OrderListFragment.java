@@ -15,6 +15,8 @@ import com.cecilia.framework.common.NetworkConstant;
 import com.cecilia.framework.general.BaseGoodBean;
 import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.module.cart.activity.ChooseWayActivity;
+import com.cecilia.framework.module.customer.activity.ShopOrderActivity;
+import com.cecilia.framework.module.customer.adapter.ShopOrderAdapter;
 import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.activity.SubmitCommentActivity;
 import com.cecilia.framework.module.main.adapter.OrderListAdapter;
@@ -35,16 +37,8 @@ import butterknife.BindView;
 @SuppressLint("ValidFragment")
 public class OrderListFragment extends BaseFragment implements OrderListView, SwipeRefreshLayout.OnRefreshListener {
 
-    public static final int ALL = 0;
-    public static final int PAY = 1;
-    public static final int SEND = 2;
-    public static final int GET = 3;
-    public static final int COMMENT = 4;
-    public static final int COLLECT = 5;
-    public static final int SHOP_ALL = 6;
-    public static final int UNSENT = 7;
-    public static final int RETURN = 8;
-    public static final int SHOP_FINISH = 9;
+    public static final int SHOP = 1;
+    public static final int PERSONAL = 2;
     private int type;
     @BindView(R.id.lmrv_order)
     LoadMoreRecyclerView mLmrvOrder;
@@ -53,18 +47,21 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
     @BindView(R.id.srl_order)
     SwipeRefreshLayout mSwipeRefreshLayout;
     private OrderListAdapter mOrderListAdapter;
+    private ShopOrderAdapter mShopOrderAdapter;
     private OrderListPresenter mOrderListPresenter;
     private int mPage = 1;
     private List mData;
+    private int mUserType;
 
-    public OrderListFragment(int type) {
+    public OrderListFragment(int userType, int type) {
         this.type = type;
+        this.mUserType = userType;
     }
 
     @Override
     protected void onVisible() {
         if (mSwipeRefreshLayout != null) {
-            initDataList();
+            onRefresh();
         }
     }
 
@@ -82,28 +79,27 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
     public void initData() {
         mOrderListPresenter = new OrderListPresenter(this);
         mLmrvOrder.setState(true, new LinearLayoutManager(getContext()));
-        mOrderListAdapter = new OrderListAdapter(getContext(), type);
-        mLmrvOrder.setAdapter(mOrderListAdapter);
-        if (type == ALL) {
-            initDataList();
+        if (mUserType == SHOP) {
+            mShopOrderAdapter = new ShopOrderAdapter(getContext(), type);
+            mLmrvOrder.setAdapter(mShopOrderAdapter);
+            mShopOrderAdapter.setOnItemBuyClickListener(new ShopOrderAdapter.OnOrderItemClickListener() {
+                @Override
+                public void onItemClick(String info, int id) {
+                    OrderDetailActivity.launch(OrderListFragment.this, id, info);
+                }
+            });
+        } else if (mUserType == PERSONAL) {
+            mOrderListAdapter = new OrderListAdapter(getContext(), type);
+            mLmrvOrder.setAdapter(mOrderListAdapter);
+            mOrderListAdapter.setOnItemBuyClickListener(new OrderListAdapter.OnOrderItemClickListener() {
+                @Override
+                public void onItemClick(String info, int id) {
+                    OrderDetailActivity.launch(OrderListFragment.this, id, info);
+                }
+            });
         }
-    }
-
-    private void initDataList() {
-        switch (type) {
-            case COLLECT:
-                break;
-            case SHOP_ALL:
-                break;
-            case UNSENT:
-                break;
-            case RETURN:
-                break;
-            case SHOP_FINISH:
-                break;
-            default:
-                onRefresh();
-                break;
+        if (type == 0) {
+            onRefresh();
         }
     }
 
@@ -118,21 +114,20 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
         mLmrvOrder.setOnLoadMoreListener(new LoadMoreRecyclerView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                mPage++;
-                mOrderListPresenter.getList(null, GcGuangApplication.getId(), type, mPage);
-            }
-        });
-        mOrderListAdapter.setOnItemBuyClickListener(new OrderListAdapter.OnOrderItemClickListener() {
-            @Override
-            public void onItemClick(String info, int id) {
-                OrderDetailActivity.launch(OrderListFragment.this, id, info);
+                switch (mUserType) {
+                    case SHOP:
+                        break;
+                    case PERSONAL:
+                        mPage++;
+                        mOrderListPresenter.getList(null, GcGuangApplication.getId(), type, mPage);
+                        break;
+                }
             }
         });
     }
 
     @Override
     public void onGetListSuccess(List<OrderBean> beanList) {
-        mSwipeRefreshLayout.setRefreshing(false);
         if (mPage == 1 && beanList.size() == 0) {
             mTvNothing.setVisibility(View.VISIBLE);
             mLmrvOrder.setVisibility(View.GONE);
@@ -164,7 +159,13 @@ public class OrderListFragment extends BaseFragment implements OrderListView, Sw
     public void onRefresh() {
         mPage = 1;
         mData = null;
-        mOrderListPresenter.getList(mSwipeRefreshLayout, GcGuangApplication.getId(), type, mPage);
+        switch (mUserType) {
+            case SHOP:
+                break;
+            case PERSONAL:
+                mOrderListPresenter.getList(mSwipeRefreshLayout, GcGuangApplication.getId(), type, mPage);
+                break;
+        }
     }
 
     @Override

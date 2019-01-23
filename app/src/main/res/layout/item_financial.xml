@@ -57,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
+                android:gravity="center"
                 android:textColor="@color/txt_first"
                 android:textSize="@dimen/txt_bank" />
 
@@ -81,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
+                android:gravity="center"
                 android:textColor="@color/txt_first"
                 android:textSize="@dimen/txt_bank" />
 
@@ -129,6 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00"
+                android:gravity="center"
                 android:textColor="@color/color_main"
                 android:textSize="@dimen/txt_bank" />
 

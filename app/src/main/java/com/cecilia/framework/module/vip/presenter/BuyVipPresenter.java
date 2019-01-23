@@ -111,9 +111,7 @@ public class BuyVipPresenter {
                 .subscribe(new AsynchronousObserver<Map<String, String>>() {
                     @Override
                     protected void onFinish(Map<String, String> data) {
-                        LogUtil.e("alipay data = " + data);
                         PayResult payResult = new PayResult(data);
-                        LogUtil.e("alipay payResult = " + payResult);
                         mBuyVipView.showAlipayResult(payResult.getResultStatus());
                     }
 

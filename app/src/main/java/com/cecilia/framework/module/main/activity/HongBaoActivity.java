@@ -57,14 +57,15 @@ public class HongBaoActivity extends BaseActivity {
         List<String> titleList = new ArrayList<>();
         titleList.add("复投转换");
         titleList.add("理财");
-//        titleList.add("提现");
+        titleList.add("提现");
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new HongBaoFragment(HongBaoFragment.CHANGE));
         fragmentList.add(new HongBaoFragment(HongBaoFragment.FINANCIAL));
-//        fragmentList.add(new HongBaoFragment(HongBaoFragment.WITHDRAW));
+        fragmentList.add(new HongBaoFragment(HongBaoFragment.WITHDRAW));
         TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList, fragmentList, getSupportFragmentManager());
         mVpHongBao.setAdapter(tabFragmentAdapter);
         mTlHongBao.setupWithViewPager(mVpHongBao);
+        mVpHongBao.setOffscreenPageLimit(3);
         LinearLayout linearLayout = (LinearLayout) mTlHongBao.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerPadding(30); // 设置分割线的pandding

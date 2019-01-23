@@ -3,19 +3,13 @@ package com.cecilia.framework.module.main.fragment;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseFragment;
-import com.cecilia.framework.general.EventBean;
 import com.cecilia.framework.general.TabFragmentAdapter;
-import com.cecilia.framework.module.login.activity.LoginActivity;
-import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ViewUtil;
 import com.cecilia.framework.widget.NoScrollViewPager;
 
@@ -55,11 +49,11 @@ public class OrderFragment extends BaseFragment {
         titleList.add("待收货");
         titleList.add("待评价");
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new OrderListFragment(OrderListFragment.ALL));
-        fragmentList.add(new OrderListFragment(OrderListFragment.PAY));
-        fragmentList.add(new OrderListFragment(OrderListFragment.SEND));
-        fragmentList.add(new OrderListFragment(OrderListFragment.GET));
-        fragmentList.add(new OrderListFragment(OrderListFragment.COMMENT));
+        fragmentList.add(new OrderListFragment(OrderListFragment.PERSONAL,0));
+        fragmentList.add(new OrderListFragment(OrderListFragment.PERSONAL,1));
+        fragmentList.add(new OrderListFragment(OrderListFragment.PERSONAL,2));
+        fragmentList.add(new OrderListFragment(OrderListFragment.PERSONAL,3));
+        fragmentList.add(new OrderListFragment(OrderListFragment.PERSONAL,4));
         TabFragmentAdapter tabFragmentAdapter = new TabFragmentAdapter(titleList,fragmentList,getFragmentManager());
         mVpOrder.setOffscreenPageLimit(5);
         mVpOrder.setAdapter(tabFragmentAdapter);

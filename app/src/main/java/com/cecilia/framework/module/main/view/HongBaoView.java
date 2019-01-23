@@ -13,5 +13,9 @@ public interface HongBaoView {
 
     void onFinancialRechargeSuccess();
 
+    void onGetRatioSuccess(@NonNull RateBean data);
+
+    void onWithdrawSuccess();
+
     void onFailed();
 }

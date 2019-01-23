@@ -186,7 +186,7 @@ public class PayPasswordActivity extends BaseActivity implements PayPasswordView
     public void onSetSuccess() {
         DialogUtil.createLoadingDialog(this, "保存中...", false, null);
         if (SharedPreferenceUtil.putInt(this, "payPassword", Integer.parseInt(mPayPassword))) {
-            GcGuangApplication.setsPayPassword(Integer.parseInt(mPayPassword));
+            GcGuangApplication.setsPayPassword(mPayPassword);
         }
         DialogUtil.dismissLoadingDialog();
         ToastUtil.newSafelyShow("设置成功");

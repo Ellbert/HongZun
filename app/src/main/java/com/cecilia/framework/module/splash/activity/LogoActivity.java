@@ -12,6 +12,7 @@ import com.cecilia.framework.module.login.activity.LoginActivity;
 import com.cecilia.framework.module.main.activity.MainActivity;
 import com.cecilia.framework.utils.DialogUtil;
 import com.cecilia.framework.utils.GuangUtil;
+import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.SharedPreferenceUtil;
 import com.cecilia.framework.utils.StringUtil;
 import com.cecilia.framework.utils.ViewUtil;
@@ -61,11 +62,20 @@ public class LogoActivity extends BaseActivity {
 //        mIsFirst = GuangUtil.loadFirstMessage(ViewUtil.getContext());
         //LogoPresenter logoPresenter = new LogoPresenter(LogoActivity.this);
         //logoPresenter.getVersionUpdate("1", String.valueOf(BuildConfig.VERSION_NAME), "SX");
-        GcGuangApplication.setId(SharedPreferenceUtil.getInt(this, "userId"));
-        GcGuangApplication.setsToken(SharedPreferenceUtil.getString(this, "token"));
-        GcGuangApplication.setsPayPassword(SharedPreferenceUtil.getInt(this, "payPassword"));
-        mTimer = new OpenCountTimer(2000, 2000);
-        mTimer.start();
+        try {
+            GcGuangApplication.setId(SharedPreferenceUtil.getInt(this, "userId"));
+            GcGuangApplication.setsToken(SharedPreferenceUtil.getString(this, "token"));
+            GcGuangApplication.setsPayPassword(SharedPreferenceUtil.getString(this, "payPassword"));
+            mTimer = new OpenCountTimer(2000, 2000);
+            mTimer.start();
+        } catch (Exception e) {
+            GcGuangApplication.setId(0);
+            GcGuangApplication.setsToken(null);
+            GcGuangApplication.setsPayPassword("0");
+            mTimer = new OpenCountTimer(2000, 2000);
+            mTimer.start();
+        }
+
 //        initIM5();
     }
 

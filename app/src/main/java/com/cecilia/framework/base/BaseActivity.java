@@ -55,6 +55,7 @@ public abstract class BaseActivity extends FragmentActivity {
         try {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//竖屏
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+//            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
             super.onCreate(savedInstanceState);
             setContentView(getContentViewId());
             mUnBinder = ButterKnife.bind(this);

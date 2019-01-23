@@ -30,7 +30,7 @@ public class NewsAdapter extends BaseLmrvAdapter<MessageBean> {
     public void onBindRecyclerViewHolder(BaseViewHolder holder, final MessageBean data) {
         ((TextView) holder.getView(R.id.tv_title)).setText(data.getTMessageTitle()+"");
         ((TextView) holder.getView(R.id.tv_text)).setText(data.getTMessageDescribe()+"");
-         holder.getView(R.id.tv_detail).setOnClickListener(new View.OnClickListener() {
+         holder.itemView.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  PaymentDetailActivity.launch((Activity) mContext, 6, data);

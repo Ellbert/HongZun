@@ -2,14 +2,14 @@ package com.cecilia.framework.module.vip.bean;
 
 public class VipOrderBean {
 
-    private int payMoney;
+    private long payMoney;
     private int orderId;
 
-    public void setPayMoney(int payMoney) {
+    public void setPayMoney(long payMoney) {
         this.payMoney = payMoney;
     }
 
-    public int getPayMoney() {
+    public long getPayMoney() {
         return payMoney;
     }
 

@@ -28,7 +28,6 @@ public class VipAdapter extends BaseRvAdapter<VipBean> {
     public void bindData(BaseViewHolder holder, final VipBean data) {
         ImageView imageView = holder.getView(R.id.iv_photo);
         TextView textView = holder.getView(R.id.tv_buy);
-        LogUtil.e("level == " + mLevel);
         if (data.getTId() < mLevel) {
             textView.setText("不可激活");
             ImageUtil.loadNetworkImage(mContext, NetworkConstant.IMAGE_URL + data.getTImage(), imageView, null);

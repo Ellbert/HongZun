@@ -15,11 +15,11 @@ public class ShopPaymentPresenter {
         this.mShopPaymentView = mShopPaymentView;
     }
 
-    public void getWallet(int merchantId){
+    public void getWallet(final SwipeRefreshLayout swipeRefreshLayout, int merchantId) {
         ShopRealization.getWallet(merchantId, new NetworkObserver<ShopPaymentBean>() {
             @Override
             protected SwipeRefreshLayout getSwipeRefreshLayout() {
-                return null;
+                return swipeRefreshLayout;
             }
 
             @Override

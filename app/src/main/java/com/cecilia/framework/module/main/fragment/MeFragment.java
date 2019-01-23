@@ -109,7 +109,8 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
     }
 
     @OnClick({R.id.tv_recharge, R.id.tv_detail, R.id.iv_price, R.id.iv_fans, R.id.iv_follow, R.id.iv_collect,
-            R.id.tv_data, R.id.tv_safety, R.id.tv_bank, R.id.tv_address, R.id.tv_us, R.id.tv_news, R.id.tv_cart})
+            R.id.tv_data, R.id.tv_safety, R.id.tv_bank, R.id.tv_address, R.id.tv_us, R.id.tv_news, R.id.tv_cart,
+            R.id.ll_recharge,R.id.ll_financial})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_recharge:
@@ -117,6 +118,14 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
                 RechargeActivity.launch(MeFragment.this, mBalance);
                 break;
             case R.id.tv_detail:
+//                ToastUtil.newSafelyShow("尚未开通");
+                FinancialActivity.launch(MeFragment.this);
+                break;
+            case R.id.ll_recharge:
+//                ToastUtil.newSafelyShow("尚未开通");
+                RechargeActivity.launch(MeFragment.this, mBalance);
+                break;
+            case R.id.ll_financial:
 //                ToastUtil.newSafelyShow("尚未开通");
                 FinancialActivity.launch(MeFragment.this);
                 break;
@@ -176,9 +185,6 @@ public class MeFragment extends BaseFragment implements MeView, SwipeRefreshLayo
 
     @Override
     public void onGetUserInfoSuccess(UserBean userBean, String other) {
-//        mTvBalance.setText();
-//        mTvHongBao.setText();
-//        LogUtil.e(StringUtil.isNullOrEmpty(other) + "  == isNullOrEmpty");
         SharedPreferenceUtil.putString(mActivity, "tel", userBean.getTTel());
         SharedPreferenceUtil.putString(mActivity, "userName", userBean.getTUsername());
         SharedPreferenceUtil.putInt(mActivity, "level", userBean.getTLevel());

@@ -71,6 +71,7 @@ public class SafetyActivity extends BaseActivity {
                 PayPasswordActivity.launch(this);
                 break;
             case R.id.tv_certification:
+//                CertificationActivity.launch(this);
                 break;
         }
     }

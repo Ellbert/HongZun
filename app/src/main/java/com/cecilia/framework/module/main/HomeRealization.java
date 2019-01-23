@@ -158,4 +158,11 @@ public class HomeRealization {
                 .compose(AsynchronousUtil.<BaseBean<FinancialBean>>setThread())
                 .subscribe(observer);
     }
+
+    public static void withdraw(int userId, String userName, long money, String account, String realName, NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(HomeApi.class)
+                .withdraw(userId, userName, money, account, realName, GcGuangApplication.getsToken())
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
 }

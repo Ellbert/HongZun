@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_view"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_header" />
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_alignStart="@+id/tv_text6"
+        android:layout_alignLeft="@+id/tv_text6"
+        android:layout_alignEnd="@+id/tv_text6"
+        android:layout_alignRight="@+id/tv_text6"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:padding="14dp"
+        android:text="姓名"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <EditText
+        android:id="@+id/tv_new_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_text1"
+        android:layout_toRightOf="@+id/tv_text1"
+        android:background="@color/white"
+        android:hint="请输入真实姓名"
+        android:padding="14dp"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+
+    <TextView
+        android:id="@+id/tv_text6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text1"
+        android:layout_alignTop="@+id/et_branch"
+        android:layout_alignBottom="@+id/et_branch"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="14dp"
+        android:text="身份证号码"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <EditText
+        android:id="@+id/et_branch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text1"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/tv_text6"
+        android:layout_toRightOf="@+id/tv_text6"
+        android:background="@color/white"
+        android:hint="请输入身份证号码"
+        android:inputType="number"
+        android:padding="14dp"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_branch"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="14dp"
+        android:text="确认"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_first" />
+
+</RelativeLayout>

@@ -24,4 +24,9 @@ public interface ShopApi {
     @POST(NetworkConstant.Shop.GET_RATIO)
     Observable<BaseBean<RateBean>> getRatio(@Field("token") String token);
 
+    @FormUrlEncoded
+    @POST(NetworkConstant.Shop.WITHDRAW_ALIPAY)
+    Observable<BaseBean<Object>> withdrawByAlipay(@Field("merchantId") int merchantId,@Field("merchantName") String merchantName,@Field("money") long money,@Field("account") String account,@Field("realName") String realName,@Field("token") String token);
+
+
 }

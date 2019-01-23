@@ -28,7 +28,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static android.view.View.VISIBLE;
-import static com.cecilia.framework.module.main.fragment.OrderListFragment.COLLECT;
 
 public class CollectActivity extends BaseActivity implements CollectView, SwipeRefreshLayout.OnRefreshListener {
 
@@ -66,7 +65,7 @@ public class CollectActivity extends BaseActivity implements CollectView, SwipeR
     @Override
     protected void initData() {
         mCollectPresenter = new CollectPresenter(this);
-        mOrderListAdapter = new OrderListAdapter(this, COLLECT);
+        mOrderListAdapter = new OrderListAdapter(this, 5);
         mLmrvFollow.setAdapter(mOrderListAdapter);
         onRefresh();
 

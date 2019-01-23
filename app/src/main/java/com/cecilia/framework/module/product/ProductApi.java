@@ -52,7 +52,7 @@ public interface ProductApi {
 
     @FormUrlEncoded
     @POST(NetworkConstant.Goods.CREATE_ORDER)
-    Observable<BaseBean<ArrayList<Integer>>> createOrder(@Field("userId") int userId, @Field("goodsId") int goodsId, @Field("spec") String spec, @Field("num") String num, @Field("addressId") String addressId, @Field("remark") String remark,@Field("token") String token);
+    Observable<BaseBean<ArrayList<Integer>>> createOrder(@Field("userId") int userId, @Field("goodsId") int goodsId, @Field("spec") String spec, @Field("num") String num, @Field("addressId") String addressId, @Field("remark") String remark,@Field("recommendUser") String recommendUser,@Field("token") String token);
 
     @FormUrlEncoded
     @POST(NetworkConstant.Follow.ADD_FOLLOW)

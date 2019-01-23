@@ -1,9 +1,13 @@
 package com.cecilia.framework.module.customer.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cecilia.framework.R;
 import com.cecilia.framework.base.BaseActivity;
@@ -17,17 +21,25 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ProductActivity extends BaseActivity {
+public class ProductActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.lmrv_income_detail)
     LoadMoreRecyclerView mLmrvDetail;
+    @BindView(R.id.srl_list)
+    SwipeRefreshLayout mSrlList;
+    @BindView(R.id.tv_confirm)
+    TextView mTvConfirm;
+    @BindView(R.id.ll_total)
+    LinearLayout mLlTotal;
+    @BindView(R.id.tv_title_text)
+    TextView mTvTitleText;
     private ProductAdapter mProductAdapter;
-    private int mType;
+    private int mMerchantId;
 
-    public static void launch(Context context, int type) {
+    public static void launch(Activity context, int merchantId) {
         Intent intent = new Intent(context, ProductActivity.class);
-        intent.putExtra("type", type);
-        context.startActivity(intent);
+        intent.putExtra("merchantId", merchantId);
+        context.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -37,13 +49,16 @@ public class ProductActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        mTvTitleText.setText("商品清单");
+        mTvConfirm.setVisibility(View.VISIBLE);
+        mLlTotal.setVisibility(View.GONE);
     }
 
     @Override
     protected void initData() {
-        mType = getIntent().getIntExtra("type", 0);
+        mMerchantId = getIntent().getIntExtra("merchantId", 0);
         mLmrvDetail.setState(true, new LinearLayoutManager(this));
-        mProductAdapter = new ProductAdapter(this, mType);
+        mProductAdapter = new ProductAdapter(this);
         mLmrvDetail.setAdapter(mProductAdapter);
         List<Object> list = new ArrayList<>();
         list.add("dwdwasd");
@@ -63,6 +78,11 @@ public class ProductActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+        mSrlList.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onRefresh() {
 
     }
 
@@ -76,12 +96,24 @@ public class ProductActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back})
+    @OnClick({R.id.iv_back,R.id.tv_confirm})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
+            case R.id.tv_confirm:
+                ProductEditActivity.launch(ProductActivity.this,1,0);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 99) {
+            setResult(99);
+            finish();
         }
     }
 }

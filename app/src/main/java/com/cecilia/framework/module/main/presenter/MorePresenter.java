@@ -18,35 +18,6 @@ public class MorePresenter {
     public MorePresenter(MoreView mMoreView) {
         this.mMoreView = mMoreView;
     }
-//
-//    public void getCategoryData(final SwipeRefreshLayout swipeRefreshLayout) {
-//        HomeRealization.getMoreListData(new NetworkObserver<List<MoreListBean>>() {
-//            @Override
-//            protected SwipeRefreshLayout getSwipeRefreshLayout() {
-//                return swipeRefreshLayout;
-//            }
-//
-//            @Override
-//            protected void onSuccess(List<MoreListBean> data) {
-//               mMoreView.getDataSuccess(data);
-//            }
-//
-//            @Override
-//            protected void onFailure(int errorCode, String errorMsg) {
-//
-//            }
-//
-//            @Override
-//            protected void onException(Throwable e) {
-//
-//            }
-//
-//            @Override
-//            protected void onTimeout() {
-//
-//            }
-//        });
-//    }
 
     public void getRecommendList(final SwipeRefreshLayout swipeRefreshLayout) {
         HomeRealization.getRecommendList(new NetworkObserver<List<GoodsBean>>() {

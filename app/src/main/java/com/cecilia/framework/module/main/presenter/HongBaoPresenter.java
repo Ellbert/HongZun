@@ -3,9 +3,12 @@ package com.cecilia.framework.module.main.presenter;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.cecilia.framework.general.NetworkObserver;
+import com.cecilia.framework.module.customer.ShopRealization;
+import com.cecilia.framework.module.customer.bean.RateBean;
 import com.cecilia.framework.module.customer.bean.ShopPaymentBean;
 import com.cecilia.framework.module.main.HomeRealization;
 import com.cecilia.framework.module.main.view.HongBaoView;
+import com.cecilia.framework.utils.LogUtil;
 import com.cecilia.framework.utils.ToastUtil;
 
 public class HongBaoPresenter {
@@ -35,7 +38,6 @@ public class HongBaoPresenter {
 
             @Override
             protected void onException(Throwable e) {
-
             }
 
             @Override
@@ -94,6 +96,74 @@ public class HongBaoPresenter {
             @Override
             protected void onSuccess(Object data, String other) {
                 mHongBaoView.onRedeliverySuccess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHongBaoView.onFailed();
+            }
+        });
+    }
+
+    public void getRatio() {
+        ShopRealization.getRatio(new NetworkObserver<RateBean>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(RateBean data, String other) {
+                mHongBaoView.onGetRatioSuccess(data);
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                ToastUtil.newSafelyShow(errorMsg);
+            }
+
+            @Override
+            protected void onException(Throwable e) {
+
+            }
+
+            @Override
+            protected void onTimeout() {
+
+            }
+
+            @Override
+            protected void onLoginTimeOut() {
+                mHongBaoView.onFailed();
+            }
+        });
+    }
+
+    public void withdraw(int userId, String userName, long money, String account, String realName) {
+        HomeRealization.withdraw(userId, userName, money, account, realName, new NetworkObserver<Object>() {
+            @Override
+            protected SwipeRefreshLayout getSwipeRefreshLayout() {
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Object data, String other) {
+                mHongBaoView.onWithdrawSuccess();
             }
 
             @Override

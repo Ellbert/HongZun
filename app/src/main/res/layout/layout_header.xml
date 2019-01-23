@@ -46,7 +46,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:padding="13dp"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:paddingEnd="13dp"
+        android:paddingStart="13dp"
         android:textColor="@color/txt_second"
         android:textSize="@dimen/txt_second"
         android:visibility="gone" />

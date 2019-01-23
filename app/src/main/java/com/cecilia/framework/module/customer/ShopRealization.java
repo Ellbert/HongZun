@@ -12,7 +12,7 @@ public class ShopRealization {
 
     public static void getWallet(int merchantId, NetworkObserver<ShopPaymentBean> observer) {
         NetworkUtil.getInstance().setApi(ShopApi.class)
-                .getWallet(merchantId,GcGuangApplication.getsToken())
+                .getWallet(merchantId, GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<ShopPaymentBean>>setThread())
                 .subscribe(observer);
     }
@@ -26,7 +26,14 @@ public class ShopRealization {
 
     public static void withdraw(int merchantId, String merchantName, int cardId, long money, NetworkObserver<Object> observer) {
         NetworkUtil.getInstance().setApi(ShopApi.class)
-                .withdraw(merchantId, merchantName, cardId, money,GcGuangApplication.getsToken())
+                .withdraw(merchantId, merchantName, cardId, money, GcGuangApplication.getsToken())
+                .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
+                .subscribe(observer);
+    }
+
+    public static void withdrawByAlipay(int merchantId, String merchantName, long money, String account, String realName, NetworkObserver<Object> observer) {
+        NetworkUtil.getInstance().setApi(ShopApi.class)
+                .withdrawByAlipay(merchantId, merchantName, money, account, realName, GcGuangApplication.getsToken())
                 .compose(AsynchronousUtil.<BaseBean<Object>>setThread())
                 .subscribe(observer);
     }

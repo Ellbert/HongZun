@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -92,11 +93,12 @@ public class RecommendPhotoActivity extends BaseActivity implements RecommendPho
             @Override
             public void ShareMedia(int type) {
 //                LogUtil.e("ShareMedia");
-                Bitmap bitmap = ViewUtil.createViewBitmap(mLlPhoto);
+//                Bitmap bitmap = ViewUtil.createViewBitmap(mLlPhoto);
                 //设置缩略图
-                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 200, 200, true);
-                bitmap.recycle();
-                mWXShare.shareUrl(type, RecommendPhotoActivity.this, "http://www.hongzuncctv.com/HZ/open.jsp?phone=" + SharedPreferenceUtil.getString(RecommendPhotoActivity.this, "tel"), "推荐好友", "推荐好友得佣金", scaledBitmap);
+//                Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 200, 200, true);
+//                bitmap.recycle();
+                Bitmap bitmap = BitmapFactory.decodeResource(ViewUtil.getResources(), R.mipmap.ic_launcher);
+                mWXShare.shareUrl(type, RecommendPhotoActivity.this, "http://www.hongzuncctv.com/HZ/open.jsp?phone=" + SharedPreferenceUtil.getString(RecommendPhotoActivity.this, "tel"), "推荐好友", "推荐好友得佣金", bitmap);
 //                mWXShare.shareUrl(type, RecommendPhotoActivity.this, null, "", "", scaledBitmap);
             }
         });

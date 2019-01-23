@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="86dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_toEndOf="@+id/iv_photo"
+        android:layout_toRightOf="@+id/iv_photo"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="saddddsdsasdwda撒大声地和挖掘和速度为很短速度哇哈USD我的速度撒多无多圣诞袜是飞洒的"
+        android:textColor="@color/txt_third"
+        android:textSize="@dimen/txt_seven" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_name"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_marginTop="57dp"
+        android:text="单价：888.88"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_price"
+        android:layout_toStartOf="@+id/tv_income"
+        android:layout_toLeftOf="@+id/tv_income"
+        android:layout_toEndOf="@+id/tv_price"
+        android:layout_toRightOf="@+id/tv_price"
+        android:gravity="center"
+        android:text="数量：8"
+        android:textColor="@color/txt_first"
+        android:textSize="@dimen/txt_third" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/bg_view" />
+
+</RelativeLayout>

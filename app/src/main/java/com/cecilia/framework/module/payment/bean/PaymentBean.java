@@ -10,8 +10,8 @@ public class PaymentBean {
     private int tType;
     private String tTitle;
     private int tAmount;
-    private int tBeforeBalance;
-    private int tAfterBalance;
+    private long tBeforeBalance;
+    private long tAfterBalance;
     private int tStatus;
     private String tOrderId;
     private long tFinishTime;
@@ -82,19 +82,19 @@ public class PaymentBean {
         return tAmount;
     }
 
-    public void setTBeforeBalance(int tBeforeBalance) {
+    public void setTBeforeBalance(long tBeforeBalance) {
         this.tBeforeBalance = tBeforeBalance;
     }
 
-    public int getTBeforeBalance() {
+    public long getTBeforeBalance() {
         return tBeforeBalance;
     }
 
-    public void setTAfterBalance(int tAfterBalance) {
+    public void setTAfterBalance(long tAfterBalance) {
         this.tAfterBalance = tAfterBalance;
     }
 
-    public int getTAfterBalance() {
+    public long getTAfterBalance() {
         return tAfterBalance;
     }
 
